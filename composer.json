@@ -1,6 +1,6 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "name": "c-base/cbag3",
+    "description": "The c-base artefact guide",
     "autoload": {
         "psr-0": { "": "src/" }
     },
