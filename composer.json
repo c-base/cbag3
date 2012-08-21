@@ -1,6 +1,7 @@
 {
     "name": "c-base/cbag3",
     "description": "The c-base artefact guide",
+    "license": "MIT",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -20,7 +21,13 @@
         "jms/di-extra-bundle": "1.1.*",
         "doctrine/mongodb-odm-bundle": "v3.0.0-BETA1",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "knplabs/knp-markdown-bundle": "dev-master"
+        "knplabs/knp-markdown-bundle": "dev-master",
+        "mopa/bootstrap-bundle": "dev-master",
+        "twitter/bootstrap": "master",
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master",
+        "craue/formflow-bundle": "dev-master",
+        "thomas-mcdonald/bootstrap-sass": "dev-master"
 },
     "scripts": {
         "post-install-cmd": [
@@ -43,5 +50,39 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
-    }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "version": "master",
+                "name": "twitter/bootstrap",
+                "source": {
+                    "url": "https://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "dist": {
+                    "url": "https://github.com/twitter/bootstrap/zipball/master",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type":"package",
+            "package": {
+                "version":"dev-master",
+                "name":"thomas-mcdonald/bootstrap-sass",
+                "source": {
+                    "url":"https://github.com/thomas-mcdonald/bootstrap-sass.git",
+                    "type":"git",
+                    "reference":"master"
+                },
+                "dist": {
+                    "url":"https://github.com/thomas-mcdonald/bootstrap-sass/zipball/master",
+                    "type":"zip"
+                }
+            }
+        }
+    ]
 }
