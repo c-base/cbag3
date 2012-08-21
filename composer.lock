@@ -1,6 +1,12 @@
 {
-    "hash": "b1ce7e86da4e34b150a48f13cbfc0a2d",
+    "hash": "28b06873a9dc25e300eeb4fbb21edaa8",
     "packages": [
+        {
+            "package": "craue/formflow-bundle",
+            "version": "dev-master",
+            "source-reference": "ffea2781dcbc13ad2a4b0be301a952b72770f405",
+            "commit-date": "1343462962"
+        },
         {
             "package": "doctrine/common",
             "version": "2.3.x-dev",
@@ -92,10 +98,40 @@
             "commit-date": "1345149984"
         },
         {
+            "package": "knplabs/knp-components",
+            "version": "dev-master",
+            "source-reference": "99ea408dc2a7c3616e688ffe67e3248ece69ff0e",
+            "commit-date": "1339767068"
+        },
+        {
             "package": "knplabs/knp-markdown-bundle",
             "version": "dev-master",
             "source-reference": "d0fac3f6d2ac502386ee73def9cf900029e1d353",
             "commit-date": "1339679093"
+        },
+        {
+            "package": "knplabs/knp-menu",
+            "version": "dev-master",
+            "alias-pretty-version": "2.0.x-dev",
+            "alias-version": "2.0.9999999.9999999-dev"
+        },
+        {
+            "package": "knplabs/knp-menu",
+            "version": "dev-master",
+            "source-reference": "5b7d34e58c2d51b30005b69eeded9fb658fe8abf",
+            "commit-date": "1343985848"
+        },
+        {
+            "package": "knplabs/knp-menu-bundle",
+            "version": "dev-master",
+            "source-reference": "4389efdd5c30d974544afbfe5ada3a4ce30d7aa1",
+            "commit-date": "1344013797"
+        },
+        {
+            "package": "knplabs/knp-paginator-bundle",
+            "version": "dev-master",
+            "source-reference": "de439d2816fe984dbe0c438fd4d0d7c67748c5ff",
+            "commit-date": "1343676956"
         },
         {
             "package": "kriswallsmith/assetic",
@@ -112,6 +148,24 @@
         {
             "package": "monolog/monolog",
             "version": "1.2.0"
+        },
+        {
+            "package": "mopa/bootstrap-bundle",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "mopa/bootstrap-bundle",
+            "version": "dev-master",
+            "source-reference": "2fae5ed907940ec65b57a92b1b1147e34fd7e479",
+            "commit-date": "1345469002"
+        },
+        {
+            "package": "mopa/composer-bridge",
+            "version": "dev-master",
+            "source-reference": "84b8bf537163b4470f14d02554a0e9eb5d300172",
+            "commit-date": "1337596733"
         },
         {
             "package": "sensio/distribution-bundle",
@@ -174,6 +228,12 @@
             "commit-date": "1345367019"
         },
         {
+            "package": "thomas-mcdonald/bootstrap-sass",
+            "version": "dev-master",
+            "source-reference": "master",
+            "commit-date": "1340745807"
+        },
+        {
             "package": "twig/extensions",
             "version": "dev-master",
             "source-reference": "feb6d3f10c411e2631997c0a905aa581c80305c1",
@@ -190,6 +250,12 @@
             "version": "dev-master",
             "source-reference": "552143062982fd15a1d6fe5a0cdda1f007212154",
             "commit-date": "1345489844"
+        },
+        {
+            "package": "twitter/bootstrap",
+            "version": "master",
+            "source-reference": "master",
+            "commit-date": "1345506229"
         }
     ],
     "packages-dev": null,
@@ -207,6 +273,11 @@
         "sensio/framework-extra-bundle": 20,
         "sensio/generator-bundle": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
-        "knplabs/knp-markdown-bundle": 20
+        "knplabs/knp-markdown-bundle": 20,
+        "mopa/bootstrap-bundle": 20,
+        "knplabs/knp-paginator-bundle": 20,
+        "knplabs/knp-menu-bundle": 20,
+        "craue/formflow-bundle": 20,
+        "thomas-mcdonald/bootstrap-sass": 20
     }
 }
