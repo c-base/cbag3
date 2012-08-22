@@ -1,6 +1,12 @@
 {
-    "hash": "9cb860b18643b6e03ac9352bbc9fab1d",
+    "hash": "769e1e802aeece1dd8f30fb586227261",
     "packages": [
+        {
+            "package": "craue/formflow-bundle",
+            "version": "dev-master",
+            "source-reference": "ffea2781dcbc13ad2a4b0be301a952b72770f405",
+            "commit-date": "1343462962"
+        },
         {
             "package": "doctrine/common",
             "version": "2.3.x-dev",
@@ -92,10 +98,40 @@
             "commit-date": "1345149984"
         },
         {
+            "package": "knplabs/knp-components",
+            "version": "dev-master",
+            "source-reference": "99ea408dc2a7c3616e688ffe67e3248ece69ff0e",
+            "commit-date": "1339767068"
+        },
+        {
             "package": "knplabs/knp-markdown-bundle",
             "version": "dev-master",
             "source-reference": "d0fac3f6d2ac502386ee73def9cf900029e1d353",
             "commit-date": "1339679093"
+        },
+        {
+            "package": "knplabs/knp-menu",
+            "version": "dev-master",
+            "alias-pretty-version": "2.0.x-dev",
+            "alias-version": "2.0.9999999.9999999-dev"
+        },
+        {
+            "package": "knplabs/knp-menu",
+            "version": "dev-master",
+            "source-reference": "5b7d34e58c2d51b30005b69eeded9fb658fe8abf",
+            "commit-date": "1343985848"
+        },
+        {
+            "package": "knplabs/knp-menu-bundle",
+            "version": "dev-master",
+            "source-reference": "4389efdd5c30d974544afbfe5ada3a4ce30d7aa1",
+            "commit-date": "1344013797"
+        },
+        {
+            "package": "knplabs/knp-paginator-bundle",
+            "version": "dev-master",
+            "source-reference": "de439d2816fe984dbe0c438fd4d0d7c67748c5ff",
+            "commit-date": "1343676956"
         },
         {
             "package": "kriswallsmith/assetic",
@@ -226,6 +262,9 @@
         "sensio/generator-bundle": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
         "knplabs/knp-markdown-bundle": 20,
-        "mopa/bootstrap-bundle": 20
+        "mopa/bootstrap-bundle": 20,
+        "knplabs/knp-paginator-bundle": 20,
+        "knplabs/knp-menu-bundle": 20,
+        "craue/formflow-bundle": 20
     }
 }
