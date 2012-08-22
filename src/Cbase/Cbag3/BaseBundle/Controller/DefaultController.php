@@ -1,6 +1,6 @@
 <?php
 
-namespace cbase\cbag3\BaseBundle\Controller;
+namespace Cbase\Cbag3\BaseBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
