@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
+
+{% block title %}CBAG3 - c-base Artefact Guide{% endblock %}
+
+
+{% block page_header %}
+<div class="page-header">
+    <h1>{% block headline %}CBAG3: c-base Artefact Guide{% endblock headline %}</h1>
+</div>
+{% endblock page_header %}
+
+{% block footer %}
+<p>&copy; <a href="http://www.c-base.org" target="_blank">c-base.org</a> 2012</p>
+{% endblock footer %}

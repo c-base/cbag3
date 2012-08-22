@@ -1,1 +1,12 @@
-Hello !
+{% extends '::base.html.twig' %}
+
+{% block content %}
+<div class="span9">
+    <strong>Hier wir niemals Ihre Werbung stehen ... </strong>
+</div>
+<div class="span3">
+    {% block content_sidebar %}
+    <h2>Artefacts</h2>
+    {% endblock content_sidebar %}
+</div>
+{% endblock content %}
