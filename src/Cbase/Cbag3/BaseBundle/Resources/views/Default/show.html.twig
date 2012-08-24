@@ -9,11 +9,11 @@
 {% block content %}
 <div class="span9">
 
-    <p>{{artefact.description}}</p>
+    <p>{{artefact.description | markdown}}</p>
 
     <ul>
-        <li><a href="">delete</a></li>
         <li><a href="{{ path('cbase_cbag3_base_default_update', {'id': artefact.id})}}">edit</a></li>
+        <li><a href="">delete</a></li>
     </ul>
 </div>
 <div class="span3">
