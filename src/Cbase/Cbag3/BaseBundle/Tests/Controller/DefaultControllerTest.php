@@ -1,6 +1,6 @@
 <?php
 
-namespace cbase\cbag3\BaseBundle\Tests\Controller;
+namespace Cbase\Cbag3\BaseBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

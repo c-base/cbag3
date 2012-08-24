@@ -24,7 +24,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
-            new cbase\cbag3\BaseBundle\cbasecbag3BaseBundle(),
+            new Cbase\Cbag3\BaseBundle\CbaseCbag3BaseBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
