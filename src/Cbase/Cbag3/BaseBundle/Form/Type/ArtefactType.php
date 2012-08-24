@@ -11,8 +11,8 @@ class ArtefactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description', 'textarea')
+            ->add('name', 'text', array('attr'=>array('class'=>'span8')))
+            ->add('description', 'textarea', array("attr" => array("class"=>"span8", "rows" => 7)))
         ;
     }
 
