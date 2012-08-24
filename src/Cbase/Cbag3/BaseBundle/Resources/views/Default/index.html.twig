@@ -2,7 +2,12 @@
 
 {% block content %}
 <div class="span9">
-    <strong>Hier wir niemals Ihre Werbung stehen ... </strong>
+    <ul>
+    {% for artefact in artefacts %}
+        <li><a href="{{ path('cbase_cbag3_base_default_show', {'id': artefact.id}) }}">{{ artefact.id}}</a></li>
+    {% endfor %}
+    </ul>
+    {#<strong>Hier wir niemals Ihre Werbung stehen ... </strong>#}
 </div>
 <div class="span3">
     {% block content_sidebar %}

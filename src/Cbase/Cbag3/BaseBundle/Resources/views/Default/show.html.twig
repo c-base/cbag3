@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block page_header %}
+<div class="page-header">
+    <h1>{% block headline %}CBAG3: {{artefact.name}}{% endblock headline %}</h1>
+</div>
+{% endblock page_header %}
+
+{% block content %}
+<div class="span9">
+    <ul>
+        <li><a href="">delete</a></li>
+        <li><a href="">edit</a></li>
+    </ul>
+</div>
+<div class="span3">
+    {% block content_sidebar %}
+    <h2>Artefacts</h2>
+    {% endblock content_sidebar %}
+</div>
+{% endblock content %}
