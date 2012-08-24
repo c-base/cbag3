@@ -4,7 +4,7 @@
 <div class="span9">
     <ul>
     {% for artefact in artefacts %}
-        <li><a href="{{ path('cbase_cbag3_base_default_show', {'id': artefact.id}) }}">{{ artefact.id}}</a></li>
+        <li><a href="{{ path('cbase_cbag3_base_default_show', {'id': artefact.id}) }}">{{ artefact.name}}</a></li>
     {% endfor %}
     </ul>
     {#<strong>Hier wir niemals Ihre Werbung stehen ... </strong>#}

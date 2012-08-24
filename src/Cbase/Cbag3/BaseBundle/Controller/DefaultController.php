@@ -64,10 +64,48 @@ class DefaultController extends Controller
             ->find($id);
 
         if (!$artefact) {
-            throw $this->createNotFoundException('No product found for id '.$id);
+            throw $this->createNotFoundException('No artefact found for id '.$id);
         }
 
         return array('artefact'=>$artefact);
+    }
+
+    /**
+     * @Route("/update/{id}")
+     * @Template()
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function updateAction($id)
+    {
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        $artefact = $dm->getRepository('CbaseCbag3BaseBundle:Artefact')->find($id);
+
+        if (!$artefact) {
+            throw $this->createNotFoundException('No artefact found for id '.$id);
+        }
+
+        $form = $this->createForm(new ArtefactType(), $artefact);
+
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+
+            if ($form->isValid()) {
+                // perform some action, such as saving the task to the database
+                $artefact = $form->getData();
+
+                $dm = $this->get('doctrine.odm.mongodb.document_manager');
+                $dm->persist($artefact);
+                $dm->flush();
+
+                return $this->redirect($this->generateUrl('cbase_cbag3_base_default_show', array('id'=> $id)));
+            }
+        }
+
+        return array('form'=>$form->createView(), 'id'=>$id);
     }
 
     /**
