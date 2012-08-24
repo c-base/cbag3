@@ -6,6 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
  * @MongoDB\Document
+ * @MongoDB\Document(repositoryClass="Cbase\Cbag3\BaseBundle\Repository\ArtefactRepository")
  */
 class Artefact
 {
