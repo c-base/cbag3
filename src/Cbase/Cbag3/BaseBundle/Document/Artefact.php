@@ -3,6 +3,7 @@
 namespace Cbase\Cbag3\BaseBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Cbase\Cbag3\BaseBundle\Document\Asset;
 
 /**
  * @MongoDB\Document
@@ -26,7 +27,7 @@ class Artefact
     protected $description;
 
     /**
-     * @MongoDB\ReferenceMany(targetDocument="Cbase\Cbag3\BaseBundle\Document\Asset")
+     * @MongoDB\ReferenceMany(targetDocument="Asset")
      */
     protected $assets = array();
 
