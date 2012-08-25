@@ -26,6 +26,11 @@ class Artefact
     protected $description;
 
     /**
+     * @MongoDB\ReferenceMany(targetDocument="Cbase\Cbag3\BaseBundle\Document\Asset")
+     */
+    protected $assets = array();
+
+    /**
      * Get id
      *
      * @return id $id
