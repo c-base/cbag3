@@ -10,7 +10,9 @@ class AssetType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-//        $builder->add()
+        $builder
+            ->add('description')
+        ;
     }
 
     public function getDefaultOptions(array $options)
