@@ -57,4 +57,22 @@ class AssetController extends Controller
 
         return array('form'=>$form->createView());
     }
+
+    /**
+     * @Route("/delete/{id}")
+     * @Template()
+     *
+     * @return Response
+     */
+    public function deleteAction($id)
+    {
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        $asset = $dm->getRepository('CbaseCbag3BaseBundle:Asset')->find($id);
+
+        $dm->remove($asset);
+        $dm->flush();
+
+        return $this->redirect($this->generateUrl('cbase_cbag3_base_asset_index'));
+    }
 }

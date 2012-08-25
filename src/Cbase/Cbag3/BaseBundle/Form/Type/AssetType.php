@@ -12,6 +12,7 @@ class AssetType extends AbstractType
     {
         $builder
             ->add('description')
+            ->add('file', 'file')
         ;
     }
 

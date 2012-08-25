@@ -84,4 +84,28 @@ class Artefact
     {
         return $this->description;
     }
+    public function __construct()
+    {
+        $this->assets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add assets
+     *
+     * @param Cbase\Cbag3\BaseBundle\Document\Asset $assets
+     */
+    public function addAssets(\Cbase\Cbag3\BaseBundle\Document\Asset $assets)
+    {
+        $this->assets[] = $assets;
+    }
+
+    /**
+     * Get assets
+     *
+     * @return Doctrine\Common\Collections\Collection $assets
+     */
+    public function getAssets()
+    {
+        return $this->assets;
+    }
 }
