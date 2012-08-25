@@ -2,16 +2,20 @@
 
 {% block content %}
 <div class="span9">
-    <ul>
-    {% for artefact in artefacts %}
-        <li><a href="{{ path('cbase_cbag3_base_default_show', {'id': artefact.id}) }}">{{ artefact.name}}</a></li>
-    {% endfor %}
-    </ul>
-    {#<strong>Hier wir niemals Ihre Werbung stehen ... </strong>#}
+    <p>
+        <ul>
+        {% for artefact in artefacts %}
+            <li><a href="{{ path('cbase_cbag3_base_default_show', {'id': artefact.id}) }}">{{ artefact.name}}</a></li>
+        {% endfor %}
+        </ul>
+    </p>
 </div>
 <div class="span3">
     {% block content_sidebar %}
-    <h2>Artefacts</h2>
+    <h2>Artefact Actions</h2>
+    <ul>
+        <li><a href="{{ path('cbase_cbag3_base_default_create')}}">create new artefact</a></li>
+    </ul>
     {% endblock content_sidebar %}
 </div>
 {% endblock content %}
