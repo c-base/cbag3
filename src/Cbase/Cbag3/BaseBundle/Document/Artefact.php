@@ -31,6 +31,12 @@ class Artefact
      */
     protected $assets = array();
 
+
+    public function __construct()
+    {
+        $this->assets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -83,10 +89,6 @@ class Artefact
     public function getDescription()
     {
         return $this->description;
-    }
-    public function __construct()
-    {
-        $this->assets = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
