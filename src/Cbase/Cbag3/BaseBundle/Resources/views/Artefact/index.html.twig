@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+<div class="span9">
+    <p>
+        <ul>
+        {% for artefact in artefacts %}
+            <li><a href="{{ path('cbase_cbag3_base_default_show', {'id': artefact.id}) }}">{{ artefact.name}}</a></li>
+        {% endfor %}
+        </ul>
+    </p>
+</div>
+<div class="span3">
+    {% block content_sidebar %}
+    <h2>Actions</h2>
+    <ul>
+        <li><a href="{{ path('cbase_cbag3_base_default_create')}}">create new artefact</a></li>
+        <li><a href="{{ path('cbase_cbag3_base_asset_index')}}">see all assets</a></li>
+    </ul>
+    {% endblock content_sidebar %}
+</div>
+{% endblock content %}
