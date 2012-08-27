@@ -49,7 +49,7 @@ class ArtefactController extends Controller
 
                 $id = $artefact->getId();
 
-                return $this->redirect($this->generateUrl('cbase_cbag3_base_default_show', array('id'=> $id)));
+                return $this->redirect($this->generateUrl('cbase_cbag3_base_artefact_show', array('id'=> $id)));
             }
         }
 
@@ -106,7 +106,7 @@ class ArtefactController extends Controller
                 $dm->persist($artefact);
                 $dm->flush();
 
-                return $this->redirect($this->generateUrl('cbase_cbag3_base_default_show', array('id'=> $id)));
+                return $this->redirect($this->generateUrl('cbase_cbag3_base_artefact_show', array('id'=> $id)));
             }
         }
 

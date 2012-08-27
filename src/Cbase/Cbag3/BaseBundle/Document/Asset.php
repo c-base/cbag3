@@ -31,6 +31,12 @@ class Asset
      */
     public $file;
 
+
+    public function __toString()
+    {
+        return $this->getWebPath();
+    }
+
     /**
      * Get id
      *

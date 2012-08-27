@@ -10,6 +10,11 @@
 <div class="span9">
 
     <p>{{artefact.description | markdown}}</p>
+    <ul>
+        {% for artefactAsset in artefact.assets %}
+            <li><img src="{{asset(artefactAsset.webPath)}}" alt="" /></li>
+        {% endfor %}
+    </ul>
 
 </div>
 <div class="span3">
