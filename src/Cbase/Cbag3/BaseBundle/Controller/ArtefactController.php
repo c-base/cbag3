@@ -10,7 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Cbase\Cbag3\BaseBundle\Document\Artefact;
 use Cbase\Cbag3\BaseBundle\Form\Type\ArtefactType;
 
-class DefaultController extends Controller
+/**
+ * @Route("/artefact")
+ *
+ */
+class ArtefactController extends Controller
 {
     /**
      * @Route("/")
@@ -45,7 +49,7 @@ class DefaultController extends Controller
 
                 $id = $artefact->getId();
 
-                return $this->redirect($this->generateUrl('cbase_cbag3_base_default_show', array('id'=> $id)));
+                return $this->redirect($this->generateUrl('cbase_cbag3_base_artefact_show', array('id'=> $id)));
             }
         }
 
@@ -102,7 +106,7 @@ class DefaultController extends Controller
                 $dm->persist($artefact);
                 $dm->flush();
 
-                return $this->redirect($this->generateUrl('cbase_cbag3_base_default_show', array('id'=> $id)));
+                return $this->redirect($this->generateUrl('cbase_cbag3_base_artefact_show', array('id'=> $id)));
             }
         }
 

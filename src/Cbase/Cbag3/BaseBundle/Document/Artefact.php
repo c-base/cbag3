@@ -3,6 +3,7 @@
 namespace Cbase\Cbag3\BaseBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Cbase\Cbag3\BaseBundle\Document\Asset;
 
 /**
  * @MongoDB\Document
@@ -24,6 +25,17 @@ class Artefact
      * @MongoDB\String
      */
     protected $description;
+
+    /**
+     * @MongoDB\ReferenceMany(targetDocument="Asset")
+     */
+    protected $assets = array();
+
+
+    public function __construct()
+    {
+        $this->assets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -77,5 +89,25 @@ class Artefact
     public function getDescription()
     {
         return $this->description;
+    }
+    
+    /**
+     * Add assets
+     *
+     * @param Cbase\Cbag3\BaseBundle\Document\Asset $assets
+     */
+    public function addAssets(\Cbase\Cbag3\BaseBundle\Document\Asset $assets)
+    {
+        $this->assets[] = $assets;
+    }
+
+    /**
+     * Get assets
+     *
+     * @return Doctrine\Common\Collections\Collection $assets
+     */
+    public function getAssets()
+    {
+        return $this->assets;
     }
 }

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="span9">
 
-    <form action="{{ path('cbase_cbag3_base_default_update', {'id': id})}}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('cbase_cbag3_base_artefact_update', {'id': id})}}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
 
         <input type="submit" />

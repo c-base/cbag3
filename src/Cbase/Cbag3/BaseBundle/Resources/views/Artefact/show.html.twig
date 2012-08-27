@@ -10,15 +10,21 @@
 <div class="span9">
 
     <p>{{artefact.description | markdown}}</p>
-
     <ul>
-        <li><a href="{{ path('cbase_cbag3_base_default_update', {'id': artefact.id})}}">edit</a></li>
-        <li><a href="">delete</a></li>
+        {% for artefactAsset in artefact.assets %}
+            <li><img src="{{asset(artefactAsset.webPath)}}" alt="" /></li>
+        {% endfor %}
     </ul>
+
 </div>
 <div class="span3">
     {% block content_sidebar %}
-    <h2>Artefacts</h2>
+    <h2>Actions</h2>
+    <ul>
+        <li><a href="{{ path('cbase_cbag3_base_artefact_index')}}">back to the list</a></li>
+        <li><a href="{{ path('cbase_cbag3_base_artefact_update', {'id': artefact.id})}}">edit</a></li>
+        <li><a href="">delete</a></li>
+    </ul>
     {% endblock content_sidebar %}
 </div>
 {% endblock content %}
