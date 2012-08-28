@@ -27,10 +27,19 @@ class Asset
     protected $description;
 
     /**
+     * @MongoDB\String
+     */
+    protected $licence;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $author;
+
+    /**
      * @Assert\File(maxSize="6000000")
      */
     public $file;
-
 
     public function __toString()
     {
@@ -152,5 +161,49 @@ class Asset
         if ($file = $this->getAbsolutePath()) {
             unlink($file);
         }
+    }
+
+    /**
+     * Set licence
+     *
+     * @param string $licence
+     * @return Asset
+     */
+    public function setLicence($licence)
+    {
+        $this->licence = $licence;
+        return $this;
+    }
+
+    /**
+     * Get licence
+     *
+     * @return string $licence
+     */
+    public function getLicence()
+    {
+        return $this->licence;
+    }
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     * @return Asset
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string $author
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }
