@@ -3,6 +3,7 @@
 namespace Cbase\Cbag3\BaseBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use Cbase\Cbag3\BaseBundle\Document\Asset;
 
 /**
  * ArtefactRepository
@@ -12,4 +13,12 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
  */
 class ArtefactRepository extends DocumentRepository
 {
+    public function getByAsset(Asset $asset)
+    {
+        $id = $asset->getId();
+        $query = $this->dm->createQueryBuilder();
+        $query->field('asset.$id')->equals($id);
+
+        return $query->getQuery()->execute();
+    }
 }
