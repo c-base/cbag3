@@ -6,12 +6,12 @@ CbaseCbag3AssetBundle:
 CbaseCbag3ArtefactBundle:
     resource: "@CbaseCbag3ArtefactBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /artefact
 
 CbaseCbag3BaseBundle:
     resource: "@CbaseCbag3BaseBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /asset
 
 # Internal routing configuration to handle ESI
 #_internal:

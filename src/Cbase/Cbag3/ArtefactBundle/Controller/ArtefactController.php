@@ -1,6 +1,6 @@
 <?php
 
-namespace Cbase\Cbag3\BaseBundle\Controller;
+namespace Cbase\Cbag3\ArtefactBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -10,10 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Cbase\Cbag3\BaseBundle\Document\Artefact;
 use Cbase\Cbag3\BaseBundle\Form\Type\ArtefactType;
 
-/**
- * @Route("/artefact")
- *
- */
+
 class ArtefactController extends Controller
 {
     /**
