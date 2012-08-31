@@ -7,8 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-use Cbase\Cbag3\BaseBundle\Document\Artefact;
-use Cbase\Cbag3\BaseBundle\Form\Type\ArtefactType;
+use Cbase\Cbag3\ArtefactBundle\Document\Artefact;
+use Cbase\Cbag3\ArtefactBundle\Form\Type\ArtefactType;
 
 
 class ArtefactController extends Controller
@@ -46,7 +46,7 @@ class ArtefactController extends Controller
 
                 $id = $artefact->getId();
 
-                return $this->redirect($this->generateUrl('cbase_cbag3_base_artefact_show', array('id'=> $id)));
+                return $this->redirect($this->generateUrl('cbase_cbag3_artefact_artefact_show', array('id'=> $id)));
             }
         }
 
@@ -84,7 +84,7 @@ class ArtefactController extends Controller
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
-        $artefact = $dm->getRepository('CbaseCbag3BaseBundle:Artefact')->find($id);
+        $artefact = $dm->getRepository('CbaseCbag3ArtefactBundle:Artefact')->find($id);
 
         if (!$artefact) {
             throw $this->createNotFoundException('No artefact found for id '.$id);
@@ -103,7 +103,7 @@ class ArtefactController extends Controller
                 $dm->persist($artefact);
                 $dm->flush();
 
-                return $this->redirect($this->generateUrl('cbase_cbag3_base_artefact_show', array('id'=> $id)));
+                return $this->redirect($this->generateUrl('cbase_cbag3_artefact_artefact_show', array('id'=> $id)));
             }
         }
 
@@ -116,6 +116,6 @@ class ArtefactController extends Controller
     private function getArtefactRepository()
     {
         return $this->get('doctrine.odm.mongodb.document_manager')
-            ->getRepository('CbaseCbag3BaseBundle:Artefact');
+            ->getRepository('CbaseCbag3ArtefactBundle:Artefact');
     }
 }

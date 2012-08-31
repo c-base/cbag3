@@ -1,6 +1,6 @@
 <?php
 
-namespace Cbase\Cbag3\BaseBundle\Form\Type;
+namespace Cbase\Cbag3\ArtefactBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -18,7 +18,7 @@ class ArtefactStateType extends AbstractType
 
     public function getDefaultOptions(array $options)
     {
-        return array('data_class' => 'Cbase\Cbag3\BaseBundle\Document\ArtefactState');
+        return array('data_class' => 'Cbase\Cbag3\ArtefactBundle\Document\ArtefactState');
     }
 
     /**

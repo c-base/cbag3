@@ -1,6 +1,6 @@
 <?php
 
-namespace Cbase\Cbag3\BaseBundle\Repository;
+namespace Cbase\Cbag3\AssetBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 

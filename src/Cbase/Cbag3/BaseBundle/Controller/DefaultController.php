@@ -7,8 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-use Cbase\Cbag3\BaseBundle\Document\Artefact;
-use Cbase\Cbag3\BaseBundle\Form\Type\ArtefactType;
 
 class DefaultController extends Controller
 {

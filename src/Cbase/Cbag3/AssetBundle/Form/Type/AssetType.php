@@ -1,6 +1,6 @@
 <?php
 
-namespace Cbase\Cbag3\BaseBundle\Form\Type;
+namespace Cbase\Cbag3\AssetBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -18,7 +18,7 @@ class AssetType extends AbstractType
 
     public function getDefaultOptions(array $options)
     {
-        return array('data_class' => 'Cbase\Cbag3\BaseBundle\Document\Asset');
+        return array('data_class' => 'Cbase\Cbag3\AssetBundle\Document\Asset');
     }
 
     public function getName()

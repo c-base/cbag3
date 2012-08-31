@@ -1,13 +1,13 @@
 <?php
 
-namespace Cbase\Cbag3\BaseBundle\Document;
+namespace Cbase\Cbag3\AssetBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @MongoDB\Document
- * @MongoDB\Document(repositoryClass="Cbase\Cbag3\BaseBundle\Repository\AssetRepository")
+ * @MongoDB\Document(repositoryClass="Cbase\Cbag3\AssetBundle\Repository\AssetRepository")
  */
 class Asset
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Cbase\Cbag3\BaseBundle\Repository;
+namespace Cbase\Cbag3\ArtefactBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
-use Cbase\Cbag3\BaseBundle\Document\Asset;
+use Cbase\Cbag3\AssetBundle\Document\Asset;
 
 /**
  * ArtefactRepository

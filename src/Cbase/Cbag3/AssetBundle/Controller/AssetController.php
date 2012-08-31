@@ -1,6 +1,6 @@
 <?php
 
-namespace Cbase\Cbag3\BaseBundle\Controller;
+namespace Cbase\Cbag3\AssetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -8,13 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
 
-use Cbase\Cbag3\BaseBundle\Document\Asset;
-use Cbase\Cbag3\BaseBundle\Form\Type\AssetType;
+use Cbase\Cbag3\AssetBundle\Document\Asset;
+use Cbase\Cbag3\AssetBundle\Form\Type\AssetType;
 
-/**
- * @Route("/asset")
- *
- */
 class AssetController extends Controller
 {
     /**
@@ -24,7 +20,7 @@ class AssetController extends Controller
     public function indexAction()
     {
         $assets = $this->get('doctrine.odm.mongodb.document_manager')
-            ->getRepository('CbaseCbag3BaseBundle:Asset')->findAll();
+            ->getRepository('CbaseCbag3AssetBundle:Asset')->findAll();
         return array('assets'=>$assets);
     }
 
@@ -51,7 +47,7 @@ class AssetController extends Controller
 
                 $id = $asset->getId();
 
-                return $this->redirect($this->generateUrl('cbase_cbag3_base_asset_index'));
+                return $this->redirect($this->generateUrl('cbase_cbag3_asset_asset_index'));
             }
         }
 
@@ -68,11 +64,11 @@ class AssetController extends Controller
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
-        $asset = $dm->getRepository('CbaseCbag3BaseBundle:Asset')->find($id);
+        $asset = $dm->getRepository('CbaseCbag3AssetBundle:Asset')->find($id);
 
         $dm->remove($asset);
         $dm->flush();
 
-        return $this->redirect($this->generateUrl('cbase_cbag3_base_asset_index'));
+        return $this->redirect($this->generateUrl('cbase_cbag3_asset_asset_index'));
     }
 }

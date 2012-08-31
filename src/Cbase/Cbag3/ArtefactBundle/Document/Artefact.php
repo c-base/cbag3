@@ -1,15 +1,16 @@
 <?php
 
-namespace Cbase\Cbag3\BaseBundle\Document;
+namespace Cbase\Cbag3\ArtefactBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use Cbase\Cbag3\BaseBundle\Document\Asset;
-
 use Symfony\Component\Validator\Constraints as Assert;
+
+use Cbase\Cbag3\AssetBundle\Document\Asset;
+
 
 /**
  * @MongoDB\Document
- * @MongoDB\Document(repositoryClass="Cbase\Cbag3\BaseBundle\Repository\ArtefactRepository")
+ * @MongoDB\Document(repositoryClass="Cbase\Cbag3\ArtefactBundle\Repository\ArtefactRepository")
  */
 class Artefact
 {
@@ -126,9 +127,9 @@ class Artefact
     /**
      * Add assets
      *
-     * @param Cbase\Cbag3\BaseBundle\Document\Asset $assets
+     * @param Cbase\Cbag3\AssetBundle\Document\Asset $assets
      */
-    public function addAssets(\Cbase\Cbag3\BaseBundle\Document\Asset $assets)
+    public function addAssets(\Cbase\Cbag3\AssetBundle\Document\Asset $assets)
     {
         $this->assets[] = $assets;
     }
@@ -212,10 +213,10 @@ class Artefact
     /**
      * Set state
      *
-     * @param Cbase\Cbag3\BaseBundle\Document\ArtefactState $state
+     * @param Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state
      * @return Artefact
      */
-    public function setState(\Cbase\Cbag3\BaseBundle\Document\ArtefactState $state)
+    public function setState(\Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state)
     {
         $this->state = $state;
         return $this;
@@ -224,7 +225,7 @@ class Artefact
     /**
      * Get state
      *
-     * @return Cbase\Cbag3\BaseBundle\Document\ArtefactState $state
+     * @return Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state
      */
     public function getState()
     {
