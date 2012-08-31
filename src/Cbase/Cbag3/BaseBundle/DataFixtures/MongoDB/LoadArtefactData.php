@@ -5,7 +5,7 @@ namespace Cbase\Cbag3\BaseBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Cbase\Cbag3\BaseBundle\Document\Artefact;
+use Cbase\Cbag3\ArtefactBundle\Document\Artefact;
 
 class LoadArtefactData implements FixtureInterface
 {

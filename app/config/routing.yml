@@ -1,3 +1,13 @@
+CbaseCbag3AssetBundle:
+    resource: "@CbaseCbag3AssetBundle/Controller/"
+    type:     annotation
+    prefix:   /asset/
+
+CbaseCbag3ArtefactBundle:
+    resource: "@CbaseCbag3ArtefactBundle/Controller/"
+    type:     annotation
+    prefix:   /artefact/
+
 CbaseCbag3BaseBundle:
     resource: "@CbaseCbag3BaseBundle/Controller/"
     type:     annotation
