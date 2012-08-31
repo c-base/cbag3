@@ -13,6 +13,20 @@ class AssetType extends AbstractType
         $builder
             ->add('description')
             ->add('file', 'file')
+            ->add('author')
+            ->add('licence', 'choice', array(
+                'choices' => array(
+                    '' => 'none',
+                    'CC-BY' => 'CC-BY',
+                    'CC-BY-ND' => 'CC-BY-ND',
+                    'CC-BY-SA' => 'CC-BY-SA',
+                    'CC-BY-NC-ND' => 'CC-BY-NC-ND',
+                    'CC-BY-NC' => 'CC-BY-NC',
+                    'CC-BY-NC-SA' => 'CC-BY-NC-SA',
+
+
+                ),
+            ))
         ;
     }
 
