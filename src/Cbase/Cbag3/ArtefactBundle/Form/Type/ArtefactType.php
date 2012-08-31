@@ -18,6 +18,7 @@ class ArtefactType extends AbstractType
                     'multiple' => true,
                     'expanded' => true,
                   ))
+            ->add('state', new ArtefactStateType())
         ;
     }
 

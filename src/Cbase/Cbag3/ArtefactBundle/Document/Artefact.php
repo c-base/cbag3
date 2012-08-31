@@ -30,7 +30,7 @@ class Artefact
     protected $description;
 
     /**
-     * @MongoDB\ReferenceMany(targetDocument="Asset")
+     * @MongoDB\ReferenceMany(targetDocument="Cbase\Cbag3\AssetBundle\Document\Asset")
      */
     protected $assets = array();
 
@@ -51,7 +51,7 @@ class Artefact
     protected $createdBy;
 
     /**
-     * @MongoDB\EmbedOne(targetDocument="ArtefactState")
+     * @MongoDB\EmbedOne(targetDocument="Cbase\Cbag3\ArtefactBundle\Document\ArtefactState")
      */
     protected $state;
 

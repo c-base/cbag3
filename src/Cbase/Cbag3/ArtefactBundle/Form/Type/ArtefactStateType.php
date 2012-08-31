@@ -13,6 +13,10 @@ class ArtefactStateType extends AbstractType
     {
         $builder
             ->add('hasImage')
+            ->add('hasAsset')
+            ->add('hasText')
+            ->add('hasCompleteText')
+            ->add('hasManual')
         ;
     }
 
