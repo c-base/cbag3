@@ -3,7 +3,7 @@
 {% block content %}
     <div class="span9">
 
-    <form action="{{ path('cbase_cbag3_asset_asset_create')}}" method="post" {{ form_enctype(form) }}>
+    <form novalidate action="{{ path('cbase_cbag3_asset_asset_create')}}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
 
         <input type="submit" />
