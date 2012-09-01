@@ -64,10 +64,21 @@ class Artefact
     /**
      * @MongoDB\PrePersist()
      */
-    protected function prePersist()
+    public function prePersist()
     {
         $this->createdAt = new \Date();
         $this->createdBy = "alien";
+    }
+
+    /**
+     * @MongoDB\PrePersist()
+     * @MongoDB\PreUpdate()
+     */
+    public function prePersistAndPreUpdate()
+    {
+        $slug = $this->getName();
+        $slug = $this->slugify($slug);
+        $this->setSlug($slug);
     }
 
     /**
@@ -230,5 +241,32 @@ class Artefact
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * Slugify string for url representation
+     *
+     * @param string $text
+     * @param string $separator
+     * @return string
+     */
+    private function slugify($text, $separator = "-")
+    {
+        if (function_exists('mb_strtolower')) {
+            $text = mb_strtolower($text);
+        } else {
+            $text = strtolower($text);
+        }
+
+        // Remove all none word characters
+        $text = preg_replace('/\W/', ' ', $text);
+
+        // More stripping. Replace spaces with dashes
+        $text = strtolower(preg_replace('/[^A-Z^a-z^0-9^\/]+/', $separator,
+            preg_replace('/([a-z\d])([A-Z])/', '\1_\2',
+                preg_replace('/([A-Z]+)([A-Z][a-z])/', '\1_\2',
+                    preg_replace('/::/', '/', $text)))));
+
+        return trim($text, $separator);
     }
 }
