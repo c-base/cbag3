@@ -5,7 +5,7 @@
     <p>
         <ul>
         {% for artefact in artefacts %}
-            <li><a href="{{ path('cbase_cbag3_artefact_artefact_show', {'id': artefact.id}) }}">{{ artefact.name}}</a></li>
+            <li><a href="{{ path('cbase_cbag3_artefact_artefact_show', {'slug': artefact.slug}) }}">{{ artefact.name}}</a></li>
         {% endfor %}
         </ul>
     </p>
