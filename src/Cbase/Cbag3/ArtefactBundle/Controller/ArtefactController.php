@@ -17,7 +17,7 @@ use Cbase\Cbag3\ArtefactBundle\Form\Type\ArtefactType;
 class ArtefactController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="artefact_index")
      * @Template()
      * @Method("GET")
      */
@@ -28,7 +28,7 @@ class ArtefactController extends Controller
     }
 
     /**
-     * @Route("/new")
+     * @Route("/new", name="artefact_new")
      * @Template()
      * @Method("GET")
      */
@@ -39,7 +39,7 @@ class ArtefactController extends Controller
     }
 
     /**
-     * @Route("/")
+     * @Route("/", name="artefact_create")
      * @Template()
      * @Method("POST")
      *
@@ -50,14 +50,14 @@ class ArtefactController extends Controller
         $form = $this->createForm(new ArtefactType(), new Artefact());
 
         if ($slug = $this->processArtefactForm($form) !== false) {
-            return $this->redirect($this->generateUrl('cbase_cbag3_artefact_artefact_show', array('slug'=> $slug)));
+            return $this->redirect($this->generateUrl('artefact_show', array('slug'=> $slug)));
         }
 
         return array('form'=>$form->createView());
     }
 
     /**
-     * @Route("/{slug}")
+     * @Route("/{slug}", name="artefact_show")
      * @Template()
      * @Method("GET")
      */
@@ -74,7 +74,7 @@ class ArtefactController extends Controller
     }
 
     /**
-     * @Route("/{slug}/edit")
+     * @Route("/{slug}/edit", name="artefact_edit")
      * @Template()
      * @Method("GET")
      *
@@ -96,9 +96,9 @@ class ArtefactController extends Controller
     }
 
     /**
-     * @Route("/{slug}")
+     * @Route("/{slug}/update", name="artefact_update")
      * @Template()
-     * @Method("PUT")
+     * @Method("POST")
      *
      */
     public function updateAction($slug)
@@ -114,9 +114,9 @@ class ArtefactController extends Controller
         $form = $this->createForm(new ArtefactType(), $artefact);
 
         if ($slug = $this->processArtefactForm($form) !== false) {
-            return $this->redirect($this->generateUrl('cbase_cbag3_artefact_artefact_show', array('slug'=> $slug)));
+            return $this->redirect($this->generateUrl('artefact_show', array('slug'=> $slug)));
         }
-        return $this->redirect($this->generateUrl('cbase_cbag3_artefact_artefact_edit', array('slug'=> $slug)));
+        return $this->redirect($this->generateUrl('artefact_edit', array('slug'=> $slug)));
     }
 
     /**
