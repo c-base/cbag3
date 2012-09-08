@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new IMAG\LdapBundle\IMAGLdapBundle(),
             new Cbase\Cbag3\BaseBundle\CbaseCbag3BaseBundle(),
             new Cbase\Cbag3\ArtefactBundle\CbaseCbag3ArtefactBundle(),
             new Cbase\Cbag3\AssetBundle\CbaseCbag3AssetBundle(),

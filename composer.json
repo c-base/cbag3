@@ -26,7 +26,8 @@
         "twitter/bootstrap": "master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "dev-master",
-        "craue/formflow-bundle": "dev-master"
+        "craue/formflow-bundle": "dev-master",
+        "imag/ldap-bundle": "dev-master"
 },
     "scripts": {
         "post-install-cmd": [
