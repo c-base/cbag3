@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use Symfony\Component\HttpFoundation\Response;
 
@@ -31,6 +32,7 @@ class ArtefactController extends Controller
      * @Route("/new", name="artefact_new")
      * @Template()
      * @Method("GET")
+     * @Secure(roles="ROLE_CREW")
      */
     public function newAction()
     {
@@ -42,6 +44,7 @@ class ArtefactController extends Controller
      * @Route("/", name="artefact_create")
      * @Template()
      * @Method("POST")
+     * @Secure(roles="ROLE_CREW")
      *
      * @return Response
      */
@@ -77,6 +80,7 @@ class ArtefactController extends Controller
      * @Route("/{slug}/edit", name="artefact_edit")
      * @Template()
      * @Method("GET")
+     * @Secure(roles="ROLE_CREW")
      *
      */
     public function editAction($slug)
@@ -99,6 +103,7 @@ class ArtefactController extends Controller
      * @Route("/{slug}/update", name="artefact_update")
      * @Template()
      * @Method("POST")
+     * @Secure(roles="ROLE_CREW")
      *
      */
     public function updateAction($slug)
