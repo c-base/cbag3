@@ -13,6 +13,9 @@ CbaseCbag3BaseBundle:
     type:     annotation
     prefix:   /
 
+imag_ldap:
+  resource: "@IMAGLdapBundle/Resources/config/routing.yml"
+
 # Internal routing configuration to handle ESI
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
