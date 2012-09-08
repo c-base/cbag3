@@ -3,7 +3,7 @@
 {% block content %}
     <div class="span9">
 
-    <form novalidate action="{{ path('cbase_cbag3_artefact_artefact_create')}}" method="post" {{ form_enctype(form) }}>
+    <form novalidate action="{{ path('artefact_create')}}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
 
         <input type="submit" />

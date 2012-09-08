@@ -5,7 +5,7 @@
     <p>
         <ul>
         {% for artefact in artefacts %}
-            <li><a href="{{ path('cbase_cbag3_artefact_artefact_show', {'id': artefact.id}) }}">{{ artefact.name}}</a></li>
+            <li><a href="{{ path('artefact_show', {'slug': artefact.slug}) }}">{{ artefact.name}}</a></li>
         {% endfor %}
         </ul>
     </p>
@@ -14,7 +14,7 @@
     {% block content_sidebar %}
     <h2>Actions</h2>
     <ul>
-        <li><a href="{{ path('cbase_cbag3_artefact_artefact_create')}}">create new artefact</a></li>
+        <li><a href="{{ path('artefact_new')}}">create new artefact</a></li>
         <li><a href="{{ path('cbase_cbag3_asset_asset_index')}}">see all assets</a></li>
     </ul>
     {% endblock content_sidebar %}

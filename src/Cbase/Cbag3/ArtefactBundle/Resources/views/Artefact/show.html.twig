@@ -21,8 +21,8 @@
     {% block content_sidebar %}
     <h2>Actions</h2>
     <ul>
-        <li><a href="{{ path('cbase_cbag3_artefact_artefact_index')}}">back to the list</a></li>
-        <li><a href="{{ path('cbase_cbag3_artefact_artefact_update', {'id': artefact.id})}}">edit</a></li>
+        <li><a href="{{ path('artefact_index')}}">back to the list</a></li>
+        <li><a href="{{ path('artefact_edit', {'slug': artefact.slug})}}">edit</a></li>
         <li><a href="">delete</a></li>
     </ul>
     {% endblock content_sidebar %}
