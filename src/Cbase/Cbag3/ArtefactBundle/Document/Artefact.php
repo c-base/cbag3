@@ -66,7 +66,7 @@ class Artefact
      */
     public function prePersist()
     {
-        $this->createdAt = new \Date();
+        $this->createdAt = new \DateTime();
         $this->createdBy = "alien";
     }
 
