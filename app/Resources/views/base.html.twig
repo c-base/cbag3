@@ -1,5 +1,14 @@
 {% extends 'MopaBootstrapBundle::base.html.twig' %}
 
+{% block head_style %}
+    {{ parent() }}
+    {% stylesheets
+            '@CbaseCbag3BaseBundle/Resources/public/css/base.css'
+    %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+{% endblock head_style %}
+
 {% block title %}CBAG3 - c-base Artefact Guide{% endblock %}
 
 
