@@ -21,3 +21,17 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ff0C1C2A', GradientType=0);
     border: 1px solid #000000;
 }
+
+[class^="icon-"], [class*=" icon-"] {
+    background-image: url("../bundles/mopabootstrap/img/glyphicons-halflings-white.png");
+    margin-top: 0px;
+}
+
+a {
+    color: #FFCC33;
+}
+
+a:hover {
+    color: #CCCC99;
+    text-decoration: none;
+}
