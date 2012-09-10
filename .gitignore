@@ -10,3 +10,4 @@ composer.phar
 .idea/
 app/config/parameters.yml
 rockmongo
+web/media/*

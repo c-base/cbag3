@@ -1,14 +1,23 @@
 {% extends '::base.html.twig' %}
 
+{% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
+
+{% block page_header %}
+<div class="page-header">
+    <h1>{% block headline %}CBAG3: Uploaded Media{% endblock headline %}</h1>
+</div>
+{% endblock page_header %}
+
 {% block content %}
 <div class="span9">
-    <p>
-    <ul>
+    <div class="row-fluid">
         {% for asset in assets %}
-        <li><img src="{{ asset(asset.webPath) }}" alt="{{ asset.description }}" title="{{ asset.description }}" /> <a href="{{ path('cbase_cbag3_asset_asset_delete', {'id': asset.id} )}}">delete</a> </li>
+        <div class="span2">
+            <img class="img-polaroid" src="{{ asset(asset.webPath) | imagine_filter('my_thumb', true)}}" alt="{{ asset.description }}" title="{{ asset.description }}" />
+            <a href="{{ path('cbase_cbag3_asset_asset_delete', {'id': asset.id} )}}">{{ icon('remove-circle') }}delete</a>
+        </div>
         {% endfor %}
-    </ul>
-    </p>
+    </div>
 </div>
 <div class="span3">
     {% block content_sidebar %}

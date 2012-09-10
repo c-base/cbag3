@@ -1,5 +1,5 @@
 {
-    "hash": "4242385d4bbc0bc10cea31a3e44d2716",
+    "hash": "0bd31fb7a0b5f57002dd63b5327ca5ce",
     "packages": [
         {
             "package": "craue/formflow-bundle",
@@ -66,6 +66,10 @@
             "version": "dev-master",
             "source-reference": "origin/master",
             "commit-date": "1343727523"
+        },
+        {
+            "package": "imagine/Imagine",
+            "version": "v0.3.0"
         },
         {
             "package": "jms/aop-bundle",
@@ -140,6 +144,12 @@
             "commit-date": "1347039484"
         },
         {
+            "package": "liip/imagine-bundle",
+            "version": "dev-master",
+            "source-reference": "fddd850395fea776fa12501d9da41b049f719ad8",
+            "commit-date": "1345812492"
+        },
+        {
             "package": "monolog/monolog",
             "version": "dev-master",
             "alias-pretty-version": "1.3.x-dev",
@@ -150,12 +160,6 @@
             "version": "dev-master",
             "source-reference": "a929570bb7688b39fefe4106f0ecf0ac35f37647",
             "commit-date": "1346873566"
-        },
-        {
-            "package": "mopa/bootstrap-bundle",
-            "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "mopa/bootstrap-bundle",
@@ -287,7 +291,7 @@
             "package": "twitter/bootstrap",
             "version": "master",
             "source-reference": "master",
-            "commit-date": "1346816651"
+            "commit-date": "1345529623"
         }
     ],
     "packages-dev": null,
@@ -302,6 +306,7 @@
         "knplabs/knp-paginator-bundle": 20,
         "knplabs/knp-menu-bundle": 20,
         "craue/formflow-bundle": 20,
-        "imag/ldap-bundle": 20
+        "imag/ldap-bundle": 20,
+        "liip/imagine-bundle": 20
     }
 }
