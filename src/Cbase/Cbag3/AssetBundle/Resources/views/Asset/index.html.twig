@@ -5,7 +5,7 @@
     <p>
     <ul>
         {% for asset in assets %}
-        <li><img src="{{ asset(asset.webPath) }}" alt="{{ asset.description }}" title="{{ asset.description }}" /> <a href="{{ path('cbase_cbag3_asset_asset_delete', {'id': asset.id} )}}">delete</a> </li>
+        <li><img src="{{ asset(asset.webPath) | imagine_filter('my_thumb', true)}}" alt="{{ asset.description }}" title="{{ asset.description }}" /> <a href="{{ path('cbase_cbag3_asset_asset_delete', {'id': asset.id} )}}">delete</a> </li>
         {% endfor %}
     </ul>
     </p>

@@ -71,3 +71,20 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+liip_imagine:
+    driver:               imagick
+#    web_root:             %kernel.root_dir%/../web
+#    data_root:           %liip_imagine.web_root%
+#    cache_prefix:        /media/cache
+#    cache:               web_path
+#    cache_clearer:       true
+#    data_loader:          filesystem
+#    controller_action:    liip_imagine.controller:filterAction
+#    formats:              []
+    filter_sets:
+
+        my_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [120, 90], mode: outbound }
