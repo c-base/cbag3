@@ -1,7 +1,7 @@
 body {
     background-color:#000000;
     font-family:lucida console,andale mono,courier new, monospace;
-    background-image:url(http://www.c-base.org/cv50f/images/bg.jpg);
+    background-image:url("../bundles/cbasecbag3base/images/bg.jpg");
     background-repeat:no-repeat;
     background-attachment:fixed;
     color:#FAFAFA;
@@ -22,9 +22,19 @@ body {
     border: 1px solid #000000;
 }
 
+.navbar .nav > li > a {
+    color: white;
+    text-shadow: 0 1px 0 grey;
+}
+
 [class^="icon-"], [class*=" icon-"] {
     background-image: url("../bundles/mopabootstrap/img/glyphicons-halflings-white.png");
     margin-top: 0px;
+}
+
+ul.unstyled.inline li {
+    display: inline;
+    padding-right: 10px;
 }
 
 a {

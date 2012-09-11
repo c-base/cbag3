@@ -1,8 +1,14 @@
 {% extends '::base.html.twig' %}
 
+{% block page_header %}
+<div class="page-header">
+    <h1>{% block headline %}CBAG3: c-base Artefact Guide{% endblock headline %}</h1>
+</div>
+{% endblock page_header %}
+
 {% block content %}
 <div class="span9">
-    <p>
+    <p class="lead">
         willcommen im c-base artefact guide 3! Was ist CBAG3?
     </p>
     <p>
@@ -14,11 +20,8 @@
 </div>
 <div class="span3">
     {% block content_sidebar %}
-    <h2>Actions</h2>
-    <ul>
-        <li><a href="{{ path('artefact_index')}}">see all artefacts</a></li>
-        <li><a href="{{ path('cbase_cbag3_asset_asset_index')}}">see all assets</a></li>
-    </ul>
+    <h3>Last added ...</h3>
+
     {% endblock content_sidebar %}
 </div>
 {% endblock content %}

@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Cbase\Cbag3\BaseBundle\CbaseCbag3BaseBundle(),
             new Cbase\Cbag3\ArtefactBundle\CbaseCbag3ArtefactBundle(),
             new Cbase\Cbag3\AssetBundle\CbaseCbag3AssetBundle(),
+            new Cbase\Core\UserBundle\CbaseCoreUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
