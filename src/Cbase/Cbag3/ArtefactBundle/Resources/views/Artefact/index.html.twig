@@ -1,22 +1,31 @@
 {% extends '::base.html.twig' %}
 
+{% block page_header %}
+<div class="page-header">
+    <h1>{% block headline %}CBAG3: Artefacts{% endblock headline %}</h1>
+</div>
+{% endblock page_header %}
+
 {% block content %}
-<div class="span9">
-    <p>
-        <ul>
+    <div class="span9">
+        <ul class="unstyled inline">
         {% for artefact in artefacts %}
-            <li><a href="{{ path('artefact_show', {'slug': artefact.slug}) }}">{{ artefact.name}}</a></li>
+
+            <li>
+                <a href="{{ path('artefact_show', {'slug': artefact.slug}) }}">{{ artefact.name}}</a>
+            </li>
+
         {% endfor %}
         </ul>
-    </p>
-</div>
-<div class="span3">
-    {% block content_sidebar %}
-    <h2>Actions</h2>
-    <ul>
-        <li><a href="{{ path('artefact_new')}}">create new artefact</a></li>
-        <li><a href="{{ path('cbase_cbag3_asset_asset_index')}}">see all assets</a></li>
-    </ul>
-    {% endblock content_sidebar %}
-</div>
+    </div>
+
+    <div class="span3">
+        {% block content_sidebar %}
+        <h2>Actions</h2>
+        <ul>
+            <li><a href="{{ path('artefact_new')}}">create new artefact</a></li>
+            <li><a href="{{ path('cbase_cbag3_asset_asset_index')}}">see all assets</a></li>
+        </ul>
+        {% endblock content_sidebar %}
+    </div>
 {% endblock content %}
