@@ -21,11 +21,16 @@ class Artefact
 
     /**
      * @MongoDB\String
+     * @Assert\MinLength(
+     *     limit=3,
+     *     message="Your name must have at least {{ limit }} characters."
+     * )
      */
     protected $name;
 
     /**
      * @MongoDB\String
+     * @Assert\NotBlank()
      */
     protected $description;
 
