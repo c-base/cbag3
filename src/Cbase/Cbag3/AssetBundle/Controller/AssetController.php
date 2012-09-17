@@ -55,6 +55,25 @@ class AssetController extends Controller
     }
 
     /**
+     * @Route("/edit/{id}")
+     * @Template()
+     */
+    public function editAction($id)
+   {
+       $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+       $asset = $dm->getRepository('CbaseCbag3AssetBundle:Asset')->find($id);
+
+       if (!$asset) {
+           throw $this->createNotFoundException('No asset found for '.$id);
+       }
+       $form = $this->createForm(new AssetType(), $asset);
+       $form->remove("file");
+
+       return array('form'=>$form->createView(), 'id' => $id);
+   }
+
+    /**
      * @Route("/delete/{id}")
      * @Template()
      *
