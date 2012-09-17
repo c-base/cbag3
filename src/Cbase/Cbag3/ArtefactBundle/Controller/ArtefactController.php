@@ -42,7 +42,7 @@ class ArtefactController extends Controller
 
     /**
      * @Route("/", name="artefact_create")
-     * @Template()
+     * @Template("CbaseCbag3ArtefactBundle:Artefact:new.html.twig")
      * @Method("POST")
      * @Secure(roles="ROLE_CREW")
      *
@@ -52,7 +52,7 @@ class ArtefactController extends Controller
     {
         $form = $this->createForm(new ArtefactType(), new Artefact());
 
-        if ($slug = $this->processArtefactForm($form) !== false) {
+        if (($slug = $this->processArtefactForm($form)) !== false) {
             return $this->redirect($this->generateUrl('artefact_show', array('slug'=> $slug)));
         }
 
@@ -118,7 +118,7 @@ class ArtefactController extends Controller
 
         $form = $this->createForm(new ArtefactType(), $artefact);
 
-        if ($slug = $this->processArtefactForm($form) !== false) {
+        if (($slug = $this->processArtefactForm($form)) !== false) {
             return $this->redirect($this->generateUrl('artefact_show', array('slug'=> $slug)));
         }
         return $this->redirect($this->generateUrl('artefact_edit', array('slug'=> $slug)));
@@ -144,6 +144,8 @@ class ArtefactController extends Controller
             $dm = $this->get('doctrine.odm.mongodb.document_manager');
             $dm->persist($artefact);
             $dm->flush();
+
+
 
             return $artefact->getSlug();
         }
