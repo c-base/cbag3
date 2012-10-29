@@ -24,6 +24,7 @@
         <li><a href="{{ path('artefact_index')}}">back to the list</a></li>
         <li><a href="{{ path('artefact_edit', {'slug': artefact.slug})}}">edit</a></li>
         <li><a href="">delete</a></li>
+        <li><a href="{{ path('artefact_manage_asset', {'slug': artefact.slug}) }}">asset.manage</a></li>
     </ul>
     {% endblock content_sidebar %}
 </div>

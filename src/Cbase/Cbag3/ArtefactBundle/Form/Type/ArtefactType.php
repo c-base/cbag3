@@ -13,11 +13,7 @@ class ArtefactType extends AbstractType
         $builder
             ->add('name', 'text', array('attr'=>array('class'=>'span8')))
             ->add('description', 'textarea', array("attr" => array("class"=>"span8", "rows" => 7)))
-            ->add('assets', 'document', array(
-                    'class'    => 'Cbase\Cbag3\AssetBundle\Document\Asset',
-                    'multiple' => true,
-                    'expanded' => true,
-                  ))
+            ->add('assets', new ArtefactAssetType())
             ->add('state', new ArtefactStateType())
         ;
     }
