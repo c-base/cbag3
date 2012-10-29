@@ -125,6 +125,18 @@ class ArtefactController extends Controller
     }
 
     /**
+     * @Route("/{slug}/assets", name="artefact_manage_asset")
+     * @Template()
+     * @Method("GET")
+     * @Secure(roles="ROLE_CREW")
+     *
+     */
+    public function manageAssetsAction()
+    {
+        return array();
+    }
+
+    /**
      * @return mixed
      */
     private function getArtefactRepository()

@@ -1,0 +1,17 @@
+{% block artefact_assets_widget %}
+    hallo welt
+    {% spaceless %}
+
+    {% endspaceless %}
+{% endblock %}
+
+{% block artefactState_widget %}
+    <ul {{ block('widget_container_attributes') }}>
+        {% for child in form %}
+            <li style="display: inline;">
+                {{ form_widget(child) }}
+                {{ form_label(child) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

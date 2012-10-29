@@ -22,6 +22,7 @@
         "doctrine/mongodb-odm-bundle": "v3.0.0-BETA1",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "knplabs/knp-markdown-bundle": "dev-master",
+        "dflydev/markdown": "1.0.x-dev",
         "mopa/bootstrap-bundle": "dev-master",
         "twitter/bootstrap": "master",
         "knplabs/knp-paginator-bundle": "dev-master",
