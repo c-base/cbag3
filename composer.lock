@@ -183,18 +183,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "181b71e9a19bcdc93a9bf5c19dc0ef9615656173"
+                "reference": "a95d7839a7794c7c9b22d64e859ee70658d977fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/data-fixtures/zipball/181b71e9a19bcdc93a9bf5c19dc0ef9615656173",
-                "reference": "181b71e9a19bcdc93a9bf5c19dc0ef9615656173",
+                "url": "https://github.com/doctrine/data-fixtures/archive/a95d7839a7794c7c9b22d64e859ee70658d977fe.zip",
+                "reference": "a95d7839a7794c7c9b22d64e859ee70658d977fe",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "1350901469",
+            "time": "1351735543",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1190,19 +1190,19 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/KnpLabs/KnpMenuBundle.git",
-                "reference": "6040c533f561da285e38e8bda271d7aaaf62fd10"
+                "reference": "471ad25ea4fcc469f901a85bc5ca530b0bc68624"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/KnpLabs/KnpMenuBundle/zipball/6040c533f561da285e38e8bda271d7aaaf62fd10",
-                "reference": "6040c533f561da285e38e8bda271d7aaaf62fd10",
+                "url": "https://github.com/KnpLabs/KnpMenuBundle/zipball/471ad25ea4fcc469f901a85bc5ca530b0bc68624",
+                "reference": "471ad25ea4fcc469f901a85bc5ca530b0bc68624",
                 "shasum": ""
             },
             "require": {
                 "knplabs/knp-menu": "2.0.*",
                 "symfony/framework-bundle": ">=2.0,<2.3-dev"
             },
-            "time": "1350241999",
+            "time": "1351767907",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1244,12 +1244,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle",
-                "reference": "de439d2816fe984dbe0c438fd4d0d7c67748c5ff"
+                "reference": "8aa5964b4f5845466b9623aacc22b9acbbef19e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/KnpLabs/KnpPaginatorBundle/zipball/de439d2816fe984dbe0c438fd4d0d7c67748c5ff",
-                "reference": "de439d2816fe984dbe0c438fd4d0d7c67748c5ff",
+                "url": "https://github.com/KnpLabs/KnpPaginatorBundle/archive/8aa5964b4f5845466b9623aacc22b9acbbef19e0.zip",
+                "reference": "8aa5964b4f5845466b9623aacc22b9acbbef19e0",
                 "shasum": ""
             },
             "require": {
@@ -1258,7 +1258,7 @@
                 "knplabs/knp-components": ">=1.1",
                 "twig/twig": ">=1.5"
             },
-            "time": "1343676956",
+            "time": "1352115261",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1272,15 +1272,11 @@
             "authors": [
                 {
                     "name": "KnpLabs Team",
-                    "email": null,
-                    "homepage": "http://knplabs.com",
-                    "role": null
+                    "homepage": "http://knplabs.com"
                 },
                 {
                     "name": "Symfony2 Community",
-                    "email": null,
-                    "homepage": "http://github.com/KnpLabs/KnpPaginatorBundle/contributors",
-                    "role": null
+                    "homepage": "http://github.com/KnpLabs/KnpPaginatorBundle/contributors"
                 }
             ],
             "description": "Paginator bundle for Symfony2 to automate pagination and simplify sorting and other features",
@@ -1301,12 +1297,12 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/kriswallsmith/assetic.git",
-                "reference": "a1b6fa1f7bb27c203b6c3cf7d0dd0184f8dffcdc"
+                "reference": "685b7381241fb13c47c994fe5d2e8c4964021f40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/kriswallsmith/assetic/zipball/a1b6fa1f7bb27c203b6c3cf7d0dd0184f8dffcdc",
-                "reference": "a1b6fa1f7bb27c203b6c3cf7d0dd0184f8dffcdc",
+                "url": "https://github.com/kriswallsmith/assetic/zipball/685b7381241fb13c47c994fe5d2e8c4964021f40",
+                "reference": "685b7381241fb13c47c994fe5d2e8c4964021f40",
                 "shasum": ""
             },
             "require": {
@@ -1327,7 +1323,7 @@
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin"
             },
-            "time": "1351079542",
+            "time": "1351610079",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1368,12 +1364,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/liip/LiipImagineBundle.git",
-                "reference": "40f040e16ef9666704985c7b4db5ebe78ee6da31"
+                "reference": "be7a2a694a1088167758e9b7954f9cdd5d710b9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/liip/LiipImagineBundle/zipball/40f040e16ef9666704985c7b4db5ebe78ee6da31",
-                "reference": "40f040e16ef9666704985c7b4db5ebe78ee6da31",
+                "url": "https://github.com/liip/LiipImagineBundle/zipball/be7a2a694a1088167758e9b7954f9cdd5d710b9b",
+                "reference": "be7a2a694a1088167758e9b7954f9cdd5d710b9b",
                 "shasum": ""
             },
             "require": {
@@ -1388,7 +1384,7 @@
             "suggest": {
                 "twig/twig": ">=1.0,<2.0-dev"
             },
-            "time": "1351100791",
+            "time": "1351613508",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1418,12 +1414,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog",
-                "reference": "38bb472abb27db138536f845f7d259c1c47bbd3f"
+                "reference": "30b48f1231b041bfd363517a77a3a2ea02b1f576"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Seldaek/monolog/zipball/38bb472abb27db138536f845f7d259c1c47bbd3f",
-                "reference": "38bb472abb27db138536f845f7d259c1c47bbd3f",
+                "url": "https://github.com/Seldaek/monolog/zipball/30b48f1231b041bfd363517a77a3a2ea02b1f576",
+                "reference": "30b48f1231b041bfd363517a77a3a2ea02b1f576",
                 "shasum": ""
             },
             "require": {
@@ -1437,7 +1433,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server"
             },
-            "time": "1351084926",
+            "time": "1352047076",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1583,12 +1579,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioDistributionBundle",
-                "reference": "v2.1.1"
+                "reference": "v2.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioDistributionBundle/zipball/v2.1.1",
-                "reference": "v2.1.1",
+                "url": "https://github.com/sensio/SensioDistributionBundle/zipball/v2.1.3",
+                "reference": "v2.1.3",
                 "shasum": ""
             },
             "require": {
@@ -1629,12 +1625,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioFrameworkExtraBundle",
-                "reference": "6a63ea91085be5073d8928fd48fa53734b3c2a57"
+                "reference": "v2.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/zipball/6a63ea91085be5073d8928fd48fa53734b3c2a57",
-                "reference": "6a63ea91085be5073d8928fd48fa53734b3c2a57",
+                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/zipball/v2.1.3",
+                "reference": "v2.1.3",
                 "shasum": ""
             },
             "require": {
@@ -1676,12 +1672,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioGeneratorBundle",
-                "reference": "3a65c9bf7d31aecacffc15a48f5eb2ece3615ef0"
+                "reference": "v2.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioGeneratorBundle/zipball/3a65c9bf7d31aecacffc15a48f5eb2ece3615ef0",
-                "reference": "3a65c9bf7d31aecacffc15a48f5eb2ece3615ef0",
+                "url": "https://github.com/sensio/SensioGeneratorBundle/zipball/v2.1.3",
+                "reference": "v2.1.3",
                 "shasum": ""
             },
             "require": {
@@ -1773,12 +1769,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle",
-                "reference": "4eea8571954132e4715a5e756fe6a90a7e2d90f6"
+                "reference": "3aa58aed64e6ddb1ea65176fff7814b212a6ed77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/AsseticBundle/zipball/4eea8571954132e4715a5e756fe6a90a7e2d90f6",
-                "reference": "4eea8571954132e4715a5e756fe6a90a7e2d90f6",
+                "url": "https://github.com/symfony/AsseticBundle/zipball/3aa58aed64e6ddb1ea65176fff7814b212a6ed77",
+                "reference": "3aa58aed64e6ddb1ea65176fff7814b212a6ed77",
                 "shasum": ""
             },
             "require": {
@@ -1798,7 +1794,7 @@
             "suggest": {
                 "symfony/twig-bundle": ">=2.1.0,<2.3-dev"
             },
-            "time": "1350864366",
+            "time": "1351619963",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1945,12 +1941,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "c4c5d3c02d11cb9332c2d57a97d03fdb27318797"
+                "reference": "3d993740142a4cef26336b8d5f20526367dca110"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/zipball/c4c5d3c02d11cb9332c2d57a97d03fdb27318797",
-                "reference": "c4c5d3c02d11cb9332c2d57a97d03fdb27318797",
+                "url": "https://github.com/symfony/symfony/archive/3d993740142a4cef26336b8d5f20526367dca110.zip",
+                "reference": "3d993740142a4cef26336b8d5f20526367dca110",
                 "shasum": ""
             },
             "require": {
@@ -1999,7 +1995,7 @@
                 "propel/propel1": "dev-master",
                 "monolog/monolog": "1.*"
             },
-            "time": "1351509341",
+            "time": "1352017759",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2085,18 +2081,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "0505c2fefd5eaa81c628b0cf8a9b8a2bc612321c"
+                "reference": "abec35b833abfce5eb0ac7ce2bf2bf3462a5bebf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/zipball/0505c2fefd5eaa81c628b0cf8a9b8a2bc612321c",
-                "reference": "0505c2fefd5eaa81c628b0cf8a9b8a2bc612321c",
+                "url": "https://github.com/fabpot/Twig/archive/abec35b833abfce5eb0ac7ce2bf2bf3462a5bebf.zip",
+                "reference": "abec35b833abfce5eb0ac7ce2bf2bf3462a5bebf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1351434618",
+            "time": "1352101924",
             "type": "library",
             "extra": {
                 "branch-alias": {
