@@ -1,7 +1,7 @@
-cbase_core_user:
-    resource: "@CbaseCoreUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
+#cbase_core_user:
+#    resource: "@CbaseCoreUserBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
 
 CbaseCbag3AssetBundle:
     resource: "@CbaseCbag3AssetBundle/Controller/"
