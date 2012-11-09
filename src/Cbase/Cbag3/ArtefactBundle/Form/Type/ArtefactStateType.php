@@ -12,11 +12,11 @@ class ArtefactStateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('hasImage')
-            ->add('hasAsset')
-            ->add('hasText')
-            ->add('hasCompleteText')
-            ->add('hasManual')
+            ->add('hasImage', 'checkbox', array('label'=> 'Has Image'))
+            ->add('hasAsset', 'checkbox', array('label'=> 'Has Asset'))
+            ->add('hasText', 'checkbox', array('label'=> 'Has Text'))
+            ->add('hasCompleteText', 'checkbox', array('label'=> 'Has Complete Text'))
+            ->add('hasManual', 'checkbox', array('label'=> 'Has Manual'))
         ;
     }
 
