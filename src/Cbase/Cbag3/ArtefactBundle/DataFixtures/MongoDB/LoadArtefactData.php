@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace Cbase\Cbag3\ArtefactBundle\DataFixtures\ORM;
+namespace Cbase\Cbag3\ArtefactBundle\DataFixtures\MongoDB;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -24,7 +24,7 @@ class LoadArtefactData implements FixtureInterface
     function load(ObjectManager $manager)
     {
         $mainHall = new Artefact();
-        $mainHall->setName('Mainhall');
+        $mainHall->setName('mainhall');
         $mainHall->setDescription('die mainhall, eine multifunktionale fläche, die je nach bedarf mit verschiedenen '.
                 'gegenständen ausgerüstet  wird. regelmäßig werden tische, stühle, sofas, stellwände verwendet. '.
                 'die mainhall ist ausgestattet mit mindestens einem, manchmal zwei soundsystemen und variierend '.
@@ -65,7 +65,7 @@ class LoadArtefactData implements FixtureInterface
 
         $bar = new Artefact();
         $bar->setName('bar');
-        $bar->setDescription('');
+        $bar->setDescription('häufig steht keiner steht hinter der bar und gibt getränke aus');
 
         $manager->persist($bar);
         $manager->flush();
