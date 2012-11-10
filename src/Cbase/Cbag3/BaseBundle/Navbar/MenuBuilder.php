@@ -25,7 +25,7 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
         $menu = $this->createNavbarMenuItem();
 
         $menu->addChild('Artefact', array('route' => 'artefact_index'));
-        $menu->addChild('Media', array('route' => 'cbase_cbag3_asset_asset_index'));
+        $menu->addChild('Media', array('route' => 'asset_index'));
 
         return $menu;
     }

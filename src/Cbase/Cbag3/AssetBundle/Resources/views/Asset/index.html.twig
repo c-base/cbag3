@@ -13,8 +13,10 @@
     <div class="row-fluid">
         {% for asset in assets %}
         <div class="span2">
-            <img class="img-polaroid" src="{{ asset(asset.webPath) | imagine_filter('my_thumb', true)}}" alt="{{ asset.description }}" title="{{ asset.description }}" />
-            <a href="{{ path('cbase_cbag3_asset_asset_delete', {'id': asset.id} )}}">{{ icon('remove-circle') }}delete</a>
+            <a href="{{ path('asset_edit', {'id': asset.id} )}}">
+                <img class="img-polaroid" src="{{ asset(asset.webPath) | imagine_filter('my_thumb', true)}}" alt="{{ asset.description }}" title="{{ asset.description }}" />
+            </a>
+            <a href="{{ path('asset_delete', {'id': asset.id} )}}">{{ icon('remove-circle') }}delete</a>
         </div>
         {% endfor %}
     </div>
@@ -23,7 +25,7 @@
     {% block content_sidebar %}
     <h2>Actions</h2>
     <ul>
-        <li><a href="{{ path('cbase_cbag3_asset_asset_create')}}">create new asset</a></li>
+        <li><a href="{{ path('asset_create')}}">create new asset</a></li>
     </ul>
     {% endblock content_sidebar %}
 </div>
