@@ -7,7 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 use Cbase\Cbag3\AssetBundle\Document\Asset;
@@ -18,6 +20,8 @@ class AssetController extends Controller
     /**
      * @Route("/", name="asset_index")
      * @Template()
+     *
+     * @return Response
      */
     public function indexAction()
     {
@@ -47,7 +51,7 @@ class AssetController extends Controller
                 $dm->persist($asset);
                 $dm->flush();
 
-                $id = $asset->getId();
+                $this->get('session')->setFlash('success','Neues Asset wurde gespeichert');
 
                 return $this->redirect($this->generateUrl('asset_index'));
             }
@@ -59,6 +63,11 @@ class AssetController extends Controller
     /**
      * @Route("/edit/{id}", name="asset_edit")
      * @Template()
+     * @Secure("ROLE_CREW")
+     *
+     * @param int $id asset_id
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return Response
      */
     public function editAction($id)
    {
@@ -81,6 +90,9 @@ class AssetController extends Controller
      * @Method("POST")
      * @Secure(roles="ROLE_CREW")
      *
+     * @param int $id asset_id
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return RedirectResponse
      */
     public function updateAction($id)
     {
@@ -103,8 +115,12 @@ class AssetController extends Controller
     /**
      * @Route("/delete/{id}", name="asset_delete")
      * @Template()
+     * @Method("GET")
+     * @Secure(roles="ROLE_CREW")
      *
-     * @return Response
+     *
+     * @param int $id asset_id
+     * @return RedirectResponse
      */
     public function deleteAction($id)
     {
@@ -118,6 +134,10 @@ class AssetController extends Controller
         return $this->redirect($this->generateUrl('asset_index'));
     }
 
+    /**
+     * @param AssetType $form
+     * @return mixed false|int
+     */
     protected function processAssetForm($form)
     {
         $form->bind($this->getRequest());
@@ -130,6 +150,7 @@ class AssetController extends Controller
             $dm->persist($asset);
             $dm->flush();
 
+            $this->get('session')->setFlash('success','Asset wurde gespeichert');
             return $asset->getId();
         }
         return false;
