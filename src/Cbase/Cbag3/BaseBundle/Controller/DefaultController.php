@@ -16,6 +16,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        /** @var $repo \Cbase\Cbag3\ArtefactBundle\Repository\ArtefactRepository */
+        $repo = $this->get('doctrine.odm.mongodb.document_manager')
+            ->getRepository('CbaseCbag3ArtefactBundle:Artefact');
+
+        $latestArtefacts = $repo->getLatest();
+
+        return array('latest' => $latestArtefacts);
     }
 }

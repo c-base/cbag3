@@ -21,4 +21,13 @@ class ArtefactRepository extends DocumentRepository
 
         return $query->getQuery()->execute();
     }
+
+    public function getLatest($limit = 5) {
+        return $this->getDocumentManager()->createQueryBuilder()
+            ->find('Cbase\Cbag3\ArtefactBundle\Document\Artefact')
+            ->sort('createdAt', 'desc')
+            ->limit($limit)
+            ->getQuery()
+            ->execute();
+    }
 }

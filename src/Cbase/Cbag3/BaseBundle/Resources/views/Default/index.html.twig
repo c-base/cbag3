@@ -21,6 +21,11 @@
 <div class="span3">
     {% block content_sidebar %}
     <h3>Last added ...</h3>
+    <ul>
+    {% for artefact in latest %}
+        <li><a href="{{ path('artefact_show', {'slug': artefact.slug}) }}">{{ artefact.name}}</a></li>
+    {% endfor %}
+    </ul>
 
     {% endblock content_sidebar %}
 </div>
