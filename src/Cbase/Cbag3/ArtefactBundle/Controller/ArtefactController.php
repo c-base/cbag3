@@ -131,13 +131,60 @@ class ArtefactController extends Controller
      * @Secure(roles="ROLE_CREW")
      *
      */
-    public function manageAssetsAction()
+    public function manageAssetsAction($slug)
     {
-        return array();
+        $assets = $this->getAssetRepository()->findAll();
+
+        /** @var $artefact Artefact */
+        $artefact = $this->getArtefactRepository()->findOneBySlug($slug);
+
+        $selectedAssets = $artefact->getAssets()->map(function($item) {
+            return $item->getId();
+        })->getValues();
+
+        return array('slug'=>$slug, 'assets' => $assets, 'selectedAssets' => $selectedAssets);
     }
 
     /**
-     * @return mixed
+     * @Route("/{slug}/assets/save", name="artefact_save_asset")
+     * @Template()
+     * @Method("POST")
+     * @Secure(roles="ROLE_CREW")
+     *
+     */
+    public function saveAssetsAction($slug)
+    {
+        /* @var $artefact Artefact */
+        $artefact = $this->getArtefactRepository()->findOneBySlug($slug);
+        $artefact->getAssets()->clear();
+
+        $assetIds = $this->getRequest()->get('asset');
+        if(is_array($assetIds)) {
+            foreach($assetIds as $oneAssetId) {
+                $asset = $this->getAssetRepository()->find($oneAssetId);
+                $artefact->addAssets($asset);
+            }
+        }
+
+        $dm = $this->getArtefactRepository()->getDocumentManager();
+        $dm->persist($artefact);
+        $dm->flush();
+
+        $this->get('session')->setFlash('artefactFlash',"Artefact Assets saved!");
+
+        return $this->redirect($this->generateUrl('artefact_manage_asset', array('slug'=> $slug)));
+    }
+
+    /**
+     * @return \Cbase\Cbag3\AssetBundle\Repository\AssetRepository
+     */
+    private function getAssetRepository() {
+        return $this->get('doctrine.odm.mongodb.document_manager')
+            ->getRepository('CbaseCbag3AssetBundle:Asset');
+    }
+
+    /**
+     * @return \Cbase\Cbag3\ArtefactBundle\Repository\ArtefactRepository
      */
     private function getArtefactRepository()
     {

@@ -143,7 +143,7 @@ class Artefact
     /**
      * Add assets
      *
-     * @param Cbase\Cbag3\AssetBundle\Document\Asset $assets
+     * @param \Cbase\Cbag3\AssetBundle\Document\Asset $assets
      */
     public function addAssets(\Cbase\Cbag3\AssetBundle\Document\Asset $assets)
     {
@@ -153,7 +153,7 @@ class Artefact
     /**
      * Get assets
      *
-     * @return Doctrine\Common\Collections\Collection $assets
+     * @return \Doctrine\Common\Collections\Collection $assets
      */
     public function getAssets()
     {
