@@ -2,7 +2,7 @@
 
 {% block page_header %}
 <div class="page-header">
-    <h1>{% block headline %}CBAG3: Artefacts{% endblock headline %}</h1>
+    <h1>{% block headline %}CBAG3: artefacte{% endblock headline %}</h1>
 </div>
 {% endblock page_header %}
 
@@ -10,20 +10,18 @@
     <div class="span9">
         <ul class="unstyled inline">
         {% for artefact in artefacts %}
-
             <li>
                 <a href="{{ path('artefact_show', {'slug': artefact.slug}) }}">{{ artefact.name}}</a>
             </li>
-
         {% endfor %}
         </ul>
     </div>
 
     <div class="span3">
         {% block content_sidebar %}
-        <h3>Actions</h3>
-        <ul>
-            <li><a href="{{ path('artefact_new')}}">create new artefact</a></li>
+        <h3>actionen</h3>
+        <ul class="unstyled">
+            <li><a href="{{ path('artefact_new')}}">neues artefact anlegen</a></li>
         </ul>
         {% endblock content_sidebar %}
     </div>

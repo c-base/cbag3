@@ -2,19 +2,16 @@
 
 {% block page_header %}
 <div class="page-header">
-    <h1>{% block headline %}CBAG3: Edit Artefact{% endblock headline %}</h1>
+    <h1>{% block headline %}CBAG3: artefact bearbeiten{% endblock headline %}</h1>
 </div>
 {% endblock page_header %}
 
 {% block content %}
 <div class="span9">
-
     <form novalidate action="{{ path('artefact_update', {'slug': slug})}}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
-
         <input type="submit" />
     </form>
-
 </div>
 <div class="span3">
     {% block content_sidebar %}
