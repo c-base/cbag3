@@ -10,7 +10,7 @@
 <div class="span9">
 
     <p>{{artefact.description | markdown}}</p>
-    <ul>
+    <ul class="unstyled">
         {% for artefactAsset in artefact.assets %}
             <li><img src="{{asset(artefactAsset.webPath)}}" alt="" /></li>
         {% endfor %}
@@ -19,12 +19,11 @@
 </div>
 <div class="span3">
     {% block content_sidebar %}
-    <h3>Actions</h3>
-    <ul>
-        <li><a href="{{ path('artefact_index')}}">back to the list</a></li>
-        <li><a href="{{ path('artefact_edit', {'slug': artefact.slug})}}">edit</a></li>
-        <li><a href="">delete</a></li>
-        <li><a href="{{ path('artefact_manage_asset', {'slug': artefact.slug}) }}">asset.manage</a></li>
+    <h3>actionen</h3>
+    <ul class="unstyled">
+        <li><a href="{{ path('artefact_edit', {'slug': artefact.slug})}}">artefact bearbeiten</a></li>
+        <li><a href="{{ path('artefact_manage_asset', {'slug': artefact.slug}) }}">2d scans bearbeiten</a></li>
+        <li><a href="{{ path('artefact_index')}}">zurück zu den artefacten</a></li>
     </ul>
     {% endblock content_sidebar %}
 </div>

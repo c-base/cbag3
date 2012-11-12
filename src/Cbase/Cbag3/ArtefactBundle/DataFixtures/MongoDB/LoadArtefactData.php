@@ -175,10 +175,44 @@ class LoadArtefactData implements FixtureInterface
 
         $antenne = new Artefact();
         $antenne->setName('antenne');
-        $antenne->setDescription('wurde 1969 durch einen unglücklichen zufall enttarnt. seitdem als fernsehturm bekannt. hebt mit ab.');
+        $antenne->setDescription('wurde 1969 durch einen unglücklichen zufall enttarnt. '.
+                'seitdem als fernsehturm bekannt. hebt mit ab.');
 
         $manager->persist($antenne);
         $manager->flush();
+
+
+        $atariKasse = new Artefact();
+        $atariKasse->setName('atari-kasse');
+        $atariKasse->setDescription('unterstützer des barbots. member können sich ein konto einrichten '.
+                'lassen, an der bar einen betrag einzahlen, der dann auf dem konto gutgeschrieben wird. '.
+                'ermöglicht bargeldloses zahlen. betrag wird auf dem display um die ecke angezeigt, der '.
+                'barbot muss nur noch gewünschtes getränk reichen');
+
+        $manager->persist($atariKasse);
+        $manager->flush();
+
+
+        $publicTerminal = new Artefact();
+        $publicTerminal->setName('public terminal');
+        $publicTerminal->setDescription('für alle & jeden zugänglich & nutzbar');
+
+        $manager->persist($publicTerminal);
+        $manager->flush();
+
+
+        $symbiont = new Artefact();
+        $symbiont->setName('symbiont');
+        $symbiont->setDescription('eine extraterrestrische lebensform, die in 100 jahren 1,5 mm wächst. der symbiont ernährt sich aus den pissbecken, wandelt die pisse in energie um, & mit dieser energie wird die station versorgt. "je mehr du trinkst, desto mehr du pisst, desto mehr energie haben wir". Complette wissenschaftliche Abhandlung über den einzigen Überlebenden des Absturzes der c-base');
+        $symbiontState = new ArtefactState();
+        $symbiontState->setHasAsset(true);
+        $symbiontState->setHasImage(true);
+        $symbiont->setState($symbiontState);
+
+        $manager->persist($symbiont);
+        $manager->flush();
+
+
     }
 
 }

@@ -142,7 +142,11 @@ class ArtefactController extends Controller
             return $item->getId();
         })->getValues();
 
-        return array('slug'=>$slug, 'assets' => $assets, 'selectedAssets' => $selectedAssets);
+        return array(
+            'artefact' => $artefact,
+            'assets' => $assets,
+            'selectedAssets' => $selectedAssets,
+        );
     }
 
     /**
@@ -170,7 +174,7 @@ class ArtefactController extends Controller
         $dm->persist($artefact);
         $dm->flush();
 
-        $this->get('session')->setFlash('artefactFlash',"Artefact Assets saved!");
+        $this->get('session')->setFlash('success',"Artefact Assets saved!");
 
         return $this->redirect($this->generateUrl('artefact_manage_asset', array('slug'=> $slug)));
     }
