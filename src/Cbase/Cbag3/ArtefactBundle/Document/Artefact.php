@@ -145,9 +145,23 @@ class Artefact
      *
      * @param \Cbase\Cbag3\AssetBundle\Document\Asset $assets
      */
-    public function addAssets(\Cbase\Cbag3\AssetBundle\Document\Asset $assets)
+    public function addAsset(\Cbase\Cbag3\AssetBundle\Document\Asset $assets)
     {
         $this->assets[] = $assets;
+    }
+
+    /**
+     * @todo rename function
+     * Remove images
+     */
+    public function removeImages()
+    {
+        $this->getAssets()->clear();
+
+        if (null === $this->getState()) {
+            $this->setState(new ArtefactState());
+        }
+        $this->getState()->setHasImage(false);
     }
 
     /**
@@ -229,7 +243,7 @@ class Artefact
     /**
      * Set state
      *
-     * @param Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state
+     * @param \Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state
      * @return Artefact
      */
     public function setState(\Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state)
@@ -241,7 +255,7 @@ class Artefact
     /**
      * Get state
      *
-     * @return Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state
+     * @return \Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state
      */
     public function getState()
     {

@@ -2,8 +2,7 @@
 
 {% block page_header %}
     <div class="page-header">
-        <h1>{% block headline %}CBAG3: grafic_e artefact documentation {% endblock headline %}</h1>
-        <h2>{{ artefact.name }}</h2>
+        <h1>{% block headline %}{{ artefact.name }}{% endblock headline %}</h1>
     </div>
 {% endblock page_header %}
 
@@ -12,7 +11,6 @@
 
         <form novalidate action="{{ path('artefact_save_asset', {'slug': artefact.slug})}}" method="post">
             <div class="row-fluid">
-                <div class="span3"><input class="btn btn-primary" type="submit"/></div>
                 {% for asset in assets %}
                     <div class="span3">
                         <div class="row-fluid">
@@ -32,7 +30,8 @@
                     </div>
                 {% endfor %}
             </div>
-
+            <br />
+            <div class="span3"><input class="btn btn-primary" type="submit" value="Speichern"/></div>
         </form>
 
     </div>
@@ -41,6 +40,8 @@
             <h3>actionen</h3>
             <ul class="unstyled">
                 <li><a href="{{ path('artefact_show', {'slug': artefact.slug})}}">zurück zum artefact</a></li>
+                <li><a href="{{ path('asset_create')}}">neuen 2d scan hochladen</a></li>
+                <li><a href="{{ path('artefact_index')}}">zurück zu den artefacten</a></li>
             </ul>
         {% endblock content_sidebar %}
     </div>

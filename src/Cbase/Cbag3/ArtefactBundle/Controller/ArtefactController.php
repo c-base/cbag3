@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Cbase\Cbag3\ArtefactBundle\Document\Artefact;
 use Cbase\Cbag3\ArtefactBundle\Form\Type\ArtefactType;
-
+use Cbase\Cbag3\ArtefactBundle\Document\ArtefactState;
 
 class ArtefactController extends Controller
 {
@@ -85,8 +85,6 @@ class ArtefactController extends Controller
      */
     public function editAction($slug)
     {
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
-
         $artefact = $this->getArtefactRepository()
             ->findOneBySlug($slug);
 
@@ -96,7 +94,7 @@ class ArtefactController extends Controller
 
         $form = $this->createForm(new ArtefactType(), $artefact);
 
-        return array('form'=>$form->createView(), 'slug'=>$slug);
+        return array('form'=>$form->createView(), 'artefact' => $artefact);
     }
 
     /**
@@ -160,14 +158,19 @@ class ArtefactController extends Controller
     {
         /* @var $artefact Artefact */
         $artefact = $this->getArtefactRepository()->findOneBySlug($slug);
-        $artefact->getAssets()->clear();
+
+        $artefact->removeImages();
 
         $assetIds = $this->getRequest()->get('asset');
-        if(is_array($assetIds)) {
+        if (is_array($assetIds)) {
             foreach($assetIds as $oneAssetId) {
+                /**@var \Cbase\Cbag3\AssetBundle\Document\Asset $asset*/
                 $asset = $this->getAssetRepository()->find($oneAssetId);
-                $artefact->addAssets($asset);
+                $artefact->addAsset($asset);
             }
+
+            $artefact->getState()->setHasAsset(true);
+            $artefact->getState()->setHasImage(true);
         }
 
         $dm = $this->getArtefactRepository()->getDocumentManager();
