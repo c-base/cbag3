@@ -4,6 +4,7 @@ namespace Cbase\Cbag3\ArtefactBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Cbase\Cbag3\AssetBundle\Document\Asset;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * ArtefactRepository
@@ -27,6 +28,26 @@ class ArtefactRepository extends DocumentRepository
             ->find('Cbase\Cbag3\ArtefactBundle\Document\Artefact')
             ->sort('createdAt', 'desc')
             ->limit($limit)
+            ->getQuery()
+            ->execute();
+    }
+
+    public function getStateStats($stateName) {
+        $qb =  $this->getDocumentManager()->createQueryBuilder();
+
+        return $qb->find('Cbase\Cbag3\ArtefactBundle\Document\Artefact')
+            ->field('state.'.$stateName)->equals(true)
+            ->count()
+            ->getQuery()
+            ->execute();
+    }
+
+    public function getByDoesNotHaveThisState($stateName) {
+        $qb =  $this->getDocumentManager()->createQueryBuilder();
+
+        return $qb->find('Cbase\Cbag3\ArtefactBundle\Document\Artefact')
+            ->addOr($qb->expr()->field('state.'.$stateName)->equals(false))
+            ->addOr($qb->expr()->field('state.'.$stateName)->exists(false))
             ->getQuery()
             ->execute();
     }
