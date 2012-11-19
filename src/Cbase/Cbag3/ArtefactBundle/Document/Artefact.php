@@ -14,12 +14,6 @@ use Cbase\Cbag3\AssetBundle\Document\Asset;
  */
 class Artefact
 {
-    const STATE_HASIMAGE = "hasImage";
-    const STATE_HASASSET = "hasAsset";
-    const STATE_HASTEXT = "hasText";
-    const STATE_HASCOMPLETETEXT = "hasCompleteText";
-    const STATE_HASMANUAL = "hasManual";
-
     /**
      * @MongoDB\Id
      */

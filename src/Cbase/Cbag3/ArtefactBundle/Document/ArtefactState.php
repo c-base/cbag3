@@ -10,6 +10,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ArtefactState
 {
+    const HAS_IMAGE = "hasImage";
+    const HAS_ASSET = "hasAsset";
+    const HAS_TEXT = "hasText";
+    const HAS_COMPLETETEXT = "hasCompleteText";
+    const HAS_MANUAL = "hasManual";
+
     /**
      * @MongoDB\Boolean
      */
