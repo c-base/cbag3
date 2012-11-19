@@ -1,20 +1,43 @@
-set :application, "set your application name here"
-set :domain,      "#{application}.com"
-set :deploy_to,   "/var/www/#{domain}"
-set :app_path,    "app"
+set :application,  "cbag3"
+set :domain,       "#{application}.c-base.org"
+set :deploy_to,    "/srv/capistranos/cbag3"
+set :app_path,     "app"
+set :user,         "deployer"
+set :ssh_options,  { :forward_agent => true }
 
-set :repository,  "#{domain}:/var/repos/#{application}.git"
-set :scm,         :git
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, or `none`
+set :branch,       "develop"
+set :use_composer, true
 
-set :model_manager, "doctrine"
+set :repository,   "git@bitbucket.org:dazs/cbag3.git"
+set :scm,          :git
+
+set :shared_files,        ["app/config/parameters.yml"]
+#set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor"]
+
+
+# set :model_manager, "doctrine"
 # Or: `propel`
 
-role :web,        domain                         # Your HTTP server, Apache/etc
-role :app,        domain                         # This may be the same as your `Web` server
-role :db,         domain, :primary => true       # This is where Symfony2 migrations will run
+role :web,        "baseos.ext.c-base.org"                         # Your HTTP server, Apache/etc
+role :app,        "baseos.ext.c-base.org"                         # This may be the same as your `Web` server
+# role :db,         domain, :primary => true       # This is where Symfony2 migrations will run
 
 set  :keep_releases,  3
 
 # Be more verbose by uncommenting the following line
-# logger.level = Logger::MAX_LEVEL
+logger.level = Logger::MAX_LEVEL
+
+set :use_sudo, false
+
+namespace :symfony do
+    namespace :assets do
+        task :install do
+        end
+    end
+end
+
+namespace :deploy do
+    before :finalize_update do
+        #run "rm -rf #{latest_release}/web/uploads"
+    end
+end

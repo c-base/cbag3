@@ -11,3 +11,4 @@ composer.phar
 app/config/parameters.yml
 rockmongo
 web/media/*
+.vagrant
