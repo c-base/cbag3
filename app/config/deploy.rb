@@ -7,7 +7,7 @@ set :ssh_options,  { :forward_agent => true }
 
 set :branch,       "develop"
 set :use_composer, true
-set :composer_options, "--verbose --prefer-dist"
+#set :composer_options, "--verbose --prefer-dist"
 set :dump_assetic_assets,   true
 
 set :repository,   "git@bitbucket.org:dazs/cbag3.git"
