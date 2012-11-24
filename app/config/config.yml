@@ -32,8 +32,11 @@ assetic:
     bundles:        [MopaBootstrapBundle]
     #java: /usr/bin/java
     filters:
-        less:
-            node_paths: [ /usr/lib/node_modules, /usr/local/lib/node_modules]
+        #less:
+        #    node_paths: [ /usr/lib/node_modules, /usr/local/lib/node_modules]
+        #    apply_to: "\.less$"
+        lessphp:
+            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
             apply_to: "\.less$"
         cssrewrite: ~
         #closure:
