@@ -1,5 +1,5 @@
 {
-    "hash": "65c5cc0f6503ce8d0f1230bbb91e141e",
+    "hash": "1cf79d024a467a46617506b1a6b3b12b",
     "packages": [
         {
             "name": "craue/formflow-bundle",
@@ -2236,7 +2236,6 @@
     "stability-flags": {
         "jdorn/sql-formatter": 20,
         "doctrine/doctrine-bundle": 20,
-        "doctrine/mongodb-odm-bundle": 10,
         "doctrine/doctrine-fixtures-bundle": 20,
         "knplabs/knp-markdown-bundle": 20,
         "dflydev/markdown": 20,
@@ -2245,7 +2244,6 @@
         "knplabs/knp-menu-bundle": 20,
         "craue/formflow-bundle": 20,
         "imag/ldap-bundle": 20,
-        "liip/imagine-bundle": 20,
-        "leafo/lessphp": 20
+        "liip/imagine-bundle": 20
     }
 }

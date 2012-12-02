@@ -20,7 +20,7 @@
         "sensio/generator-bundle": "2.1.*",
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
-        "doctrine/mongodb-odm-bundle": "3.0.x-dev",
+        "doctrine/mongodb-odm-bundle": "3.0.*",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "knplabs/knp-markdown-bundle": "dev-master",
         "dflydev/markdown": "1.0.x-dev",
@@ -30,8 +30,7 @@
         "knplabs/knp-menu-bundle": "dev-master",
         "craue/formflow-bundle": "dev-master",
         "imag/ldap-bundle": "dev-master",
-        "liip/imagine-bundle": "dev-master",
-        "leafo/lessphp": "dev-master"
+        "liip/imagine-bundle": "dev-master"
 
     },
     "scripts": {
