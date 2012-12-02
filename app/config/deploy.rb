@@ -24,28 +24,20 @@ role :web,        "artefact.c-base.org"                         # Your HTTP serv
 role :app,        "artefact.c-base.org"                         # This may be the same as your `Web` server
 # role :db,         domain, :primary => true       # This is where Symfony2 migrations will run
 
-set  :keep_releases,  0
+set  :keep_releases,  1
 
 # Be more verbose by uncommenting the following line
 logger.level = Logger::MAX_LEVEL
 
 set :use_sudo, false
 
+
 namespace :symfony do
-    namespace :assets do
-        task :install do
-        end
-    end
+  task :install_mopa_bootstrap do
+    run "cd #{latest_release} && php app/console mopa:bootstrap:symlink:less"
+  end
 end
 
-namespace :deploy do
-    before :setup do
-      #run "mkdir -p #{deploy_to}/releases"
-      #run "mkdir -p #{deploy_to}/shared/app/logs"
-      #run "mkdir -p #{deploy_to}/shared/app/config"
-    end
-    before :finalize_update do
-        run "php #{latest_release}/app/console mopa:bootstrap:symlink:less"
-        #run "php #{latest_release}/app/console mopa:bootstrap:symlink:less"
-    end
-end
+#assetic:dump --env=prod
+after "deploy", "symfony:assets:install"
+after "deploy", "symfony:install_mopa_bootstrap"
