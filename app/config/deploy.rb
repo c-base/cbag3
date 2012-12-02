@@ -1,6 +1,6 @@
 set :application,  "cbag3"
 set :domain,       "#{application}.c-base.org"
-set :deploy_to,    "/srv/capistranos/cbag3"
+set :deploy_to,    "/opt/cbag3"
 set :app_path,     "app"
 set :user,         "deployer"
 set :ssh_options,  { :forward_agent => true }
@@ -20,8 +20,8 @@ set :shared_files,        ["app/config/parameters.yml"]
 # set :model_manager, "doctrine"
 # Or: `propel`
 
-role :web,        "baseos.ext.c-base.org"                         # Your HTTP server, Apache/etc
-role :app,        "baseos.ext.c-base.org"                         # This may be the same as your `Web` server
+role :web,        "artefact.c-base.org"                         # Your HTTP server, Apache/etc
+role :app,        "artefact.c-base.org"                         # This may be the same as your `Web` server
 # role :db,         domain, :primary => true       # This is where Symfony2 migrations will run
 
 set  :keep_releases,  0
@@ -39,7 +39,13 @@ namespace :symfony do
 end
 
 namespace :deploy do
+    before :setup do
+      #run "mkdir -p #{deploy_to}/releases"
+      #run "mkdir -p #{deploy_to}/shared/app/logs"
+      #run "mkdir -p #{deploy_to}/shared/app/config"
+    end
     before :finalize_update do
-        #run "rm -rf #{latest_release}/web/uploads"
+        run "php #{latest_release}/app/console mopa:bootstrap:symlink:less"
+        #run "php #{latest_release}/app/console mopa:bootstrap:symlink:less"
     end
 end
