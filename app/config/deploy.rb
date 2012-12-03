@@ -36,8 +36,10 @@ namespace :symfony do
   task :install_mopa_bootstrap do
     run "cd #{latest_release} && php app/console mopa:bootstrap:symlink:less"
   end
+  task :asset_dump do
+    run "cd #{latest_release} && php app/console assetic:dump"
+  end
 end
 
-#assetic:dump --env=prod
-after "deploy", "symfony:assets:install"
 after "deploy", "symfony:install_mopa_bootstrap"
+after "deploy", "symfony:asset_dump"
