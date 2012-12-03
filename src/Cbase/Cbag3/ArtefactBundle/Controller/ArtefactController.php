@@ -24,7 +24,7 @@ class ArtefactController extends Controller
      */
     public function indexAction()
     {
-        $artefacts = $this->getArtefactRepository()->findAll();
+        $artefacts = $this->getArtefactRepository()->findBy(array(),array('name'=>'asc'));
         return array('artefacts'=>$artefacts);
     }
 
