@@ -51,9 +51,18 @@ class ArtefactController extends Controller
     public function createAction()
     {
         $form = $this->createForm(new ArtefactType(), new Artefact());
+        $form->bind($this->getRequest());
 
-        if (($slug = $this->processArtefactForm($form)) !== false) {
-            return $this->redirect($this->generateUrl('artefact_show', array('slug'=> $slug)));
+        if ($form->isValid()) {
+            // perform some action, such as saving the task to the database
+            $artefact = $form->getData();
+            $artefact->setCreatedBy($this->getUser()->getUserName());
+
+            $dm = $this->get('doctrine.odm.mongodb.document_manager');
+            $dm->persist($artefact);
+            $dm->flush();
+
+            return $this->redirect($this->generateUrl('artefact_show', array('slug'=> $artefact->getSlug())));
         }
 
         return array('form'=>$form->createView());
@@ -99,14 +108,13 @@ class ArtefactController extends Controller
 
     /**
      * @Route("/{slug}/update", name="artefact_update")
-     * @Template()
+     * @Template("CbaseCbag3ArtefactBundle:Artefact:edit.html.twig")
      * @Method("POST")
      * @Secure(roles="ROLE_CREW")
      *
      */
     public function updateAction($slug)
     {
-
         $artefact = $this->getArtefactRepository()->findOneBySlug($slug);
 
         if (!$artefact) {
@@ -115,10 +123,22 @@ class ArtefactController extends Controller
 
         $form = $this->createForm(new ArtefactType(), $artefact);
 
-        if (($slug = $this->processArtefactForm($form)) !== false) {
+        $form->bind($this->getRequest());
+
+        if ($form->isValid()) {
+            // perform some action, such as saving the task to the database
+            $artefact = $form->getData();
+            $artefact->setCreatedBy($this->getUser()->getUserName());
+
+            $dm = $this->get('doctrine.odm.mongodb.document_manager');
+            $dm->persist($artefact);
+            $dm->flush();
+
             return $this->redirect($this->generateUrl('artefact_show', array('slug'=> $slug)));
         }
-        return $this->redirect($this->generateUrl('artefact_edit', array('slug'=> $slug)));
+        $artefact->setSlug($slug);
+
+        return array('form'=>$form->createView(), 'artefact' => $artefact);
     }
 
     /**
@@ -196,23 +216,5 @@ class ArtefactController extends Controller
     {
         return $this->get('doctrine.odm.mongodb.document_manager')
             ->getRepository('CbaseCbag3ArtefactBundle:Artefact');
-    }
-
-    protected function processArtefactForm($form)
-    {
-        $form->bind($this->getRequest());
-
-        if ($form->isValid()) {
-            // perform some action, such as saving the task to the database
-            $artefact = $form->getData();
-            $artefact->setCreatedBy($this->getUser()->getUserName());
-
-            $dm = $this->get('doctrine.odm.mongodb.document_manager');
-            $dm->persist($artefact);
-            $dm->flush();
-
-            return $artefact->getSlug();
-        }
-        return false;
     }
 }
