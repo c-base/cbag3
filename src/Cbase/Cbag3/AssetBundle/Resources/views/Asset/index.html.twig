@@ -11,14 +11,16 @@
 {% block content %}
 <div class="span9">
     <div class="row-fluid">
-        {% for asset in assets %}
-        <div class="span2">
-            <a href="{{ path('asset_edit', {'id': asset.id} )}}">
-                <img class="img-polaroid" src="{{ asset(asset.webPath) | imagine_filter('my_thumb', true)}}" alt="{{ asset.description }}" title="{{ asset.description }}" />
-            </a>
-            <a href="{{ path('asset_delete', {'id': asset.id} )}}">{{ icon('remove-circle') }}delete</a>
-        </div>
-        {% endfor %}
+        <ul class="thumbnails">
+            <li class="span" style="display: none;"></li>
+            {% for asset in assets %}
+            <li class="span2">
+                <a href="{{ path('asset_edit', {'id': asset.id} )}}" class="thumbnail">
+                    <img src="{{ asset(asset.webPath) | imagine_filter('my_thumb', true)}}" alt="{{ asset.description }}" title="{{ asset.description }}" />
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </div>
 <div class="span3">
