@@ -68,7 +68,7 @@ doctrine_mongodb:
             server: mongodb://localhost:27017
             options:
                 connect: true
-    default_database: cbag3_database
+    default_database: cbag3_dump
     document_managers:
         default:
             auto_mapping: true
@@ -97,3 +97,11 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [120, 90], mode: outbound }
+        artefact_show:
+            quality: 75
+            filters:
+                thumbnail: { size: [700, null], mode: outbound }
+        asset_show:
+            quality: 75
+            filters:
+                thumbnail: { size: [700, null], mode: outbound }
