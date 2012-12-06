@@ -125,7 +125,6 @@ class Asset
 
     /**
      * @MongoDB\PrePersist()
-     * @MongoDB\PreUpdate()
      */
     public function preUpload()
     {
@@ -137,7 +136,6 @@ class Asset
 
     /**
      * @MongoDB\PostPersist()
-     * @MongoDB\PostUpdate()
      */
     public function upload()
     {
