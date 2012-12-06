@@ -5,12 +5,19 @@ namespace Cbase\Cbag3\ArtefactBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique;
+
 use Cbase\Cbag3\AssetBundle\Document\Asset;
 
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @MongoDB\Document
  * @MongoDB\Document(repositoryClass="Cbase\Cbag3\ArtefactBundle\Repository\ArtefactRepository")
+ *
+ * @Unique("slug")
+ * @Unique("name")
+ *
  */
 class Artefact
 {
@@ -23,7 +30,7 @@ class Artefact
      * @MongoDB\String
      * @Assert\MinLength(
      *     limit=3,
-     *     message="Your name must have at least {{ limit }} characters."
+     *     message="Der Name muss mindestens {{ limit }} Buchstaben enthalten."
      * )
      */
     protected $name;
@@ -63,7 +70,7 @@ class Artefact
 
     public function __construct()
     {
-        $this->assets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->assets = new ArrayCollection();
     }
 
     /**
@@ -80,9 +87,9 @@ class Artefact
      */
     public function prePersistAndPreUpdate()
     {
-        $slug = $this->getName();
-        $slug = $this->slugify($slug);
-        $this->setSlug($slug);
+//        $slug = $this->getName();
+//        $slug = $this->slugify($slug);
+//        $this->setSlug($slug);
     }
 
     /**
@@ -104,6 +111,7 @@ class Artefact
     public function setName($name)
     {
         $this->name = $name;
+        $this->setSlug($this->slugify($name));
         return $this;
     }
 
@@ -142,11 +150,11 @@ class Artefact
     /**
      * Add assets
      *
-     * @param \Cbase\Cbag3\AssetBundle\Document\Asset $assets
+     * @param \Cbase\Cbag3\AssetBundle\Document\Asset $asset
      */
-    public function addAsset(\Cbase\Cbag3\AssetBundle\Document\Asset $assets)
+    public function addAsset(Asset $asset)
     {
-        $this->assets[] = $assets;
+        $this->assets[] = $asset;
     }
 
     /**
@@ -245,7 +253,7 @@ class Artefact
      * @param \Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state
      * @return Artefact
      */
-    public function setState(\Cbase\Cbag3\ArtefactBundle\Document\ArtefactState $state)
+    public function setState(ArtefactState $state)
     {
         $this->state = $state;
         return $this;
@@ -270,21 +278,28 @@ class Artefact
      */
     private function slugify($text, $separator = "-")
     {
-        if (function_exists('mb_strtolower')) {
-            $text = mb_strtolower($text);
-        } else {
-            $text = strtolower($text);
+        $replacements = array(
+            'ü' => 'ue',
+            'ö' => 'oe',
+            'ä' => 'ae',
+            'ß' => 'ss',
+        );
+
+        $text = str_replace(array_keys($replacements), array_values($replacements), $text);
+        return $this->toAscii($text, array(), $separator);
+    }
+
+    private function toAscii($str, $replace=array(), $delimiter='-') {
+        setlocale(LC_ALL, 'en_US.UTF8');
+        if( !empty($replace) ) {
+            $str = str_replace((array)$replace, ' ', $str);
         }
 
-        // Remove all none word characters
-        $text = preg_replace('/\W/', ' ', $text);
+        $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+        $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
+        $clean = strtolower(trim($clean, '-'));
+        $clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
 
-        // More stripping. Replace spaces with dashes
-        $text = strtolower(preg_replace('/[^A-Z^a-z^0-9^\/]+/', $separator,
-            preg_replace('/([a-z\d])([A-Z])/', '\1_\2',
-                preg_replace('/([A-Z]+)([A-Z][a-z])/', '\1_\2',
-                    preg_replace('/::/', '/', $text)))));
-
-        return trim($text, $separator);
+        return $clean;
     }
 }

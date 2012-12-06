@@ -106,9 +106,8 @@ class ArtefactController extends Controller
      */
     public function updateAction($slug)
     {
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
-        $artefact = $dm->getRepository('CbaseCbag3ArtefactBundle:Artefact')->findOneBySlug($slug);
+        $artefact = $this->getArtefactRepository()->findOneBySlug($slug);
 
         if (!$artefact) {
             throw $this->createNotFoundException('No artefact found for '.$slug);
@@ -211,8 +210,6 @@ class ArtefactController extends Controller
             $dm = $this->get('doctrine.odm.mongodb.document_manager');
             $dm->persist($artefact);
             $dm->flush();
-
-
 
             return $artefact->getSlug();
         }
