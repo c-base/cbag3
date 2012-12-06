@@ -105,6 +105,7 @@ class AssetController extends Controller
         }
 
         $form = $this->createForm(new AssetType(), $asset);
+        $form->remove("file");
 
         if (($id = $this->processAssetForm($form)) !== false) {
             return $this->redirect($this->generateUrl('asset_edit', array('id'=> $id)));
