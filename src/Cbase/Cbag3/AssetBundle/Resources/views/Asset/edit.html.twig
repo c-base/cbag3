@@ -14,7 +14,7 @@
 
             <input class="btn btn-primary" type="submit"/>
         </form>
-        <img class="img-polaroid" src="{{ asset(asset.webPath)}}" alt="{{ asset.description }}" title="{{ asset.description }}" />
+        <img class="img-polaroid" src="{{ asset(asset.webPath) | imagine_filter('asset_show', true)}}" alt="{{ asset.description }}" title="{{ asset.description }}" />
     </div>
     <div class="span3">
         {% block content_sidebar %}

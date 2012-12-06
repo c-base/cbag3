@@ -10,11 +10,14 @@
 <div class="span9">
 
     <p>{{artefact.description | markdown}}</p>
-    <ul class="unstyled">
-        {% for artefactAsset in artefact.assets %}
-            <li><img src="{{asset(artefactAsset.webPath)}}" alt="" /></li>
-        {% endfor %}
-    </ul>
+
+    {% for artefactAsset in artefact.assets %}
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="span12">
+            <img class="img-polaroid" src="{{asset(artefactAsset.webPath) | imagine_filter('artefact_show', true)}}" alt="" />
+        </div>
+    </div>
+    {% endfor %}
 
 </div>
 <div class="span3">
