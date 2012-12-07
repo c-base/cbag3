@@ -29,7 +29,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [MopaBootstrapBundle]
+    bundles:        [MopaBootstrapBundle, CbaseCbag3ArtefactBundle]
     #java: /usr/bin/java
     filters:
         less:
@@ -68,7 +68,7 @@ doctrine_mongodb:
             server: mongodb://localhost:27017
             options:
                 connect: true
-    default_database: cbag3_dump
+    default_database: cbag3_database
     document_managers:
         default:
             auto_mapping: true
