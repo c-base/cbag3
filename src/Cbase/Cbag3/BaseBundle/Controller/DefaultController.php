@@ -2,7 +2,8 @@
 
 namespace Cbase\Cbag3\BaseBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Cbase\Cbag3\BaseBundle\Controller\BaseController as Controller;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        /** @var $repo \Cbase\Cbag3\ArtefactBundle\Repository\ArtefactRepository */
-        $repo = $this->get('doctrine.odm.mongodb.document_manager')
-            ->getRepository('CbaseCbag3ArtefactBundle:Artefact');
-
-        $latestArtefacts = $repo->getLatest();
+        $latestArtefacts = $this->getArtefactRepository()->getLatest();
 
         return array('latest' => $latestArtefacts);
     }

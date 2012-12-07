@@ -2,7 +2,8 @@
 
 namespace Cbase\Cbag3\AssetBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Cbase\Cbag3\BaseBundle\Controller\BaseController as Controller;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Cbase\Cbag3\AssetBundle\Document\Asset;
 use Cbase\Cbag3\AssetBundle\Form\Type\AssetType;
+use Cbase\Cbag3\ArtefactBundle\Document\Artefact;
 
 class AssetController extends Controller
 {
@@ -25,9 +27,8 @@ class AssetController extends Controller
      */
     public function indexAction()
     {
-        $assets = $this->get('doctrine.odm.mongodb.document_manager')
-            ->getRepository('CbaseCbag3AssetBundle:Asset')->findAll();
-        return array('assets'=>$assets);
+        $assets = $this->getAssetRepository()->findBy(array(),array('_id'=>'asc'));
+        return array('assets' => $assets);
     }
 
     /**
@@ -51,7 +52,7 @@ class AssetController extends Controller
                 $dm->persist($asset);
                 $dm->flush();
 
-                $this->get('session')->setFlash('success','Neues Asset wurde gespeichert');
+                $this->get('session')->setFlash('success','neue grafic wurde in den speicher aufgenommen.');
 
                 return $this->redirect($this->generateUrl('asset_index'));
             }
@@ -71,9 +72,7 @@ class AssetController extends Controller
      */
     public function editAction($id)
    {
-       $dm = $this->get('doctrine.odm.mongodb.document_manager');
-
-       $asset = $dm->getRepository('CbaseCbag3AssetBundle:Asset')->find($id);
+       $asset = $this->getAssetRepository()->find($id);
 
        if (!$asset) {
            throw $this->createNotFoundException('No asset found for '.$id);
@@ -81,7 +80,13 @@ class AssetController extends Controller
        $form = $this->createForm(new AssetType(), $asset);
        $form->remove("file");
 
-       return array('form'=>$form->createView(), 'id'=> $id, 'asset' => $asset);
+       $artefacts = $this->getArtefactRepository()->getByAssetId($id);
+
+       return array(
+           'form'=>$form->createView(),
+           'id'=> $id,
+           'asset' => $asset,
+           'artefacts' => $artefacts);
    }
 
     /**
@@ -96,9 +101,7 @@ class AssetController extends Controller
      */
     public function updateAction($id)
     {
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
-
-        $asset = $dm->getRepository('CbaseCbag3AssetBundle:Asset')->find($id);
+        $asset = $this->getAssetRepository()->find($id);
 
         if (!$asset) {
             throw $this->createNotFoundException('No artefact found for '.$id);
@@ -107,8 +110,17 @@ class AssetController extends Controller
         $form = $this->createForm(new AssetType(), $asset);
         $form->remove("file");
 
-        if (($id = $this->processAssetForm($form)) !== false) {
-            return $this->redirect($this->generateUrl('asset_edit', array('id'=> $id)));
+        $form->bind($this->getRequest());
+
+        if ($form->isValid()) {
+
+            $asset = $form->getData();
+
+            $dm = $this->getDocumentManager();
+            $dm->persist($asset);
+            $dm->flush();
+
+            $this->get('session')->setFlash('success','änderungen an der grafic wurden erfogreich angenommen');
         }
         return $this->redirect($this->generateUrl('asset_edit', array('id'=> $id)));
     }
@@ -119,41 +131,60 @@ class AssetController extends Controller
      * @Method("GET")
      * @Secure(roles="ROLE_CREW")
      *
-     *
      * @param int $id asset_id
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @return RedirectResponse
      */
     public function deleteAction($id)
     {
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+        /** @var Asset $asset */
+        $asset = $this->getAssetRepository()->find($id);
 
-        $asset = $dm->getRepository('CbaseCbag3AssetBundle:Asset')->find($id);
+        if (!$asset) {
+            throw $this->createNotFoundException('No artefact found for '.$id);
+        }
+        $this->getArtefactRepository()->removeAsset($asset);
 
+        $dm = $this->getDocumentManager();
         $dm->remove($asset);
         $dm->flush();
+
+        $this->get('session')->setFlash('success','grafic wurde erfolreich für immer entfernt');
 
         return $this->redirect($this->generateUrl('asset_index'));
     }
 
     /**
-     * @param AssetType $form
-     * @return mixed false|int
+     * @Route("/delete-from-artefact/{id}/{slug}", name="asset_delete_from_artefact")
+     * @Template()
+     * @Method("GET")
+     * @Secure(roles="ROLE_CREW")
+     *
+     * @param int $id asset_id
+     * @param string $slug artefact slug
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return RedirectResponse
      */
-    protected function processAssetForm($form)
+    public function deleteFromArtefactAction($id, $slug)
     {
-        $form->bind($this->getRequest());
+        /** @var Asset $asset */
+        $asset = $this->getAssetRepository()->find($id);
 
-        if ($form->isValid()) {
-            // perform some action, such as saving the task to the database
-            $asset = $form->getData();
-
-            $dm = $this->get('doctrine.odm.mongodb.document_manager');
-            $dm->persist($asset);
-            $dm->flush();
-
-            $this->get('session')->setFlash('success','Asset wurde gespeichert');
-            return $asset->getId();
+        if (!$asset) {
+            throw $this->createNotFoundException('No asset found for '.$id);
         }
-        return false;
+
+        $artefact = $this->getArtefactRepository()->findOneBySlug($slug);
+
+        if (!$artefact) {
+            throw $this->createNotFoundException('No artefact found for '.$slug);
+        }
+
+        $this->getArtefactRepository()->removeAssetFromArtefact($asset, $artefact);
+
+        $this->get('session')->setFlash('success','grafic wurde aus der zuordnung des artefacts "'.$artefact->getName().'" entfernt');
+
+        return $this->redirect($this->generateUrl('asset_edit', array('id'=> $id)));
     }
 }

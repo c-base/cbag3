@@ -2,7 +2,7 @@
 
 namespace Cbase\Cbag3\ArtefactBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Cbase\Cbag3\BaseBundle\Controller\BaseController as Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Cbase\Cbag3\ArtefactBundle\Document\Artefact;
 use Cbase\Cbag3\ArtefactBundle\Form\Type\ArtefactType;
 use Cbase\Cbag3\ArtefactBundle\Document\ArtefactState;
+
 
 class ArtefactController extends Controller
 {
@@ -199,22 +200,5 @@ class ArtefactController extends Controller
         $this->get('session')->setFlash('success',"Artefact Assets saved!");
 
         return $this->redirect($this->generateUrl('artefact_manage_asset', array('slug'=> $slug)));
-    }
-
-    /**
-     * @return \Cbase\Cbag3\AssetBundle\Repository\AssetRepository
-     */
-    private function getAssetRepository() {
-        return $this->get('doctrine.odm.mongodb.document_manager')
-            ->getRepository('CbaseCbag3AssetBundle:Asset');
-    }
-
-    /**
-     * @return \Cbase\Cbag3\ArtefactBundle\Repository\ArtefactRepository
-     */
-    private function getArtefactRepository()
-    {
-        return $this->get('doctrine.odm.mongodb.document_manager')
-            ->getRepository('CbaseCbag3ArtefactBundle:Artefact');
     }
 }

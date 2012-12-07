@@ -6,11 +6,22 @@
     </div>
 {% endblock page_header %}
 
+{% block head_style %}
+    {{ parent() }}
+    <style type="text/css">
+        .asset_span label{
+            font-size: 10px;
+            min-height: 46px;
+        }
+    </style>
+{% endblock head_style %}
+
 {% block content %}
     <div class="span9">
 
         <form novalidate action="{{ path('artefact_save_asset', {'slug': artefact.slug})}}" method="post">
-            <div class="row-fluid">
+            <div class="row-fluid asset_span">
+                <div class="span" style="display: none;"></div>
                 {% for asset in assets %}
                     <div class="span3">
                         <div class="row-fluid">
