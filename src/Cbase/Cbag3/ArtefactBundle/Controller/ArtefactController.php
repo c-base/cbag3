@@ -135,7 +135,7 @@ class ArtefactController extends Controller
             $dm->persist($artefact);
             $dm->flush();
 
-            return $this->redirect($this->generateUrl('artefact_show', array('slug'=> $slug)));
+            return $this->redirect($this->generateUrl('artefact_show', array('slug'=> $artefact->getSlug())));
         }
         $artefact->setSlug($slug);
 
@@ -200,5 +200,33 @@ class ArtefactController extends Controller
         $this->get('session')->setFlash('success',"Artefact Assets saved!");
 
         return $this->redirect($this->generateUrl('artefact_manage_asset', array('slug'=> $slug)));
+    }
+
+    /**
+     * @Route("/{slug}/delete", name="artefact_delete")
+     * @Template()
+     * @Method("GET")
+     * @Secure(roles="ROLE_CREW")
+     *
+     * @param string $slug artefact slug
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return RedirectResponse
+     */
+    public function deleteAction($slug)
+    {
+        /* @var $artefact Artefact */
+        $artefact = $this->getArtefactRepository()->findOneBySlug($slug);
+
+        if (!$artefact) {
+            throw $this->createNotFoundException('No artefact found for '.$slug);
+        }
+
+        $dm = $this->getDocumentManager();
+        $dm->remove($artefact);
+        $dm->flush();
+
+        $this->get('session')->setFlash('success','artefact wurde erfolreich für immer entfernt');
+
+        return $this->redirect($this->generateUrl('artefact_index'));
     }
 }
