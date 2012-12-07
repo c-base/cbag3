@@ -1,0 +1,33 @@
+{% extends '::base.html.twig' %}
+
+{% block page_header %}
+<div class="page-header">
+    <h1>{% block headline %}{{artefact.name}}{% endblock headline %}</h1>
+</div>
+{% endblock page_header %}
+
+{% block content %}
+<div class="span9">
+
+    <p>{{artefact.description | markdown}}</p>
+
+    {% for artefactAsset in artefact.assets %}
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="span12">
+            <img class="img-polaroid" src="{{asset(artefactAsset.webPath) | imagine_filter('artefact_show', true)}}" alt="" />
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+<div class="span3">
+    {% block content_sidebar %}
+    <h3>actionen</h3>
+    <ul class="unstyled">
+        <li><a href="{{ path('artefact_edit', {'slug': artefact.slug})}}">artefact bearbeiten</a></li>
+        <li><a href="{{ path('artefact_manage_asset', {'slug': artefact.slug}) }}">2d scans bearbeiten</a></li>
+        <li><a href="{{ path('artefact_index')}}">zurück zu den artefacten</a></li>
+    </ul>
+    {% endblock content_sidebar %}
+</div>
+{% endblock content %}

@@ -1,0 +1,55 @@
+imports:
+    - { resource: parameters.yml }
+
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    firewalls:
+        restricted_area:
+            pattern:          ^/
+            anonymous:        ~
+            provider:         ldap
+            imag_ldap:        ~
+            logout:
+                path:           /logout
+                target:         /
+
+    role_hierarchy:
+        ROLE_USER:        ROLE_CREW
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        ldap:
+            id: imag_ldap.security.user.provider
+
+    encoders:
+        IMAG\LdapBundle\User\LdapUser: plaintext
+#
+#    access_control:
+#        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+#        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+    access_control:
+        - { path: ^/login,          roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/,               roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+imag_ldap:
+  client:
+      host: %ldap_host% #ldaps://sojus.c-base.org
+      port: %ldap_port%
+      version: 3 # Optional
+#    username: foo # Optional
+#    password: bar # Optional
+
+  user:
+      base_dn: ou=crew,dc=c-base,dc=org
+#    filter: (&(foo=bar)(ObjectClass=Person)) #Optional
+      name_attribute: uid
+  role:
+      base_dn: ou=groups,dc=c-base,dc=org
+#    filter: (ou=group) #Optional
+      name_attribute: cn
+      user_attribute: member
+      user_id: dn

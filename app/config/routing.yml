@@ -1,0 +1,31 @@
+#cbase_core_user:
+#    resource: "@CbaseCoreUserBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
+CbaseCbag3AssetBundle:
+    resource: "@CbaseCbag3AssetBundle/Controller/"
+    type:     annotation
+    prefix:   /asset/
+
+CbaseCbag3ArtefactBundle:
+    resource: "@CbaseCbag3ArtefactBundle/Controller/"
+    type:     annotation
+    prefix:   /artefact/
+
+CbaseCbag3BaseBundle:
+    resource: "@CbaseCbag3BaseBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+imag_ldap:
+  resource: "@IMAGLdapBundle/Resources/config/routing.yml"
+
+_imagine:
+    resource: .
+    type:     imagine
+
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

@@ -1,4 +1,5 @@
 web/uploads/assets/*
+web/uploads/assets_local/*
 web/bundles/
 app/bootstrap.php.cache
 app/cache/*
@@ -11,3 +12,7 @@ composer.phar
 app/config/parameters.yml
 rockmongo
 web/media/*
+web/css/*
+web/js/*
+.vagrant
+data/*
