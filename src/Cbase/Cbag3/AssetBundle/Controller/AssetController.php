@@ -141,7 +141,7 @@ class AssetController extends Controller
         $asset = $this->getAssetRepository()->find($id);
 
         if (!$asset) {
-            throw $this->createNotFoundException('No artefact found for '.$id);
+            throw $this->createNotFoundException('No asset found for '.$id);
         }
         $this->getArtefactRepository()->removeAsset($asset);
 
