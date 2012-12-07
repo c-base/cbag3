@@ -18,6 +18,7 @@
                 <a href="{{ path('asset_edit', {'id': asset.id} )}}" class="thumbnail">
                     <img src="{{ asset(asset.webPath) | imagine_filter('my_thumb', true)}}" alt="{{ asset.description }}" title="{{ asset.description }}" />
                 </a>
+                {#<a href="{{ path('asset_delete', {'id': asset.id} )}}">{{ icon('remove-circle') }}delete</a>#}
             </li>
             {% endfor %}
         </ul>
