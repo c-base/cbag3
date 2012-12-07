@@ -11,6 +11,7 @@ set :use_composer, true
 set :dump_assetic_assets,   true
 
 set :repository,   "git@bitbucket.org:dazs/cbag3.git"
+#set :repository,    "git@dev.c-base.org:cbag3/cbag3.git"
 set :scm,          :git
 
 set :shared_files,        ["app/config/parameters.yml"]
