@@ -37,7 +37,13 @@ class Asset
     protected $author;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(
+     *      maxSize = "2M",
+     *      maxSizeMessage = "grafic hat die gro:sse {{ size }}. die maC_inen ko:nnen nur {{ limit }} verarbeiten",
+     *      uploadIniSizeErrorMessage = "2d scan ist zu gross. die maC_inen ko:nnen nur {{ limit }} verarbeiten.",
+     *      mimeTypes = {"image/jpeg", "image/gif"},
+     *      mimeTypesMessage = "grafic hat nicht das richtige format. lade eine ordentliche grafic hoch, junge (tip: jpeg, jpg, gif)"
+     * )
      */
     public $file;
 
