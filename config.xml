@@ -6,7 +6,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.redmine.RedmineProjectProperty>
-      <projectName></projectName>
+      <projectName>CBAG3</projectName>
       <redmineVersion>false</redmineVersion>
     </hudson.plugins.redmine.RedmineProjectProperty>
   </properties>
