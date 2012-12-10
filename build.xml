@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="CBAG3" default="build">
+    <target name="composer" description="Installing dependencies">
+        <exec executable="wget" failonerror="true">
+            <arg value="-nc" />
+            <arg value="http://getcomposer.org/composer.phar" />
+        </exec>
+        <exec executable="php" failonerror="true">
+            <arg value="composer.phar" />
+            <arg value="install" />
+            <arg value="--install-suggests" />
+        </exec>
+    </target>
     <target name="build" depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit,phpcb"/>
     <target name="build-parallel" depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
     <target name="tools-parallel" description="Run tools in parallel">
