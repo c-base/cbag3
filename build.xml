@@ -38,7 +38,7 @@
         <exec executable="php" failonerror="true">
             <arg value="composer.phar" />
             <arg value="install" />
-            <arg value="--install-suggests" />
+            <arg value="--prefer-dist" />
         </exec>
     </target>
     <target name="lint" description="Perform syntax check of sourcecode files">
