@@ -4,7 +4,6 @@ web/bundles/
 app/bootstrap.php.cache
 app/cache/*
 app/logs/*
-build/
 vendor
 bin
 composer.phar
@@ -17,3 +16,9 @@ web/js/*
 .vagrant
 data/*
 cache.properties
+app/build/api*
+app/build/code-browser/*
+app/build/coverage/*
+app/build/logs/*
+app/build/pdepend/*
+app/build/phpdox/*

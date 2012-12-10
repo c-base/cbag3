@@ -1,0 +1,5 @@
+<ruleset name="Symfony2">
+    <description>We use Symfony2</description>
+
+    <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+</ruleset>
