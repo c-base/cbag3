@@ -16,3 +16,4 @@ web/css/*
 web/js/*
 .vagrant
 data/*
+cache.properties
