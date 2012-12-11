@@ -19,9 +19,9 @@
         </testsuite>
     </testsuites>
 
-    <php>
-        <server name="KERNEL_DIR" value="." />
-    </php>
+    <!--<php>-->
+        <!--<server name="KERNEL_DIR" value="app/" />-->
+    <!--</php>-->
 
     <php>
         <ini name="intl.default_locale" value="en"/>
