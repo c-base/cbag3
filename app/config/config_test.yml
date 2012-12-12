@@ -4,7 +4,8 @@ imports:
 framework:
     test: ~
     session:
-        storage_id: session.storage.mock_file
+        storage_id: session.storage.filesystem
+        name: MOCKSESSID
 
 web_profiler:
     toolbar: false
