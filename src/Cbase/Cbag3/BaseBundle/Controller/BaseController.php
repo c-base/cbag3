@@ -3,7 +3,7 @@ namespace Cbase\Cbag3\BaseBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class BaseController extends Controller
+abstract class BaseController extends Controller
 {
 
     /**
