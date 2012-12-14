@@ -24,6 +24,11 @@ class Asset
     /**
      * @MongoDB\String
      */
+    public $title;
+
+    /**
+     * @MongoDB\String
+     */
     protected $description;
 
     /**
@@ -66,7 +71,7 @@ class Asset
      * Set path
      *
      * @param string $path
-     * @return Image
+     * @return Asset
      */
     public function setPath($path)
     {
@@ -88,7 +93,7 @@ class Asset
      * Set description
      *
      * @param string $description
-     * @return Image
+     * @return Asset
      */
     public function setDescription($description)
     {
@@ -104,6 +109,28 @@ class Asset
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Asset
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string $title
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
 
