@@ -3,7 +3,7 @@
     line-height: 30px;
 }
 
-span.artefact {
+.artefact {
     border-radius: 3px;
     background-color: #080D10;
     position: relative;
@@ -28,4 +28,8 @@ span.artefact {
     border-width: 12px;
     top: 50%;
     margin-top: -12px;
+}
+
+.artefact-container {
+    display: inline-block;
 }
