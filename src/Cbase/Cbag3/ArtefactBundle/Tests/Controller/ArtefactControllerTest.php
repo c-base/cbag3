@@ -48,10 +48,7 @@ class ArtefactControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("nerdC_leuder")')->count() > 0);
     }
 
-    /**
-     *
-     */
-    public function testClickArtefact()
+   public function testClickArtefact()
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/artefact/');
@@ -69,5 +66,16 @@ class ArtefactControllerTest extends WebTestCase
         $client->click($link);
 
         $this->assertGreaterThan(0, $crawler->filter('h1')->count());
+    }
+
+    public function testArtefactNotFound()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/artefact/das-artefact-gibt-es-nicht');
+
+        $this->assertEquals(
+            404,
+            $client->getResponse()->getStatusCode()
+        );
     }
 }
