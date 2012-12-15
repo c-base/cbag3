@@ -10,6 +10,19 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 abstract class WebTestCase extends BaseWebTestCase
 {
+
+    public static function tearDownAfterClass()
+    {
+        $conn = static::createClient()
+            ->getContainer()
+            ->get('doctrine.odm.mongodb.default_connection');
+        $conn->connect();
+        $defaultDB = $conn->getConfiguration()->getDefaultDB();
+        $conn->dropDatabase($defaultDB);
+        $conn->close();
+        unset($conn);
+    }
+
     /**
      * Create Client with logged in user
      *
