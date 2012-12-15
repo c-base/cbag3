@@ -10,11 +10,25 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 abstract class WebTestCase extends BaseWebTestCase
 {
+    /**
+     * Create Client with logged in user
+     *
+     * @param $firewallName
+     * @param array $options
+     * @param array $server
+     *
+     * @return \Symfony\Component\BrowserKit\Client
+     */
     protected function createClientWithAuthentication($firewallName, array $options = array(), array $server = array())
     {
         /* @var $client \Symfony\Component\BrowserKit\Client */
         $client = static::createClient($options, $server);
 
+        return $this->getClientWithAuthentication($client, $firewallName, $options, $server);
+    }
+
+    protected function getClientWithAuthentication($client, $firewallName, array $options = array(), array $server = array())
+    {
         $session = $client->getContainer()->get('session');
         // Since the namespace of the session changed in symfony 2.1, instanceof can be used to check the version.
         if ($session instanceof Session) {
@@ -23,7 +37,7 @@ abstract class WebTestCase extends BaseWebTestCase
 
         $client->getCookieJar()->set(new Cookie('MOCKSESSID', $session->getId()));
 
-        $token = new UsernamePasswordToken('dazz', null, $firewallName, array('ROLE_CREW'));
+        $token = new UsernamePasswordToken($this->getMockUser(), null, $firewallName, array('ROLE_CREW'));
 
         $client->getContainer()->get('security.context')->setToken($token);
         $session->set('_security_' . $firewallName, serialize($token));
@@ -31,5 +45,15 @@ abstract class WebTestCase extends BaseWebTestCase
         $session->save();
 
         return $client;
+    }
+
+    protected function getMockUser()
+    {
+        $user = new \Symfony\Component\Security\Core\User\User(
+            'testuser',
+            'test',
+            array('ROLE_CREW')
+        );
+        return $user;
     }
 }
