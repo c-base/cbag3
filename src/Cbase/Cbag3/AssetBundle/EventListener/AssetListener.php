@@ -18,8 +18,23 @@ class AssetListener {
      */
     public function postLoad(LifecycleEventArgs $eventArgs)
     {
-        if($eventArgs->getDocument() instanceof Asset)
-        {
+        $this->setAssetUploadDir($eventArgs);
+    }
+
+    /**
+     * prePersist
+     */
+    public function prePersist(LifecycleEventArgs $eventArgs)
+    {
+        $this->setAssetUploadDir($eventArgs);
+    }
+
+    /**
+     * @param \Doctrine\ODM\MongoDB\Event\LifecycleEventArgs $eventArgs
+     */
+    private function setAssetUploadDir(LifecycleEventArgs $eventArgs)
+    {
+        if ($eventArgs->getDocument() instanceof Asset) {
             $eventArgs->getDocument()->setUploadDir($this->uploadDir);
         }
     }

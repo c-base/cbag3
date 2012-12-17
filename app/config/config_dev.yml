@@ -40,4 +40,7 @@ security:
 
 
 doctrine_mongodb:
-    default_database: cbag3_dump
+    default_database: cbag3_database_dev
+
+cbase_cbag3_asset:
+    upload_dir: uploads/assets_dev

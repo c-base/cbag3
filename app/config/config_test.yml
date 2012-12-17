@@ -15,4 +15,4 @@ swiftmailer:
     disable_delivery: true
 
 doctrine_mongodb:
-    default_database: cbag3_test
+    default_database: cbag3_database_test

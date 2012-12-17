@@ -24,5 +24,11 @@ class CbaseCbag3AssetExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        if (!isset($config['upload_dir'])) {
+            throw new \InvalidArgumentException('The "upload_dir" option must be set');
+        }
+
+        $container->setParameter('cbase_cbag3_asset.upload_dir', $config['upload_dir']);
     }
 }
