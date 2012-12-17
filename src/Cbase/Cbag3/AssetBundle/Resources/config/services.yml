@@ -1,0 +1,6 @@
+services:
+    cbag3.asset.asset_listener:
+        class: Cbase\Cbag3\AssetBundle\EventListener\AssetListener
+        arguments: ['uploads/assets']
+        tags:
+            - { name: doctrine_mongodb.odm.event_listener, event: postLoad }
