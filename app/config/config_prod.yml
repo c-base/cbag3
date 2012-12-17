@@ -1,6 +1,17 @@
 imports:
     - { resource: config.yml }
 
+security:
+    firewalls:
+        restricted_area:
+            provider:         ldap
+            imag_ldap:        ~
+    providers:
+        ldap:
+            id: imag_ldap.security.user.provider
+    encoders:
+        IMAG\LdapBundle\User\LdapUser: plaintext
+
 #doctrine:
 #    orm:
 #        metadata_cache_driver: apc

@@ -1,5 +1,7 @@
 web/uploads/assets/*
 web/uploads/assets_local/*
+web/uploads/assets_test/*
+web/uploads/assets_dev/*
 web/bundles/
 app/bootstrap.php.cache
 app/cache/*

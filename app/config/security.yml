@@ -10,8 +10,8 @@ security:
         restricted_area:
             pattern:          ^/
             anonymous:        ~
-            provider:         ldap
-            imag_ldap:        ~
+#            provider:         ldap
+#            imag_ldap:        ~
             logout:
                 path:           /logout
                 target:         /
@@ -21,16 +21,19 @@ security:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
-    providers:
-        ldap:
-            id: imag_ldap.security.user.provider
+#    providers:
+#        ldap:
+#            id: imag_ldap.security.user.provider
+#        in_memory:
+#            memory:
+#                users:
+#                    dazz:  { password: test, roles: 'ROLE_CREW' }
+#                    admin: { password: kitten, roles: 'ROLE_ADMIN' }
 
-    encoders:
-        IMAG\LdapBundle\User\LdapUser: plaintext
-#
-#    access_control:
-#        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-#        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+# find in config_dev.yml and config.prod.yml
+#    encoders:
+#        IMAG\LdapBundle\User\LdapUser: plaintext
+
     access_control:
         - { path: ^/login,          roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/,               roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -42,6 +42,13 @@ class Asset
     protected $author;
 
     /**
+     * Will be set by eventlistener
+     *
+     * @var string
+     */
+    protected $uploadDir;
+
+    /**
      * @Assert\File(
      *      maxSize = "2M",
      *      maxSizeMessage = "grafic hat die gro:sse {{ size }}. die maC_inen ko:nnen nur {{ limit }} verarbeiten",
@@ -150,10 +157,14 @@ class Asset
         return __DIR__.'/../../../../../web/'.$this->getUploadDir();
     }
 
-    protected function getUploadDir()
+    public function setUploadDir($uploadDir)
     {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'uploads/assets';
+        $this->uploadDir = $uploadDir;
+    }
+
+    public function getUploadDir()
+    {
+        return $this->uploadDir;
     }
 
     /**

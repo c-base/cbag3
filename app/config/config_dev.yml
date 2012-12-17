@@ -22,5 +22,25 @@ monolog:
 assetic:
     use_controller: true
 
-#swiftmailer:
-#    delivery_address: me@example.com
+security:
+    firewalls:
+        restricted_area:
+            provider: in_memory
+            form_login: ~
+    providers:
+        in_memory:
+            memory:
+                users:
+                    dazz:  { password: test, roles: 'ROLE_CREW' }
+                    woodworker:  { password: test, roles: 'ROLE_CREW' }
+                    testuser:  { password: test, roles: 'ROLE_CREW' }
+                    admin: { password: kitten, roles: 'ROLE_ADMIN' }
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+
+doctrine_mongodb:
+    default_database: cbag3_database_dev
+
+cbase_cbag3_asset:
+    upload_dir: uploads/assets_dev

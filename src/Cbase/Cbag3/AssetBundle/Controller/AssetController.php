@@ -32,8 +32,9 @@ class AssetController extends Controller
     }
 
     /**
-     * @Route("/create", name="asset_create")
+     * @Route("/new", name="asset_create")
      * @Template()
+     * @Secure(roles="ROLE_CREW")
      *
      * @return Response
      */
@@ -64,7 +65,7 @@ class AssetController extends Controller
     /**
      * @Route("/edit/{id}", name="asset_edit")
      * @Template()
-     * @Secure("ROLE_CREW")
+     * @Secure(roles="ROLE_CREW")
      *
      * @param int $id asset_id
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
