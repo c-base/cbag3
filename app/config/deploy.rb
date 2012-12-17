@@ -42,5 +42,12 @@ namespace :symfony do
   end
 end
 
+namespace :cbag3 do
+  task :backup_mongo do
+    run "cd /opt/cbag3/shared/backup && ./backup_mongo.sh"
+  end
+end
+
+before "deploy", "cbag3:backup_mongo"
 after "deploy", "symfony:install_mopa_bootstrap"
 after "deploy", "symfony:asset_dump"
