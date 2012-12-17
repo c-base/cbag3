@@ -16,3 +16,6 @@ swiftmailer:
 
 doctrine_mongodb:
     default_database: cbag3_database_test
+
+cbase_cbag3_asset:
+    upload_dir: uploads/assets_test

@@ -8,19 +8,46 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Config\Definition\Exception\Exception;
+
 abstract class WebTestCase extends BaseWebTestCase
 {
 
     public static function setUpBeforeClass()
     {
-        $conn = static::createClient()
-            ->getContainer()
+        $container = static::createClient()
+            ->getContainer();
+        self::cleanUpDatabase($container);
+        self::cleanUpAssetUploadDir($container);
+    }
+
+    private static function cleanUpDatabase($container)
+    {
+        $conn = $container
             ->get('doctrine_mongodb.odm.default_connection');
         $conn->connect();
         $defaultDB = $conn->getConfiguration()->getDefaultDB();
         $conn->dropDatabase($defaultDB);
         $conn->close();
         unset($conn);
+    }
+
+    private static function cleanUpAssetUploadDir($container)
+    {
+        $upload_dir_config = $container->getParameter('cbase_cbag3_asset.upload_dir');
+        if (!$upload_dir_config) {
+            throw new Exception('config value "cbase_cbag3_asset.upload_dir" is not set');
+            die();
+        }
+        $upload_dir = __DIR__.'/../../../../../web/'.$upload_dir_config;
+
+        $filesystem = new Filesystem();
+        if ($filesystem->exists($upload_dir)) {
+            $filesystem->remove($upload_dir);
+        }
+        $filesystem->mkdir($upload_dir);
     }
 
     /**
