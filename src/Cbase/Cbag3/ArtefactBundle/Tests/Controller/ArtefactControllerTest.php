@@ -79,8 +79,6 @@ class ArtefactControllerTest extends WebTestCase
         $crawler = $client->submit($form);
         $this->assertTrue($crawler->filter('html:contains("This value should not be blank.")')->count() > 0);
 
-//        print_r($client->getResponse()->getContent());
-
         $crawler = $client->request('GET', '/artefact/nerdc-leuder/edit');
         $form = $crawler->selectButton('c_peichern')->form();
         $form['artefact[name]'] = 'mtc';
@@ -92,7 +90,28 @@ class ArtefactControllerTest extends WebTestCase
 
     public function testManageAssets()
     {
-        $client = $this->createClientWithAuthentication('restricted_area');
+        $client = $this->uploadAsset();
         $crawler = $client->request('GET', '/artefact/mtc/assets');
+
+        $form = $crawler->selectButton('c_peichern')->form();
+        $form['asset'][0]->tick();
+        $client->submit($form);
+        $crawler = $client->followRedirect();
+
+        $checkedAttr = $crawler->filter('.asset_span')->filter('input')->eq(0)->attr('checked');
+
+        $this->assertEquals('checked', $checkedAttr);
+    }
+
+    public function testDelete()
+    {
+        $client = $this->createClientWithAuthentication('restricted_area');
+
+        $client->request('GET', '/artefact/mtc/delete');
+        $crawler = $client->followRedirect();
+        $this->assertTrue($crawler->filter('html:contains("artefact wurde erfolreich für immer entfernt")')->count() > 0);
+
+        $client->request('GET', '/artefact/mtc/delete');
+        $this->assertEquals(404, $client->getResponse()->getStatusCode());
     }
 }
