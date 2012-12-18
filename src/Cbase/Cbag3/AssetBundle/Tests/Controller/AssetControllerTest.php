@@ -8,18 +8,7 @@ class AssetControllerTest extends WebTestCase
 {
     public function testCreate()
     {
-        $client = $this->createClientWithAuthentication('restricted_area');
-        $crawler = $client->request('GET', '/asset/new');
-        $form = $crawler->selectButton('c_peichern')->form();
-
-        $image = __DIR__.'/../Resources/public/images/are_you_happy.jpg';
-
-        $form['artefact_asset[description]'] = 'are you happy';
-        $form['artefact_asset[author]'] = 'mr. testuser himself';
-        $form['artefact_asset[licence]']->select('CC-BY-SA');
-        $form['artefact_asset[file]']->upload($image);
-
-        $client->submit($form);
+        $client = $this->uploadAsset();
         $crawler = $client->followRedirect();
 
         $this->assertTrue($crawler->filter('html:contains("neue grafic wurde in den speicher aufgenommen")')->count() > 0);
