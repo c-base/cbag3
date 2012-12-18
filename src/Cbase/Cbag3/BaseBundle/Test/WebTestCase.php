@@ -15,6 +15,9 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 abstract class WebTestCase extends BaseWebTestCase
 {
 
+    /**
+     * Cleans up all the touched resources
+     */
     public static function setUpBeforeClass()
     {
         $container = static::createClient()
@@ -48,6 +51,24 @@ abstract class WebTestCase extends BaseWebTestCase
             $filesystem->remove($upload_dir);
         }
         $filesystem->mkdir($upload_dir);
+    }
+
+    protected function uploadAsset()
+    {
+        $client = $this->createClientWithAuthentication('restricted_area');
+        $crawler = $client->request('GET', '/asset/new');
+        $form = $crawler->selectButton('c_peichern')->form();
+
+        $image = __DIR__.'/../Resources/public/images/are_you_happy.jpg';
+
+        $form['artefact_asset[description]'] = 'are you happy';
+        $form['artefact_asset[author]'] = 'mr. testuser himself';
+        $form['artefact_asset[licence]']->select('CC-BY-SA');
+        $form['artefact_asset[file]']->upload($image);
+
+        $client->submit($form);
+
+        return $client;
     }
 
     /**
