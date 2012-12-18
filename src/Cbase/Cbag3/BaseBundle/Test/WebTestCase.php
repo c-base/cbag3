@@ -15,6 +15,9 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 abstract class WebTestCase extends BaseWebTestCase
 {
 
+    /**
+     * Cleans up all the touched resources
+     */
     public static function setUpBeforeClass()
     {
         $container = static::createClient()
