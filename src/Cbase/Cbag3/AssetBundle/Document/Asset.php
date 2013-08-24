@@ -24,6 +24,11 @@ class Asset
     /**
      * @MongoDB\String
      */
+    public $title;
+
+    /**
+     * @MongoDB\String
+     */
     protected $description;
 
     /**
@@ -37,7 +42,20 @@ class Asset
     protected $author;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * Will be set by eventlistener
+     *
+     * @var string
+     */
+    protected $uploadDir;
+
+    /**
+     * @Assert\File(
+     *      maxSize = "2M",
+     *      maxSizeMessage = "grafic hat die gro:sse {{ size }}. die maC_inen ko:nnen nur {{ limit }} verarbeiten",
+     *      uploadIniSizeErrorMessage = "2d scan ist zu gross. die maC_inen ko:nnen nur {{ limit }} verarbeiten.",
+     *      mimeTypes = {"image/jpeg", "image/gif"},
+     *      mimeTypesMessage = "grafic hat nicht das richtige format. lade eine ordentliche grafic hoch, junge (tip: jpeg, jpg, gif)"
+     * )
      */
     public $file;
 
@@ -60,7 +78,7 @@ class Asset
      * Set path
      *
      * @param string $path
-     * @return Image
+     * @return Asset
      */
     public function setPath($path)
     {
@@ -82,7 +100,7 @@ class Asset
      * Set description
      *
      * @param string $description
-     * @return Image
+     * @return Asset
      */
     public function setDescription($description)
     {
@@ -98,6 +116,28 @@ class Asset
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Asset
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string $title
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
 
@@ -117,10 +157,14 @@ class Asset
         return __DIR__.'/../../../../../web/'.$this->getUploadDir();
     }
 
-    protected function getUploadDir()
+    public function setUploadDir($uploadDir)
     {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'uploads/assets';
+        $this->uploadDir = $uploadDir;
+    }
+
+    public function getUploadDir()
+    {
+        return $this->uploadDir;
     }
 
     /**

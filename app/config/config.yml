@@ -82,7 +82,7 @@ swiftmailer:
     spool:     { type: memory }
 
 liip_imagine:
-    driver:               imagick
+    driver:               %imagine_driver%
 #    web_root:             %kernel.root_dir%/../web
 #    data_root:           %liip_imagine.web_root%
 #    cache_prefix:        /media/cache
@@ -105,3 +105,6 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [700, null], mode: outbound }
+
+cbase_cbag3_asset:
+    upload_dir: uploads/assets

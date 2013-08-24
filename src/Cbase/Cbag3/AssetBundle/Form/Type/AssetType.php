@@ -11,7 +11,8 @@ class AssetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description', 'text', array('label' => 'was sieht man?'))
+            ->add('title', 'text', array('label' => 'titel'))
+            ->add('description', 'textarea', array('label' => 'was sieht man?'))
             ->add('file', 'file', array('label' => 'datei auswa:hlen'))
             ->add('author', 'text', array('label' => 'wer hat den 2d scan vorgenommen?'))
             ->add('licence', 'choice', array(

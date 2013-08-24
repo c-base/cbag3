@@ -16,3 +16,5 @@ parameters:
 
     ldap_host:         localhost
     ldap_port:         389
+
+    imagine_driver:    imagick

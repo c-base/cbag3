@@ -129,7 +129,6 @@ class ArtefactController extends Controller
         if ($form->isValid()) {
             // perform some action, such as saving the task to the database
             $artefact = $form->getData();
-            $artefact->setCreatedBy($this->getUser()->getUserName());
 
             $dm = $this->get('doctrine.odm.mongodb.document_manager');
             $dm->persist($artefact);

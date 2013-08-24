@@ -24,8 +24,10 @@
         <div class="row-fluid">
             <div class="span8" id="artefact_list">
                 {% for artefact in artefacts %}
-                    <span class="artefact">
-                        <a href="{{ path('artefact_show', {'slug': artefact.slug}) }}">{{ artefact.name}}</a>
+                    <span class="artefact-container">
+                        <a class="artefact" href="{{ path('artefact_show', {'slug': artefact.slug}) }}">
+                            {{ artefact.name}}
+                        </a>
                     </span>
                 {% endfor %}
             </div>
