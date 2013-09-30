@@ -1559,7 +1559,7 @@
             "suggest": {
                 "knplabs/knp-paginator-bundle": "dev-master",
                 "craue/formflow-bundle": "dev-master",
-                "twitter/bootstrap": "2.0.*",
+                "twbs/bootstrap": "2.0.*",
                 "knplabs/knp-menu-bundle": "1.1.*",
                 "jlong/sass-twitter-bootstrap": "dev-master"
             },
@@ -2202,16 +2202,16 @@
             ]
         },
         {
-            "name": "twitter/bootstrap",
+            "name": "twbs/bootstrap",
             "version": "master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twitter/bootstrap.git",
+                "url": "https://github.com/twbs/bootstrap.git",
                 "reference": "master"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/twitter/bootstrap/zipball/master",
+                "url": "https://github.com/twbs/bootstrap/zipball/master",
                 "reference": null,
                 "shasum": null
             },
