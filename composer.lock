@@ -936,7 +936,7 @@
                 "symfony/browser-kit": "*",
                 "symfony/security-bundle": "*",
                 "symfony/twig-bundle": "*",
-                "sensio/framework-extra-bundle": "*",
+                "sensiolabs/framework-extra-bundle": "*",
                 "doctrine/doctrine-bundle": "*",
                 "doctrine/orm": "*"
             },
@@ -1033,7 +1033,7 @@
                 "jms/di-extra-bundle": "1.1.*"
             },
             "require-dev": {
-                "sensio/framework-extra-bundle": "*",
+                "sensiolabs/framework-extra-bundle": "*",
                 "symfony/class-loader": "*",
                 "symfony/yaml": "*",
                 "symfony/browser-kit": "*",
@@ -1648,17 +1648,17 @@
             ]
         },
         {
-            "name": "sensio/distribution-bundle",
+            "name": "sensiolabs/distribution-bundle",
             "version": "2.1.x-dev",
-            "target-dir": "Sensio/Bundle/DistributionBundle",
+            "target-dir": "sensiolabs/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sensio/SensioDistributionBundle",
+                "url": "https://github.com/sensiolabs/SensioDistributionBundle",
                 "reference": "v2.1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioDistributionBundle/archive/v2.1.4.zip",
+                "url": "https://github.com/sensiolabs/SensioDistributionBundle/archive/v2.1.4.zip",
                 "reference": "v2.1.4",
                 "shasum": ""
             },
@@ -1695,17 +1695,17 @@
             ]
         },
         {
-            "name": "sensio/framework-extra-bundle",
+            "name": "sensiolabs/framework-extra-bundle",
             "version": "2.1.x-dev",
-            "target-dir": "Sensio/Bundle/FrameworkExtraBundle",
+            "target-dir": "sensiolabs/Bundle/FrameworkExtraBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sensio/SensioFrameworkExtraBundle",
+                "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle",
                 "reference": "v2.1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/archive/v2.1.4.zip",
+                "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle/archive/v2.1.4.zip",
                 "reference": "v2.1.4",
                 "shasum": ""
             },
@@ -1743,17 +1743,17 @@
             ]
         },
         {
-            "name": "sensio/generator-bundle",
+            "name": "sensiolabs/generator-bundle",
             "version": "2.1.x-dev",
-            "target-dir": "Sensio/Bundle/GeneratorBundle",
+            "target-dir": "sensiolabs/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sensio/SensioGeneratorBundle",
+                "url": "https://github.com/sensiolabs/SensioGeneratorBundle",
                 "reference": "v2.1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioGeneratorBundle/archive/v2.1.4.zip",
+                "url": "https://github.com/sensiolabs/SensioGeneratorBundle/archive/v2.1.4.zip",
                 "reference": "v2.1.4",
                 "shasum": ""
             },
