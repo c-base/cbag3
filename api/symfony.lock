@@ -170,20 +170,8 @@
     "symfony/orm-pack": {
         "version": "v1.0.5"
     },
-    "symfony/phpunit-bridge": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "179470cb6492db92dffee208cfdb436f175c93b4"
-        }
-    },
     "symfony/polyfill-mbstring": {
         "version": "v1.7.0"
-    },
-    "symfony/process": {
-        "version": "v4.0.6"
     },
     "symfony/routing": {
         "version": "4.0",
@@ -192,15 +180,6 @@
             "branch": "master",
             "version": "4.0",
             "ref": "cda8b550123383d25827705d05a42acf6819fe4e"
-        }
-    },
-    "symfony/web-server-bundle": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
         }
     },
     "symfony/yaml": {

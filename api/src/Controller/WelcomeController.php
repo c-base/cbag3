@@ -12,6 +12,6 @@ class WelcomeController extends AbstractController
      */
     public function welcome()
     {
-        return new Response();
+        return new Response('<h1>welcome</h1>');
     }
 }
