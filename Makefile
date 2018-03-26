@@ -1,0 +1,4 @@
+
+
+test:
+	- php bin/phpunit
