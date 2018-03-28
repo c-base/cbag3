@@ -1,25 +1,28 @@
 <?php
 namespace App\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\Base\WebTestCase;
 
 class ApplicationAvailabilityFunctionalTest extends WebTestCase
 {
     /**
      * @dataProvider urlProvider
+     * @param string $url
      */
     public function testPageIsSuccessful($url)
     {
         $client = self::createClient();
-        $client->request('GET', $url);
 
-        $this->assertTrue($client->getResponse()->isSuccessful());
+        $this->given->iHaveSetupTheDatabase();
+        $this->given->iHaveLoadedFixtures();
+        $this->when->iSendARequest($client, 'GET', $url);
+        $this->then->iExpectStatusIsOk($client);
     }
 
     public function urlProvider()
     {
         yield ['/'];
         yield ['/artefacts/'];
-        yield ['/artefacts/slug'];
+        yield ['/artefacts/test-slug'];
     }
 }
