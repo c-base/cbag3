@@ -1,5 +1,5 @@
 <?php
-namespace App\Tests\Utils;
+namespace App\Tests\Unit;
 
 use App\Utils\Slugger;
 use PHPUnit\Framework\TestCase;
