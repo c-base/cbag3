@@ -12,14 +12,18 @@ RUN set -xe \
 		icu-dev \
 		postgresql-dev \
 		zlib-dev \
+		openldap-dev \
+		cyrus-sasl-dev \
 	&& docker-php-ext-install -j$(nproc) \
 		intl \
 		pdo_pgsql \
 		zip \
+		ldap \
 	&& pecl install \
 		apcu-${APCU_VERSION} \
 	&& docker-php-ext-enable --ini-name 20-apcu.ini apcu \
 	&& docker-php-ext-enable --ini-name 05-opcache.ini opcache \
+	&& docker-php-ext-enable ldap \
 	&& runDeps="$( \
 		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
 			| tr ',' '\n' \

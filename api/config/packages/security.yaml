@@ -1,0 +1,30 @@
+security:
+
+    providers:
+        in_memory: { memory: ~ }
+
+    firewalls:
+        restricted_area:
+            anonymous:      ~
+            pattern:        ^/
+            methods:        [POST, PUT, DELETE]
+            form_login_ldap:
+                service: Symfony\Component\Ldap\Ldap
+                dn_string: 'uid={username},ou=crew,dc=c-base,dc=org'
+                login_path: login
+                check_path: login
+                
+            logout:
+                path:   /logout
+                target: /
+
+    role_hierarchy:
+        ROLE_USER:        ROLE_CREW
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        
+    
+
+    access_control:
+        - { path: ^/login,          roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/,               roles: ROLE_USER }
