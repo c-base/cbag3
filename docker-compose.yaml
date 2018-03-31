@@ -33,3 +33,18 @@ services:
              - ./docker/db/data:/var/lib/postgresql/data:rw
         ports:
             - "5432:5432"
+            
+    ldap:
+        image: dinkel/openldap:latest
+        environment:
+#            - SLAPD_FORCE_RECONFIGURE=true
+            - SLAPD_DOMAIN=c-base.org
+            - SLAPD_PASSWORD=password
+#            - SLAPD_LDIF_BASE="/var/tmp/ldifs"
+#            - SLAPD_LOAD_LDIFS=""
+        volumes:
+#            - ./docker/ldap/tmp/ldifs:/var/tmp/ldifs
+            - ./docker/ldap/etc/ldap:/etc/ldap 
+            - ./docker/ldap/var/lib/ldap:/var/lib/ldap
+        ports:
+            - "389:389"

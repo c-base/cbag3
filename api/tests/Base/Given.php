@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
+use Symfony\Bundle\FrameworkBundle\Client;
 
 class Given extends Behaviour
 {
@@ -39,5 +40,23 @@ class Given extends Behaviour
     {
         $this->kernel->boot();
         return $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
+    }
+
+    /**
+     * @param Client $client
+     */
+    public function iHaveAnAuthenticatedUser(Client $client): void
+    {
+        $server = [
+            "CONTENT_TYPE" => "application/json",
+            'HTTP_ACCEPT' => 'application/json'
+        ];
+
+        $content = json_encode([
+            "_username" => "test",
+            "_password" => "test",
+        ]);
+
+        $client->request('POST','/login', [], [], $server, $content);
     }
 }
