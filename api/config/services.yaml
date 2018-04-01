@@ -45,3 +45,10 @@ services:
     App\EventListener\ExceptionListener:
         tags:
         - { name: kernel.event_listener, event: kernel.exception }
+
+    Monolog\Processor\UidProcessor:
+        tags:
+        - { name: monolog.processor, handler: main }
+    Symfony\Bridge\Monolog\Processor\DebugProcessor:
+        tags:
+        - { name: monolog.processor, handler: main }
