@@ -6,9 +6,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Then extends Behaviour
 {
-
-
-
     public function iExpectStatusIsOk(Client $client)
     {
         $this->testCase->assertTrue($client->getResponse()->isSuccessful(), $client->getResponse()->getStatusCode());

@@ -32,8 +32,12 @@ services:
         arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
     Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
         arguments:
-        -   host: sojus.c-base.org
-            port: 389
+        -   host: '%env(LDAP_HOST)%'
+            port: '%env(LDAP_PORT)%'
             options:
                 protocol_version: 3
                 referrals: false
+
+    App\Security\Authentication\LdapBindAuthenticationProvider:
+        arguments: []
+        public: false

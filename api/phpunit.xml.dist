@@ -19,6 +19,12 @@
         <!-- ###+ doctrine/doctrine-bundle ### -->
         <env name="DATABASE_URL" value="sqlite:///%kernel.project_dir%/var/tmp/test.db" force="true"/>
         <!-- ###- doctrine/doctrine-bundle ### -->
+
+        <!-- ###+ LDAP ### -->
+        <env name="LDAP_HOST" value="ldap.example.org" />
+        <env name="LDAP_PORT" value="389" />
+        <env name="LDAP_QUERY_STRING" value="uid={username}" />
+        <!-- ###- LDAP ### -->
     </php>
 
     <testsuites>

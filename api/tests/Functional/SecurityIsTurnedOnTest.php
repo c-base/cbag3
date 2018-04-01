@@ -13,15 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SecurityIsTurnedOnTest extends WebTestCase
 {
-    /**
-     * @expectedException \Symfony\Component\Security\Core\Exception\InsufficientAuthenticationException
-     * @expectedExceptionMessage Full authentication is required to access this resource.
-     */
+
     public function testChangingMethodsAreProtected()
     {
         $client = self::createClient();
 
         $this->when->iSendARequest($client, 'POST', '/artefacts/');
+        $this->then->iExpectClientError($client);
     }
 
     public function testLoginTheUserWithWrongCredentials()

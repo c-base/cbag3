@@ -4,26 +4,20 @@ security:
         in_memory: { memory: ~ }
 
     firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
         restricted_area:
             anonymous:      ~
             pattern:        ^/
             methods:        [POST, PUT, DELETE, PATCH]
-            json_login:
-#            form_login_ldap:
-#                service: Symfony\Component\Ldap\Ldap
-#                dn_string: 'uid={username},ou=crew,dc=c-base,dc=org'
+            json_login_ldap_bind:
+                provider: ~
+                service: Symfony\Component\Ldap\Ldap
                 check_path: /login
-#                login_path: /login
-                
-                # field names for the username and password fields
-#                username_parameter: _username
-#                password_parameter: _password
                 username_path: _username
                 password_path: _password
-                
-                # by default, the login form *must* be a POST, not a GET
-#                post_only:      true
-                
+                query_string: '%env(LDAP_QUERY_STRING)%'
             logout:
                 path:   /logout
                 target: /

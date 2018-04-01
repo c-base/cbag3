@@ -7,3 +7,14 @@ security:
                 users:
                     test:  { password: test, roles: 'ROLE_CREW' }
                     admin: { password: kitten, roles: 'ROLE_ADMIN' }
+
+    firewalls:
+        restricted_area:
+            anonymous:      ~
+            pattern:        ^/
+            methods:        [POST, PUT, DELETE, PATCH]
+            
+            json_login:
+                check_path: /login
+                username_path: _username
+                password_path: _password
