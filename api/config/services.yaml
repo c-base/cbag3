@@ -41,3 +41,7 @@ services:
     App\Security\Authentication\LdapBindAuthenticationProvider:
         arguments: []
         public: false
+        
+    App\EventListener\ExceptionListener:
+        tags:
+        - { name: kernel.event_listener, event: kernel.exception }
