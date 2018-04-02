@@ -7,6 +7,8 @@ use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\BrowserKit\Cookie;
 
 class Given extends Behaviour
 {
@@ -45,18 +47,18 @@ class Given extends Behaviour
     /**
      * @param Client $client
      */
-    public function iHaveAnAuthenticatedUser(Client $client): void
+    public function iHaveAnAuthenticatedUser(Client $client)
     {
-        $server = [
-            "CONTENT_TYPE" => "application/json",
-            'HTTP_ACCEPT' => 'application/json'
-        ];
+        $session = $client->getContainer()->get('session');
 
-        $content = json_encode([
-            "_username" => "test",
-            "_password" => "test",
-        ]);
+        // the firewall context defaults to the firewall name
+        $firewallContext = 'restricted_area';
 
-        $client->request('POST','/login', [], [], $server, $content);
+        $token = new UsernamePasswordToken('test', null, $firewallContext, array('ROLE_USER'));
+        $session->set('_security_'.$firewallContext, serialize($token));
+        $session->save();
+
+        $cookie = new Cookie($session->getName(), $session->getId());
+        $client->getCookieJar()->set($cookie);
     }
 }
