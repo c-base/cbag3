@@ -5,7 +5,7 @@ security:
         in_memory:
             memory:
                 users:
-                    test:  { password: test, roles: 'ROLE_CREW' }
+                    test:  { password: test, roles: 'ROLE_USER' }
                     admin: { password: kitten, roles: 'ROLE_ADMIN' }
 
     firewalls:

@@ -47,6 +47,7 @@ class Artefact
     /**
      * @var string
      * @ORM\Column
+     * @Assert\NotBlank
      */
     private $createdBy;
 
@@ -71,18 +72,13 @@ class Artefact
      */
     private $assets;
 
-    public function __construct($name, $slug, $description, \DateTime $createdAt, $createdBy) {
+    public function __construct($name, $slug = null, $description = '', \DateTime $createdAt = null, $createdBy = '') {
         $this->name = $name;
         $this->slug = $slug;
         $this->description = $description;
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt === null ? new \DateTime('now') : $createdAt;
         $this->createdBy = $createdBy;
         $this->assets = new ArrayCollection();
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     /**
@@ -91,6 +87,11 @@ class Artefact
     public function getName()
     {
         return $this->name;
+    }
+
+    public function setSlug(string $slug)
+    {
+        $this->slug = $slug;
     }
 
     /**
@@ -115,6 +116,11 @@ class Artefact
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
+    }
+
+    public function setCreatedBy(string $createdBy)
+    {
+        $this->createdBy = $createdBy;
     }
 
     /**

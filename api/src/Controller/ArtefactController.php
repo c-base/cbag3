@@ -7,9 +7,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/artefacts")
@@ -101,13 +105,33 @@ class ArtefactController extends AbstractController
 
     /**
      * @Route("/", name="artefact.create", methods={"POST"})
+     * @param Request $request
+     * @param Slugger $slugger
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     * @param TokenStorageInterface $tokenStorage
+     * @param EntityManagerInterface $entityManager
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(Request $request, Slugger $slugger)
+    public function create(Request $request, Slugger $slugger, SerializerInterface $serializer, ValidatorInterface $validator, TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager): Response
     {
-        return $this->json(
-            'item',
-            Response::HTTP_CREATED,
-            ['Content-Type' => 'application/ld+json; charset=utf-8']
-        );
+        /** @var Artefact $artefact */
+        $artefact = $serializer->deserialize($request->getContent(), Artefact::class, 'json');
+        $artefact->setSlug($slugger->slugify($artefact->getName()));
+        $artefact->setCreatedBy($tokenStorage->getToken()->getUsername());
+
+        $errors = $validator->validate($artefact);
+
+        if (count($errors) > 0) {
+            $errorsString = (string) $errors;
+            throw new BadRequestHttpException($errorsString);
+        }
+
+        $entityManager->persist($artefact);
+        $entityManager->flush();
+
+        $artefact = $serializer->serialize($artefact, 'json');
+
+        return new Response($artefact,Response::HTTP_CREATED, ['Content-Type' => 'application/ld+json; charset=utf-8']);
     }
 }

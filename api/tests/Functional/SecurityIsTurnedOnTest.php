@@ -31,17 +31,12 @@ class SecurityIsTurnedOnTest extends WebTestCase
             "_password" => "wrongpassword",
         ]);
 
-        $headers = [
-            "CONTENT_TYPE" => "application/json",
-            'HTTP_ACCEPT' => 'application/json'
-        ];
-
         $this->when->iSendARequest(
             $client,
             'POST',
             '/login',
             [],
-            $headers,
+            [],
             $content
         );
         $this->then->iExpectClientError($client, Response::HTTP_UNAUTHORIZED);
@@ -51,7 +46,7 @@ class SecurityIsTurnedOnTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $this->given->iHaveAnAuthenticatedUser($client);
+        $this->when->iSendALoginRequest($client);
         $this->then->iExpectStatusIsOk($client);
     }
 }
