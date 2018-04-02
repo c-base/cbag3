@@ -52,3 +52,20 @@ services:
     Symfony\Bridge\Monolog\Processor\DebugProcessor:
         tags:
         - { name: monolog.processor, handler: main }
+        
+        
+    serializer.normalizer.datetime:
+        class: Symfony\Component\Serializer\Normalizer\DateTimeNormalizer
+        public: false
+        tags: [serializer.normalizer]
+
+    serializer.normalizer.get_set_method:
+        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+        public: false
+        tags: [serializer.normalizer]
+     
+    serializer.encoder.json:   
+        class: Symfony\Component\Serializer\Encoder\JsonEncoder
+        public: false
+        tags: [serializer.encoder]
+
