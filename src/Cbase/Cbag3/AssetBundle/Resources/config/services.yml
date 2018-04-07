@@ -1,7 +1,0 @@
-services:
-    cbag3.asset.asset_listener:
-        class: Cbase\Cbag3\AssetBundle\EventListener\AssetListener
-        arguments: ['%cbase_cbag3_asset.upload_dir%']
-        tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: postLoad }
-            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
