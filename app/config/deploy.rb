@@ -1,4 +1,5 @@
-set :application,  "cbag3"
+set :application,  "artefact"
+#set :domain,       "10.0.1.12"
 set :domain,       "#{application}.c-base.org"
 set :deploy_to,    "/opt/cbag3"
 set :app_path,     "app"
@@ -10,8 +11,7 @@ set :use_composer, true
 #set :composer_options, "--verbose --prefer-dist"
 set :dump_assetic_assets,   true
 
-set :repository,   "git@bitbucket.org:dazs/cbag3.git"
-#set :repository,    "git@dev.c-base.org:cbag3/cbag3.git"
+set :repository,   "git@github.com:c-base/cbag3.git"
 set :scm,          :git
 
 set :shared_files,        ["app/config/parameters.yml"]
@@ -48,6 +48,6 @@ namespace :cbag3 do
   end
 end
 
-before "deploy", "cbag3:backup_mongo"
+#before "deploy", "cbag3:backup_mongo"
 after "deploy", "symfony:install_mopa_bootstrap"
 after "deploy", "symfony:asset_dump"
