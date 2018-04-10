@@ -1,0 +1,58 @@
+sudo: required
+language: php
+php: '7.2'
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - docker-ce
+
+branches:
+  only:
+    - master
+    - /^v\d+\.\d+\.\d+$/
+
+notifications:
+  email:
+    on_success: never
+
+matrix:
+  fast_finish: true
+  include:
+
+  - stage: build
+    env: JOB=build
+    install: make build
+
+  - stage: test
+    env: JOB=test
+    script:
+    - curl http://localhost:8080
+
+  - stage: test
+    env: JOB=test
+    install: make install
+    script: make test-security
+
+  - stage: test
+    env: JOB=test
+    install: make install
+    script: make test
+
+  - stage: test
+    env: JOB=test
+    install: make install
+    script: make test-static
+
+  - stage: test
+    env: JOB=test
+    install: make install
+    script: make test-style
+
+cache:
+  directories:
+  - $HOME/.composer/cache/repo/
+  - $TRAVIS_BUILD_DIR/vendor/
