@@ -1,0 +1,24 @@
+{
+    "@id": "http:\/\/localhost\/artefacts\/hallo-welt",
+    "@type": "Class",
+    "name": "hallo welt",
+    "description": "a good description",
+    "createdBy": "test",
+    "assets": {
+        "@type": "Collection"
+    },
+    "supportedOperation": [
+        {
+            "@id": "http:\/\/localhost\/artefacts\/hallo-welt\/asset",
+            "@type": "Operation",
+            "title": "Assigns an asset",
+            "method": "POST",
+            "expects": "Asset",
+            "returns": "Artefact",
+            "possibleStatus": {
+                "201": "Successful created",
+                "400": "Bad Request"
+            }
+        }
+    ]
+}

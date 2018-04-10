@@ -14,7 +14,6 @@ class SluggerTest extends TestCase
         $slugger = new Slugger;
 
         $this->assertEquals($expected, $slugger->slugify($value));
-
     }
 
     public function urlProvider()

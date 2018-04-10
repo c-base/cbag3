@@ -20,6 +20,6 @@ class When extends Behaviour
             "_password" => "test",
         ]);
 
-        $this->iSendARequest($client,'POST', '/login', [], [], $content);
+        $this->iSendARequest($client, 'POST', '/login', [], [], $content);
     }
 }

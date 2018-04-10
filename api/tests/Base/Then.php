@@ -6,9 +6,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Then extends Behaviour
 {
-    public function iExpectStatusIsOk(Client $client)
+    public function iExpectStatusIsOk(Client $client, array $headers = [])
     {
         $this->testCase->assertTrue($client->getResponse()->isSuccessful(), $client->getResponse()->getStatusCode());
+
+        foreach ($headers as $header => $value) {
+            $this->testCase->assertEquals($value, $client->getResponse()->headers->get($header));
+        }
     }
 
     public function iExpectStatusIsRedirect(Client $client, $statusCode = Response::HTTP_FOUND, $location = null)
@@ -48,7 +52,7 @@ class Then extends Behaviour
 
         $msg = implode("\n", [
             'NOTE: if this difference was expected, re-run phpunit with FIX_FIXTURES=yes, i.e',
-            '      FIX_FIXTURES=yes make phpunit',
+            '      FIX_FIXTURES=yes ./vendor/bin/phpunit -c phpunit.xml.dist',
         ]);
 
         $this->testCase->assertEquals($expected, $actual, $msg);

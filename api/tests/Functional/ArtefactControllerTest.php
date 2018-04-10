@@ -23,15 +23,17 @@ class ArtefactControllerTest extends WebTestCase
 
         $this->given->iHaveAnAuthenticatedUser($client);
         $this->when->iSendARequest($client, 'POST', '/artefacts/', [], [], $artefact);
-        $this->then->iExpectStatusIsOk($client);
+        $this->then->iExpectStatusIsOk($client, ['location' => 'http://localhost/artefacts/hallo-welt']);
+
+        // now we follow the location header
+        $this->when->iSendARequest($client, 'GET', '/artefacts/hallo-welt');
 
         $artefactCreated = json_decode($client->getResponse()->getContent(), true);
         unset($artefactCreated['createdAt']);
         $artefactCreated = json_encode($artefactCreated, JSON_PRETTY_PRINT);
-
         $this->then->iExpectItEqualsTheFixture(
             __DIR__ . '/fixtures',
-            'response.artefact.created',
+            'response.artefact.item',
             $artefactCreated
         );
     }

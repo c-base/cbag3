@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @SuppressWarnings(PHPMD.UnusedPrivateField)
+ *
  * @ORM\Entity()
  */
 class Artefact
@@ -20,20 +22,20 @@ class Artefact
     private $id;
 
     /**
-     * @ORM\Column
+     * @ORM\Column(type="string", unique=true, nullable=false)
      * @Assert\NotBlank
      */
     private $name;
 
     /**
-     * @ORM\Column
+     * @ORM\Column(type="string", length=32, unique=true, nullable=false)
      * @Assert\NotBlank
      */
     private $slug;
 
     /**
      * @var string
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=false)
      * @Assert\NotBlank
      */
     private $description;
@@ -41,12 +43,13 @@ class Artefact
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
      */
     private $createdAt;
 
     /**
      * @var string
-     * @ORM\Column
+     * @ORM\Column(type="string", nullable=false)
      * @Assert\NotBlank
      */
     private $createdBy;
@@ -72,7 +75,8 @@ class Artefact
      */
     private $assets;
 
-    public function __construct($name, $slug = null, $description = '', \DateTime $createdAt = null, $createdBy = '') {
+    public function __construct($name, $slug = null, $description = '', \DateTime $createdAt = null, $createdBy = '')
+    {
         $this->name = $name;
         $this->slug = $slug;
         $this->description = $description;

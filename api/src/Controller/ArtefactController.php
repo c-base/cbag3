@@ -40,9 +40,14 @@ class ArtefactController extends AbstractController
         /** @var Artefact[] $artefacts */
         $artefacts = $this->artefactRepository->findAll();
 
+        $collectionUrl = $this->urlGenerator->generate(
+            'artefact.collection',
+            [],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
         $content = [
             "@context" => "http://www.w3.org/ns/hydra/context.jsonld",
-            "@id" => $this->urlGenerator->generate('artefact.collection', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            "@id" => $collectionUrl,
             "@type" => "Collection",
             "title" => "All collected artefacts of c-base",
             'totalItems' => count($artefacts),
@@ -55,15 +60,21 @@ class ArtefactController extends AbstractController
                     "expects" => "Artefact",
                     "returns" => "Artefact",
                     "possibleStatus" => [
-                        Response::HTTP_CREATED => 'Successful created'
+                        Response::HTTP_CREATED => 'Successful created',
+                        Response::HTTP_BAD_REQUEST => 'Bad Request',
                     ]
                 ]
             ]
         ];
 
         foreach ($artefacts as $artefact) {
+            $itemUrl = $this->urlGenerator->generate(
+                'artefact.item',
+                ['slug' => $artefact->getSlug()],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
             $content['artefacts'][] = [
-                '@id' => $this->urlGenerator->generate('artefact.item', ['slug' => $artefact->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL),
+                '@id' => $itemUrl,
                 '@type' => 'Class',
                 'name' => $artefact->getName(),
                 'createdAt' => $artefact->getCreatedAt()->format('Y-m-d'),
@@ -84,8 +95,18 @@ class ArtefactController extends AbstractController
      */
     public function item(Artefact $artefact)
     {
+        $itemUrl = $this->urlGenerator->generate(
+            'artefact.item',
+            ['slug' => $artefact->getSlug()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+        $assetOperationUrl = $this->urlGenerator->generate(
+            'artefact.assign.asset',
+            ['slug' => $artefact->getSlug()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
         $content = [
-            '@id' => $this->urlGenerator->generate('artefact.item', ['slug' => $artefact->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL),
+            '@id' => $itemUrl,
             '@type' => 'Class',
             'name' => $artefact->getName(),
             'description' => $artefact->getDescription(),
@@ -93,6 +114,20 @@ class ArtefactController extends AbstractController
             'createdBy' => $artefact->getCreatedBy(),
             'assets' => [
                 '@type' => 'Collection',
+            ],
+            "supportedOperation" => [
+                [
+                    '@id' => $assetOperationUrl,
+                    "@type" => "Operation",
+                    "title" => "Assigns an asset",
+                    "method" => "POST",
+                    "expects" => "Asset",
+                    "returns" => "Artefact",
+                    "possibleStatus" => [
+                        Response::HTTP_CREATED => 'Successful created',
+                        Response::HTTP_BAD_REQUEST => 'Bad Request',
+                    ]
+                ]
             ]
         ];
 
@@ -113,8 +148,14 @@ class ArtefactController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(Request $request, Slugger $slugger, SerializerInterface $serializer, ValidatorInterface $validator, TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager): Response
-    {
+    public function create(
+        Request $request,
+        Slugger $slugger,
+        SerializerInterface $serializer,
+        ValidatorInterface $validator,
+        TokenStorageInterface $tokenStorage,
+        EntityManagerInterface $entityManager
+    ): Response {
         /** @var Artefact $artefact */
         $artefact = $serializer->deserialize($request->getContent(), Artefact::class, 'json');
         $artefact->setSlug($slugger->slugify($artefact->getName()));
@@ -130,8 +171,38 @@ class ArtefactController extends AbstractController
         $entityManager->persist($artefact);
         $entityManager->flush();
 
-        $artefact = $serializer->serialize($artefact, 'json');
+        $itemUrl = $this->urlGenerator->generate(
+            'artefact.item',
+            ['slug' => $artefact->getSlug()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+        $content = [
+            '@id' => $itemUrl
+        ];
 
-        return new Response($artefact,Response::HTTP_CREATED, ['Content-Type' => 'application/ld+json; charset=utf-8']);
+        return new Response(json_encode($content), Response::HTTP_CREATED, [
+            'Content-Type' => 'application/ld+json; charset=utf-8',
+            'Location' => $itemUrl
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}", name="artefact.update", methods={"PUT"})
+     * @param Artefact $artefact
+     * @return Response
+     */
+    public function update(Artefact $artefact)
+    {
+        return new Response('', Response::HTTP_OK, [
+            'Content-Type' => 'application/ld+json; charset=utf-8',
+            'Location' => $this->urlGenerator->generate('artefact.item', ['slug' => $artefact->getSlug()])
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}/asset", name="artefact.assign.asset")
+     */
+    public function assetAssign()
+    {
     }
 }

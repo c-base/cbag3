@@ -88,7 +88,9 @@ class AppDataImportCommand extends Command
                 ->getApplication()
                 ->find('doctrine:schema:drop')
                 ->run(
-                    new ArrayInput(['command' => 'doctrine:schema:drop', '--full-database' => true, '-f' => true, '-q' => true]),
+                    new ArrayInput(
+                        ['command' => 'doctrine:schema:drop', '--full-database' => true, '-f' => true, '-q' => true]
+                    ),
                     $output
                 )
             ;

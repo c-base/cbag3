@@ -51,7 +51,8 @@ class Asset
      */
     private $artefacts;
 
-    public function __construct($path, $description, $author, $license) {
+    public function __construct($path, $description, $author, $license)
+    {
         $this->path = $path;
         $this->description = $description;
         $this->author = $author;

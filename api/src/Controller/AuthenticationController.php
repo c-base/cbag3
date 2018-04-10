@@ -17,11 +17,10 @@ class AuthenticationController extends AbstractController
 {
     /**
      * @Route("/login", name="login", methods={"POST"})
-     * @param Request $request
      * @param AuthenticationUtils $authUtils
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function login(Request $request, AuthenticationUtils $authUtils)
+    public function login(AuthenticationUtils $authUtils)
     {
         // get the login error if there is one
         $error = $authUtils->getLastAuthenticationError();
@@ -38,7 +37,7 @@ class AuthenticationController extends AbstractController
     /**
      * @Route("/logout", name="logout", methods={"POST"})
      */
-    public function logout(Request $request)
+    public function logout()
     {
         return $this->json([]);
     }

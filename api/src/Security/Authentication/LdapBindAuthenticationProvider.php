@@ -32,8 +32,12 @@ class LdapBindAuthenticationProvider implements AuthenticationProviderInterface
     /** @var string */
     private $providerKey;
 
-    public function __construct(string $providerKey, LdapInterface $ldap, $queryString, $hideUserNotFoundExceptions = true)
-    {
+    public function __construct(
+        string $providerKey,
+        LdapInterface $ldap,
+        $queryString,
+        $hideUserNotFoundExceptions = true
+    ) {
         $this->providerKey = $providerKey;
         $this->ldap = $ldap;
         $this->queryString = $queryString;
@@ -64,7 +68,12 @@ class LdapBindAuthenticationProvider implements AuthenticationProviderInterface
             throw $exception;
         }
 
-        $authenticatedToken = new UsernamePasswordToken($token->getUsername(), $token->getCredentials(), $this->providerKey, ['ROLE_USER']);
+        $authenticatedToken = new UsernamePasswordToken(
+            $token->getUsername(),
+            $token->getCredentials(),
+            $this->providerKey,
+            ['ROLE_USER']
+        );
         $authenticatedToken->setAttributes($token->getAttributes());
 
         return $authenticatedToken;

@@ -17,7 +17,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\InsufficientAuthenticationException;
 
-
 class ExceptionListener
 {
 
@@ -48,7 +47,7 @@ class ExceptionListener
             $content['error'] = $exception->getMessage();
 
             $this->logger->debug($content['error']);
-        } else if ($this->isUnauthorized($exception)) {
+        } elseif ($this->isUnauthorized($exception)) {
             $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
             $content['status'] = Response::HTTP_UNAUTHORIZED;
             $content['error'] = 'Unauthorized';
