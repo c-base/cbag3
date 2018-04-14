@@ -2,15 +2,22 @@
 .PHONY: help
 REQUIRED_TOOLS := git docker docker-compose
 APP_DIR=$(shell basename `pwd`)
+COMPOSE_FILE=docker-compose.yml
 
 help: ## helping devs since 2016
 	@cat $(MAKEFILE_LIST) | grep -e "^[a-zA-Z_\-]*: *.*## *" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo "For additional commands have a look at the Makefile"
 
+build-env: ## check .env file is existing and/or set environment variables
+	echo ${APP_DIR}
+	ls -la
+	[ ! -e api/.env ] && cp api/.env.dist api/.env
+
 build: ## build containers and boot
 	@$(foreach T,$(REQUIRED_TOOLS),command -v $T || (echo ❌ missing tool: $T; exit 1);)
-	docker-compose build
-	docker-compose up -d
+	if [[ -n "${TARGET}" && "${TARGET}" == "STAGE" ]]; then COMPOSE_FILE=docker-compose.staging.yml; fi
+	docker-compose -f ${COMPOSE_FILE} build
+	docker-compose -f ${COMPOSE_FILE} up -d
 	docker ps -a
 
 install: ## install dependencies and setup storage
@@ -50,8 +57,9 @@ test-style:
 	docker-compose exec php ./vendor/bin/phpcs --colors --standard=PSR2 src tests
 
 test-static:
-	docker-compose exec php sh -c 'if [[ ! -f /root/.composer/vendor/bin/phpstan ]]; then composer global require phpstan/phpstan:^0.9 --classmap-authoritative --no-suggest --prefer-dist; fi'
+	docker-compose exec php sh -c "[[ ! -f /root/.composer/vendor/bin/phpstan ]] && composer global require phpstan/phpstan:^0.9 --classmap-authoritative --no-suggest --prefer-dist"
 	docker-compose exec -T php /root/.composer/vendor/bin/phpstan analyse --level=1 ./src
+	docker-compose exec -T php /root/.composer/vendor/bin/phpstan analyse --level=1 ./test
 
 test-security:
 	docker-compose exec -T php bin/console security:check

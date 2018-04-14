@@ -24,7 +24,7 @@ matrix:
   include:
 
   - stage: build
-    env: JOB=build
+    env: JOB=build TARGET=STAGE
     install: make build
 
   - stage: test

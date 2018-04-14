@@ -1,6 +1,7 @@
 <?php
 
 use App\Kernel;
+use App\Service\Environment;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,9 +15,8 @@ if (!isset($_SERVER['APP_ENV'])) {
     }
     (new Dotenv())->load(__DIR__.'/../.env');
 }
-
-$env = $_SERVER['APP_ENV'] ?? 'dev';
-$debug = (bool) ($_SERVER['APP_DEBUG'] ?? ('prod' !== $env));
+$env = $_SERVER['APP_ENV'] ?? Environment::DEVELOPMENT;
+$debug = (bool) ($_SERVER['APP_DEBUG'] ?? (Environment::STAGED !== $env));
 
 if ($debug) {
     umask(0000);
