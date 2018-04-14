@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\Artefact;
-use App\Utils\Slugger;
+use App\Service\Slugger;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

@@ -1,7 +1,7 @@
 <?php
 namespace App\Tests\Unit;
 
-use App\Utils\Slugger;
+use App\Service\Slugger;
 use PHPUnit\Framework\TestCase;
 
 class SluggerTest extends TestCase
