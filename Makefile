@@ -13,9 +13,9 @@ build-env: ## check .env file is existing and/or set environment variables
 	ls -la
 	[ ! -e api/.env ] && cp api/.env.dist api/.env
 
-build: ## build containers and boot
+docker-up: ## build containers and boot
 	@$(foreach T,$(REQUIRED_TOOLS),command -v $T || (echo ❌ missing tool: $T; exit 1);)
-	if [[ -n "${TARGET}" && "${TARGET}" == "STAGE" ]]; then COMPOSE_FILE=docker-compose.staging.yml; fi
+	if [[ "${TARGET}" == "STAGE" ]]; then COMPOSE_FILE=docker-compose.staging.yml; fi
 	docker-compose -f ${COMPOSE_FILE} build
 	docker-compose -f ${COMPOSE_FILE} up -d
 	docker ps -a
