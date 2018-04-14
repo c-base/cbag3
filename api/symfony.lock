@@ -218,6 +218,9 @@
             "ref": "e65a105bf4cd5b1b79012ba029954927f05922e8"
         }
     },
+    "squizlabs/php_codesniffer": {
+        "version": "3.2.3"
+    },
     "symfony/browser-kit": {
         "version": "v4.0.6"
     },
