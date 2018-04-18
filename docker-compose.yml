@@ -2,6 +2,7 @@ version: '3'
 
 services:
     php:
+        image: "hakindazz/artefact-guide-php:latest"
         build:
             context: ./api
             dockerfile: ./docker/Dockerfile
@@ -12,6 +13,7 @@ services:
             - ./api:/srv/api:rw,cached
 
     api:
+        image: "hakindazz/artefact-guide-api:latest"
         build:
             context: ./api
             dockerfile: ./docker/Dockerfile.nginx

@@ -2,23 +2,39 @@
 .PHONY: help
 REQUIRED_TOOLS := git docker docker-compose
 APP_DIR=$(shell basename `pwd`)
-COMPOSE_FILE=docker-compose.yml
+VERSION=0.0.1
 
 help: ## helping devs since 2016
 	@cat $(MAKEFILE_LIST) | grep -e "^[a-zA-Z_\-]*: *.*## *" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo "For additional commands have a look at the Makefile"
 
 build-env: ## check .env file is existing and/or set environment variables
-	echo ${APP_DIR}
-	ls -la
-	[ ! -e api/.env ] && cp api/.env.dist api/.env
+	@echo ${APP_DIR}
+	@ls -la
+	@[ ! -e api/.env ] && cp api/.env.dist api/.env
 
-docker-up: ## build containers and boot
+docker-up-%: ## build containers and run
 	@$(foreach T,$(REQUIRED_TOOLS),command -v $T || (echo ❌ missing tool: $T; exit 1);)
-	if [[ "${TARGET}" == "STAGE" ]]; then COMPOSE_FILE=docker-compose.staging.yml; fi
-	docker-compose -f ${COMPOSE_FILE} build
-	docker-compose -f ${COMPOSE_FILE} up -d
-	docker ps -a
+	@if [ "$*" = "dev" ]; then docker-compose up -d; fi
+	@if [ "$*" = "stage" ]; then docker-compose -f docker-compose.staging.yml up -d; fi
+	@docker ps -a
+
+docker-build-tag: ## builds and tags images (needs env vars)
+	docker image build --file api/docker/Dockerfile       --tag hakindazz/artefact-guide-php:latest --tag hakindazz/artefact-guide-php:$(VERSION) ./api
+	docker image build --file api/docker/Dockerfile.nginx --tag hakindazz/artefact-guide-api:latest --tag hakindazz/artefact-guide-api:$(VERSION) ./api
+
+docker-push: ## pushes images to hub (needs env vars)
+	@docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
+	@docker push hakindazz/artefact-guide-api:$(VERSION)
+	@docker push hakindazz/artefact-guide-api:latest
+	@docker push hakindazz/artefact-guide-php:$(VERSION)
+	@docker push hakindazz/artefact-guide-php:latest
+
+docker-remove-images: ## utility target
+	docker images
+	docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+	docker images | grep "none"
+	docker rmi $(docker images | grep "none" | awk '/ / { print $3 }')
 
 install: ## install dependencies and setup storage
 	$(MAKE) install-dependencies

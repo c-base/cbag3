@@ -2,6 +2,7 @@ version: '3'
 
 services:
     php:
+        image: "hakindazz/artefact-guide-php:latest"
         build:
             context: ./api
             dockerfile: ./docker/Dockerfile
@@ -9,6 +10,7 @@ services:
             - db
 
     api:
+        image: "hakindazz/artefact-guide-api:latest"
         build:
             context: ./api
             dockerfile: ./docker/Dockerfile.nginx
@@ -16,8 +18,6 @@ services:
             - php
         ports:
             - "8080:80"
-        volumes:
-            - ./api/public:/srv/api/public:ro
     db:
         # In production, you may want to use a managed database service
         image: postgres:9.6-alpine

@@ -19,23 +19,21 @@ notifications:
   email:
     on_success: never
 
-matrix:
+before_install:
+  # we use our own postgresql container
+  - sudo service postgresql stop
+  # wait for postgresql to shutdown
+  - while sudo lsof -Pi :5432 -sTCP:LISTEN -t; do sleep 1; done
+  - make docker-up-stage
+
+jobs:
   fast_finish: true
   include:
 
-  - stage: build
-    env: JOB=build TARGET=STAGE
-    before_install:
-        # we use our own postgresql container
-        - sudo service postgresql stop
-        # wait for postgresql to shutdown
-        - while sudo lsof -Pi :5432 -sTCP:LISTEN -t; do sleep 1; done
-    script: make docker-up
-
   - stage: test
     env: JOB=test
-    script:
-    - curl http://localhost:8080
+    install: make install
+    script: curl http://localhost:8080
 
   - stage: test
     env: JOB=test
@@ -56,6 +54,12 @@ matrix:
     env: JOB=test
     install: make install
     script: make test-style
+
+  - stage: build-tag
+    if: tag =~ ^\d+\.\d+\.\d+$
+    env: JOB=deploy VERSION=$TRAVIS_TAG
+    install: make install
+    script: make docker-build-tag
 
 cache:
   directories:
