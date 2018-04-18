@@ -24,15 +24,15 @@ before_install:
   - sudo service postgresql stop
   # wait for postgresql to shutdown
   - while sudo lsof -Pi :5432 -sTCP:LISTEN -t; do sleep 1; done
+  - docker-compose -f docker-compose.staging.yml pull
   - make docker-up-stage
 
 jobs:
   fast_finish: true
   include:
 
-  - stage: test
+  - stage: pre-test
     env: JOB=test
-    install: make install
     script: curl http://localhost:8080
 
   - stage: test
