@@ -2,9 +2,6 @@ sudo: required
 language: php
 php: '7.2'
 
-services:
-  - docker
-
 addons:
   apt:
     packages:
@@ -59,7 +56,7 @@ jobs:
     if: tag =~ ^\d+\.\d+\.\d+$
     env: JOB=deploy VERSION=$TRAVIS_TAG
     install: make install
-    script: make docker-build-tag
+    script: make docker-tag-push
 
 cache:
   directories:

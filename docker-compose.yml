@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-    php:
-        image: "hakindazz/artefact-guide-php:latest"
+    django:
+        image: "c-base/cbag3:latest"
         build:
             context: ./api
             dockerfile: ./docker/Dockerfile
@@ -11,18 +11,6 @@ services:
         # Comment out these volumes in production
         volumes:
             - ./api:/srv/api:rw,cached
-
-    api:
-        image: "hakindazz/artefact-guide-api:latest"
-        build:
-            context: ./api
-            dockerfile: ./docker/Dockerfile.nginx
-        depends_on:
-            - php
-        ports:
-            - "8080:80"
-        volumes:
-            - ./api/public:/srv/api/public:ro
     db:
         # In production, you may want to use a managed database service
         image: postgres:9.6-alpine

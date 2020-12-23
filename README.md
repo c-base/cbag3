@@ -4,7 +4,7 @@ The artefact guide is a project of the 3rd reconstruction project. It shows a co
 
 This version of the artefact guide brings 
 
-* a PHP / Symfony 4 api to serve all data and provide security layers and 
+* a Django api to serve all data and provide security layers and 
 * a react (maybe redux) client to make it look nice for users
 
 The storage layer moved to PostgreSQL.
