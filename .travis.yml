@@ -16,14 +16,41 @@ notifications:
   email:
     on_success: never
 
+before_install:
+  # we use our own postgresql container
+  - sudo service postgresql stop
+  # wait for postgresql to shutdown
+  - while sudo lsof -Pi :5432 -sTCP:LISTEN -t; do sleep 1; done
+  - docker-compose -f docker-compose.staging.yml pull
+  - make docker-up-stage
+
 jobs:
   fast_finish: true
   include:
 
+  - stage: pre-test
+    env: JOB=test
+    script: curl http://localhost:8080
+
   - stage: test
     env: JOB=test
-    install: make api-install-dependencies
-    script: make api-ci
+    install: make install
+    script: make test-security
+
+  - stage: test
+    env: JOB=test
+    install: make install
+    script: make test
+
+  - stage: test
+    env: JOB=test
+    install: make install
+    script: make test-static
+
+  - stage: test
+    env: JOB=test
+    install: make install
+    script: make test-style
 
   - stage: build-tag
     if: tag =~ ^\d+\.\d+\.\d+$

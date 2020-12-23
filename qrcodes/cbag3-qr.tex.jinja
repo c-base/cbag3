@@ -1,0 +1,44 @@
+% !TEX TS-program = xelatex
+\documentclass[a4paper,10pt,oneside,landscape]{memoir}
+\usepackage{fontspec}
+\usepackage[newdimens]{labels}
+\setmainfont[Numbers={OldStyle,Monospaced}]{X-Scale}
+%\setsansfont{Source Sans Pro Light}
+\LabelCols=5%
+\LabelRows=2%
+\LeftPageMargin=13.0mm%
+\RightPageMargin=8.0mm%
+\TopPageMargin=16.5mm%
+\BottomPageMargin=16.5mm%
+\InterLabelColumn=0.0mm%
+\InterLabelRow=0.0mm%
+\LeftLabelBorder=1mm%
+\RightLabelBorder=1mm%
+\TopLabelBorder=1mm%
+\BottomLabelBorder=0mm%
+\numberoflabels=1
+\LabelGridtrue%  <-- or \LabelGridfalse
+%
+\begin{document}
+
+{% for artefact in artefacts %}
+
+  \addresslabel[\fboxsep=5mm]{
+    {
+      \includegraphics[width=148pt]{ {{ artefact.slug }}.png}
+      \begin{center}
+        {\Huge\scshape {{ artefact.name }} }
+      \end{center}
+      \vfill
+      \begin{center}
+        cbag3 \\
+        c-base artefact guide
+      \end{center}
+    }
+  }
+
+{% endfor %}
+
+\end{document}
+
+
