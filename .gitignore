@@ -1,2 +1,5 @@
 /docker/*
 venv/
+*.pyc
+*/node_modules/
+*/assets/bundles
