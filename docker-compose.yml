@@ -11,6 +11,8 @@ services:
         # Comment out these volumes in production
         volumes:
             - ./api:/srv/api:rw,cached
+        logging:
+            driver: "json-file"
 
     api:
         image: "hakindazz/artefact-guide-api:latest"
@@ -23,6 +25,8 @@ services:
             - "8080:80"
         volumes:
             - ./api/public:/srv/api/public:ro
+        logging:
+            driver: "json-file"
     db:
         # In production, you may want to use a managed database service
         image: postgres:9.6-alpine
@@ -34,3 +38,5 @@ services:
              - ./docker/db/data:/var/lib/postgresql/data:rw
         ports:
             - "5432:5432"
+        logging:
+            driver: "json-file"

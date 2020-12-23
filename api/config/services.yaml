@@ -68,4 +68,9 @@ services:
         class: Symfony\Component\Serializer\Encoder\JsonEncoder
         public: false
         tags: [serializer.encoder]
-
+        
+    App\Service\RequestObject\RequestObjectConverter:
+        tags:
+            - { name: request.param_converter, priority: -100 }
+#        arguments:
+#            - serializer: serializer

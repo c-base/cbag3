@@ -1,7 +1,16 @@
 <?php
+/*
+ * (c) 2018 dazz <dazz@c-base.org>
+ *
+ * For copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare (strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Asset
 {
     /**
-     * @var int The entity Id
+     * @var int
      *
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -44,7 +53,7 @@ class Asset
     private $license;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection|Artefact[]
+     * @var Collection|Artefact[]
      *
      * Many artefacts have Many assets.
      * @ORM\ManyToMany(targetEntity="Artefact", mappedBy="assets")
@@ -60,50 +69,32 @@ class Asset
         $this->artefacts = new ArrayCollection();
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getPath(): string
     {
         return $this->path;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return string
-     */
     public function getAuthor(): string
     {
         return $this->author;
     }
 
-    /**
-     * @return string
-     */
     public function getLicense(): string
     {
         return $this->license;
     }
 
-    /**
-     * @return Artefact[]|\Doctrine\Common\Collections\Collection
-     */
-    public function getArtefacts()
+    public function getArtefacts(): Collection
     {
         return $this->artefacts;
     }

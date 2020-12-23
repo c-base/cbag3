@@ -38,7 +38,7 @@ class Then extends Behaviour
      * @throws \Exception
      * @uses environment variable FIX_FIXTURES (if set, it updates the fixtures to contain $actualValue)
      */
-    public function iExpectItEqualsTheFixture($fixtureDir, $fixtureName, $actual)
+    public function iExpectItEqualsTheFixture($fixtureDir, $fixtureName, $actual): void
     {
         $file = sprintf('%s/%s.%s', $fixtureDir, $fixtureName, 'json');
         if (!file_exists($file)) {
@@ -55,6 +55,6 @@ class Then extends Behaviour
             '      FIX_FIXTURES=yes ./vendor/bin/phpunit -c phpunit.xml.dist',
         ]);
 
-        $this->testCase->assertEquals($expected, $actual, $msg);
+        $this->testCase::assertEquals($expected, $actual, $msg);
     }
 }

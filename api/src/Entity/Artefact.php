@@ -2,6 +2,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -60,7 +61,7 @@ class Artefact
      * @ORM\JoinTable(name="artefact_asset")
      *
      *
-     * @var \Doctrine\Common\Collections\Collection|Asset[]
+     * @var Collection|Asset[]
      *
      * @ORM\ManyToMany(targetEntity="Asset", inversedBy="artefacts")
      * @ORM\JoinTable(
@@ -136,7 +137,7 @@ class Artefact
     }
 
     /**
-     * @return Asset[]|\Doctrine\Common\Collections\Collection
+     * @return Asset[]|Collection
      */
     public function getAssets()
     {

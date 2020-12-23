@@ -40,4 +40,9 @@ class WebTestCase extends BaseWebTestCase
 
         parent::tearDown();
     }
+
+    protected static function getKernelClass(): string
+    {
+        return \App\Kernel::class;
+    }
 }

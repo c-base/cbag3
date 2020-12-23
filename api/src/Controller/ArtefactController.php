@@ -1,10 +1,22 @@
 <?php
+/*
+ * (c) 2018 dazz <dazz@c-base.org>
+ *
+ * For copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare (strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\Artefact;
+use App\Entity\Asset;
+use App\Service\RequestObject\UploadAsset;
 use App\Service\Slugger;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -23,7 +35,7 @@ class ArtefactController extends AbstractController
     /** @var UrlGeneratorInterface */
     private $urlGenerator;
 
-    /** @var \Doctrine\Common\Persistence\ObjectRepository  */
+    /** @var ObjectRepository  */
     private $artefactRepository;
 
     public function __construct(UrlGeneratorInterface $urlGenerator, EntityManagerInterface $entityManager)
@@ -35,7 +47,7 @@ class ArtefactController extends AbstractController
     /**
      * @Route("/", name="artefact.collection", methods={"GET"})
      */
-    public function collection()
+    public function collection(): JsonResponse
     {
         /** @var Artefact[] $artefacts */
         $artefacts = $this->artefactRepository->findAll();
@@ -45,42 +57,44 @@ class ArtefactController extends AbstractController
             [],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
+        $artefactContent = array_map(function (Artefact $artefact) {
+            $itemUrl = $this->urlGenerator->generate(
+                'artefact.item',
+                ['slug' => $artefact->getSlug()],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+            return [
+                '@id' => $itemUrl,
+                '@type' => 'CreativeWork',
+                'name' => $artefact->getName(),
+                'creator' => '',
+                'createdAt' => $artefact->getCreatedAt()->format('Y-m-d'),
+                'createdBy' => $artefact->getCreatedBy(),
+                'contentLocation' => '',
+            ];
+        }, $artefacts);
         $content = [
-            "@context" => "http://www.w3.org/ns/hydra/context.jsonld",
-            "@id" => $collectionUrl,
-            "@type" => "Collection",
-            "title" => "All collected artefacts of c-base",
-            'totalItems' => count($artefacts),
-            "artefacts" => [],
-            "supportedOperation" => [
+            '@context' => 'http://schema.org',
+            '@id' => $collectionUrl,
+            '@type' => 'Collection',
+            'headline' => 'All collected artefacts of c-base',
+            'about' => '',
+            'collectionSize' => count($artefacts),
+            'artefacts' => $artefactContent,
+            'supportedOperation' => [
                 [
-                    "@type" => "Operation",
-                    "title" => "Creates a new artefact",
-                    "method" => "POST",
-                    "expects" => "Artefact",
-                    "returns" => "Artefact",
-                    "possibleStatus" => [
+                    '@type' => 'Operation',
+                    'title' => 'Creates a new artefact',
+                    'method' => 'POST',
+                    'expects' => 'Artefact',
+                    'returns' => 'Artefact',
+                    'possibleStatus' => [
                         Response::HTTP_CREATED => 'Successful created',
                         Response::HTTP_BAD_REQUEST => 'Bad Request',
                     ]
                 ]
             ]
         ];
-
-        foreach ($artefacts as $artefact) {
-            $itemUrl = $this->urlGenerator->generate(
-                'artefact.item',
-                ['slug' => $artefact->getSlug()],
-                UrlGeneratorInterface::ABSOLUTE_URL
-            );
-            $content['artefacts'][] = [
-                '@id' => $itemUrl,
-                '@type' => 'Class',
-                'name' => $artefact->getName(),
-                'createdAt' => $artefact->getCreatedAt()->format('Y-m-d'),
-                'createdBy' => $artefact->getCreatedBy(),
-            ];
-        }
 
         return $this->json(
             $content,
@@ -91,9 +105,8 @@ class ArtefactController extends AbstractController
 
     /**
      * @Route("/{slug}", name="artefact.item", methods={"GET"})
-     * @ParamConverter("artefact")
      */
-    public function item(Artefact $artefact)
+    public function item(Artefact $artefact): Response
     {
         $itemUrl = $this->urlGenerator->generate(
             'artefact.item',
@@ -101,29 +114,36 @@ class ArtefactController extends AbstractController
             UrlGeneratorInterface::ABSOLUTE_URL
         );
         $assetOperationUrl = $this->urlGenerator->generate(
-            'artefact.assign.asset',
+            'artefact.asset.upload',
             ['slug' => $artefact->getSlug()],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
+        $assetContent = array_map(function(Asset $asset) {
+            return [
+                'author' => $asset->getAuthor(),
+                'description' => $asset->getDescription(),
+                'license' => $asset->getLicense(),
+                'path' => $asset->getPath(),
+            ];
+        }, $artefact->getAssets());
         $content = [
             '@id' => $itemUrl,
-            '@type' => 'Class',
+            '@type' => 'CreativeWork',
             'name' => $artefact->getName(),
             'description' => $artefact->getDescription(),
             'createdAt' => $artefact->getCreatedAt()->format('Y-m-d'),
             'createdBy' => $artefact->getCreatedBy(),
-            'assets' => [
-                '@type' => 'Collection',
-            ],
-            "supportedOperation" => [
-                [
+            'contentLocation' => '',
+            'assets' => $assetContent,
+            'supportedOperation' => [
+                'artefact.asset.upload' => [
                     '@id' => $assetOperationUrl,
-                    "@type" => "Operation",
-                    "title" => "Assigns an asset",
-                    "method" => "POST",
-                    "expects" => "Asset",
-                    "returns" => "Artefact",
-                    "possibleStatus" => [
+                    '@type' => 'Operation',
+                    'title' => 'Upload an asset',
+                    'method' => 'POST',
+                    'expects' => 'Asset',
+                    'returns' => 'Artefact',
+                    'possibleStatus' => [
                         Response::HTTP_CREATED => 'Successful created',
                         Response::HTTP_BAD_REQUEST => 'Bad Request',
                     ]
@@ -140,13 +160,6 @@ class ArtefactController extends AbstractController
 
     /**
      * @Route("/", name="artefact.create", methods={"POST"})
-     * @param Request $request
-     * @param Slugger $slugger
-     * @param SerializerInterface $serializer
-     * @param ValidatorInterface $validator
-     * @param TokenStorageInterface $tokenStorage
-     * @param EntityManagerInterface $entityManager
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(
         Request $request,
@@ -188,10 +201,9 @@ class ArtefactController extends AbstractController
 
     /**
      * @Route("/{slug}", name="artefact.update", methods={"PUT"})
-     * @param Artefact $artefact
-     * @return Response
+     * @ParamConverter("artefact")
      */
-    public function update(Artefact $artefact)
+    public function update(Artefact $artefact): Response
     {
         return new Response('', Response::HTTP_OK, [
             'Content-Type' => 'application/ld+json; charset=utf-8',
@@ -200,9 +212,71 @@ class ArtefactController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/asset", name="artefact.assign.asset")
+     * @Route("/{slug}/assets", name="artefact.asset.upload", methods={"POST"})
+     * @ParamConverter("artefact")
      */
-    public function assetAssign()
+    public function assetUpload(
+        Artefact $artefact,
+        UploadAsset $uploadAsset,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $asset = $uploadAsset->createAsset('var/uploads/assets');
+        $artefact->addAsset($asset);
+
+        $entityManager->persist($artefact);
+        $entityManager->flush();
+
+        $itemUrl = $this->urlGenerator->generate('artefact.item', ['slug' => $artefact->getSlug()]);
+        $content = [
+            '@id' => $itemUrl,
+            '@type' => 'Operation',
+            'title' => 'Upload new asset',
+            'expects' => 'Asset',
+            'returns' => 'Artefact',
+            'possibleStatus' => [
+                Response::HTTP_CREATED => 'Successful created',
+                Response::HTTP_BAD_REQUEST => 'Bad Request',
+            ]
+        ];
+
+        return new JsonResponse($content, Response::HTTP_OK, [
+            'Content-Type' => 'application/ld+json; charset=utf-8',
+            'Location' => $itemUrl
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}/assets", name="artefact.asset.collection", methods={"GET"})
+     */
+    public function assetCollection(Artefact $artefact): Response
     {
+        $assets = $artefact->getAssets();
+
+        $itemUrl = $this->urlGenerator->generate(
+            'artefact.asset.collection',
+            ['slug' => $artefact->getSlug()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+        $assetContent = array_map(function(Asset $asset) {
+            return [
+                'author' => $asset->getAuthor(),
+                'description' => $asset->getDescription(),
+                'license' => $asset->getLicense(),
+                'path' => $asset->getPath(),
+            ];
+        }, $assets);
+        $content = [
+            '@id' => $itemUrl,
+            '@type' => 'Collection',
+            'title' => 'All assets of ' . $artefact->getName(),
+            'totalItems' => count($assets),
+            'assets' => $assetContent,
+            'supportedOperation' => []
+        ];
+
+        return new Response(json_encode($content), Response::HTTP_CREATED, [
+            'Content-Type' => 'application/ld+json; charset=utf-8',
+            'Location' => $itemUrl
+        ]);
     }
 }

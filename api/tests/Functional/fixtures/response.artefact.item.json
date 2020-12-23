@@ -9,7 +9,7 @@
     },
     "supportedOperation": [
         {
-            "@id": "http:\/\/localhost\/artefacts\/hallo-welt\/asset",
+            "@id": "http:\/\/localhost\/artefacts\/hallo-welt\/assets",
             "@type": "Operation",
             "title": "Assigns an asset",
             "method": "POST",

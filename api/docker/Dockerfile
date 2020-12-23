@@ -1,9 +1,12 @@
 ARG PHP_VERSION=7.2
 ARG ALPINE_VERSION=3.7
+
 FROM php:${PHP_VERSION}-fpm-alpine${ALPINE_VERSION}
+ENV REFRESHED_AT 2018-06-17
 
 RUN apk add --no-cache \
-		git
+		git \
+		make
 
 ARG APCU_VERSION=5.1.11
 RUN set -xe \
