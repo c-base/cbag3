@@ -1,10 +1,16 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% load i18n %}
+{% load render_bundle from webpack_loader %}
 
-<html>
-<head>
-    
-</head>
-<body>
-    CONTENT
-</body>
-</html>
+{% block head %}
+<script>
+    window.deviceConfig = {{ deviceConfig|safe }};
+</script>
+{% endblock head %}
+
+{% block navigation %}
+{% endblock navigation %}
+
+{% block container %}
+<div id="root"></div>
+{% endblock container %}

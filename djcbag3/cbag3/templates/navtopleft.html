@@ -1,0 +1,14 @@
+{% load i18n %}
+{% load static from staticfiles %}
+
+<ul class="nav navbar-top-links navbar-nav">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Foo <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Bar</a></li>
+      </ul>
+    </li>
+  {% if request.user.is_authenticated %}
+  {% else %}
+  {% endif %}
+</ul>
