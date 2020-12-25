@@ -8,13 +8,8 @@ help: ## helping devs since 2016
 	@cat $(MAKEFILE_LIST) | grep -e "^[a-zA-Z_\-]*: *.*## *" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo "For additional commands have a look at the Makefile"
 
-api-%: ## run targets inside container
-	docker-compose exec --user $(id -u):$(id -g) php make $*
-
 setup:
 	$(MAKE) build
-	$(MAKE) api-install
-	$(MAKE) api-ci
 
 build: ## build containers and boot
 	@$(foreach T,$(REQUIRED_TOOLS),command -v $T || (echo ❌ missing tool: $T; exit 1);)

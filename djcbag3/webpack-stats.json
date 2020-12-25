@@ -1,1 +1,0 @@
-{"status":"error","publicPath":"/static/bundles/","error":"EntryModuleNotFoundError","message":"Entry module not found: Error: Can't resolve './assets/redux/index' in '/Users/sebastian/projects/cbag3/djcbag3'"}

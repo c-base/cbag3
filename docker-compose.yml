@@ -3,21 +3,20 @@ version: '3'
 services:
     django:
         image: "c-base/cbag3:latest"
-        build:
-            context: ./api
-            dockerfile: ./docker/Dockerfile
+        build: .
+        volumes:
+            - .:/opt/cbag3:rw,cached
+        ports:
+            - "8000:8000"
         depends_on:
             - db
-        # Comment out these volumes in production
-        volumes:
-            - ./api:/srv/api:rw,cached
     db:
         # In production, you may want to use a managed database service
         image: postgres:9.6-alpine
         environment:
             - POSTGRES_DB=artefactguide
-            - POSTGRES_USER=root
-            - POSTGRES_PASSWORD=password!
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
         volumes:
              - ./docker/db/data:/var/lib/postgresql/data:rw
         ports:
