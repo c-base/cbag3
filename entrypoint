@@ -3,4 +3,5 @@
 echo "managing ... "
 python -Wall /opt/cbag3/manage.py makemigrations  # TODO: remove
 python -Wall /opt/cbag3/manage.py migrate
+python -Wall /opt/cbag3/manage.py loaddata /opt/cbag3/fixtures/artefact.json
 python -Wall /opt/cbag3/manage.py runserver 0.0.0.0:8000
