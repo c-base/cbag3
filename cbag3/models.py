@@ -1,4 +1,5 @@
 import uuid
+
 from django.db import models
 
 
@@ -21,11 +22,12 @@ class Artefact(models.Model):
             'created_by': self.created_by,
         }
 
+
 class Asset(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255, unique=True, null=True)
     author = models.CharField(max_length=255, null=True)
     licence = models.CharField(max_length=255, null=True)
     description = models.TextField(null=True)
-    file = models.FileField(upload_to='artefacts/', null=True)
+    file = models.FileField(upload_to='assets/', null=True)
     artefact = models.ForeignKey(Artefact, on_delete=models.CASCADE, related_name='artefact', null=True)

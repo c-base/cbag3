@@ -129,6 +129,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "assets"),
 ]
 
+
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Login Configuration #########################################################
 
 LOGIN_REDIRECT_URL = '/'
@@ -192,6 +195,6 @@ LOGGING = {
 # local_settings loading ######################################################
 
 try:
-    from interface.local_settings import *
+    from djcbag3.local_settings import *
 except ImportError as e:
     print('Unable to load local_settings.py:', e)
