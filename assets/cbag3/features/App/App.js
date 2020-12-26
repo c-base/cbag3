@@ -1,6 +1,9 @@
 import React from 'react'
 
-import {Row} from 'react-bootstrap'
+import {
+  Navbar,
+  Row
+} from 'react-bootstrap'
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,34 +14,24 @@ import './App.css'
 
 const App = () => (
   <Router>
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">CBAG3 - c-base artefact guide 3.2</Link>
-          </li>
-        </ul>
-      </nav>
-      
+    <Navbar bg="dark">
+      <Navbar.Brand>
+        <Link to="/">CBAG3 - c-base artefact guide 3.2</Link>
+      </Navbar.Brand>
+    </Navbar>
+
+    <Row>
       <Switch>
         <Route path="/">
           <Home />
         </Route>
       </Switch>
-    </div>
+    </Row>
   </Router>
 )
 
 function Home() {
   return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
 
 export default App
