@@ -4,8 +4,8 @@ from django.db import models
 
 class Artefact(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, null=True)
-    slug = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True, null=True)
+    slug = models.CharField(max_length=255, unique=True)
     description = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=255, null=True)
@@ -23,7 +23,7 @@ class Artefact(models.Model):
 
 class Asset(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=255, null=True)
+    title = models.CharField(max_length=255, unique=True, null=True)
     author = models.CharField(max_length=255, null=True)
     licence = models.CharField(max_length=255, null=True)
     description = models.TextField(null=True)
