@@ -5,12 +5,12 @@ var BundleTracker = require('webpack-bundle-tracker')
 module.exports = {
     context: __dirname,
     entry: {
-        index: './assets/redux/index',
+        index: './assets/cbag3/index',
         bootstrap: 'bootstrap-loader'
     },
     output: {
         path: path.resolve('./assets/bundles/'),
-        filename: "[name]-[hash].js",
+        filename: "[name]-[fullhash].js",
         publicPath: '/static/bundles/',
     },
     module: {
@@ -52,7 +52,7 @@ module.exports = {
     ],
     resolve: {
         modules: [
-          path.join(__dirname, "assets/redux"),
+          path.join(__dirname, "assets/cbag3"),
           "node_modules"
         ],
         // enforceExtension: false,
