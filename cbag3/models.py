@@ -17,7 +17,7 @@ class Artefact(models.Model):
             'name': self.name,
             'slug': self.slug,
             'description': self.description,
-            'created_at': self.created_at,
+            'created_at': str(self.created_at),
             'created_by': self.created_by,
         }
 
