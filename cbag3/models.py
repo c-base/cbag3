@@ -13,7 +13,7 @@ class Artefact(models.Model):
 
     def as_dict(self):
         return {
-            'uuid': self.uuid,
+            'uuid': str(self.uuid),
             'name': self.name,
             'slug': self.slug,
             'description': self.description,
