@@ -9,17 +9,14 @@ import rootReducer from "./reducers"
 import rootSaga from './sagas'
 
 import createAppMiddleware from './features/App/middleware'
-import createMqttMiddleware from './features/mqtt/middleware'
-import config from './utils/config'
 
 import './index.css'
 
 import App from './features/App/App';
 
 const app = createAppMiddleware()
-const mqtt = createMqttMiddleware(config.mqtt.host)
 const saga = createSagaMiddleware()
-const middleWares = [app, saga, mqtt]
+const middleWares = [app, saga]
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(rootReducer, composeEnhancers(

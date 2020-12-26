@@ -1,4 +1,183 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import "~bootstrap/dist/css/bootstrap.min.css";
-@import "./../css/c-base.css";
-@import "./../css/common.css";
+
+
+body {
+  background-color: #060606;
+  color: #999999;
+  font-family: lucida console,andale mono,courier new,monospace;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+  margin-left: 15px;
+}
+
+.row {
+margin-left: 0;
+margin-right: 0;
+}
+
+.terminal {
+background-color: black;
+color: #3ab6e4;
+margin-bottom: 8px;
+border-style:solid;
+border-width:2px;
+border-color:#3ab6e4 #3ab6e4;
+}
+
+#dashboard .row {
+margin-top: 10px;
+}
+
+.container-fluid .text-muted {
+margin: 20px 0;
+text-align: right;
+}
+
+.footer > .container-fluid {
+padding-right: 0px;
+padding-left: 0px;
+}
+
+code {
+font-size: 80%;
+}
+
+.vertical-center {
+min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+min-height: 100vh; /* These two lines are counted as one :-)       */
+
+display: flex;
+align-items: center;
+}
+
+.container {
+width: 100%;
+padding-right: 15px;
+padding-left: 0;
+
+}
+
+.card {
+  background-color: #222222;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.card-body {
+background-color: black;
+line-height: 1.1;
+}
+
+.card-default>.card-heading {
+color: #888888;
+background-color: #3c3c3c;
+border-color: #282828;
+}
+
+.btn-default {
+  background-color: #292929;
+  background-image: linear-gradient(to bottom, #333333, #191919);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn {
+  border: 1px solid;
+  white-space: normal;
+}
+
+.btn:hover,
+.btn:focus,
+.btn.focus {
+  color: #3ab6e4;
+  text-decoration: none;
+}
+
+.nav-tabs .nav-link {
+  background-color: #292929;
+  border-bottom: 1px solid #333;
+  color: #ffffff;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #ffffff;
+  background-color: #2a9fd6;
+  border: 1px solid #282828;
+  border-bottom-color: transparent;
+  cursor: default;
+}
+
+.nav-tabs>li>a:hover {
+  background-color: #555;
+}
+
+.btn-lg, .btn-group-lg>.btn {
+  padding: 14px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.popover {
+  background-color: #000;
+}
+
+
+.modal-content {
+  background-color: #020202AA;
+  border-color: #CCC;
+}
+
+/* Common css */
+    
+.btn {
+  border: 1px solid;
+  //height: 84px;
+}
+.scrollpane {
+  height: 200px;
+  overflow: auto;
+}
+.scrollpane-lg {
+  height: 400px;
+  overflow: auto;
+}
+
+.pane-lg {
+  height: 400px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#dashboard .row {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.panel {
+    margin-bottom: 5px;
+}
+
+.tab-lg {
+  min-width: 150px;
+  text-align: center;
+}
+
+.nav-tabs>li>a {
+    color: #ffffff;
+    background-color: #333;
+}

@@ -3,7 +3,6 @@ import React from 'react'
 import {Row} from 'react-bootstrap'
 
 import './App.css'
-import '../../../css/c-base.css'
 
 const App = () => (
     <div>
