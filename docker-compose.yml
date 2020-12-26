@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-    django:
+    cbag3:
         image: "c-base/cbag3:latest"
         build: .
         volumes:
