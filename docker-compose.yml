@@ -12,7 +12,7 @@ services:
             - db
     db:
         # In production, you may want to use a managed database service
-        image: postgres:9.6-alpine
+        image: postgres:alpine
         environment:
             - POSTGRES_DB=artefactguide
             - POSTGRES_USER=postgres
