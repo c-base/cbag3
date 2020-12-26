@@ -1,5 +1,6 @@
-/docker/*
+/docker/db/*
 venv/
 *.pyc
 node_modules/
 assets/bundles
+webpack-stats.json
