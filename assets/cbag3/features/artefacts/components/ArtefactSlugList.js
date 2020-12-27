@@ -4,15 +4,19 @@ import { connect } from 'react-redux'
 import {
   Button
 } from 'react-bootstrap'
+import {
+  Link
+} from "react-router-dom"
 import { getAllArtefacts, getAllSlugs } from '../selectors'
+import { selectArtefact } from '../actions'
 
 function ArtefactSlugList({artefacts, slugs}) {
   return (
     <>
       {slugs.map(slug => (
-        <>
-          <Button key={slug+'-listLink'} bsStyle="primary" bsSize="xsmall">{artefacts[slug].name}</Button>{' '}
-        </>
+        <Link to={'/artefact/' + slug} key={slug + '-slugLink'}>
+          <Button className="artefactSlugLink" variant="primary" size="sm">{artefacts[slug].name}</Button>{' '}
+        </Link>
         ))}
     </>
   )
@@ -23,6 +27,7 @@ const mapStateToProps = state => ({
   slugs: getAllSlugs(state)
 })
 const mapDispatchToProps = dispatch => ({
+  selectArtefact: slug => dispatch(selectArtefact(slug))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtefactSlugList)
