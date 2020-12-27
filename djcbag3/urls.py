@@ -16,8 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-from django.conf.urls import url
+from django.urls import path, re_path
 
 from cbag3.views import Home
 
@@ -29,4 +28,4 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # catch all other URLs and direct them to home
-urlpatterns.append(url(r'.*/{0,1}', Home.as_view(), name='home'))
+urlpatterns.append(re_path(r'.*/{0,1}', Home.as_view(), name='home'))
