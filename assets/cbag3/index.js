@@ -8,15 +8,12 @@ import { Provider } from 'react-redux'
 import rootReducer from "./reducers"
 import rootSaga from './sagas'
 
-import createAppMiddleware from './features/App/middleware'
-
 import './index.css'
 
-import App from './features/App/App';
+import App from './features/App/App'
 
-const app = createAppMiddleware()
 const saga = createSagaMiddleware()
-const middleWares = [app, saga]
+const middleWares = [saga]
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(rootReducer, composeEnhancers(
@@ -32,3 +29,6 @@ ReactDOM.render(
 )
 
 saga.run(rootSaga)
+
+// let everything know we do start now
+store.dispatch({type: 'APP_START'})
