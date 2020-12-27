@@ -39,7 +39,6 @@ function App() {
         </Col>
       </Row>
     </Router>
-
   )
 }
 function Home() {

@@ -10,9 +10,13 @@ import {
 import { getArtefactBySlug } from '../selectors'
 
 function ArtefactDetail({artefact}) {
-  return (
-    <h1>Artefact: { artefact.name }</h1>
-  )
+  if (artefact != undefined) {
+    return (
+      <h1>Artefact: { artefact.name }</h1>
+    )
+  }
+  // atefacts are not yet initialized if the detail page route is opened
+  return <h1>we wait</h1>
 }
 
 const mapStateToProps = (state, {match}) => ({
