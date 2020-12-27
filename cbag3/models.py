@@ -25,7 +25,7 @@ class Artefact(models.Model):
 
 class Asset(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=255, unique=True, null=True)
+    title = models.CharField(max_length=255, null=True)
     author = models.CharField(max_length=255, null=True)
     licence = models.CharField(max_length=255, null=True)
     description = models.TextField(null=True)
