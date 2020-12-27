@@ -20,6 +20,7 @@ class Artefact(models.Model):
             'description': self.description,
             'created_at': str(self.created_at),
             'created_by': self.created_by,
+            'assets': [asset.as_dict() for asset in self.assets.all()],
         }
 
 
@@ -30,4 +31,14 @@ class Asset(models.Model):
     licence = models.CharField(max_length=255, null=True)
     description = models.TextField(null=True)
     file = models.FileField(upload_to='assets/', null=True)
-    artefact = models.ForeignKey(Artefact, on_delete=models.CASCADE, related_name='artefact', null=True)
+    artefact = models.ForeignKey(Artefact, on_delete=models.CASCADE, related_name='assets', null=True)
+
+    def as_dict(self):
+        return {
+            'uuid': str(self.uuid),
+            'title': self.title,
+            'author': self.author,
+            'licence': self.licence,
+            'description': self.description,
+            'url': self.file.url,
+        }
