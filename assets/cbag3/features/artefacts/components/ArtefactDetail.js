@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import {
-  Card,
-  Carousel
+  Card
 } from 'react-bootstrap'
 import { getArtefactBySlug } from '../selectors'
+import { AssetGallery } from './ArtefactGallery'
 
 function ArtefactDetail({ artefact }) {
   if (artefact == undefined) {
@@ -19,50 +19,15 @@ function ArtefactDetail({ artefact }) {
         <Card.Body>
           <Card.Text>{artefact.description}</Card.Text>
         </Card.Body>
-        <ArtefactAssets assets={artefact.assets} />
+        <AssetGallery assets={artefact.assets} />
       </Card>
     </>
-  )
-}
-
-function ArtefactAssets({ assets }) {
-  if (assets.length == 0) {
-    return ''
-  }
-
-  if (assets.length == 1) {
-    const asset = assets[0]
-    return (
-      <>
-        <Card.Img variant="bottom" src={asset.url} alt={asset.description} />
-        <Card.Body>{asset.description}</Card.Body>
-      </>
-    )
-  }
-
-  return (
-    <Carousel>
-      {assets.map(asset => (
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={asset.url}
-            alt={asset.description}
-          />
-          <Carousel.Caption>
-            <h3>{asset.description}</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      ))}
-    </Carousel>
   )
 }
 
 const mapStateToProps = (state, { match }) => ({
   artefact: getArtefactBySlug(state, match.params.slug)
 })
-
 const mapDispatchToProps = dispatch => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtefactDetail)
