@@ -20,8 +20,10 @@ class Home(View):
             'state': json.dumps({
                 'config': {},
                 'csrfToken': get_token(request),
-                'username': username,
-                'isAuthenticated': is_authenticated,
+                'user': {
+                    'username': username,
+                    'isAuthenticated': is_authenticated,
+                },
                 'artefacts': [artefact.as_dict() for artefact in Artefact.objects.all()],
             })
         }
