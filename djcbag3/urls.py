@@ -17,11 +17,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path
+from django.contrib.auth import views as auth_views
 
 from cbag3.views import Home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    re_path(r'^login/{0,1}', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    re_path(r'^logout/{0,1}', auth_views.LoginView.as_view(template_name='logout.html'), name='logout'),
 ]
 
 if settings.DEBUG:
