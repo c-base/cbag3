@@ -11,18 +11,13 @@ class Home(View):
     template_name = 'home.html'
 
     def get(self, request):
-        is_authenticated = False
-        username = None
-        if request.user.is_authenticated():
-            is_authenticated = True
-            username = request.user.username
         context = {
             'state': json.dumps({
                 'config': {},
                 'csrfToken': get_token(request),
                 'user': {
-                    'username': username,
-                    'isAuthenticated': is_authenticated,
+                    'username': request.user.username if request.user.is_authenticated else None,
+                    'isAuthenticated': request.user.is_authenticated,
                 },
                 'artefacts': [artefact.as_dict() for artefact in Artefact.objects.all()],
             })
