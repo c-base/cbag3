@@ -11,6 +11,7 @@ import rootSaga from './sagas'
 import './index.css'
 
 import App from './features/App/App'
+import {startApp} from './features/App/actions'
 
 const saga = createSagaMiddleware()
 const middleWares = [saga]
@@ -31,4 +32,4 @@ ReactDOM.render(
 saga.run(rootSaga)
 
 // let everything know we do start now
-store.dispatch({type: 'APP_START'})
+store.dispatch(startApp(window.state))

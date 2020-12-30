@@ -1,0 +1,1 @@
+export const getCsrfToken = state => state.app.csrfToken

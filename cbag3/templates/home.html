@@ -5,7 +5,7 @@
 {% block head %}
 <script>
     window.state = {{ state|safe }};
-    window.csrf_token = {{ csrf_token }}
+    window.csrf_token = "{{ csrf_token }}"
 </script>
 {% endblock head %}
 
