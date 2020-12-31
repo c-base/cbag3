@@ -18,12 +18,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
+from rest_framework.authtoken import views as drfviews
 
 from cbag3.views import Home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    re_path(r'^api-token-auth/', drfviews.obtain_auth_token, name='api-token-auth'),
     re_path(r'^login/{0,1}', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     re_path(r'^logout/{0,1}', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
 ]

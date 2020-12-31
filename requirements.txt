@@ -1,4 +1,5 @@
 django
+django-rest-framework
 django-webpack
 django-webpack-loader
 psycopg2
