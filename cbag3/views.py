@@ -1,13 +1,26 @@
 import json
+import logging
 
-from django.shortcuts import render
-from django.views import View
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
+from django.shortcuts import get_object_or_404, render
+from django.views import View
+from rest_framework import viewsets
+from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.contrib.auth import logout
 
 from cbag3.models import Artefact
 
+# from cbag3.serializers import UserSerializer
 
-class Home(View):
+
+logger = logging.getLogger(__name__)
+
+
+class HomeView(View):
     template_name = 'home.html'
 
     def get(self, request):
@@ -23,3 +36,43 @@ class Home(View):
             })
         }
         return render(request, self.template_name, context)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class LoginView(View):
+
+    def post(self, request, *args, **kwargs):
+        logging.error(f"request: {request.POST.get('username')}")
+        logging.error(f"args: {args}")
+        logging.error(f"kwargs: {kwargs}")
+        user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+        logging.error(user)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'authenticated': True, 'username': user.username})
+        return JsonResponse({'authenticated': False, 'username': None}, status=401)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class LogoutView(View):
+
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return JsonResponse({'authenticated': False, 'username': None}, status=200)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class ArtefactViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for listing or retrieving users.
+    """
+    def list(self, request):
+        queryset = Artefact.objects.all()
+        serializer = ArtefactSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = Artefact.objects.all()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = ArtefactSerializer(user)
+        return Response(serializer.data)
