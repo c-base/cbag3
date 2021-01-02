@@ -20,12 +20,16 @@ from django.urls import include, path, re_path
 from django.contrib.auth import views as auth_views
 from rest_framework.authtoken import views as drfviews
 
-from cbag3.views import Home
+from cbag3.views import HomeView, LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^api-token-auth', drfviews.obtain_auth_token, name='api-token-auth'),
-    re_path('^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    re_path(r'^api-auth/login', LoginView.as_view(), name='login'),
+    re_path(r'^api-auth/logout', LogoutView.as_view(), name='logout'),
+    # re_path(r'^api-token-auth', drfviews.obtain_auth_token, name='api-token-auth'),
+    # re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # re_path(r'^api/', include(endpoints)),
+    # re_path(r'^api/auth/', include('knox.urls')),
     re_path(r'^login/{0,1}', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     re_path(r'^logout/{0,1}', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
 ]
@@ -34,4 +38,4 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # catch all other URLs and direct them to home
-urlpatterns.append(re_path(r'.*/{0,1}', Home.as_view(), name='home'))
+urlpatterns.append(re_path(r'.*/{0,1}', HomeView.as_view(), name='home'))
