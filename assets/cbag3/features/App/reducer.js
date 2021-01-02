@@ -1,6 +1,8 @@
 
 export const initialState = {
-  urls: {}
+  config: {
+    urls: {}
+  }
 }
 
 const reducer = (state = initialState, action) => {
