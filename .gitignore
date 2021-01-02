@@ -4,3 +4,4 @@ venv/
 node_modules/
 assets/bundles
 webpack-stats.json
+media/*
