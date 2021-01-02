@@ -7,7 +7,7 @@ import {
   successfulLogout, 
   failedLogout,
 } from './actions'
-import { getConfig } from '../App/selectors'
+import { getUrlConfig } from '../App/selectors'
 
 function* initializeUser(action) {
   yield put(initUser(action.payload.user))
@@ -15,10 +15,10 @@ function* initializeUser(action) {
 }
 
 function* userRequestAuthentication(action) {
-  let config = yield select(getConfig)
+  let login = yield select(getUrlConfig, 'login')
 
-  const loginRequest = () => fetch(config.urls.login.path, {
-    method: config.urls.login.method,
+  const loginRequest = () => fetch(login.path, {
+    method: login.method,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -51,10 +51,10 @@ function* userRequestAuthentication(action) {
 }
 
 function* userLogout(action) {
-  let config = yield select(getConfig)
+  let logout = yield select(getUrlConfig, 'logout')
 
-  const logoutRequest = () => fetch(config.urls.logout.path, {
-    method: config.urls.logout.method,
+  const logoutRequest = () => fetch(logout.path, {
+    method: logout.method,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     }
