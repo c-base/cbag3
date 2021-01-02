@@ -26,7 +26,12 @@ class HomeView(View):
     def get(self, request):
         context = {
             'state': json.dumps({
-                'config': {},
+                'config': {
+                    'urls': {
+                        'login': {'path': '/api-auth/login', 'method': 'POST'},
+                        'logout': {'path': '/api-auth/logout', 'method': 'POST'},
+                    }
+                },
                 'csrfToken': get_token(request),
                 'user': {
                     'username': request.user.username if request.user.is_authenticated else None,
@@ -49,8 +54,8 @@ class LoginView(View):
         logging.error(user)
         if user is not None:
             login(request, user)
-            return JsonResponse({'authenticated': True, 'username': user.username})
-        return JsonResponse({'authenticated': False, 'username': None}, status=401)
+            return JsonResponse({'isAuthenticated': True, 'username': user.username})
+        return JsonResponse({'isAuthenticated': False, 'username': None}, status=401)
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -58,7 +63,7 @@ class LogoutView(View):
 
     def post(self, request, *args, **kwargs):
         logout(request)
-        return JsonResponse({'authenticated': False, 'username': None}, status=200)
+        return JsonResponse({'isAuthenticated': False, 'username': None}, status=200)
 
 
 @method_decorator(csrf_exempt, name='dispatch')

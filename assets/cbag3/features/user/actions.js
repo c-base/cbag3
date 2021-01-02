@@ -1,6 +1,8 @@
 export const initUser = (user) => ({
   type: 'USER_INIT',
-  payload: {...user}
+  payload: {
+    user
+  }
 })
 
 export const initUserDone = () => ({
@@ -24,6 +26,21 @@ export const successfulAuthentication = (user) => ({
 
 export const failedAuthentication = (reason) => ({
   type: 'USER_AUTHENTICATION_REQUEST_FAILURE',
+  payload: {
+    reason
+  }
+})
+
+export const logoutUser = () => ({
+  type: 'USER_LOGOUT'
+})
+
+export const successfulLogout = () => ({
+  type: 'USER_LOGOUT_SUCCESS'
+})
+
+export const failedLogout = reason => ({
+  type: 'USER_LOGOUT_FAILURE',
   payload: {
     reason
   }
