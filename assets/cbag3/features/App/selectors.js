@@ -1,1 +1,1 @@
-export const getCsrfToken = state => state.app.csrfToken
+export const getConfig = state => state.app.config

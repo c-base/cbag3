@@ -17,16 +17,18 @@ import ArtefactSlugList from '../artefacts/components/ArtefactSlugList'
 import ArtefactDetail from '../artefacts/components/ArtefactDetail'
 import ArtefactGallery from '../artefacts/components/ArtefactGallery'
 
+import LoginModal from '../user/components/LoginModal'
+
 function App() {
   return (
     <Router>
-      <Navbar bg="dark">
+      <Navbar bg="dark" variant="dark">
         <Navbar.Brand>
           <Link to="/" key="home-link">CBAG3 - c-base artefact guide 3.2</Link>
         </Navbar.Brand>
         <Link to="/gallery" key="gallery-link">gallery</Link>
+        <LoginModal />
       </Navbar>
-
       <Row>
         <Col sm={4}>
           <ArtefactSlugList />
