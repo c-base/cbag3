@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import {
-  Button
+  Badge
 } from 'react-bootstrap'
 import {
   Link
@@ -15,7 +15,7 @@ function ArtefactSlugList({artefacts, slugs}) {
     <>
       {slugs.map(slug => (
         <Link to={'/artefact/' + slug} key={slug + '-slugLink'}>
-          <Button className="artefactSlugLink" variant="primary" size="sm">{artefacts[slug].name}</Button>{' '}
+          <Badge className="artefactSlugLink" variant="primary">{artefacts[slug].name}</Badge>{' '}
         </Link>
         ))}
     </>
