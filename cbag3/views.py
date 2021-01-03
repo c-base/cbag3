@@ -1,16 +1,16 @@
 import json
 import logging
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.db.models.functions import Lower
 from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import get_object_or_404, render
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 from rest_framework.response import Response
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from django.contrib.auth import logout
 
 from cbag3.models import Artefact
 
@@ -37,7 +37,7 @@ class HomeView(View):
                     'username': request.user.username if request.user.is_authenticated else None,
                     'isAuthenticated': request.user.is_authenticated,
                 },
-                'artefacts': [artefact.as_dict() for artefact in Artefact.objects.all()],
+                'artefacts': [artefact.as_dict() for artefact in Artefact.objects.all().order_by(Lower('name'))],
             })
         }
         return render(request, self.template_name, context)

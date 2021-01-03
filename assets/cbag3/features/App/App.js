@@ -30,10 +30,10 @@ function App() {
         <LoginModal />
       </Navbar>
       <Row>
-        <Col sm={4}>
+        <Col sm={2}>
           <ArtefactSlugList />
         </Col>
-        <Col sm={8}>
+        <Col sm={10}>
 
           <Switch>
             <Route path="/" exact={true} component={Home}></Route>
