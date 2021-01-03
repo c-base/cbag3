@@ -10,9 +10,14 @@ function initAllArtefacts(artefacts) {
     allIds: [],
   }
   artefacts.map(artefact => {
-    state.byId[artefact.slug] = artefact
+    state.byId[artefact.slug] = {
+      ...artefact,
+      hasImages: artefact.assets.length > 0
+    }
     state.allIds = [...state.allIds, artefact.slug]
   })
+  // sort ids alphabetical
+  state.allIds.sort((a, b) => a.localeCompare(b))
   return {
     ...state,
     lastUpdated: new Date()

@@ -15,7 +15,7 @@ function ArtefactSlugList({artefacts, slugs}) {
     <>
       {slugs.map(slug => (
         <Link to={'/artefact/' + slug} key={slug + '-slugLink'}>
-          <Badge className="artefactSlugLink" variant="primary">{artefacts[slug].name}</Badge>{' '}
+          <Badge className="artefactSlugLink" variant="primary" size="sm">{artefacts[slug].name}{artefacts[slug].hasImages ? '' : ' *'}</Badge>{' '}
         </Link>
         ))}
     </>
