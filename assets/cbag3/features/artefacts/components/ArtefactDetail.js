@@ -6,6 +6,7 @@ import {
 } from 'react-bootstrap'
 import { getArtefactBySlug } from '../selectors'
 import { AssetGallery } from './ArtefactGallery'
+import ReactMarkdown from 'react-markdown'
 
 function ArtefactDetail({ artefact }) {
   if (artefact == undefined) {
@@ -17,7 +18,7 @@ function ArtefactDetail({ artefact }) {
       <Card>
         <Card.Header as="h1">{artefact.name}</Card.Header>
         <Card.Body>
-          <Card.Text>{artefact.description}</Card.Text>
+          <Card.Text><ReactMarkdown>{artefact.description}</ReactMarkdown></Card.Text>
         </Card.Body>
         <AssetGallery assets={artefact.assets} />
       </Card>
