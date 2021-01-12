@@ -8,3 +8,10 @@ export const initArtefacts = (artefacts) => ({
 export const initArtefactsDone = () => ({
   type: 'ARTEFACTS_INIT_DONE'
 })
+
+export const requestArtefactUpdate = (artefact) => ({
+  type: 'ARTEFACT_REQUST_UPDATE',
+  payload: {
+    artefact
+  }
+})
