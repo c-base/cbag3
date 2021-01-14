@@ -13,6 +13,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from cbag3.models import Artefact
+from cbag3.serializers import ArtefactSerializer
 
 # from cbag3.serializers import UserSerializer
 
@@ -69,7 +70,7 @@ class LogoutView(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class ArtefactViewSet(viewsets.ViewSet):
     """
-    A simple ViewSet for listing or retrieving users.
+    A simple ViewSet for listing or retrieving artefacts.
     """
     def list(self, request):
         queryset = Artefact.objects.all()
