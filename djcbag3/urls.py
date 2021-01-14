@@ -16,11 +16,15 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path, re_path
 from django.contrib.auth import views as auth_views
+from django.urls import include, path, re_path
 from rest_framework.authtoken import views as drfviews
+from rest_framework.routers import DefaultRouter
 
-from cbag3.views import HomeView, LoginView, LogoutView
+from cbag3.views import ArtefactViewSet, HomeView, LoginView, LogoutView
+
+router = DefaultRouter()
+router.register(r'artefacts', ArtefactViewSet, basename='artefacts')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,7 +36,7 @@ urlpatterns = [
     # re_path(r'^api/auth/', include('knox.urls')),
     re_path(r'^login/{0,1}', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     re_path(r'^logout/{0,1}', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
-]
+] + router.urls
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

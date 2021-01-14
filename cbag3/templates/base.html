@@ -19,24 +19,8 @@
 </head>
 
 <body>
-    <div style="display: none">{{ csrf_token }}</div>
-    <div id="illuminate"></div>
     <div id="wrapper" class="container-fluid">
         {% block navigation %}
-            <!-- Navigation -->
-            <!--
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{% url 'home' %}"><img style="margin-top: -4px;" src="{% static "img/logo.png" %}" alt="cbag3" height="30px"/></a>
-                </div>
-            </nav>
-            -->
         {% endblock navigation %}
 
         {% block body %}
@@ -45,22 +29,18 @@
                       <h1>Here be content!</h1>
                   </div>
               {% endblock container %}
-            <!-- /#page-wrapper -->
 
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-1"><div id="refresh"></div></div>
-                        <div class="col-md-1"><div id="scroll"></div></div>
-                        <div class="col-md-6"></div>
-                        <div class="col-md-4"><div class="pull-right text-muted">&copy; dazz and smile</div></div>
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4"><div class="pull-right text-muted">&copy; 2021 c-base e.V. (dazz and smile)</div></div>
                     </div>
                 </div>
             </footer>
 
         {% endblock body %}
     </div>
-    <!-- /#wrapper -->
 
     {% block script %}
         {% render_bundle 'index' %}
