@@ -8,6 +8,7 @@ import { getArtefactBySlug } from '../selectors'
 import { AssetGallery } from './ArtefactGallery'
 import ReactMarkdown from 'react-markdown'
 import ArtefactEditModal from './ArtefactEditModal'
+import ArtefactAssetUpload from './ArtefactAssetUpload'
 
 function ArtefactDetail({ artefact }) {
   if (artefact == undefined) {
@@ -27,6 +28,7 @@ function ArtefactDetail({ artefact }) {
       </Col>
       <Col>
         <ArtefactEditModal artefact={artefact} />
+        <ArtefactAssetUpload slug={artefact.slug}/>
       </Col>
     </Row>
   )
