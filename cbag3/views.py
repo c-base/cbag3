@@ -31,6 +31,8 @@ class HomeView(View):
                     'urls': {
                         'login': {'path': '/api-auth/login', 'method': 'POST'},
                         'logout': {'path': '/api-auth/logout', 'method': 'POST'},
+                        'artefact-create': {'path': '/api/artefacts/', 'method': 'POST'},
+                        'asset-create': {'path': '/api/assets/', 'method': 'POST'},
                     }
                 },
                 'csrfToken': get_token(request),
@@ -102,6 +104,8 @@ class AssetViewSet(viewsets.ViewSet):
 
     def create(self, request):
         logger.error(request)
+        return Response()
 
     def update(self, request, pk=None):
         logger.error(request)
+        return Response()

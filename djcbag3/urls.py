@@ -24,11 +24,12 @@ from rest_framework.routers import DefaultRouter
 from cbag3.views import ArtefactViewSet, AssetViewSet, HomeView, LoginView, LogoutView
 
 router = DefaultRouter()
-router.register(r'artefacts', ArtefactViewSet, basename='artefacts')
-router.register(r'assets', AssetViewSet, basename='assets')
+router.register(r'artefacts', ArtefactViewSet, basename='api/artefacts')
+router.register(r'assets', AssetViewSet, basename='api/assets')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
     re_path(r'^api-auth/login', LoginView.as_view(), name='login'),
     re_path(r'^api-auth/logout', LogoutView.as_view(), name='logout'),
     # re_path(r'^api-token-auth', drfviews.obtain_auth_token, name='api-token-auth'),
@@ -37,7 +38,7 @@ urlpatterns = [
     # re_path(r'^api/auth/', include('knox.urls')),
     re_path(r'^login/{0,1}', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     re_path(r'^logout/{0,1}', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
-] + router.urls
+]  # + router.urls
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
