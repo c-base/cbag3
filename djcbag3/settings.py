@@ -131,7 +131,7 @@ STATICFILES_DIRS = [
 ]
 
 
-MEDIA_URL = '/media/' 
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Login Configuration #########################################################
 
@@ -172,24 +172,47 @@ WEBPACK_LOADER = {
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
-    'formatters': {
-        'simple': {
-            'format': '%(levelname)s %(message)s'
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
         },
     },
+    'formatters': {
+        'django.server': {
+            '()': 'django.utils.log.ServerFormatter',
+            # 'format': '%(asctime)s %(levelname)s [%(filename)s:%(lineno)d] %(message)s',  # useful for debuggung
+            'format': '%(levelname)s - %(name)s - %(message)s',  # default production format
+        }
+    },
     'handlers': {
-        'console':{
-            'level':'ERROR',
-            'class':'logging.StreamHandler',
-            'formatter': 'simple'
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'django.server'
+        },
+        'console_debug_false': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_false'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'django.server',
         },
     },
     'loggers': {
-        'django':{
-            'handlers': ['console'],
-            'propagate': True,
-            'level': 'ERROR',
+        'cbag3': {
+            'level': 'WARNING',
         },
+        'django': {
+            'level': 'WARNING',
+            'handlers': ['console', 'console_debug_false'],
+        },
+    },
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['console', 'console_debug_false']
     },
 }
 

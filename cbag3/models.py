@@ -32,6 +32,8 @@ class Asset(models.Model):
     description = models.TextField(null=True)
     file = models.FileField(upload_to='assets/', null=True)
     artefact = models.ForeignKey(Artefact, on_delete=models.CASCADE, related_name='assets', null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=255, null=True)
 
     def as_dict(self):
         return {

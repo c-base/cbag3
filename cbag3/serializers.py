@@ -8,3 +8,10 @@ class ArtefactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artefact
         fields = ['uuid', 'name', 'slug', 'description', 'created_at', 'created_by', 'assets']
+
+
+class AssetSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Asset
+        fields = ['uuid', 'title', 'author', 'licence', 'description', 'file', 'created_at', 'created_by']
