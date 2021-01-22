@@ -18,13 +18,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path, re_path
-from rest_framework.authtoken import views as drfviews
+# from rest_framework.authtoken import views as drfviews
 from rest_framework.routers import DefaultRouter
 
-from cbag3.views import ArtefactViewSet, HomeView, LoginView, LogoutView
+from cbag3.views import ArtefactViewSet, AssetViewSet, HomeView, LoginView, LogoutView
 
 router = DefaultRouter()
 router.register(r'artefacts', ArtefactViewSet, basename='artefacts')
+router.register(r'assets', AssetViewSet, basename='assets')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

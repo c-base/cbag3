@@ -12,8 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from cbag3.models import Artefact
-from cbag3.serializers import ArtefactSerializer
+from cbag3.models import Artefact, Asset
+from cbag3.serializers import ArtefactSerializer, AssetSerializer
 
 # from cbag3.serializers import UserSerializer
 
@@ -70,7 +70,7 @@ class LogoutView(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class ArtefactViewSet(viewsets.ViewSet):
     """
-    A simple ViewSet for listing or retrieving artefacts.
+    A simple ViewSet for artefacts.
     """
     def list(self, request):
         queryset = Artefact.objects.all()
@@ -82,3 +82,26 @@ class ArtefactViewSet(viewsets.ViewSet):
         user = get_object_or_404(queryset, pk=pk)
         serializer = ArtefactSerializer(user)
         return Response(serializer.data)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AssetViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for assets.
+    """
+    def list(self, request):
+        queryset = Asset.objects.all()
+        serializer = AssetSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = Asset.objects.all()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = AssetSerializer(user)
+        return Response(serializer.data)
+
+    def create(self, request):
+        logger.error(request)
+
+    def update(self, request, pk=None):
+        logger.error(request)
