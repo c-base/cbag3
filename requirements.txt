@@ -1,4 +1,5 @@
 django
+django-braces
 django-rest-framework
 django-webpack
 django-webpack-loader

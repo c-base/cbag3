@@ -11,6 +11,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 from rest_framework.response import Response
+from braces.views import CsrfExemptMixin
 
 from cbag3.models import Artefact, Asset
 from cbag3.serializers import ArtefactSerializer, AssetSerializer
@@ -70,7 +71,7 @@ class LogoutView(View):
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class ArtefactViewSet(viewsets.ViewSet):
+class ArtefactViewSet(CsrfExemptMixin, viewsets.ViewSet):
     """
     A simple ViewSet for artefacts.
     """
@@ -87,7 +88,7 @@ class ArtefactViewSet(viewsets.ViewSet):
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class AssetViewSet(viewsets.ViewSet):
+class AssetViewSet(CsrfExemptMixin, viewsets.ViewSet):
     """
     A simple ViewSet for assets.
     """
