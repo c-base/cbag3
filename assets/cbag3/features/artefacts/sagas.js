@@ -1,9 +1,9 @@
-import { put, takeEvery, select } from 'redux-saga/effects'
+import { put, takeEvery, call, select } from 'redux-saga/effects'
 import { 
   initArtefacts, 
   initArtefactsDone, 
-  successfulAssetUpload,
-  failedAssetUpload
+  successfulAssetCreate,
+  failedAssetCreate
 } from './actions'
 import { getUrlConfig } from '../App/selectors'
 
@@ -12,26 +12,23 @@ function* initializeArtefacts(action) {
   yield put(initArtefactsDone())
 }
 
-function* uploadArtefactAsset(action) {
+function* createArtefactAsset(action) {
   console.log(action.payload)
 
   let formData = new FormData()
+  const asset = action.payload.asset
 
-  formData.append("artefact", action.payload.slug)
-  formData.append("file", action.payload.file)
-  formData.append("filename", action.payload.file.name)
-  formData.append("title", action.payload.title)
-  formData.append("description", action.payload.description)
-  formData.append("author", action.payload.author)
-  formData.append("license", action.payload.license)
+  formData.append("file", asset.file)
+  formData.append("title", asset.title)
+  formData.append("description", asset.description)
+  formData.append("author", asset.author)
+  formData.append("license", asset.license)
 
   let urlConfig = yield select(getUrlConfig, 'asset-create')
 
   const uploadRequest = () => fetch(urlConfig.path, {
     method: urlConfig.method,
-    headers: {
-      'Content-Type': "multipart/form-data",
-    },
+    headers: {},
     body: formData
   })
     .then(response => {
@@ -40,21 +37,22 @@ function* uploadArtefactAsset(action) {
       }
       throw new Error('oh no! the server said you lost your towel!')
     })
-    .then(response => response.json())
+    .then(data => data)
     .catch(error => {
       throw error
     })
 
   try {
     const data = yield call(uploadRequest)
-    yield put(successfulAssetUpload(data))
+    yield put(successfulAssetCreate(data))
   } catch (error) {
-    yield put(failedAssetUpload({error}))
+    console.log(error)
+    yield put(failedAssetCreate(error))
   }
 }
 
 // use them in parallel
 export default function* artefactsSagas() {
   yield takeEvery('APP_START', initializeArtefacts)
-  yield takeEvery('ARTEFACT_ASSET_REQUST_UPLOAD', uploadArtefactAsset)
+  yield takeEvery('ARTEFACT_ASSET_REQUEST_CREATE', createArtefactAsset)
 }

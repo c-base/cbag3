@@ -7,8 +7,8 @@ import {
 import { getArtefactBySlug } from '../selectors'
 import { AssetGallery } from './ArtefactGallery'
 import ReactMarkdown from 'react-markdown'
-import ArtefactEditModal from './ArtefactEditModal'
-import ArtefactAssetUpload from './ArtefactAssetUpload'
+import ArtefactUpdateModal from './ArtefactUpdateModal'
+import ArtefactAssetCreate from './ArtefactAssetCreate'
 
 function ArtefactDetail({ artefact }) {
   if (artefact == undefined) {
@@ -27,8 +27,8 @@ function ArtefactDetail({ artefact }) {
         </Card>
       </Col>
       <Col>
-        <ArtefactEditModal artefact={artefact} />
-        <ArtefactAssetUpload slug={artefact.slug}/>
+        <Row><ArtefactUpdateModal artefact={artefact} /></Row>
+        <Row><ArtefactAssetCreate /></Row>
       </Col>
     </Row>
   )

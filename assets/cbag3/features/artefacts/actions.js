@@ -23,16 +23,38 @@ export const requestArtefactUpdate = (artefact) => ({
   }
 })
 
-export const requestArtefactAssetUpload = (formData) => ({
-  type: 'ARTEFACT_ASSET_REQUST_UPLOAD',
-  payload: formData
+export const requestArtefactAssetCreate = (asset) => ({
+  type: 'ARTEFACT_ASSET_REQUEST_CREATE',
+  payload: {
+    asset
+  }
 })
 
-export const successfulAssetUpload = () => ({
-  type: 'ARTEFACT_ASSET_UPLOAD_SUCCESS',
+export const successfulAssetCreate = () => ({
+  type: 'ARTEFACT_ASSET_CREATE_SUCCESS',
+  payload: {
+    //@TODO: add new asset payload here
+  }
 })
 
-export const failedAssetUpload = (error) => ({
-  type: 'ARTEFACT_ASSET_UPLOAD_FAILED',
+export const failedAssetCreate = (error) => ({
+  type: 'ARTEFACT_ASSET_CREATE_FAILED',
+  payload: { error }
+})
+
+
+export const requestArtefactAssetUpdate = (asset) => ({
+  type: 'ARTEFACT_ASSET_REQUEST_UPDATE',
+  payload: {
+    asset
+  }
+})
+
+export const successfulAssetUpdate = () => ({
+  type: 'ARTEFACT_ASSET_UPDATE_SUCCESS',
+})
+
+export const failedAssetUpdate = (error) => ({
+  type: 'ARTEFACT_ASSET_UPDATE_FAILED',
   payload: { error }
 })
