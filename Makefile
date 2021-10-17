@@ -8,8 +8,10 @@ help: ## Helping devs since 2016
 install:
 	./bin/composer install
 
-run-dev:
+dev-start:
 	./bin/symfony server:start -d
+dev-stop:
+	./bin/symfony server:stop
 
 database-dump: ## dumps database to a file 
 	./bin/symfony run pg_dump --data-only > var/dump.sql
