@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    database:
+        image: postgres:alpine
+        environment:
+            POSTGRES_USER: cbag3dev
+            POSTGRES_PASSWORD: cbag3dev
+            POSTGRES_DB: cbag3
+        ports: [5432]
+
+#adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#        - 8080:8080
