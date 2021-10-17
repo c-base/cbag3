@@ -15,37 +15,43 @@ class Asset
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $path;
+    private string $path;
 
     /**
      * @var string
      * @ORM\Column(type="text")
      */
-    private $description;
+    private string $description;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $author;
+    private string $author;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
+     */
+    private \DateTime $createdAt;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=25)
      */
-    private $license;
+    private string $license;
 
     /**
      * @ORM\ManyToOne(targetEntity=Artefact::class, inversedBy="assets")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $artefact;
+    private Artefact $artefact;
 
     public function getId(): ?int
     {
@@ -61,6 +67,50 @@ class Asset
     {
         $this->artefact = $artefact;
 
+        return $this;
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
+    public function setPath(string $path): self
+    {
+        $this->path = $path;
+        return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(string $author): self
+    {
+        $this->author = $author;
+        return $this;
+    }
+
+    public function getLicense(): string
+    {
+        return $this->license;
+    }
+
+    public function setLicense(string $license): Asset
+    {
+        $this->license = $license;
         return $this;
     }
 }
