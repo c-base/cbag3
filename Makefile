@@ -13,6 +13,17 @@ dev-start:
 dev-stop:
 	./bin/symfony server:stop
 
+data-restore: ## drop and restore data
+	#rm -f ./migrations/*
+	./bin/console doctrine:database:drop --force --quiet
+	./bin/console doctrine:database:create --if-not-exists --quiet
+	#./bin/console doctrine:migrations:di --no-interaction --quiet
+	./bin/console doctrine:migrations:migrate --no-interaction --quiet
+	./bin/console cbag:restore
+
+database-setup:
+	./bin/console doctrine:migrations:migrate
+
 database-dump: ## dumps database to a file 
 	./bin/symfony run pg_dump --data-only > var/dump.sql
 
