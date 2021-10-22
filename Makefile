@@ -5,12 +5,12 @@ help: ## Helping devs since 2016
 	@cat $(MAKEFILE_LIST) | grep -e "^[\%a-zA-Z_\-]*: *.*## *" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo "For additional commands have a look at the Makefile"
 
-install:
+install: ## install
 	./bin/composer install
 
-dev-start:
+dev-start: ## start dev env
 	./bin/symfony server:start -d
-dev-stop:
+dev-stop: ## stop dev env
 	./bin/symfony server:stop
 
 data-restore: ## drop and restore data
