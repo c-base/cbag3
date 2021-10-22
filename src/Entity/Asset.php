@@ -45,7 +45,7 @@ class Asset
      * @var string
      * @ORM\Column(type="string", length=25)
      */
-    private string $license;
+    private string $licence;
 
     /**
      * @ORM\ManyToOne(targetEntity=Artefact::class, inversedBy="assets")
@@ -103,14 +103,25 @@ class Asset
         return $this;
     }
 
-    public function getLicense(): string
+    public function getLicence(): string
     {
-        return $this->license;
+        return $this->licence;
     }
 
-    public function setLicense(string $license): Asset
+    public function setLicence(string $licence): Asset
     {
-        $this->license = $license;
+        $this->licence = $licence;
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): Asset
+    {
+        $this->createdAt = $createdAt;
         return $this;
     }
 }

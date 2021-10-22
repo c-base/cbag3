@@ -20,12 +20,17 @@ class Artefact
     private int $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true, nullable=false)
      */
     private string $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true, nullable=false)
+     */
+    private string $cName;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true, nullable=false)
      */
     private string $slug;
 
@@ -37,13 +42,13 @@ class Artefact
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
+     * @ORM\Column(type="datetime")
      */
     private \DateTime $createdAt;
 
     /**
      * @var string
-     * @ORM\Column
+     * @ORM\Column(type="string", length=32)
      */
     private string $createdBy;
 
@@ -76,6 +81,17 @@ class Artefact
     public function setName($name): self
     {
         $this->name = $name;
+        return $this;
+    }
+
+    public function getCName(): string
+    {
+        return $this->cName;
+    }
+
+    public function setCName(string $cName): Artefact
+    {
+        $this->cName = $cName;
         return $this;
     }
 
