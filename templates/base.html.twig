@@ -1,12 +1,16 @@
+{# templates/base.html.twig #}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}CBAG3: c-base artefact guide 3{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 </head>
-<body>
-{% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
-</body>
+<body></body>
 </html>
