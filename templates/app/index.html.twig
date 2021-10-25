@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script>
+      window.config = {{ config|raw }};
+    </script>
+{% endblock head %}

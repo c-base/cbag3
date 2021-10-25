@@ -29,3 +29,9 @@ database-dump: ## dumps database to a file
 
 database-restore: ## restores the database from a file
 	./bin/symfony run psql < var/dump.sql
+
+frontend-dev:
+	yarn encore dev
+
+frontend-prod:
+	yarn encore production

@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(./img/stars_only.png) repeat, #020303;
+    display: flex;
+    flex-flow: column;
+    color: #3d688f;
+    font-family: lucida console, andale mono, courier new, monospace;
+}
+
+h1, h1, h3, h4, h5 {
+    color: #ff9900;
+}
