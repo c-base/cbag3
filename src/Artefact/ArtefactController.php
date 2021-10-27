@@ -3,37 +3,39 @@
 namespace App\Artefact;
 
 use App\Entity\Artefact;
-use App\Repository\ArtefactRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
 
+/**
+ * @Route("/api")
+ */
 class ArtefactController extends AbstractController
 {
-    private ArtefactRepository $artefactRepository;
-    public function __construct(ArtefactRepository $artefactRepository)
+    private ArtefactDataProvider $provider;
+
+    public function __construct(ArtefactDataProvider $provider)
     {
-        $this->artefactRepository = $artefactRepository;
+        $this->provider = $provider;
     }
 
     /**
-     * @Route("/artefacts", name="artefact_collection", methods={"get"})
+     * @Route("/artefacts", name="api_artefact_collection", methods={"get"})
      */
-    public function collection(Environment $twig): Response
+    public function collection(): JsonResponse
     {
-        return new Response($twig->render('artefact/collection.html.twig', [
-            'artefacts' => $this->artefactRepository->findAll(),
-        ]));
+        return $this->json([
+            'artefacts' => $this->provider->getCollection(),
+        ]);
     }
 
     /**
-     * @Route("/artefacts/{slug}", name="artefact_item", methods={"get"})
+     * @Route("/artefacts/{slug}", name="api_artefact_item", methods={"get"})
      */
-    public function item(Environment $twig, Artefact $artefact): Response
+    public function item(Artefact $artefact): JsonResponse
     {
-        return new Response($twig->render('artefact/item.html.twig', [
+        return $this->json([
             'artefact' => $artefact,
-        ]));
+        ]);
     }
 }

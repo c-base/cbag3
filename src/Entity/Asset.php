@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=AssetRepository::class)
  */
-class Asset
+class Asset implements \JsonSerializable
 {
     /**
      * @ORM\Id
@@ -123,5 +123,16 @@ class Asset
     {
         $this->createdAt = $createdAt;
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'path' => $this->path,
+            'description' => $this->description,
+            'author' => $this->author,
+            'licence' => $this->licence,
+            'createdAt' => $this->createdAt->format('Y-m-d')
+        ];
     }
 }
