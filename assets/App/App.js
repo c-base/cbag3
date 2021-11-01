@@ -1,8 +1,14 @@
 import React from "react"
-import {Navbar, Nav, Container, CardGroup, Card, Row} from "react-bootstrap";
+import { useDispatch } from "react-redux"
+import {Navbar, Nav, Container} from "react-bootstrap"
 import "./App.css"
+import { initApp } from './actions'
 
-const App = () => (
+import ArtefactCollection from "../artefact/ArtefactCollection";
+
+const App = () => {
+  useDispatch()(initApp())
+  return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
         <Container>
@@ -15,27 +21,9 @@ const App = () => (
         </Container>
       </Navbar>
 
-      <Container>
-        <Row>&nbsp;</Row>
-        <Row>
-        <CardGroup>
-          <Card bg={"dark"}>
-            <Card.Img variant="top" src="holder.js/100px160?theme=industrial" />
-            <Card.Body>
-              <Card.Title>Card title</Card.Title>
-              <Card.Text>
-                This is a wider card with supporting text below as a natural lead-in to
-                additional content. This content is a little bit longer.
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-          </Card>
-        </CardGroup>
-        </Row>
-      </Container>
+      <ArtefactCollection />
     </div>
 )
+}
 
-export default App;
+export default App

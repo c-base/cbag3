@@ -1,11 +1,34 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from "react"
+import ReactDOM from "react-dom"
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'holderjs'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux'
 
-import './index.css';
+import createSagaMiddleware from 'redux-saga'
+import createAppMiddleware from "./App/middleware"
 
-import App from "./App/App.js";
+import rootReducer from "./reducers"
+import rootSaga from './sagas'
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const app = createAppMiddleware()
+const saga = createSagaMiddleware()
+const middleWares = [app, saga]
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = createStore(rootReducer, composeEnhancers(
+  applyMiddleware(...middleWares)
+))
+saga.run(rootSaga)
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './index.css'
+
+import App from "./App/App.js"
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+)
