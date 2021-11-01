@@ -40,7 +40,7 @@ class AppController extends AbstractController
             return str_starts_with($routeName, 'api');
         }, ARRAY_FILTER_USE_KEY);
 
-        array_walk($routes, function(&$route, $routeName) {
+        array_walk($routes, function (&$route, $routeName) {
             $route = [
                 'path' => $route->getPath(),
                 'method' => $route->getMethods()[0],

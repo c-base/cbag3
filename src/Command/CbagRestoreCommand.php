@@ -45,7 +45,9 @@ class CbagRestoreCommand extends Command
         $file = new SplFileObject($filename);
         while ($file->valid()) {
             $line = $file->fgets();
-            if (empty($line)) continue;
+            if (empty($line)) {
+                continue;
+            }
             $assetData = json_decode($line, true);
             $assetData['author'] = empty($assetData['author']) ? 'alien' : $assetData['author'];
             $assetData['licence'] = empty($assetData['licence']) ? 'CC-BY-SA' : $assetData['licence'];
@@ -63,13 +65,17 @@ class CbagRestoreCommand extends Command
         $file = new SplFileObject($filename);
         while ($file->valid()) {
             $line = $file->fgets();
-            if (empty($line)) continue;
+            if (empty($line)) {
+                continue;
+            }
             $artefactData = json_decode($line, true);
 
             $artefactAssets = empty($artefactData['assets']) ? [] : $artefactData['assets'];
             unset($artefactData['assets'], $artefactData['state'], $artefactData['_id']);
             echo $artefactData['name'] . "\r\n";
-            $artefactData['createdAt'] = (new \DateTime())->setTimestamp(ceil($artefactData['createdAt']['$date'] / 1000));
+            $artefactData['createdAt'] = (new \DateTime())->setTimestamp(
+                ceil($artefactData['createdAt']['$date'] / 1000)
+            );
             $artefactData['createdBy'] = empty($artefactData['createdBy']) ? 'alien' : $artefactData['createdBy'];
 
             $artefact = new Artefact();
@@ -87,11 +93,10 @@ class CbagRestoreCommand extends Command
             // add all unassigned assets to the platzhalter artefact
             if ($artefact->getName() === 'platzhalter') {
                 $unassigned = array_diff_key($assets, $persistedAssets);
-                array_map(static function($asset) use ($artefact) {
+                array_map(static function ($asset) use ($artefact) {
                     $artefact->addAsset($asset);
                 }, $unassigned);
             }
-
             $this->em->persist($artefact);
         }
         $this->em->flush();

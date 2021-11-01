@@ -4,7 +4,8 @@ namespace App\Artefact;
 
 use App\Repository\ArtefactRepository;
 
-class ArtefactDataProvider {
+class ArtefactDataProvider
+{
 
     private ArtefactRepository $artefactRepository;
 

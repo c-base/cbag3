@@ -53,7 +53,7 @@ class Artefact
     private string $createdBy;
 
     /**
-     * @var Asset[]
+     * @var Collection
      * @ORM\OneToMany(targetEntity=Asset::class, mappedBy="artefact", orphanRemoval=true)
      */
     private Collection $assets;
@@ -168,7 +168,4 @@ class Artefact
 
         return $this;
     }
-
-
-
 }
