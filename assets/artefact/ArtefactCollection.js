@@ -8,7 +8,7 @@ function ArtefactPrimaryAsset({assets}) {
   if (assets.length > 0) {
     return <Card.Img variant="top" src={"/uploads/assets/"+assets[0].path} />
   }
-  return <Card.Img variant="top" data-src="holder.js/100px250?text=Bild folgt&bg=434a52&fg=3d688f" fluid className="holderJs" />
+  return <Card.Img variant="top" data-src="holder.js/100px250?text=Bild folgt&bg=434a52&fg=3d688f" fluid="true" />
 }
 
 function Artefact({artefact}) {
