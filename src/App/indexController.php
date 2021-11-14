@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
-class AppController extends AbstractController
+class indexController extends AbstractController
 {
     /**
      * @Route("/{reactRouting}",
@@ -17,7 +17,7 @@ class AppController extends AbstractController
      *     requirements={"reactRouting"=".+"}
      * )
      */
-    public function index(): Response
+    public function __invoke(): Response
     {
         $config = [
             'user' => null,

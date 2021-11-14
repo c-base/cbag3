@@ -1,8 +1,14 @@
 <?php
+/*
+ * (c) 2021 dazz <dazz@c-base.org>
+ *
+ * For copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare (strict_types=1);
 
 namespace App\Artefact;
 
-use App\Entity\Artefact;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,9 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/api")
  */
-class ArtefactController extends AbstractController
+class getCollectionController extends AbstractController
 {
-    private ArtefactDataProvider $provider;
+    /** @var ArtefactDataProvider */
+    private $provider;
 
     public function __construct(ArtefactDataProvider $provider)
     {
@@ -22,20 +29,10 @@ class ArtefactController extends AbstractController
     /**
      * @Route("/artefacts", name="api_artefact_collection", methods={"get"})
      */
-    public function collection(): JsonResponse
+    public function __invoke(): JsonResponse
     {
         return $this->json([
             'artefacts' => $this->provider->getCollection(),
-        ]);
-    }
-
-    /**
-     * @Route("/artefacts/{slug}", name="api_artefact_item", methods={"get"})
-     */
-    public function item(Artefact $artefact): JsonResponse
-    {
-        return $this->json([
-            'artefact' => $artefact,
         ]);
     }
 }
