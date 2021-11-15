@@ -7,6 +7,7 @@ help: ## Helping devs since 2016
 
 install: ## install
 	./bin/composer install
+	cd devops-ci && ./../bin/composer install
 
 dev-start: ## start dev env
 	./bin/symfony server:start -d
@@ -35,3 +36,10 @@ frontend-dev:
 
 frontend-prod:
 	yarn encore production
+
+ci: ## run CI
+	./bin/composer validate
+	./devops-ci/vendor/bin/phpstan analyse -l 4 src
+
+cs-fix:
+	./devops-ci/vendor/bin/php-cs-fixer fix src
