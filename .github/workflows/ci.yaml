@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ./bin/composer selfupdate
-      - run: ./bin/composer validate
+      - run: ./bin/composer validate --strict
       - run: ./bin/composer install --no-dev --quiet --no-suggest
       - run: ./bin/composer outdated --direct
 #  phpunit:
@@ -25,6 +25,8 @@ jobs:
 
       - name: Install dependencies
         uses: php-actions/composer@v6
+        with:
+          php_extensions: intl ctype iconv pdo_pgsql
 
       - name: Run phpstan
         uses: actions-x/phpstan@v1
