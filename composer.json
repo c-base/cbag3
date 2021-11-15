@@ -1,4 +1,6 @@
 {
+    "name": "c-base/cbag3",
+    "description": "c-base recunstruction project 3, the artefact guide",
     "type": "project",
     "license": "MIT",
     "minimum-stability": "stable",

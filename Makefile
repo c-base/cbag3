@@ -39,6 +39,7 @@ frontend-prod:
 
 ci: ## run CI
 	./bin/composer validate
+	./bin/composer outdated --direct
 	./devops-ci/vendor/bin/phpstan analyse -l 4 src
 
 cs-fix:
