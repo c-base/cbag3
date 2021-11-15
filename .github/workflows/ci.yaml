@@ -6,10 +6,10 @@ jobs:
   composer:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - run: ./bin/composer selfupdate
       - run: ./bin/composer validate
+      - run: ./bin/composer install --no-dev --quiet --no-suggest
       - run: ./bin/composer outdated --direct
 #  phpunit:
 #    steps:
@@ -23,12 +23,12 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v2
 
-      - run: ./bin/composer install --no-dev --quiet --no-suggest
+      - name: Install dependencies
+        uses: php-actions/composer@v6
 
       - name: Run phpstan
         uses: actions-x/phpstan@v1
         with:
-          installComposer: 0
           phpstanVersion: ^0.12
           level: 4
           paths: src
