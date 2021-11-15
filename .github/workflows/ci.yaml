@@ -8,11 +8,9 @@ jobs:
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
-
-      - name: Validate dependencies
-        uses: php-actions/composer@master
-        with:
-          command: validate
+      - run: ./bin/composer selfupdate
+      - run: ./bin/composer validate
+      - run: ./bin/composer outdated --direct
 #  phpunit:
 #    steps:
 #      - uses: php-actions/phpunit@v9
