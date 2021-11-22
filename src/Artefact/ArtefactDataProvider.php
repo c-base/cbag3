@@ -1,4 +1,11 @@
 <?php
+/*
+ * (c) 2021 dazz <dazz@c-base.org>
+ *
+ * For copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare(strict_types=1);
 
 namespace App\Artefact;
 
@@ -7,11 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArtefactDataProvider extends AbstractController
 {
-    private ArtefactRepository $artefactRepository;
-
-    public function __construct(ArtefactRepository $artefactRepository)
+    public function __construct(private ArtefactRepository $artefactRepository)
     {
-        $this->artefactRepository = $artefactRepository;
     }
 
     public function getCollection(): array

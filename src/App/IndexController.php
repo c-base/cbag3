@@ -1,4 +1,11 @@
 <?php
+/*
+ * (c) 2021 dazz <dazz@c-base.org>
+ *
+ * For copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare(strict_types=1);
 
 namespace App\App;
 
@@ -7,14 +14,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
-class indexController extends AbstractController
+class IndexController extends AbstractController
 {
     /**
      * @Route("/{reactRouting}",
      *     name="app_index",
      *     priority="-1",
      *     defaults={"reactRouting": null},
-     *     requirements={"reactRouting"=".+"}
+     *     requirements={"reactRouting"=".+"},
+     *     stateless=true
      * )
      */
     public function __invoke(): Response
