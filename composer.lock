@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6bc979ef735e4dceb4405dd8914d272d",
+    "content-hash": "28fa44fa6efa3b9e322cfd6ca2ad4a38",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -3087,20 +3087,20 @@
         },
         {
             "name": "symfony/flex",
-            "version": "dev-main",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "8ef3d1594bed699d85c40c61e3f0554d2f46a35c"
+                "reference": "acd0b5018fe9c2f5be6c67367987b5c723c0e096"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/8ef3d1594bed699d85c40c61e3f0554d2f46a35c",
-                "reference": "8ef3d1594bed699d85c40c61e3f0554d2f46a35c",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/acd0b5018fe9c2f5be6c67367987b5c723c0e096",
+                "reference": "acd0b5018fe9c2f5be6c67367987b5c723c0e096",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": ">=1.0",
+                "composer-plugin-api": "^1.0|^2.0",
                 "php": ">=7.1"
             },
             "require-dev": {
@@ -3113,9 +3113,6 @@
             "default-branch": true,
             "type": "composer-plugin",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.17-dev"
-                },
                 "class": "Symfony\\Flex\\Flex"
             },
             "autoload": {
@@ -3136,7 +3133,7 @@
             "description": "Composer plugin for Symfony",
             "support": {
                 "issues": "https://github.com/symfony/flex/issues",
-                "source": "https://github.com/symfony/flex/tree/main"
+                "source": "https://github.com/symfony/flex/tree/v1.17.3"
             },
             "funding": [
                 {
@@ -3152,7 +3149,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-22T17:03:45+00:00"
+            "time": "2021-11-22T18:48:50+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -7321,12 +7318,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "63dc8ba1089f7ab7ae400b03dbee347f8b631275"
+                "reference": "0f40c826c0725208c254ddcd3481690e6c7e5047"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/63dc8ba1089f7ab7ae400b03dbee347f8b631275",
-                "reference": "63dc8ba1089f7ab7ae400b03dbee347f8b631275",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/0f40c826c0725208c254ddcd3481690e6c7e5047",
+                "reference": "0f40c826c0725208c254ddcd3481690e6c7e5047",
                 "shasum": ""
             },
             "require": {
@@ -7386,7 +7383,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/maker-bundle/issues",
-                "source": "https://github.com/symfony/maker-bundle/tree/v1.36.2"
+                "source": "https://github.com/symfony/maker-bundle/tree/v1.36.3"
             },
             "funding": [
                 {
@@ -7402,7 +7399,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-22T15:24:14+00:00"
+            "time": "2021-11-22T18:44:03+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
@@ -7633,6 +7630,8 @@
         "ext-intl": "*",
         "ext-pdo_pgsql": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {
+        "ext-sqlite3": "*"
+    },
     "plugin-api-version": "2.1.0"
 }
