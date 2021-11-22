@@ -42,10 +42,10 @@ jobs:
         uses: php-actions/composer@v6
 
       - name: Run phpstan
-          uses: actions-x/phpstan@v1
-          with:
-            level: 4
-            directories: src tests
+        uses: actions-x/phpstan@v1
+        with:
+          level: 4
+          directories: src tests
 
       - name: Run tests
         run: make tests
