@@ -1,46 +1,53 @@
-name: CI
+name: Continuous Integration
 
-on: [push]
+on: [push, pull_request]
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  composer:
+  tests:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: [ '8.0' ]
+
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        uses: php-actions/composer@v6
-        with:
-          command: validate
-          args: strict
-
-      - uses: php-actions/composer@v6
-        with:
-          command: outdated
-          args: direct
-
-#  phpunit:
-#    steps:
-#      - uses: php-actions/phpunit@v9
-#        with:
-#          php_version: 7.4.3
-  phpstan:
-    name: phpstan
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout project
+      - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Install system dependencies
+        run: |
+          echo "::group::apt-get update"
+          sudo apt-get update
+          echo "::endgroup::"
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          coverage: "none"
+          extensions: "ctype,iconv,intl,json,xsl"
+          ini-values: date.timezone=Europe/Paris,memory_limit=-1,default_socket_timeout=10,session.gc_probability=0,apc.enable_cli=1
+          php-version: "${{ matrix.php }}"
+          tools: pecl
+
+      - name: Display versions
+        run: |
+          php -r 'foreach (get_loaded_extensions() as $extension) echo $extension . " " . phpversion($extension) . PHP_EOL;'
+          php -i
+
       - name: Install dependencies
         uses: php-actions/composer@v6
-        with:
-#          php_extensions: intl ctype iconv pdo_pgsql
-          dev: no
-          args: --profile --ignore-platform-reqs
 
       - name: Run phpstan
-        uses: actions-x/phpstan@v1
+          uses: actions-x/phpstan@v1
+          with:
+            level: 4
+            directories: src tests
+
+      - name: Run tests
+        uses: php-actions/phpunit@v9
         with:
-          phpstanVersion: ^0.12
-          level: 4
-          paths: src
+          php_version: 8.0

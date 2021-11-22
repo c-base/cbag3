@@ -37,10 +37,23 @@ frontend-dev:
 frontend-prod:
 	yarn encore production
 
-ci: ## run CI
+ci: composer phpstan cs-fix-dry test ## run CI
+
+composer:
 	./bin/composer validate
 	./bin/composer outdated --direct
+
+phpstan: ## run phpstan
 	./devops-ci/vendor/bin/phpstan analyse -l 4 src
+	./devops-ci/vendor/bin/phpstan analyse -l 4 tests
+
+cs-fix-dry:
+	./devops-ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run src
+	./devops-ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run tests
 
 cs-fix:
-	./devops-ci/vendor/bin/php-cs-fixer fix src
+	./devops-ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff src
+	./devops-ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff tests
+
+test:
+	./vendor/bin/phpunit -c phpunit.xml.dist
