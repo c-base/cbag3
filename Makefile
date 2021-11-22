@@ -56,4 +56,7 @@ cs-fix:
 	./devops-ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff tests
 
 test:
+	@./bin/console --env=test --quiet doctrine:database:create
+	@./bin/console --env=test --quiet doctrine:schema:create
 	./vendor/bin/phpunit -c phpunit.xml.dist
+	@rm ./var/data.db

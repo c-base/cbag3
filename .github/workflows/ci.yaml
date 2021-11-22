@@ -28,7 +28,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           coverage: "none"
-          extensions: "ctype,iconv,intl,json,xsl"
+          extensions: "ctype,iconv,intl,json,xsl,sqlite3"
           ini-values: date.timezone=Europe/Paris,memory_limit=-1,default_socket_timeout=10,session.gc_probability=0,apc.enable_cli=1
           php-version: "${{ matrix.php }}"
           tools: pecl
@@ -48,6 +48,10 @@ jobs:
             directories: src tests
 
       - name: Run tests
-        uses: php-actions/phpunit@v9
-        with:
-          php_version: 8.0
+        run: make tests
+        shell: bash
+#
+#      - name: Run tests
+#        uses: php-actions/phpunit@v9
+#        with:
+#          php_version: 8.0
