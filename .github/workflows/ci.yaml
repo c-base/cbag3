@@ -41,17 +41,11 @@ jobs:
       - name: "Install dependencies with composer"
         run: composer install --no-interaction --no-progress --no-suggest --optimize-autoloader
 
-      - name: Run phpstan
-        uses: actions-x/phpstan@v1
-        with:
-          level: 4
-          directories: src tests
+      - name: Run phpstan analyse src
+        run: phpstan analyse -l 4 src
+
+      - name: Run phpstan analyse tests
+        run: phpstan analyse -l 4 tests
 
       - name: Run tests
         run: make tests
-        shell: bash
-#
-#      - name: Run tests
-#        uses: php-actions/phpunit@v9
-#        with:
-#          php_version: 8.0
