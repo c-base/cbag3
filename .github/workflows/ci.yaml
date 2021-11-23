@@ -18,28 +18,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install system dependencies
-        run: |
-          echo "::group::apt-get update"
-          sudo apt-get update
-          echo "::endgroup::"
+#      - name: Install system dependencies
+#        run: |
+#          echo "::group::apt-get update"
+#          sudo apt-get update
+#          echo "::endgroup::"
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           coverage: "none"
-          extensions: "ctype,iconv,intl,json,xsl,sqlite3"
+          extensions: ctype, iconv, intl, json, xsl, sqlite3, pgsql, xml, mbstring
           ini-values: date.timezone=Europe/Paris,memory_limit=-1,default_socket_timeout=10,session.gc_probability=0,apc.enable_cli=1
           php-version: "${{ matrix.php }}"
-          tools: pecl
+          tools: composer:v2, phpstan
 
-      - name: Display versions
-        run: |
-          php -r 'foreach (get_loaded_extensions() as $extension) echo $extension . " " . phpversion($extension) . PHP_EOL;'
-          php -i
+#      - name: Display versions
+#        run: |
+#          php -r 'foreach (get_loaded_extensions() as $extension) echo $extension . " " . phpversion($extension) . PHP_EOL;'
+#          php -i
 
-      - name: Install dependencies
-        uses: php-actions/composer@v6
+      - name: "Install dependencies with composer"
+        run: composer install --no-interaction --no-progress --no-suggest --optimize-autoloader
 
       - name: Run phpstan
         uses: actions-x/phpstan@v1
