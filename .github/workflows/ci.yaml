@@ -48,7 +48,8 @@ jobs:
           php bin/console --env=test doctrine:schema:update --force || echo "No migrations found or schema update failed"
           php bin/console --env=test doctrine:migrations:migrate --no-interaction || echo "No migrations found or migration failed"
         env:
-          DATABASE_URL: postgres://postgres:postgres@127.0.0.1:${{ job.services.postgres.ports[5432] }}/postgres?charset=UTF-8
+#          DATABASE_URL: postgres://postgres:postgres@127.0.0.1:${{ job.services.postgres.ports[5432] }}/postgres?charset=UTF-8
+          DATABASE_URL: postgres://postgres:postgres@127.0.0.1:49154/postgres?charset=UTF-8
       - name: Run tests
         run: phpunit
       - name: Run PhpStan
