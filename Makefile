@@ -7,7 +7,7 @@ help: ## Helping devs since 2016
 
 install: ## install
 	./bin/composer install
-	cd devops-ci && ./../bin/composer install
+	./bin/composer install -d ./devops/ci
 
 dev-start: ## start dev env
 	./bin/symfony server:start -d
@@ -31,10 +31,10 @@ database-dump: ## dumps database to a file
 database-restore: ## restores the database from a file
 	./bin/symfony run psql < var/dump.sql
 
-frontend-dev:
+frontend-dev: ## install frontend dev
 	yarn encore dev
 
-frontend-prod:
+frontend-prod: ## install frontend production
 	yarn encore production
 
 ci: composer phpstan cs-fix-dry test ## run CI
@@ -44,16 +44,19 @@ composer:
 	./bin/composer outdated --direct
 
 phpstan: ## run phpstan
-	./devops-ci/vendor/bin/phpstan analyse -l 4 src
-	./devops-ci/vendor/bin/phpstan analyse -l 4 tests
+	./devops/ci/vendor/bin/phpstan analyse -l 4 src
+	./devops/ci/vendor/bin/phpstan analyse -l 4 tests
 
-cs-fix-dry:
-	./devops-ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run src
-	./devops-ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run tests
+cs-fix-dry: ## cs fixer dry-run
+	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run src
+	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run tests
 
-cs-fix:
-	./devops-ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff src
-	./devops-ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff tests
+cs-fix: ## cs fixer
+	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff src
+	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff tests
+
+deptrac:
+	./devops/ci/vendor/bin/deptrac analyse --config-file=./devops/ci/config/depfile.yaml --cache-file=./devops/ci/cache/.deptrac.cache
 
 test:
 	@./bin/console --env=test --quiet doctrine:database:create

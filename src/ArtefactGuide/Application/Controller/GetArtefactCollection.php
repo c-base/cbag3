@@ -7,24 +7,23 @@
  */
 declare(strict_types=1);
 
-namespace App\Artefact;
+namespace ArtefactGuide\Application\Controller;
 
+use ArtefactGuide\Domain\ArtefactDataProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/api")
- */
-class GetCollectionController extends AbstractController
+#[AsController]
+class GetArtefactCollection extends AbstractController
 {
     public function __construct(private ArtefactDataProvider $provider)
     {
     }
 
-    /**
-     * @Route("/artefacts", name="api_artefact_collection", methods={"get"})
-     */
+    #[Route(path: "/api/artefacts", name: 'api_artefact_collection', methods: [Request::METHOD_GET])]
     public function __invoke(): JsonResponse
     {
         return $this->json([

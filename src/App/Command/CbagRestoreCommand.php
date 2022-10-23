@@ -2,10 +2,11 @@
 
 namespace App\Command;
 
-use App\Entity\Artefact;
-use App\Entity\Asset;
+use ArtefactGuide\Domain\Entity\Artefact;
+use ArtefactGuide\Domain\Entity\Asset;
 use Doctrine\ORM\EntityManagerInterface;
 use SplFileObject;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -14,24 +15,16 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
+#[AsCommand(name: self::NAME, description: self::DESCRIPTION)]
 class CbagRestoreCommand extends Command
 {
-    protected static $defaultName = 'cbag:restore';
-    protected static $defaultDescription = 'Add a short description for your command';
-    private EntityManagerInterface $em;
+    private const NAME = 'cbag:restore';
+    private const DESCRIPTION = 'Add a short description for your command';
 
-    public function __construct(string $name = null, EntityManagerInterface $em)
+    public function __construct(private EntityManagerInterface $em)
     {
-        parent::__construct($name);
+        parent::__construct();
         $this->em = $em;
-    }
-
-    protected function configure(): void
-    {
-//        $this
-//            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-//            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
-//        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

@@ -7,14 +7,13 @@
  */
 declare(strict_types=1);
 
-namespace App\Artefact;
+namespace ArtefactGuide\Domain;
 
-use App\Repository\ArtefactRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use ArtefactGuide\Infrastructure\Repository\ArtefactRepository;
 
-class ArtefactDataProvider extends AbstractController
+class ArtefactDataProvider
 {
-    public function __construct(private ArtefactRepository $artefactRepository)
+    public function __construct(private readonly ArtefactRepository $artefactRepository)
     {
     }
 

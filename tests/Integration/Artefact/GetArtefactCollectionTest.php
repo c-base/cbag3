@@ -7,14 +7,14 @@
  */
 declare(strict_types=1);
 
-namespace App\Tests\Application\Artefact;
+namespace Tests\Integration\Artefact;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class GetCollectionControllerTest extends WebTestCase
+class GetArtefactCollectionTest extends WebTestCase
 {
-    public function testIsRouteReachable()
+    public function test_is_route_reachable()
     {
         $client = self::createClient();
         $response = $client->request(Request::METHOD_HEAD, '/api/artefacts');

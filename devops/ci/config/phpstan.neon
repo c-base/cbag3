@@ -1,0 +1,13 @@
+parameters:
+    treatPhpDocTypesAsCertain: false
+
+    scanDirectories:
+        - %currentWorkingDirectory%/src/
+    bootstrapFiles:
+        - %currentWorkingDirectory%/vendor/autoload.php
+
+    tmpDir: %currentWorkingDirectory%/devops/ci/cache
+
+    level: max
+    paths:
+        - %currentWorkingDirectory%/src/

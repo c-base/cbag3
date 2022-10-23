@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace ArtefactGuide\Domain\Entity;
 
 use App\Repository\AssetRepository;
 use Doctrine\ORM\Mapping as ORM;

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Entity;
+namespace ArtefactGuide\Domain\Entity;
 
-use App\Repository\ArtefactRepository;
+use ArtefactGuide\Infrastructure\Repository\ArtefactRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ArtefactRepository", repositoryClass=ArtefactRepository::class)
+ * @ORM\Entity(repositoryClass=ArtefactRepository::class)
  */
-class Artefact
+final class Artefact
 {
     /**
      * @ORM\Id

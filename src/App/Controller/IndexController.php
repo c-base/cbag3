@@ -7,24 +7,27 @@
  */
 declare(strict_types=1);
 
-namespace App\App;
+namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
+#[AsController]
 class IndexController extends AbstractController
 {
-    /**
-     * @Route("/{reactRouting}",
-     *     name="app_index",
-     *     priority="-1",
-     *     defaults={"reactRouting": null},
-     *     requirements={"reactRouting"=".+"},
-     *     stateless=true
-     * )
-     */
+    #[Route(
+        path: "/{reactRouting}",
+        name: 'app_index',
+        priority: -1,
+        defaults: ["reactRouting" => null],
+        methods: [Request::METHOD_GET],
+        requirements: ["reactRouting" => ".+"],
+        stateless: true,
+    )]
     public function __invoke(): Response
     {
         $config = [

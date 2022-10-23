@@ -6,5 +6,7 @@
 * [ ] install react-router
 * [ ] setup react router
 * [x] setup ci
+  * [ ] github actions
   * [x] phpstan
-  * [x] github actions
+  * [x] phpunit
+  * [ ] infection

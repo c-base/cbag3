@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace ArtefactGuide\Infrastructure\Repository;
 
-use App\Entity\Asset;
+use ArtefactGuide\Domain\Entity\Asset;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
