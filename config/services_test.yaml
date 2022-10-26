@@ -1,0 +1,7 @@
+services:
+  # redefine the alias as it should be while making it public
+
+  Tests\Fake\:
+    resource: '../tests/Fake'
+
+  ArtefactGuide\Domain\ArtefactRepository: '@Tests\Fake\Infrastructure\Doctrine\InMemoryArtefactRepository'

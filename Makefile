@@ -58,11 +58,14 @@ cs-fix: ## cs fixer
 deptrac:
 	./devops/ci/vendor/bin/deptrac analyse --config-file=./devops/ci/config/depfile.yaml --cache-file=./devops/ci/cache/.deptrac.cache
 
+ci-rector:
+	php devops/ci/vendor/bin/rector process --config=devops/ci/config/rector.php --xdebug --clear-cache
+
 tests-prepare:
 	@./bin/console --env=test --quiet doctrine:database:create
 	@./bin/console --env=test --quiet doctrine:schema:create
 
-test:
+test: ## Run tests
 	@#$(MAKE) tests-prepare
 	./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml
 	@rm ./var/data.db

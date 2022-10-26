@@ -2,8 +2,8 @@
 
 namespace App\Command;
 
-use ArtefactGuide\Domain\Entity\Artefact;
-use ArtefactGuide\Domain\Entity\Asset;
+use ArtefactGuide\Infrastructure\Persistence\Doctrine\Entity\DoctrineArtefact;
+use ArtefactGuide\Infrastructure\Persistence\Doctrine\Entity\Asset;
 use Doctrine\ORM\EntityManagerInterface;
 use SplFileObject;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -78,7 +78,7 @@ class CbagRestoreCommand extends Command
                 $persistedAssets[$assetItem['$id']['$oid']] = $assetItem['$id']['$oid'];
             }, $artefactAssets);
 
-            $this->getSerializer()->denormalize($artefactData, Artefact::class, null, [
+            $this->getSerializer()->denormalize($artefactData, DoctrineArtefact::class, null, [
                 AbstractNormalizer::OBJECT_TO_POPULATE => $artefact,
             ]);
             $artefact->setCName($artefactData['name']);

@@ -20,5 +20,7 @@ services:
 
     ArtefactGuide\:
         resource: '../src/ArtefactGuide'
-        exclude:
-            - '../src/ArtefactGuide/Domain/Entity/'
+
+    Shared\:
+        resource: '../src/Shared'
+

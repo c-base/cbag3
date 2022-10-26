@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace ArtefactGuide\Application\Controller;
 
-use ArtefactGuide\Domain\Entity\Artefact;
+use ArtefactGuide\Domain\Artefact;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

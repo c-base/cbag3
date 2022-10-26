@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace ArtefactGuide\Application\Controller;
 
-use ArtefactGuide\Domain\ArtefactDataProvider;
+use ArtefactGuide\Application\Action\ListArtefacts\GetArtefactListQueryHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +17,9 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-class GetArtefactCollection extends AbstractController
+class GetArtefactList extends AbstractController
 {
-    public function __construct(private ArtefactDataProvider $provider)
+    public function __construct(private GetArtefactListQueryHandler $getArtefactListCommandHandler)
     {
     }
 
@@ -27,7 +27,7 @@ class GetArtefactCollection extends AbstractController
     public function __invoke(): JsonResponse
     {
         return $this->json([
-            'artefacts' => $this->provider->getCollection(),
+            'artefacts' => ($this->getArtefactListCommandHandler)(),
         ]);
     }
 }
