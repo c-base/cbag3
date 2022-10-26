@@ -20,4 +20,11 @@ final class StringUtils
     {
         return lcfirst(str_replace('_', '', ucwords($text, '_')));
     }
+
+    public static function sluggify(string $text): string
+    {
+        $string = str_replace(['ä', 'ö', 'ü', 'ß'], ['ae', 'oe', 'ue', 'ss'], strtolower($text));
+        $string = preg_replace('#[^a-z0-9]+#i', '-', $string);
+        return trim($string, '-');
+    }
 }
