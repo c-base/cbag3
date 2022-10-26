@@ -18,4 +18,9 @@ final class MemberName extends StringValueObject
 {
     #[ORM\Column(name: 'created_by', type: Types::STRING, length: 32, nullable: false)]
     protected string $value;
+
+    public static function create(string $value): self
+    {
+        return new self($value);
+    }
 }
