@@ -61,11 +61,5 @@ deptrac:
 ci-rector:
 	php devops/ci/vendor/bin/rector process --config=devops/ci/config/rector.php --xdebug --clear-cache
 
-tests-prepare:
-	@./bin/console --env=test --quiet doctrine:database:create
-	@./bin/console --env=test --quiet doctrine:schema:create
-
 test: ## Run tests
-	@#$(MAKE) tests-prepare
 	./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml
-	@rm ./var/data.db

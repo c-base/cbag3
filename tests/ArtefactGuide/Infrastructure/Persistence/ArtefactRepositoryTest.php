@@ -27,8 +27,9 @@ final class ArtefactRepositoryTest extends ArtefactGuideInfrastructureTestCase
         self::assertInstanceOf(ArtefactCollection::class, $artefacts);
         self::assertCount(1, $artefacts);
 
-        $artefact = $artefacts->offsetGet(0);
+        $actualArtefact = $artefacts->offsetGet(0);
 
         self::assertInstanceOf(Artefact::class, $artefact);
+        self::assertEquals($artefact, $actualArtefact);
     }
 }

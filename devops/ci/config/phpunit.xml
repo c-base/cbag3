@@ -5,21 +5,17 @@
         executionOrder="random"
         bootstrap="../../../tests/bootstrap.php"
         colors="true"
-        cacheResultFile="../cache/phpunit.result.cache"
-        convertErrorsToExceptions="true"
-        convertNoticesToExceptions="true"
-        convertWarningsToExceptions="true"
         processIsolation="false"
         stopOnError="true"
         stopOnFailure="true"
         stopOnIncomplete="false"
         stopOnSkipped="false"
         stopOnRisky="true"
-        verbose="false"
+        cacheDirectory=".phpunit.cache"
 >
   <php>
     <ini name="error_reporting" value="-1"/>
-    <server name="APP_ENV" value="test" force="true" />
+    <server name="APP_ENV" value="test" force="true"/>
     <server name="SHELL_VERBOSITY" value="-1"/>
   </php>
   <coverage>
@@ -30,6 +26,9 @@
   <testsuites>
     <testsuite name="ArtefactGuide">
       <directory>../../../tests/ArtefactGuide</directory>
+    </testsuite>
+    <testsuite name="Shared">
+      <directory>../../../tests/Shared</directory>
     </testsuite>
   </testsuites>
 </phpunit>

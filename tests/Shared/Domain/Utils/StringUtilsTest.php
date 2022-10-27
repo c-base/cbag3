@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace Tests\Shared\Domain\Utils;
 
 use Shared\Domain\Utils\StringUtils;
-use Tests\Shared\Infrastructure\PhpUnit\UnitTest;
+use Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 
-final class StringUtilsTest extends UnitTest
+final class StringUtilsTest extends UnitTestCase
 {
     public function test_sluggify_works(): void
     {
