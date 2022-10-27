@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Shared\Infrastructure;
 
-use CodelyTv\Shared\Domain\UuidGenerator;
+use Shared\Domain\UuidGenerator;
 use Ramsey\Uuid\Uuid;
 
 final class RamseyUuidGenerator implements UuidGenerator

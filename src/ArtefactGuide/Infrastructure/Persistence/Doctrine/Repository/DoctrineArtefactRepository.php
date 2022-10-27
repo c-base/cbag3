@@ -17,6 +17,6 @@ final class DoctrineArtefactRepository extends DoctrineRepository implements Art
 
     public function all(): ArtefactCollection
     {
-        return $this->repository(Artefact::class)->findAll();
+        return new ArtefactCollection($this->repository(Artefact::class)->findAll());
     }
 }

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace ArtefactGuide\Infrastructure\Persistence\Doctrine;
 
-use ArtefactGuide\Domain\ArtefactId;
+use Shared\Domain\ArtefactId;
 use Shared\Infrastructure\Persistence\Doctrine\UuidType;
 
 final class ArtefactIdType extends UuidType
