@@ -43,7 +43,7 @@ class Artefact extends AggregateRoot
     private MemberName $createdBy;
 
     #[ORM\OneToOne(targetEntity: Image::class)]
-    #[ORM\JoinColumn(name: 'primary_image_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'primary_image_id', referencedColumnName: 'id', unique: false)]
     private ?Image $primaryImage;
 
      #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'artefacts')]

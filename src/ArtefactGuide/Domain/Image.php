@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Shared\Domain\ImageId;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'asset')]
+#[ORM\Table(name: 'image')]
 final class Image
 {
     #[ORM\Id]
