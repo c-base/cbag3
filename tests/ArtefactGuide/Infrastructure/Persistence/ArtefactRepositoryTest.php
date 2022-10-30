@@ -12,7 +12,7 @@ namespace Tests\ArtefactGuide\Infrastructure\Persistence;
 use ArtefactGuide\Domain\Artefact;
 use ArtefactGuide\Domain\ArtefactCollection;
 use Tests\ArtefactGuide\Infrastructure\ArtefactGuideInfrastructureTestCase;
-use Tests\Factory\ArtefactFactory;
+use Tests\Factory\ArtefactGuide\ArtefactFactory;
 
 final class ArtefactRepositoryTest extends ArtefactGuideInfrastructureTestCase
 {

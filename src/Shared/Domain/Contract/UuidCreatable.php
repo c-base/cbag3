@@ -7,14 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace Tests\Factory;
+namespace Shared\Domain\Contract;
 
-use Shared\Domain\ArtefactId;
-
-final class ArtefactIdFactory
+trait UuidCreatable
 {
-    public static function create(string $value): ArtefactId
+    public static function create(?string $value = null): self
     {
-        return new ArtefactId($value);
+        return new self($value ?? static::random()->value());
     }
 }

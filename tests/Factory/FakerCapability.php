@@ -16,7 +16,6 @@ trait FakerCapability
     {
         if (static::$faker === null) {
             static::$faker = Factory::create();
-//            static::$faker->addProvider(new Address($faker));
         }
 
         return static::$faker;

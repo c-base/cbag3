@@ -9,8 +9,10 @@ declare(strict_types=1);
 
 namespace Shared\Domain;
 
+use Shared\Domain\Contract\UuidCreatable;
 use Shared\Domain\ValueObject\Uuid;
 
 final class ImageId extends Uuid
 {
+    use UuidCreatable;
 }

@@ -7,13 +7,13 @@
  */
 declare(strict_types=1);
 
-namespace Tests\Factory;
+namespace Tests\Factory\ArtefactGuide;
 
 use ArtefactGuide\Domain\Artefact;
 use ArtefactGuide\Domain\MemberName;
 use ArtefactGuide\Domain\Slug;
 use Shared\Domain\ArtefactId;
-use Shared\Domain\ValueObject\Uuid;
+use Tests\Factory\FakerCapability;
 
 final class ArtefactFactory
 {
@@ -22,7 +22,7 @@ final class ArtefactFactory
     public static function create(): Artefact
     {
         return Artefact::create(
-            ArtefactIdFactory::create(Uuid::random()->value()),
+            ArtefactId::create(),
             self::faker()->words(2, true),
             self::faker()->words(2, true),
             Slug::create(self::faker()->slug()),

@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Tests\Shared\Infrastructure\PhpUnit;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class InfrastructureTestCase extends KernelTestCase
 {
@@ -20,9 +21,13 @@ abstract class InfrastructureTestCase extends KernelTestCase
         parent::setUp();
     }
 
-    /** @return mixed */
-    protected function service(string $id)
+    protected function service(string $id): mixed
     {
         return $this->getContainer()->get($id);
+    }
+
+    protected function getSerializer(): \Symfony\Component\Serializer\Serializer
+    {
+        return $this->service('serializer');
     }
 }

@@ -14,11 +14,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Shared\Domain\Contract\Normalizable;
 use Shared\Domain\ImageId;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'image')]
-final class Image
+class Image implements Normalizable
 {
     #[ORM\Id]
     #[ORM\Column(type: ImageIdType::TYPE, name: 'id')]
@@ -37,7 +38,7 @@ final class Image
     private \DateTimeInterface $createdAt;
 
     #[ORM\Embedded(class: Licence::class, columnPrefix: false)]
-    private Licence $licence;
+    public readonly Licence $licence;
 
     #[ORM\ManyToMany(targetEntity: Artefact::class, mappedBy: 'images')]
     private Collection $artefacts;
@@ -64,5 +65,23 @@ final class Image
         $image->licence = $licence;
 
         return $image;
+    }
+
+    public function addArtefact(Artefact $artefact): void
+    {
+        if (!$this->artefacts->contains($artefact)) {
+            $this->artefacts->add($artefact);
+        }
+    }
+
+    public function normalize(): array
+    {
+        return [
+            'path' => $this->path,
+            'description' => $this->description,
+            'author' => $this->author,
+            'createdAt' => $this->createdAt->format('Y-m-d'),
+            'licence' => $this->licence->value(),
+        ];
     }
 }

@@ -7,12 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Shared\Domain;
+namespace Shared\Domain\Contract;
 
-use Shared\Domain\Contract\UuidCreatable;
-use Shared\Domain\ValueObject\Uuid;
-
-final class ArtefactId extends Uuid
+interface Normalizable
 {
-    use UuidCreatable;
+    public function normalize(): array;
 }
