@@ -1,8 +1,8 @@
 import React,  { useEffect } from 'react'
 import { connect } from 'react-redux'
-import {Card, CardGroup, Container, Row} from "react-bootstrap"
+import { Card, CardGroup, Container, Row } from "react-bootstrap"
 import { run as runHolder } from 'holderjs/holder'
-import {getLastCreated} from './selectors'
+import { getLastCreated } from './selectors'
 
 function ArtefactPrimaryAsset({primaryImage}) {
   if (primaryImage === null) {
@@ -20,7 +20,7 @@ function Artefact({artefact}) {
         <Card.Text>{artefact.description}</Card.Text>
       </Card.Body>
       <Card.Footer>
-        <small className="text-muted">created by {artefact.createdBy}</small>
+        <small className="text-muted">created by {artefact.createdBy} / {artefact.createdAt}</small>
       </Card.Footer>
     </Card>
   )
