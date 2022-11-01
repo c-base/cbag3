@@ -13,8 +13,9 @@ import {
 import "./App.css"
 import { initApp } from './actions'
 
-import ArtefactCollection from "../artefact/ArtefactCollection";
-import ArtefactSlugList from "../artefact/ArtefactSlugList";
+import ArtefactCollection from "../Artefact/ArtefactCollection";
+import ArtefactSlugList from "../Artefact/ArtefactSlugList";
+import Login from "../Login/Login";
 
 const App = () => {
   useDispatch()(initApp())
@@ -26,6 +27,7 @@ const App = () => {
             <Navbar.Brand href="/">CBRP3 : artefactguide</Navbar.Brand>
             <Nav className="me-auto">
               <Link to="/artefacts" className={'nav-link'}>Artefacts</Link>
+              <Login />
             </Nav>
           </Container>
         </Navbar>

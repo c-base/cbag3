@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Shared\Domain\ValueObject;
+namespace Cbase\Shared\Domain\ValueObject;
 
 use CodelyTv\Shared\Domain\Utils;
 use ReflectionClass;
-use Shared\Domain\Utils\CollectionUtils;
+use Cbase\Shared\Domain\Utils\CollectionUtils;
 use function Lambdish\Phunctional\reindex;
 
 abstract class Enum

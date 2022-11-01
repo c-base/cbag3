@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace ArtefactGuide\Domain;
+namespace Cbase\ArtefactGuide\Domain;
 
 interface ArtefactRepository
 {

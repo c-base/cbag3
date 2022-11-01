@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Infrastructure\Persistence;
 
-use ArtefactGuide\Domain\Artefact;
-use ArtefactGuide\Domain\ArtefactCollection;
+use Cbase\ArtefactGuide\Domain\Artefact;
+use Cbase\ArtefactGuide\Domain\ArtefactCollection;
 use Tests\ArtefactGuide\Infrastructure\ArtefactGuideInfrastructureTestCase;
 use Tests\Factory\ArtefactGuide\ArtefactFactory;
 

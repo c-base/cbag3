@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Domain;
 
-use ArtefactGuide\Domain\Artefact;
-use ArtefactGuide\Domain\ArtefactCollection;
-use ArtefactGuide\Domain\Image;
+use Cbase\ArtefactGuide\Domain\Artefact;
+use Cbase\ArtefactGuide\Domain\ArtefactCollection;
+use Cbase\ArtefactGuide\Domain\Image;
 use Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 
 final class ArtefactCollectionTest extends UnitTestCase

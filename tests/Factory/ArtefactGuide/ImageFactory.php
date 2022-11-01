@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace Tests\Factory\ArtefactGuide;
 
-use ArtefactGuide\Domain\Image;
-use ArtefactGuide\Domain\Licence;
-use Shared\Domain\ImageId;
-use Shared\Domain\ValueObject\Uuid;
+use Cbase\ArtefactGuide\Domain\Image;
+use Cbase\ArtefactGuide\Domain\Licence;
+use Cbase\Shared\Domain\ImageId;
+use Cbase\Shared\Domain\ValueObject\Uuid;
 use Tests\Factory\FakerCapability;
 
 final class ImageFactory

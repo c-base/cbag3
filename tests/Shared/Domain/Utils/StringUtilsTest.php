@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Tests\Shared\Domain\Utils;
 
-use Shared\Domain\Utils\StringUtils;
+use Cbase\Shared\Domain\Utils\StringUtils;
 use Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 
 final class StringUtilsTest extends UnitTestCase

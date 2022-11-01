@@ -7,11 +7,11 @@
  */
 declare(strict_types=1);
 
-namespace ArtefactGuide\Domain;
+namespace Cbase\ArtefactGuide\Domain;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Shared\Domain\ValueObject\StringValueObject;
+use Cbase\Shared\Domain\ValueObject\StringValueObject;
 
 #[ORM\Embeddable]
 final class MemberName extends StringValueObject

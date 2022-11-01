@@ -13,14 +13,7 @@ services:
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/App'
+    Cbase\:
+        resource: '../src'
         exclude:
             - '../src/App/Kernel.php'
-
-    ArtefactGuide\:
-        resource: '../src/ArtefactGuide'
-
-    Shared\:
-        resource: '../src/Shared'
-

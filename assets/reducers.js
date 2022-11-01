@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import artefactReducer from './artefact/reducer'
+import artefactReducer from './Artefact/reducer'
 
 export default combineReducers({
   artefact: artefactReducer

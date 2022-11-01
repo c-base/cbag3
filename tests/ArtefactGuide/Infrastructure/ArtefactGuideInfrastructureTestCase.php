@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Infrastructure;
 
-use ArtefactGuide\Domain\ArtefactRepository;
+use Cbase\ArtefactGuide\Domain\ArtefactRepository;
 use Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
 
 abstract class ArtefactGuideInfrastructureTestCase extends InfrastructureTestCase

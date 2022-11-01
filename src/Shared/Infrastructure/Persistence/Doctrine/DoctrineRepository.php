@@ -7,11 +7,11 @@
  */
 declare(strict_types=1);
 
-namespace Shared\Infrastructure\Persistence\Doctrine;
+namespace Cbase\Shared\Infrastructure\Persistence\Doctrine;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Shared\Domain\Aggregate\AggregateRoot;
+use Cbase\Shared\Domain\Aggregate\AggregateRoot;
 
 abstract class DoctrineRepository
 {

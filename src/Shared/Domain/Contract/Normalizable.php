@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Shared\Domain\Contract;
+namespace Cbase\Shared\Domain\Contract;
 
 interface Normalizable
 {

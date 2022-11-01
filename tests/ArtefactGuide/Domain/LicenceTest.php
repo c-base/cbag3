@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Domain;
 
-use ArtefactGuide\Domain\Licence;
+use Cbase\ArtefactGuide\Domain\Licence;
 use Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 
 final class LicenceTest extends UnitTestCase

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Shared\Domain\Aggregate;
+namespace Cbase\Shared\Domain\Aggregate;
 
 abstract class AggregateRoot
 {

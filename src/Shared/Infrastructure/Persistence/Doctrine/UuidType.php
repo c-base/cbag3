@@ -7,12 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace Shared\Infrastructure\Persistence\Doctrine;
+namespace Cbase\Shared\Infrastructure\Persistence\Doctrine;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
-use Shared\Domain\ValueObject\Uuid;
-use Shared\Infrastructure\Persistence\Doctrine\Dbal\DoctrineCustomType;
+use Cbase\Shared\Domain\ValueObject\Uuid;
+use Cbase\Shared\Infrastructure\Persistence\Doctrine\Dbal\DoctrineCustomType;
 
 abstract class UuidType extends StringType implements DoctrineCustomType
 {

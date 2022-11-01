@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Shared\Infrastructure;
+namespace Cbase\Shared\Infrastructure;
 
-use Shared\Domain\UuidGenerator;
+use Cbase\Shared\Domain\UuidGenerator;
 use Ramsey\Uuid\Uuid;
 
 final class RamseyUuidGenerator implements UuidGenerator

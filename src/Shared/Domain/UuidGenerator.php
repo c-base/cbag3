@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Shared\Domain;
+namespace Cbase\Shared\Domain;
 
 interface UuidGenerator
 {

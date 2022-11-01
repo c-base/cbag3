@@ -7,10 +7,10 @@
  */
 declare(strict_types=1);
 
-namespace ArtefactGuide\Infrastructure\Persistence\Doctrine;
+namespace Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine;
 
-use Shared\Domain\ArtefactId;
-use Shared\Infrastructure\Persistence\Doctrine\UuidType;
+use Cbase\Shared\Domain\ArtefactId;
+use Cbase\Shared\Infrastructure\Persistence\Doctrine\UuidType;
 
 final class ArtefactIdType extends UuidType
 {

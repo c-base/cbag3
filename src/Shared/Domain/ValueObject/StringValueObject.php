@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Shared\Domain\ValueObject;
+namespace Cbase\Shared\Domain\ValueObject;
 
 abstract class StringValueObject implements \Stringable
 {

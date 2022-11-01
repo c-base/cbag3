@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Shared\Domain\Utils;
+namespace Cbase\Shared\Domain\Utils;
 
 final class StringUtils
 {

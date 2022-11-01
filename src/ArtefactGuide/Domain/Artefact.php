@@ -7,17 +7,17 @@
  */
 declare(strict_types=1);
 
-namespace ArtefactGuide\Domain;
+namespace Cbase\ArtefactGuide\Domain;
 
-use ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType;
+use Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Shared\Domain\Aggregate\AggregateRoot;
-use Shared\Domain\ArtefactId;
-use Shared\Domain\Contract\Normalizable;
-use Shared\Domain\Utils\CollectionUtils;
+use Cbase\Shared\Domain\Aggregate\AggregateRoot;
+use Cbase\Shared\Domain\ArtefactId;
+use Cbase\Shared\Domain\Contract\Normalizable;
+use Cbase\Shared\Domain\Utils\CollectionUtils;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity]
