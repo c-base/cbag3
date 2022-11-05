@@ -1,18 +1,32 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
-import { isAuthenticated, getAuthPath } from "../Authentication/selectors";
-import { connect } from "react-redux";
+import { Button, Badge } from 'react-bootstrap'
+import { isAuthenticated, getUsername, getAuthPath } from "../Authentication/selectors"
+import { connect } from "react-redux"
+import { User } from 'tabler-icons-react'
 
-function Auth({isAuthenticated, authPath}) {
+function Auth({authenticated, username, authPath}) {
+  if (authenticated === false) {
+    return(
+        <>
+          <Button href={authPath}>Login</Button>
+        </>
+    )
+  }
   return(
-      <>
-        <Button href={authPath}>Login</Button>
-      </>
+    <>
+      <Badge bg="primary">
+        <User
+        size={22}
+        strokeWidth={1}
+        color={'white'}
+      /> {username}</Badge>
+    </>
   )
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: isAuthenticated(state),
+  authenticated: isAuthenticated(state),
+  username: getUsername(state),
   authPath: getAuthPath(state),
 })
 const mapDispatchToProps = {}

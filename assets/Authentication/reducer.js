@@ -1,5 +1,6 @@
 export const initialState = {
-  isAuthenticated: false
+  authenticated: false,
+  username: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -7,7 +8,7 @@ const reducer = (state = initialState, action) => {
     case 'AUTH_INIT_STATE':
       return {
         ...state,
-        isAuthenticated: action.payload.auth !== null
+        ...action.payload.auth
       }
     default:
       return state

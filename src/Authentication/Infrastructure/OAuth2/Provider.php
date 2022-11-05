@@ -9,8 +9,9 @@ declare(strict_types=1);
 
 namespace Cbase\Authentication\Infrastructure\OAuth2;
 
-use Cbase\Authentication\Domain\Member;
+use Cbase\Authentication\Domain\User;
 use Cbase\Shared\Domain\MemberName;
+use KnpU\OAuth2ClientBundle\Security\User\OAuthUser;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\GenericProvider;
@@ -58,8 +59,6 @@ final class Provider extends GenericProvider
 
     protected function createResourceOwner(array $response, AccessToken $token): ResourceOwnerInterface
     {
-        return Member::create(
-            MemberName::create($response['username'])
-        );
+        return UserProvider::createUser($response['username']);
     }
 }

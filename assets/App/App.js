@@ -24,11 +24,11 @@ const App = () => {
       <div className="App">
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand><Link to="/">CBRP3 : artefactguide</Link> </Navbar.Brand>
+            <Navbar.Brand><Link to="/"  className={'nav-link'}>CBRP3 : artefactguide</Link> </Navbar.Brand>
             <Nav className="me-auto">
               <Link to="/artefacts" className={'nav-link'}>Artefacts</Link>
-              <Auth />
             </Nav>
+            <Auth />
           </Container>
         </Navbar>
 

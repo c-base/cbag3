@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Cbase\App\Application\Controller;
 
 use Cbase\Authentication\Application\Controller\Authenticate;
+use Cbase\Authentication\Domain\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,17 +30,29 @@ class IndexController extends AbstractController
         defaults: ["reactRouting" => null],
         methods: [Request::METHOD_GET],
         requirements: ["reactRouting" => ".+"],
-        stateless: true,
     )]
     public function __invoke(): Response
     {
         $config = [
-            'auth' => null,
+            'auth' => $this->getAuth(),
             'resources' => $this->getApiResources(),
         ];
         return $this->render('app/index.html.twig', [
             'config' => json_encode($config),
         ]);
+    }
+
+    private function getAuth(): array
+    {
+        if (!$this->getUser()) {
+            return [
+                'authenticated' => false,
+            ];
+        }
+        return [
+            'authenticated' => true,
+            'username' => $this->getUser()->getUserIdentifier(),
+        ];
     }
 
     /**

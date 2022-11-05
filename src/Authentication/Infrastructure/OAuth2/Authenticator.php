@@ -11,7 +11,7 @@ namespace Cbase\Authentication\Infrastructure\OAuth2;
 
 use Cbase\App\Application\Controller\IndexController;
 use Cbase\Authentication\Application\Controller\Authenticate;
-use Cbase\Authentication\Domain\Member;
+use Cbase\Authentication\Domain\User;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +41,7 @@ final class Authenticator extends OAuth2Authenticator
         $client = $this->client;
         return new SelfValidatingPassport(
             new UserBadge($accessToken->getToken(), function() use ($accessToken, $client) {
-                /** @var Member $member */
+                /** @var User $member */
                 return $client->fetchUserFromToken($accessToken);
             })
         );

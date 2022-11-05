@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Cbase\Authentication\Application\Controller;
 
-use Cbase\Authentication\Domain\Member;
+use Cbase\Authentication\Domain\User;
 use Cbase\Authentication\Infrastructure\OAuth2\Client;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,28 +38,10 @@ final class Authenticate extends AbstractController
      * because this is the "redirect_route" you configured
      * in config/packages/knpu_oauth2_client.yaml
      */
-    #[Route(path: '/api/auth/callback', name: self::API_AUTH_CALLBACK)]
-    public function connectCheckAction(Request $request, Client $client)
+    #[Route(path: '/api/auth/callback', name: self::API_AUTH_CALLBACK, methods: [Request::METHOD_GET])]
+    public function connectCheckAction(Request $request, Client $client): RedirectResponse
     {
-        dd($request);
-        // ** if you want to *authenticate* the user, then
-        // leave this method blank and create a Guard authenticator
-        // (read below)
-
-        try {
-            // the exact class depends on which provider you're using
-            /** @var Member $user */
-            $user = $client->fetchUser();
-
-            // do something with all this new power!
-            // e.g. $name = $user->getFirstName();
-            var_dump($user); die;
-            // ...
-        } catch (IdentityProviderException $e) {
-            // something went wrong!
-            // probably you should return the reason to the user
-            var_dump($e->getMessage()); die;
-        }
+        return new RedirectResponse('/');
     }
 
 }
