@@ -4,17 +4,17 @@ import {Card, CardGroup, Container, Row} from "react-bootstrap"
 import { run as runHolder } from 'holderjs/holder'
 import {getLastCreated} from './selectors'
 
-function ArtefactPrimaryAsset({assets}) {
-  if (assets.length > 0) {
-    return <Card.Img variant="top" src={"/uploads/assets/"+assets[0].path} />
+function ArtefactPrimaryAsset({primaryImage}) {
+  if (primaryImage === null) {
+    return <Card.Img variant="top" data-src="holder.js/100px250?text=Bild folgt&bg=434a52&fg=3d688f" fluid="true" />
   }
-  return <Card.Img variant="top" data-src="holder.js/100px250?text=Bild folgt&bg=434a52&fg=3d688f" fluid="true" />
+  return <Card.Img variant="top" src={"/uploads/assets/"+primaryImage.path} />
 }
 
 function Artefact({artefact}) {
   return (
     <Card bg={"dark"}>
-      <ArtefactPrimaryAsset assets={artefact.assets} />
+      <ArtefactPrimaryAsset primaryImage={artefact.primaryImage} />
       <Card.Body>
         <Card.Title>{artefact.name}</Card.Title>
         <Card.Text>{artefact.description}</Card.Text>
@@ -34,7 +34,7 @@ function ArtefactCollection({artefacts}) {
     <Container>
       <Row>
         <CardGroup>
-          {artefacts.map(artefact => <Artefact key={'artefact_' + artefact.id} artefact={artefact}/>)}
+          {artefacts.map(artefact => <Artefact key={'artefact_' + artefact.slug} artefact={artefact}/>)}
         </CardGroup>
       </Row>
     </Container>
