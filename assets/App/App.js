@@ -15,6 +15,7 @@ import { initApp } from './actions'
 
 import ArtefactCollection from "../Artefact/ArtefactCollection";
 import ArtefactSlugList from "../Artefact/ArtefactSlugList";
+import ArtefactDetail from "../Artefact/ArtefactDetail";
 import Auth from "../Authentication/Auth";
 
 const App = () => {
@@ -33,17 +34,14 @@ const App = () => {
         </Navbar>
 
         <Switch>
-          <Route path="/artefacts/:slug">
-            ArtefactDetail
-          </Route>
+          <Route path="/artefacts/:slug" render={(props) => <ArtefactDetail {...props.match.params} />} />
           <Route path="/artefacts">
             <ArtefactCollection />
             <ArtefactSlugList />
           </Route>
 
-          <Route path="/">
-            Home
-          </Route>
+          <Route exact path="/">Home</Route>
+          <Route render={() => (<div>Miss</div>)} />
         </Switch>
 
 

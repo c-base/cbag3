@@ -77,6 +77,7 @@ class Image implements Normalizable
     public function normalize(): array
     {
         return [
+            'id' => $this->imageId->value(),
             'path' => $this->path,
             'description' => $this->description,
             'author' => $this->author,

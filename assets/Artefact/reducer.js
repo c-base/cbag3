@@ -2,7 +2,8 @@ export const initialState = {
     isLoaded: false,
     byId: {},
     allIds: [],
-    lastUpdated: null
+    lastUpdated: null,
+    selected: null,
 }
 
 function initArtefacts(artefacts) {
@@ -30,6 +31,23 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoaded: true
+            }
+        case 'ARTEFACT_SELECT_DETAIL':
+            return {
+                ...state,
+                selected: action.payload.id,
+            }
+        case 'ARTEFACT_UPDATE_PRIMARY_IMAGE':
+            const id = action.payload.id
+            return {
+                ...state,
+                byId: {
+                    ...state.byId,
+                    [id]: {
+                        ...state.byId[id],
+                        ...{primaryImage: action.payload.imageId}
+                    }
+                }
             }
         default:
             return state
