@@ -1,9 +1,5 @@
 controllers:
-    resource: ../../src/App/Controller
-    type: attribute
-
-artefactguide_controllers:
-    resource: ../../src/ArtefactGuide/Application/Controller
+    resource: ../../src/*/Application/Controller/*
     type: attribute
 
 kernel:

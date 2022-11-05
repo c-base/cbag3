@@ -15,7 +15,7 @@ import { initApp } from './actions'
 
 import ArtefactCollection from "../Artefact/ArtefactCollection";
 import ArtefactSlugList from "../Artefact/ArtefactSlugList";
-import Login from "../Login/Login";
+import Auth from "../Authentication/Auth";
 
 const App = () => {
   useDispatch()(initApp())
@@ -24,10 +24,10 @@ const App = () => {
       <div className="App">
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="/">CBRP3 : artefactguide</Navbar.Brand>
+            <Navbar.Brand><Link to="/">CBRP3 : artefactguide</Link> </Navbar.Brand>
             <Nav className="me-auto">
               <Link to="/artefacts" className={'nav-link'}>Artefacts</Link>
-              <Login />
+              <Auth />
             </Nav>
           </Container>
         </Navbar>

@@ -19,3 +19,10 @@ doctrine:
                 dir: '%kernel.project_dir%/src/ArtefactGuide/Domain'
                 prefix: 'Cbase\ArtefactGuide\Domain'
                 alias: 'ArtefactGuideDomain'
+
+            Shared:
+                is_bundle: false
+                type: attribute
+                dir: '%kernel.project_dir%/src/Shared/Domain'
+                prefix: 'Cbase\Shared\Domain'
+                alias: 'SharedDomain'

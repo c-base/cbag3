@@ -7,8 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Cbase\App\Controller;
+namespace Cbase\App\Application\Controller;
 
+use Cbase\Authentication\Application\Controller\Authenticate;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,9 +20,11 @@ use Symfony\Component\Routing\RouterInterface;
 #[AsController]
 class IndexController extends AbstractController
 {
+    const APP_INDEX = 'app_index';
+
     #[Route(
         path: "/{reactRouting}",
-        name: 'app_index',
+        name: self::APP_INDEX,
         priority: -1,
         defaults: ["reactRouting" => null],
         methods: [Request::METHOD_GET],
@@ -31,7 +34,7 @@ class IndexController extends AbstractController
     public function __invoke(): Response
     {
         $config = [
-            'user' => null,
+            'auth' => null,
             'resources' => $this->getApiResources(),
         ];
         return $this->render('app/index.html.twig', [
@@ -47,8 +50,11 @@ class IndexController extends AbstractController
         /** @var RouterInterface $router */
         $router = $this->container->get('router');
         $routes = $router->getRouteCollection()->all();
-        $routes = array_filter($routes, function ($routeName) {
-            return str_starts_with($routeName, 'api');
+
+        $excludedRoutes = [Authenticate::API_AUTH_CALLBACK];
+
+        $routes = array_filter($routes, function ($routeName) use ($excludedRoutes) {
+            return str_starts_with($routeName, 'api') && !in_array($routeName, $excludedRoutes, true);
         }, ARRAY_FILTER_USE_KEY);
 
         array_walk($routes, function (&$route, $routeName) {
