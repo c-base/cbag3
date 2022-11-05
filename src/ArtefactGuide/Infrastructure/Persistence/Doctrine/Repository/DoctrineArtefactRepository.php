@@ -1,12 +1,12 @@
 <?php
 
-namespace ArtefactGuide\Infrastructure\Persistence\Doctrine\Repository;
+namespace Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\Repository;
 
-use ArtefactGuide\Domain\Artefact;
-use ArtefactGuide\Domain\ArtefactCollection;
-use ArtefactGuide\Domain\ArtefactRepository;
+use Cbase\ArtefactGuide\Domain\Artefact;
+use Cbase\ArtefactGuide\Domain\ArtefactCollection;
+use Cbase\ArtefactGuide\Domain\ArtefactRepository;
+use Cbase\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 
 final class DoctrineArtefactRepository extends DoctrineRepository implements ArtefactRepository
 {

@@ -7,10 +7,10 @@
  */
 declare(strict_types=1);
 
-namespace Shared\Domain;
+namespace Cbase\Shared\Domain;
 
-use Shared\Domain\Contract\UuidCreatable;
-use Shared\Domain\ValueObject\Uuid;
+use Cbase\Shared\Domain\Contract\UuidCreatable;
+use Cbase\Shared\Domain\ValueObject\Uuid;
 
 final class ImageId extends Uuid
 {

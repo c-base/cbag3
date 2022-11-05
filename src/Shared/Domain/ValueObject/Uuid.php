@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Shared\Domain\ValueObject;
+namespace Cbase\Shared\Domain\ValueObject;
 
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid as RamseyUuid;

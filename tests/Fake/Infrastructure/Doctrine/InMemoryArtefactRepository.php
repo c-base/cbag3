@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace Tests\Fake\Infrastructure\Doctrine;
 
-use ArtefactGuide\Domain\Artefact;
-use ArtefactGuide\Domain\ArtefactCollection;
-use ArtefactGuide\Domain\ArtefactRepository;
+use Cbase\ArtefactGuide\Domain\Artefact;
+use Cbase\ArtefactGuide\Domain\ArtefactCollection;
+use Cbase\ArtefactGuide\Domain\ArtefactRepository;
 use Symfony\Contracts\Service\ResetInterface;
 
 final class InMemoryArtefactRepository implements ArtefactRepository, ResetInterface

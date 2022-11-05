@@ -9,19 +9,22 @@ declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Application\Action\ListArtefacts;
 
+use Cbase\Shared\Domain\Contract\Normalizable;
 use Tests\Factory\ArtefactGuide\ArtefactFactory;
 use Tests\Factory\ArtefactGuide\ImageFactory;
 use Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
 
 final class GetArtefactListQueryTest extends InfrastructureTestCase
 {
-    public function test_we_can_serialize_the_artefacts()
+    public function test_we_can_normalize_the_artefacts()
     {
         $artefact = ArtefactFactory::create();
         $artefact->addImage(ImageFactory::create());
 
+        self::assertInstanceOf(Normalizable::class, $artefact);
+
         $result = $artefact->normalize();
-        dd($result);
+        self::assertIsArray($result);
     }
 
 

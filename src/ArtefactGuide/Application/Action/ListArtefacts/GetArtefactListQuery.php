@@ -7,12 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace ArtefactGuide\Application\Action\ListArtefacts;
+namespace Cbase\ArtefactGuide\Application\Action\ListArtefacts;
 
-use ArtefactGuide\Domain\Artefact;
-use ArtefactGuide\Domain\ArtefactCollection;
-use ArtefactGuide\Domain\ArtefactRepository;
-use Shared\Domain\Utils\CollectionUtils;
+use Cbase\ArtefactGuide\Domain\Artefact;
+use Cbase\ArtefactGuide\Domain\ArtefactCollection;
+use Cbase\ArtefactGuide\Domain\ArtefactRepository;
+use Cbase\Shared\Domain\Utils\CollectionUtils;
 use Symfony\Component\Serializer\SerializerInterface;
 
 final class GetArtefactListQuery

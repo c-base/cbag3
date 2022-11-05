@@ -7,17 +7,18 @@
  */
 declare(strict_types=1);
 
-namespace ArtefactGuide\Domain;
+namespace Cbase\ArtefactGuide\Domain;
 
-use ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType;
+use Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType;
+use Cbase\Shared\Domain\Aggregate\AggregateRoot;
+use Cbase\Shared\Domain\ArtefactId;
+use Cbase\Shared\Domain\Contract\Normalizable;
+use Cbase\Shared\Domain\MemberName;
+use Cbase\Shared\Domain\Utils\CollectionUtils;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Shared\Domain\Aggregate\AggregateRoot;
-use Shared\Domain\ArtefactId;
-use Shared\Domain\Contract\Normalizable;
-use Shared\Domain\Utils\CollectionUtils;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity]
@@ -101,7 +102,7 @@ class Artefact extends AggregateRoot implements Normalizable
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'createdBy' => $this->createdBy->value(),
             'primaryImage' => $this->primaryImage?->normalize(),
-            'images' => CollectionUtils::map((fn($image) => $image->normalize()) , $this->images)
+            'images' => CollectionUtils::map((fn(Image $image) => $image->normalize()) , $this->images)
         ];
     }
 }

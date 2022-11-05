@@ -1,15 +1,15 @@
 <?php
 
-namespace ArtefactGuide\Application\Console;
+namespace Cbase\ArtefactGuide\Application\Console;
 
-use ArtefactGuide\Domain\Artefact;
-use ArtefactGuide\Domain\Image;
-use ArtefactGuide\Domain\Licence;
-use ArtefactGuide\Domain\MemberName;
-use ArtefactGuide\Domain\Slug;
+use Cbase\ArtefactGuide\Domain\Artefact;
+use Cbase\ArtefactGuide\Domain\Image;
+use Cbase\ArtefactGuide\Domain\Licence;
+use Cbase\ArtefactGuide\Domain\Slug;
+use Cbase\Shared\Domain\ArtefactId;
+use Cbase\Shared\Domain\ImageId;
+use Cbase\Shared\Domain\MemberName;
 use Doctrine\ORM\EntityManagerInterface;
-use Shared\Domain\ArtefactId;
-use Shared\Domain\ImageId;
 use SplFileObject;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;

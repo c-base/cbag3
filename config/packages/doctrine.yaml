@@ -6,8 +6,8 @@ doctrine:
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '13'
         types:
-            artefact_id: ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType
-            image_id: ArtefactGuide\Infrastructure\Persistence\Doctrine\ImageIdType
+            artefact_id: Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType
+            image_id: Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ImageIdType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
@@ -17,5 +17,12 @@ doctrine:
                 is_bundle: false
                 type: attribute
                 dir: '%kernel.project_dir%/src/ArtefactGuide/Domain'
-                prefix: 'ArtefactGuide\Domain'
+                prefix: 'Cbase\ArtefactGuide\Domain'
                 alias: 'ArtefactGuideDomain'
+
+            Shared:
+                is_bundle: false
+                type: attribute
+                dir: '%kernel.project_dir%/src/Shared/Domain'
+                prefix: 'Cbase\Shared\Domain'
+                alias: 'SharedDomain'

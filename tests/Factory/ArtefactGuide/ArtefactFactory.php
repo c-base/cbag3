@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace Tests\Factory\ArtefactGuide;
 
-use ArtefactGuide\Domain\Artefact;
-use ArtefactGuide\Domain\MemberName;
-use ArtefactGuide\Domain\Slug;
-use Shared\Domain\ArtefactId;
+use Cbase\ArtefactGuide\Domain\Artefact;
+use Cbase\ArtefactGuide\Domain\Slug;
+use Cbase\Shared\Domain\ArtefactId;
+use Cbase\Shared\Domain\MemberName;
 use Tests\Factory\FakerCapability;
 
 final class ArtefactFactory

@@ -25,9 +25,4 @@ abstract class InfrastructureTestCase extends KernelTestCase
     {
         return $this->getContainer()->get($id);
     }
-
-    protected function getSerializer(): \Symfony\Component\Serializer\Serializer
-    {
-        return $this->service('serializer');
-    }
 }
