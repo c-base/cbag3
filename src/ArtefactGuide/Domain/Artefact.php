@@ -13,6 +13,7 @@ use Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType;
 use Cbase\Shared\Domain\Aggregate\AggregateRoot;
 use Cbase\Shared\Domain\ArtefactId;
 use Cbase\Shared\Domain\Contract\Normalizable;
+use Cbase\Shared\Domain\ImageId;
 use Cbase\Shared\Domain\MemberName;
 use Cbase\Shared\Domain\Utils\CollectionUtils;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -104,5 +105,20 @@ class Artefact extends AggregateRoot implements Normalizable
             'primaryImage' => $this->primaryImage?->normalize(),
             'images' => CollectionUtils::map((fn(Image $image) => $image->normalize()) , $this->images)
         ];
+    }
+
+    public function getImage(ImageId $imageId): ?Image
+    {
+        /** @var Image $image */
+        foreach ($this->images as $image) {
+            if ($image->equals($imageId)) {
+                return $image;
+            }
+        }
+    }
+
+    public function setPrimaryImage(Image $image): void
+    {
+        $this->primaryImage = $image;
     }
 }

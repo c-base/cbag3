@@ -38,7 +38,7 @@ class Image implements Normalizable
     private \DateTimeInterface $createdAt;
 
     #[ORM\Embedded(class: Licence::class, columnPrefix: false)]
-    public readonly Licence $licence;
+    private Licence $licence;
 
     #[ORM\ManyToMany(targetEntity: Artefact::class, mappedBy: 'images')]
     private Collection $artefacts;
@@ -84,5 +84,10 @@ class Image implements Normalizable
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'licence' => $this->licence->value(),
         ];
+    }
+
+    public function equals(ImageId $imageId): bool
+    {
+        return $this->imageId->equals($imageId);
     }
 }

@@ -37,4 +37,11 @@ final class InMemoryArtefactRepository implements ArtefactRepository, ResetInter
     {
         $this->artefacts = new ArtefactCollection();
     }
+
+    public function getBySlug(string $slug): Artefact
+    {
+        $this->artefacts->offsetGet(0);
+    }
+
+
 }

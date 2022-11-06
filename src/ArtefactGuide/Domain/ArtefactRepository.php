@@ -14,4 +14,6 @@ interface ArtefactRepository
     public function all(): ArtefactCollection;
 
     public function save(Artefact $artefact): void;
+
+    public function getBySlug(string $slug): Artefact;
 }
