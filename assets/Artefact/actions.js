@@ -18,12 +18,20 @@ export const selectArtefactDetail = (id) => ({
 })
 
 export const updateArtefactPrimaryImage = (id, imageId) => ({
-  type: 'ARTEFACT_UPDATE_PRIMARY_IMAGE',
+  type: 'ARTEFACT_UPDATE',
   payload: {
     id,
-    imageId
+    artefact: {
+      primaryImage: imageId
+    }
   }
 })
 
-
+export const updateArtefactDone = (artefact) => ({
+  type: 'ARTEFACT_UPDATE_DONE',
+  payload: {
+    id: artefact.slug,
+    artefact
+  }
+})
 

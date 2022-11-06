@@ -19,10 +19,15 @@ function Images({images}) {
 }
 
 function MakePrimaryImageButton({image}) {
-  const artefactId = useSelector(getSelectedArtefact)
+  const artefact = useSelector(getSelectedArtefact)
+
+  if (artefact.primaryImage.hasOwnProperty('id') && artefact.primaryImage.id === image.id) {
+    return '';
+  }
+
   const dispatch = useDispatch()
   function handleClick() {
-    dispatch(updateArtefactPrimaryImage(artefactId, image.id))
+    dispatch(updateArtefactPrimaryImage(artefact.slug, image.id))
   }
   return (
     <Button variant="info" className="float-end" size={'sm'} onClick={handleClick}>

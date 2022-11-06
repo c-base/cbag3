@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 selected: action.payload.id,
             }
-        case 'ARTEFACT_UPDATE_PRIMARY_IMAGE':
+        case 'ARTEFACT_UPDATE_DONE':
             const id = action.payload.id
             return {
                 ...state,
@@ -45,7 +45,7 @@ const reducer = (state = initialState, action) => {
                     ...state.byId,
                     [id]: {
                         ...state.byId[id],
-                        ...{primaryImage: action.payload.imageId}
+                        ...action.payload.artefact
                     }
                 }
             }

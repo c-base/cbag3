@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Badge } from 'react-bootstrap'
-import { isAuthenticated, getUsername, getAuthPath } from "../Authentication/selectors"
+import { isAuthenticated, getUsername, getAuthPath } from "./selectors"
+import { getResourceById } from "./../App/selectors"
+
 import { connect } from "react-redux"
 import { User } from 'tabler-icons-react'
 
@@ -27,7 +29,7 @@ function Auth({authenticated, username, authPath}) {
 const mapStateToProps = state => ({
   authenticated: isAuthenticated(state),
   username: getUsername(state),
-  authPath: getAuthPath(state),
+  authPath: getResourceById(state, 'api_auth_cbase').path,
 })
 const mapDispatchToProps = {}
 

@@ -5,4 +5,5 @@ export const getLastCreated = (state, num = 3) => state.artefact.allIds
 export const getAllArtefacts = (state) => state.artefact.allIds.sort().map((id => state.artefact.byId[id]))
 
 export const getArtefact = (state, id) => state.artefact.byId.hasOwnProperty(id) ? state.artefact.byId[id] : null
-export const getSelectedArtefact = (state) => state.artefact.selected
+export const getSelectedArtefactId = (state) => state.artefact.selected
+export const getSelectedArtefact = (state) => state.artefact.byId.hasOwnProperty(state.artefact.selected) ? state.artefact.byId[state.artefact.selected] : null
