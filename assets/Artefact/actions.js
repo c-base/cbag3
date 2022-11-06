@@ -35,3 +35,7 @@ export const updateArtefactDone = (artefact) => ({
   }
 })
 
+export const selectImagesFromGallery = () => ({
+  type: 'ARTEFACT_SELECT_IMAGES'
+})
+

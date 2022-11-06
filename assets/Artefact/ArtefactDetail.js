@@ -1,11 +1,12 @@
 import React,  { useState, useEffect, useCallback } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
-import { Button, Card, CardGroup, Container, Row } from "react-bootstrap"
-import { updateArtefactPrimaryImage, selectArtefactDetail } from './actions'
+import {Button, Card, CardGroup, Container, Row, Col, Modal, Badge} from "react-bootstrap"
+import { updateArtefactPrimaryImage, selectArtefactDetail, selectImagesFromGallery } from './actions'
 import { getArtefact, getSelectedArtefact } from './selectors'
+import { getGalleryImages } from './../Gallery/selectors'
 import { useParams } from "react-router-dom";
 import {run as runHolder} from "holderjs";
-import { PhotoStar } from 'tabler-icons-react';
+import { PhotoStar, PhotoPlus } from 'tabler-icons-react';
 
 function PrimaryImage({primaryImage}) {
   if (primaryImage === null) {
@@ -14,8 +15,68 @@ function PrimaryImage({primaryImage}) {
   return <Card.Img variant="top" src={"/uploads/assets/"+primaryImage.path} />
 }
 
-function Images({images}) {
-  return <CardGroup>{images.map(image => <Image key={'image_'+image.id} image={image} />)}</CardGroup>
+function SelectImage({image}) {
+
+  return (
+    <Card className="bg-dark text-white" border="info">
+      <Card.Img variant={'bottom'} src={"/uploads/assets/" + image.path} alt="" />
+      <Card.Body>
+        <Card.Title>{image.description}</Card.Title>
+      </Card.Body>
+      <Card.Footer>
+        {image.artefacts.map(id => <><Badge pill bg="info" text={'dark'} key={'slug_' + id}>{id}</Badge>{' '}</>)}
+      </Card.Footer>
+    </Card>
+  )
+}
+
+
+function SelectImagesFromGallery() {
+  const galleryImages = useSelector(getGalleryImages)
+  const artefact = useSelector(getSelectedArtefact)
+
+  const [fullscreen, setFullscreen] = useState(true);
+
+  const [show, setShow] = useState(false);
+  function handleClose() {
+    setFullscreen(false);
+    setShow(false);
+  }
+  function handleShow() {
+    setFullscreen(true);
+    setShow(true);
+  }
+
+  return (
+    <>
+      <Button variant="info" className="float-end" size={'sm'} onClick={handleShow}>
+        <PhotoPlus size={22} strokeWidth={1} color={'black'}/> select images from gallery
+      </Button>
+
+      <Modal show={show} onHide={handleClose} fullscreen={fullscreen} >
+        <Modal.Header closeButton>
+          <Modal.Title>select artefact images from gallery for <b>{artefact.name}</b></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Row xs={1} md={5} className="g-4">
+            {galleryImages.map(image => <Col><SelectImage key={'galleryImage_'+image.id} image={image} /></Col>)}
+          </Row>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+}
+
+function Gallery({images, keyPrefix = 'image_'}) {
+  return <CardGroup>{images.map(image => <Image key={keyPrefix+image.id} image={image} />)}</CardGroup>
 }
 
 function MakePrimaryImageButton({image}) {
@@ -61,7 +122,10 @@ function Artefact({artefact}) {
       <Card.Footer>
         <small className="text-muted">created by {artefact.createdBy} / {artefact.createdAt}</small>
       </Card.Footer>
-      <Images images={artefact.images}/>
+      <Card.Footer>
+        <SelectImagesFromGallery />
+      </Card.Footer>
+      <Gallery images={artefact.images}/>
     </Card>
   )
 }
