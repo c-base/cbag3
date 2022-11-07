@@ -39,29 +39,11 @@ jobs:
       - name: Setup Install dependencies
         run: make install
 
-  ci:
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      fail-fast: false
-      matrix:
-        operating-system: [ ubuntu-latest ]
-        php-versions: [ '8.1' ]
-    needs: [ setup ]
-    steps:
       - name: CI php-cs-fixer
         run: make cs-fix-dry
 
       - name: CI phpstan
         run: make phpstan
 
-  test:
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      fail-fast: false
-      matrix:
-        operating-system: [ ubuntu-latest ]
-        php-versions: [ '8.1' ]
-    needs: [ setup ]
-    steps:
       - name: CI phpunit
         run: make test-coverage
