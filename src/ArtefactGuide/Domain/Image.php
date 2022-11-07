@@ -67,10 +67,22 @@ class Image implements Normalizable
         return $image;
     }
 
+    public function getImageId(): ImageId
+    {
+        return $this->imageId;
+    }
+
     public function addArtefact(Artefact $artefact): void
     {
         if (!$this->artefacts->contains($artefact)) {
             $this->artefacts->add($artefact);
+        }
+    }
+
+    public function removeArtefact(Artefact $artefact): void
+    {
+        if ($this->artefacts->contains($artefact)) {
+            $this->artefacts->removeElement($artefact);
         }
     }
 

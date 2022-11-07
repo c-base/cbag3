@@ -93,6 +93,14 @@ class Artefact extends AggregateRoot implements Normalizable
         }
     }
 
+    public function removeImage(Image $image): void
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            $image->removeArtefact($this);
+        }
+    }
+
     public function normalize(): array
     {
         return [
@@ -120,5 +128,13 @@ class Artefact extends AggregateRoot implements Normalizable
     public function setPrimaryImage(Image $image): void
     {
         $this->primaryImage = $image;
+    }
+
+    /**
+     * @param ArrayCollection<Image> $images
+     */
+    public function updateImages(ArrayCollection $images): void
+    {
+        $this->images = $images;
     }
 }
