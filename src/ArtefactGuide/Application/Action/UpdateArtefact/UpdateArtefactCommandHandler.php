@@ -32,7 +32,7 @@ final class UpdateArtefactCommandHandler
         }
 
         if (array_key_exists('images', $command->artefact)) {
-            $imageIds = array_map(fn($image) => $image['id'], $command->artefact['images']);
+            $imageIds = array_map(fn ($image) => $image['id'], $command->artefact['images']);
             $images = $this->imageRepository->findByImageIds($imageIds);
             $artefact->setImages($images);
         }

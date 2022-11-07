@@ -21,7 +21,7 @@ use Symfony\Component\Routing\RouterInterface;
 #[AsController]
 class IndexController extends AbstractController
 {
-    const APP_INDEX = 'app_index';
+    public const APP_INDEX = 'app_index';
 
     #[Route(
         path: "/{reactRouting}",

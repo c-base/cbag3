@@ -16,7 +16,7 @@ use Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
 
 final class GetArtefactListQueryTest extends InfrastructureTestCase
 {
-    public function test_we_can_normalize_the_artefacts()
+    public function test_we_can_normalize_the_artefacts(): void
     {
         $artefact = ArtefactFactory::create();
         $artefact->addImage(ImageFactory::create());
@@ -26,6 +26,4 @@ final class GetArtefactListQueryTest extends InfrastructureTestCase
         $result = $artefact->normalize();
         self::assertIsArray($result);
     }
-
-
 }

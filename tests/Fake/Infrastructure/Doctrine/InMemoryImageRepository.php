@@ -30,7 +30,7 @@ final class InMemoryImageRepository implements ImageRepository
     public function findByImageIds(array $imageIds): ArrayCollection
     {
         return $this->images->filter(
-            fn(Image $image) => in_array($image->getImageId()->value(), $imageIds, true)
+            fn (Image $image) => in_array($image->getImageId()->value(), $imageIds, true)
         );
     }
 }

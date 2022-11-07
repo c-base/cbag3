@@ -52,9 +52,9 @@ class Artefact extends AggregateRoot implements Normalizable
     #[ORM\JoinColumn(name: 'primary_image_id', referencedColumnName: 'id', unique: false, nullable: true)]
     private ?Image $primaryImage;
 
-     #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'artefacts')]
-     #[ORM\JoinTable(name: 'artefact_image')]
-     private Collection $images;
+    #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'artefacts')]
+    #[ORM\JoinTable(name: 'artefact_image')]
+    private Collection $images;
 
     public function __construct()
     {
@@ -70,8 +70,7 @@ class Artefact extends AggregateRoot implements Normalizable
         \DateTimeInterface $createdAt,
         MemberName $createdBy,
         ?Image $primaryImage = null
-    ): self
-    {
+    ): self {
         $artefact = new self();
         $artefact->artefactId = $artefactId;
         $artefact->name = $name;
@@ -111,7 +110,7 @@ class Artefact extends AggregateRoot implements Normalizable
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'createdBy' => $this->createdBy->value(),
             'primaryImage' => $this->primaryImage?->normalize(),
-            'images' => CollectionUtils::map((fn(Image $image) => $image->normalize()) , $this->images)
+            'images' => CollectionUtils::map((fn (Image $image) => $image->normalize()), $this->images)
         ];
     }
 

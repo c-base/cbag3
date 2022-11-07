@@ -38,7 +38,7 @@ final class Provider extends GenericProvider
         parent::__construct([
             'clientId' => $oauth2ClientId,
             'clientSecret' => $oauth2ClientSecret,
-            'redirectUri' => $router->generate($oauth2RedirectRoute, [], UrlGeneratorInterface::ABSOLUTE_URL ),
+            'redirectUri' => $router->generate($oauth2RedirectRoute, [], UrlGeneratorInterface::ABSOLUTE_URL),
             'urlAuthorize' => $oauth2AuthorizationUrl,
             'urlAccessToken' => $oauth2TokenUrl,
             'urlResourceOwnerDetails' => $oauth2ProfileUrl,
@@ -47,7 +47,7 @@ final class Provider extends GenericProvider
 
     public function getDefaultScopes(): array
     {
-        return array_map(fn($scope) => trim($scope), explode(',', $this->oauth2Scopes));
+        return array_map(fn ($scope) => trim($scope), explode(',', $this->oauth2Scopes));
     }
 
     protected function checkResponse(ResponseInterface $response, $data): void
