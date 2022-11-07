@@ -21,9 +21,11 @@ function init(artefacts) {
                 imageArtefacts = state.byId[image.id].artefacts
             }
             imageArtefacts = [...imageArtefacts, artefact.slug]
-
             state.byId[image.id] = { ...image, 'artefacts': imageArtefacts }
-            state.allIds = [...state.allIds, image.id]
+
+            if (!state.allIds.includes(image.id)) {
+                state.allIds = [...state.allIds, image.id]
+            }
         })
     })
     return state

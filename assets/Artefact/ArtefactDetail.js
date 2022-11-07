@@ -1,8 +1,12 @@
 import React,  { useState, useEffect, useCallback } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import {Button, Card, CardGroup, Container, Row, Col, Modal, Badge} from "react-bootstrap"
-import { updateArtefactPrimaryImage, selectArtefactDetail, selectImagesFromGallery } from './actions'
-import { getArtefact, getSelectedArtefact } from './selectors'
+import {
+  updateArtefactPrimaryImage,
+  selectArtefactDetail,
+  assignImageToArtefact,
+} from './actions'
+import {getArtefact, getSelectedArtefact, getSelectedArtefactImageIds} from './selectors'
 import { getGalleryImages } from './../Gallery/selectors'
 import { useParams } from "react-router-dom";
 import {run as runHolder} from "holderjs";
@@ -15,10 +19,18 @@ function PrimaryImage({primaryImage}) {
   return <Card.Img variant="top" src={"/uploads/assets/"+primaryImage.path} />
 }
 
-function SelectImage({image}) {
+function AssignImage({image}) {
+  const artefact = useSelector(getSelectedArtefact)
+  if (artefact === null) {
+    return <>Loading ...</>
+  }
+  const dispatch = useDispatch()
+  function handleClick() {
+    dispatch(assignImageToArtefact(artefact.slug, [...artefact.images, image]))
+  }
 
   return (
-    <Card className="bg-dark text-white" border="info">
+    <Card className="bg-dark text-white" border="info" onClick={handleClick}>
       <Card.Img variant={'bottom'} src={"/uploads/assets/" + image.path} alt="" />
       <Card.Body>
         <Card.Title>{image.description}</Card.Title>
@@ -30,10 +42,29 @@ function SelectImage({image}) {
   )
 }
 
+function UnassignImage({artefact, image}) {
+  const dispatch = useDispatch()
+  function handleClick() {
+    dispatch(assignImageToArtefact(artefact.slug, artefact.images.filter(artefactImage => artefactImage.id !== image.id)))
+  }
 
-function SelectImagesFromGallery() {
-  const galleryImages = useSelector(getGalleryImages)
+  return (
+    <Card className="bg-dark text-white" border="info" onClick={handleClick}>
+      <Card.Img variant={'bottom'} src={"/uploads/assets/" + image.path} alt="" />
+      <Card.Body>
+        <Card.Title>{image.description}</Card.Title>
+      </Card.Body>
+    </Card>
+  )
+}
+
+function AddImagesFromGallery() {
   const artefact = useSelector(getSelectedArtefact)
+  if (artefact === null) {
+    return <>Loading ...</>
+  }
+  const artefactImageIds = useSelector(getSelectedArtefactImageIds)
+  const galleryImages = useSelector(getGalleryImages).filter(image => !artefactImageIds.includes(image.id))
 
   const [fullscreen, setFullscreen] = useState(true);
 
@@ -50,16 +81,23 @@ function SelectImagesFromGallery() {
   return (
     <>
       <Button variant="info" className="float-end" size={'sm'} onClick={handleShow}>
-        <PhotoPlus size={22} strokeWidth={1} color={'black'}/> select images from gallery
+        <PhotoPlus size={22} strokeWidth={1} color={'black'}/> add images from gallery
       </Button>
 
-      <Modal show={show} onHide={handleClose} fullscreen={fullscreen} >
+      <Modal show={show} onHide={handleClose} fullscreen={fullscreen} bg={'Light'} >
         <Modal.Header closeButton>
-          <Modal.Title>select artefact images from gallery for <b>{artefact.name}</b></Modal.Title>
+          <Modal.Title>assign artefact images from gallery to <b>{artefact.name}</b></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Row xs={1} md={5} className="g-4">
-            {galleryImages.map(image => <Col><SelectImage key={'galleryImage_'+image.id} image={image} /></Col>)}
+          <h4>artefact images</h4>
+          <p>if you click on an image it gets unassigned from the artefact</p>
+          <Row xs={1} md={5} className="g-4" key={'modal_artefact_images'}>
+            {artefact.images.map(image => <Col key={'modal_artefact_image_'+image.id} ><UnassignImage image={image} artefact={artefact} /></Col>)}
+          </Row>
+          <h4>gallery</h4>
+          <p>if you click on an image it gets assigned to the artefact</p>
+          <Row xs={1} md={5} className="g-4" key={'modal_gallery_images'}>
+            {galleryImages.map(image => <Col key={'modal_gallery_image_'+image.id}><AssignImage image={image} /></Col>)}
           </Row>
         </Modal.Body>
         <Modal.Footer>
@@ -81,8 +119,7 @@ function Gallery({images, keyPrefix = 'image_'}) {
 
 function MakePrimaryImageButton({image}) {
   const artefact = useSelector(getSelectedArtefact)
-
-  if (artefact.primaryImage.hasOwnProperty('id') && artefact.primaryImage.id === image.id) {
+  if (artefact.primaryImage !== null && artefact.primaryImage.hasOwnProperty('id') && artefact.primaryImage.id === image.id) {
     return '';
   }
 
@@ -123,7 +160,7 @@ function Artefact({artefact}) {
         <small className="text-muted">created by {artefact.createdBy} / {artefact.createdAt}</small>
       </Card.Footer>
       <Card.Footer>
-        <SelectImagesFromGallery />
+        <AddImagesFromGallery />
       </Card.Footer>
       <Gallery images={artefact.images}/>
     </Card>

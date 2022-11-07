@@ -35,7 +35,12 @@ export const updateArtefactDone = (artefact) => ({
   }
 })
 
-export const selectImagesFromGallery = () => ({
-  type: 'ARTEFACT_SELECT_IMAGES'
+export const assignImageToArtefact = (id, images) => ({
+  type: 'ARTEFACT_UPDATE',
+  payload: {
+    id,
+    artefact: {
+      images
+    }
+  }
 })
-
