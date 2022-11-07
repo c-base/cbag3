@@ -2,10 +2,11 @@
 # GitHub Action for Symfony with PostgreSQL
 name: Testing all the things
 on: [push, pull_request]
+
 jobs:
   symfony:
     name: Symfony (PHP ${{ matrix.php-versions }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     container:
       image: php:8.1-fpm-bullseye
     strategy:
