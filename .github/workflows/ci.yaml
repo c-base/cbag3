@@ -41,7 +41,12 @@ jobs:
 
   ci:
     runs-on: ${{ matrix.operating-system }}
-    needs: setup
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        php-versions: [ '8.1' ]
+    needs: [ setup ]
     steps:
       - name: CI php-cs-fixer
         run: make cs-fix-dry
@@ -51,7 +56,12 @@ jobs:
 
   test:
     runs-on: ${{ matrix.operating-system }}
-    needs: setup
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        php-versions: [ '8.1' ]
+    needs: [ setup ]
     steps:
       - name: CI phpunit
         run: make test-coverage
