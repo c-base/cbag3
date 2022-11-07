@@ -37,12 +37,14 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install Composer dependencies
+      - name: [Setup] Install dependencies
         run: make install
-#        run: composer install --no-progress --prefer-dist --optimize-autoloader
-#
-#      - name: Install PHPUnit
-#        run: simple-phpunit install
-#
-#      - name: Run tests
-#        run: simple-phpunit --coverage-text
+
+      - name: [CI] php-cs-fixer
+        run: simple-phpunit install
+
+      - name: [CI] phpstan
+        run: make phpstan
+
+      - name: [CI] phpunit
+        run: make test-coverage
