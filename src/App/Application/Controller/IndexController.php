@@ -56,7 +56,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @return array
+     * @return array<string, \Symfony\Component\Routing\Route>
      */
     private function getApiResources(): array
     {

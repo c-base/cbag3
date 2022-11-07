@@ -76,7 +76,7 @@ class CbagRestoreCommand extends Command
                 $artefactData['name'],
                 new Slug($artefactData['slug']),
                 $artefactData['description'],
-                (new \DateTimeImmutable())->setTimestamp(ceil($artefactData['createdAt']['$date'] / 1000)),
+                (new \DateTimeImmutable())->setTimestamp((int) ceil($artefactData['createdAt']['$date'] / 1000)),
                 MemberName::create($artefactData['createdBy'] ?? 'alien')
             );
 

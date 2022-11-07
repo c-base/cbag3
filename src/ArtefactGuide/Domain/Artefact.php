@@ -130,9 +130,6 @@ class Artefact extends AggregateRoot implements Normalizable
         $this->primaryImage = $image;
     }
 
-    /**
-     * @param ArrayCollection<Image> $images
-     */
     public function setImages(ArrayCollection $images): void
     {
         $this->images = $images;

@@ -196,6 +196,11 @@ parameters:
 			path: ../../../src/Authentication/Domain/User.php
 
 		-
+			message: "#^Parameter \\#1 \\$accessToken of method KnpU\\\\OAuth2ClientBundle\\\\Client\\\\OAuth2Client\\:\\:fetchUserFromToken\\(\\) expects League\\\\OAuth2\\\\Client\\\\Token\\\\AccessToken, League\\\\OAuth2\\\\Client\\\\Token\\\\AccessTokenInterface given\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Infrastructure/OAuth2/Authenticator.php
+
+		-
 			message: "#^Method Cbase\\\\Authentication\\\\Infrastructure\\\\OAuth2\\\\Provider\\:\\:checkResponse\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: ../../../src/Authentication/Infrastructure/OAuth2/Provider.php
@@ -207,6 +212,11 @@ parameters:
 
 		-
 			message: "#^Method Cbase\\\\Authentication\\\\Infrastructure\\\\OAuth2\\\\Provider\\:\\:getDefaultScopes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Infrastructure/OAuth2/Provider.php
+
+		-
+			message: "#^Parameter \\#1 \\$message of class League\\\\OAuth2\\\\Client\\\\Provider\\\\Exception\\\\IdentityProviderException constructor expects string, Psr\\\\Http\\\\Message\\\\StreamInterface given\\.$#"
 			count: 1
 			path: ../../../src/Authentication/Infrastructure/OAuth2/Provider.php
 
