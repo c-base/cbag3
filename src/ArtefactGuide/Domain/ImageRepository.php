@@ -13,9 +13,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 interface ImageRepository
 {
+    public function save(Image $image): void;
+
     /**
-     * @param array $imageIds
-     * @return array<Image>
+     * @param array<string> $imageIds
+     * @return ArrayCollection<int, object>
      */
     public function findByImageIds(array $imageIds): ArrayCollection;
 }

@@ -4,17 +4,16 @@ declare(strict_types = 1);
 
 namespace Cbase\Shared\Domain\ValueObject;
 
-use CodelyTv\Shared\Domain\Utils;
+use Cbase\Shared\Domain\Utils\StringUtils;
 use ReflectionClass;
 use Cbase\Shared\Domain\Utils\CollectionUtils;
-use function Lambdish\Phunctional\reindex;
 
 abstract class Enum
 {
     protected static $cache = [];
     protected $value;
 
-    public function __construct($value)
+    final public function __construct($value)
     {
         $this->ensureIsBetweenAcceptedValues($value);
 

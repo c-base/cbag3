@@ -81,7 +81,7 @@ class CbagRestoreCommand extends Command
             );
 
             $jo = empty($artefactData['assets']) ? [] : $artefactData['assets'];
-            array_map(function ($assetItem) use ($assets, &$artefactAssets, $artefactData, $artefact) {
+            array_map(function ($assetItem) use ($assets, $artefact) {
                 $artefact->addImage($assets[$assetItem['$id']['$oid']]);
             }, $jo);
 
@@ -93,13 +93,5 @@ class CbagRestoreCommand extends Command
         $file = null;
 
         return Command::SUCCESS;
-    }
-
-    private function getSerializer(): Serializer
-    {
-        $encoders = [];
-        $normalizers = [new ObjectNormalizer()];
-
-        return new Serializer($normalizers, $encoders);
     }
 }

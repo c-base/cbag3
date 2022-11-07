@@ -15,21 +15,21 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 final class InMemoryImageRepository implements ImageRepository
 {
-    private array $images;
+    private ArrayCollection $images;
 
     public function __construct()
     {
-        $this->artefacts = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function save(Image $image): void
     {
-        $this->artefacts->add($image);
+        $this->images->add($image);
     }
 
     public function findByImageIds(array $imageIds): ArrayCollection
     {
-        return $this->artefacts->filter(
+        return $this->images->filter(
             fn(Image $image) => in_array($image->getImageId()->value(), $imageIds, true)
         );
     }

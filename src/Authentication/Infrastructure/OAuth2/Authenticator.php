@@ -41,7 +41,6 @@ final class Authenticator extends OAuth2Authenticator
         $client = $this->client;
         return new SelfValidatingPassport(
             new UserBadge($accessToken->getToken(), function() use ($accessToken, $client) {
-                /** @var User $member */
                 return $client->fetchUserFromToken($accessToken);
             })
         );

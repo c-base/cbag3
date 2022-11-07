@@ -27,7 +27,7 @@ class Artefact extends AggregateRoot implements Normalizable
 {
     #[ORM\Id]
     #[ORM\Column(type: ArtefactIdType::TYPE, name: 'id')]
-    private readonly ArtefactId $artefactId;
+    private ArtefactId $artefactId;
 
     #[ORM\Column(type: Types::STRING, length: 255, unique: true, nullable: false)]
     private string $name;
@@ -123,6 +123,7 @@ class Artefact extends AggregateRoot implements Normalizable
                 return $image;
             }
         }
+        return null;
     }
 
     public function setPrimaryImage(Image $image): void
@@ -133,7 +134,7 @@ class Artefact extends AggregateRoot implements Normalizable
     /**
      * @param ArrayCollection<Image> $images
      */
-    public function updateImages(ArrayCollection $images): void
+    public function setImages(ArrayCollection $images): void
     {
         $this->images = $images;
     }

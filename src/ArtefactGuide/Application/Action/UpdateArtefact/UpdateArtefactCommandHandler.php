@@ -30,12 +30,11 @@ final class UpdateArtefactCommandHandler
             $image = $artefact->getImage(ImageId::create($command->artefact['primaryImage']));
             $artefact->setPrimaryImage($image);
         }
-        if (array_key_exists('images', $command->artefact)) {
 
+        if (array_key_exists('images', $command->artefact)) {
             $imageIds = array_map(fn($image) => $image['id'], $command->artefact['images']);
             $images = $this->imageRepository->findByImageIds($imageIds);
-
-            $toBeAddedImageIds = $artefact->updateImages($images);
+            $artefact->setImages($images);
         }
 
         $this->artefactRepository->save($artefact);

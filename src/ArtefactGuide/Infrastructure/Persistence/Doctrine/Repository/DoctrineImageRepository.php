@@ -16,6 +16,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 final class DoctrineImageRepository extends DoctrineRepository implements ImageRepository
 {
+    public function save(Image $artefact): void
+    {
+        $this->persist($artefact);
+    }
+
     public function findByImageIds(array $imageIds): ArrayCollection
     {
         return new ArrayCollection(

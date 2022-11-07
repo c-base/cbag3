@@ -17,10 +17,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 final class GetArtefactListQuery
 {
-    public function __construct(
-        private SerializerInterface $serializer,
-        private ArtefactRepository $artefactRepository,
-    ) {
+    public function __construct(private ArtefactRepository $artefactRepository)
+    {
     }
 
     public function __invoke(): array
