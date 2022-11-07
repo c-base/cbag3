@@ -3,7 +3,7 @@ name: Run CI for ArtefactGuide
 on: [push, pull_request]
 
 jobs:
-  symfony:
+  setup:
     name: Symfony (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
     runs-on: ${{ matrix.operating-system }}
     strategy:
@@ -20,7 +20,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-#          tools: phpunit-bridge
           extensions: mbstring, xml, ctype, iconv, intl, pgsql
           coverage: xdebug
 
@@ -37,14 +36,20 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: [Setup] Install dependencies
+      - name: Setup Install dependencies
         run: make install
 
-      - name: [CI] php-cs-fixer
-        run: simple-phpunit install
+  ci:
+    needs: setup
+    steps:
+      - name: CI php-cs-fixer
+        run: make cs-fix-dry
 
-      - name: [CI] phpstan
+      - name: CI phpstan
         run: make phpstan
 
-      - name: [CI] phpunit
+  test:
+    needs: setup
+    steps:
+      - name: CI phpunit
         run: make test-coverage
