@@ -18,5 +18,8 @@
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
+    },
+    "require-dev": {
+        "phpstan/phpstan-doctrine": "^1.3"
     }
 }

@@ -21,7 +21,7 @@ use Symfony\Component\Routing\RouterInterface;
 #[AsController]
 class IndexController extends AbstractController
 {
-    const APP_INDEX = 'app_index';
+    public const APP_INDEX = 'app_index';
 
     #[Route(
         path: "/{reactRouting}",
@@ -56,7 +56,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @return array
+     * @return array<string, \Symfony\Component\Routing\Route>
      */
     private function getApiResources(): array
     {

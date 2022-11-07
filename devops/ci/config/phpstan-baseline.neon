@@ -1,0 +1,436 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Cbase\\\\App\\\\Application\\\\Controller\\\\IndexController\\:\\:getAuth\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/App/Application/Controller/IndexController.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Application\\\\Action\\\\ListArtefacts\\\\GetArtefactListQuery\\:\\:__invoke\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Action/ListArtefacts/GetArtefactListQuery.php
+
+		-
+			message: "#^Property Cbase\\\\ArtefactGuide\\\\Application\\\\Action\\\\UpdateArtefact\\\\UpdateArtefactCommand\\:\\:\\$artefact type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$image of method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:setPrimaryImage\\(\\) expects Cbase\\\\ArtefactGuide\\\\Domain\\\\Image, Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\|null given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandler.php
+
+		-
+			message: "#^Cannot access offset '\\$date' on mixed\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset '\\$id' on mixed\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset '\\$oid' on mixed\\.$#"
+			count: 2
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset '_id' on mixed\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset 'assets' on mixed\\.$#"
+			count: 2
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset 'author' on mixed\\.$#"
+			count: 4
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset 'createdAt' on mixed\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset 'createdBy' on mixed\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset 'description' on mixed\\.$#"
+			count: 5
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset 'licence' on mixed\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset 'name' on mixed\\.$#"
+			count: 2
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset 'path' on mixed\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Cannot access offset 'slug' on mixed\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of class Cbase\\\\ArtefactGuide\\\\Domain\\\\Slug constructor expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Licence\\:\\:create\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of static method Cbase\\\\Shared\\\\Domain\\\\MemberName\\:\\:create\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#2 \\$name of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:create\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#2 \\$path of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\:\\:create\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#3 \\$cName of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:create\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#3 \\$description of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\:\\:create\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#4 \\$author of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\:\\:create\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Parameter \\#5 \\$description of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:create\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:normalize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/Artefact.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:setImages\\(\\) has parameter \\$images with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection but does not specify its types\\: TKey, T$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/Artefact.php
+
+		-
+			message: "#^Property Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:\\$images with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/Artefact.php
+
+		-
+			message: "#^Class Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection extends generic class ArrayObject but does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection\\:\\:__construct\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection\\:\\:add\\(\\) has parameter \\$items with no type specified\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection\\:\\:filter\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection\\:\\:filter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\:\\:normalize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/Image.php
+
+		-
+			message: "#^Property Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\:\\:\\$artefacts with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Domain/Image.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\Repository\\\\DoctrineArtefactRepository\\:\\:getBySlug\\(\\) should return Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact but returns object\\|null\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Infrastructure/Persistence/Doctrine/Repository/DoctrineArtefactRepository.php
+
+		-
+			message: "#^Method Cbase\\\\Authentication\\\\Domain\\\\User\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Domain/User.php
+
+		-
+			message: "#^Parameter \\#1 \\$accessToken of method KnpU\\\\OAuth2ClientBundle\\\\Client\\\\OAuth2Client\\:\\:fetchUserFromToken\\(\\) expects League\\\\OAuth2\\\\Client\\\\Token\\\\AccessToken, League\\\\OAuth2\\\\Client\\\\Token\\\\AccessTokenInterface given\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Infrastructure/OAuth2/Authenticator.php
+
+		-
+			message: "#^Method Cbase\\\\Authentication\\\\Infrastructure\\\\OAuth2\\\\Provider\\:\\:checkResponse\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Infrastructure/OAuth2/Provider.php
+
+		-
+			message: "#^Method Cbase\\\\Authentication\\\\Infrastructure\\\\OAuth2\\\\Provider\\:\\:createResourceOwner\\(\\) has parameter \\$response with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Infrastructure/OAuth2/Provider.php
+
+		-
+			message: "#^Method Cbase\\\\Authentication\\\\Infrastructure\\\\OAuth2\\\\Provider\\:\\:getDefaultScopes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Infrastructure/OAuth2/Provider.php
+
+		-
+			message: "#^Parameter \\#1 \\$message of class League\\\\OAuth2\\\\Client\\\\Provider\\\\Exception\\\\IdentityProviderException constructor expects string, Psr\\\\Http\\\\Message\\\\StreamInterface given\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Infrastructure/OAuth2/Provider.php
+
+		-
+			message: "#^Method Cbase\\\\Authentication\\\\Infrastructure\\\\OAuth2\\\\UserProvider\\:\\:supportsClass\\(\\) has parameter \\$class with no type specified\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Infrastructure/OAuth2/UserProvider.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\Contract\\\\Normalizable\\:\\:normalize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/Contract/Normalizable.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\Utils\\\\CollectionUtils\\:\\:keyBy\\(\\) has parameter \\$collection with no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/Utils/CollectionUtils.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\Utils\\\\CollectionUtils\\:\\:keyBy\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/Utils/CollectionUtils.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\Utils\\\\CollectionUtils\\:\\:map\\(\\) has parameter \\$collection with no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/Utils/CollectionUtils.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\Utils\\\\CollectionUtils\\:\\:map\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/Utils/CollectionUtils.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function strtolower expects string, string\\|null given\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/Utils/StringUtils.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function trim expects string, string\\|null given\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/Utils/StringUtils.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:__callStatic\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:__callStatic\\(\\) has parameter \\$args with no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:__construct\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:ensureIsBetweenAcceptedValues\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:randomValue\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:throwExceptionForInvalidValue\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:throwExceptionForInvalidValue\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:value\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:values\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Property Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:\\$cache has no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Property Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Enum\\:\\:\\$value has no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Enum.php
+
+		-
+			message: "#^Property Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\IntValueObject\\:\\:\\$value has no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/IntValueObject.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Uuid\\:\\:ensureIsValidUuid\\(\\) has parameter \\$id with no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Uuid.php
+
+		-
+			message: "#^Property Cbase\\\\Shared\\\\Domain\\\\ValueObject\\\\Uuid\\:\\:\\$value has no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/ValueObject/Uuid.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\DoctrineRepository\\:\\:repository\\(\\) has parameter \\$entityClass with no type specified\\.$#"
+			count: 1
+			path: ../../../src/Shared/Infrastructure/Persistence/Doctrine/DoctrineRepository.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\DoctrineRepository\\:\\:repository\\(\\) return type with generic class Doctrine\\\\ORM\\\\EntityRepository does not specify its types\\: TEntityClass$#"
+			count: 1
+			path: ../../../src/Shared/Infrastructure/Persistence/Doctrine/DoctrineRepository.php
+
+		-
+			message: "#^Unable to resolve the template type T in call to method Doctrine\\\\ORM\\\\EntityManagerInterface\\:\\:getRepository\\(\\)$#"
+			count: 1
+			path: ../../../src/Shared/Infrastructure/Persistence/Doctrine/DoctrineRepository.php
+
+		-
+			message: "#^Cannot call method getImageId\\(\\) on mixed\\.$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandlerTest.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$artefactImages contains generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection but does not specify its types\\: TKey, T$#"
+			count: 2
+			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandlerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$haystack of static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\) expects Countable\\|iterable, mixed given\\.$#"
+			count: 2
+			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandlerTest.php
+
+		-
+			message: "#^Trying to invoke mixed but it's not a callable\\.$#"
+			count: 3
+			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandlerTest.php
+
+		-
+			message: "#^Method Tests\\\\ArtefactGuide\\\\Domain\\\\LicenceTest\\:\\:test_licence_can_be_created_with_valid_values\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Domain/LicenceTest.php
+
+		-
+			message: "#^Method Tests\\\\ArtefactGuide\\\\Domain\\\\LicenceTest\\:\\:test_licence_creation_fails_with_invalid_value\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Domain/LicenceTest.php
+
+		-
+			message: "#^Method Tests\\\\ArtefactGuide\\\\Infrastructure\\\\ArtefactGuideInfrastructureTestCase\\:\\:repository\\(\\) should return Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactRepository but returns mixed\\.$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Infrastructure/ArtefactGuideInfrastructureTestCase.php
+
+		-
+			message: "#^Parameter \\#2 \\$name of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:create\\(\\) expects string, array\\|string given\\.$#"
+			count: 1
+			path: ../../../tests/Factory/ArtefactGuide/ArtefactFactory.php
+
+		-
+			message: "#^Parameter \\#3 \\$cName of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:create\\(\\) expects string, array\\|string given\\.$#"
+			count: 1
+			path: ../../../tests/Factory/ArtefactGuide/ArtefactFactory.php
+
+		-
+			message: "#^Cannot call method value\\(\\) on mixed\\.$#"
+			count: 1
+			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryArtefactRepository.php
+
+		-
+			message: "#^Method Tests\\\\Fake\\\\Infrastructure\\\\Doctrine\\\\InMemoryArtefactRepository\\:\\:getBySlug\\(\\) should return Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact but returns mixed\\.$#"
+			count: 1
+			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryArtefactRepository.php
+
+		-
+			message: "#^Method Tests\\\\Fake\\\\Infrastructure\\\\Doctrine\\\\InMemoryArtefactRepository\\:\\:reset\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryArtefactRepository.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of static method Nyholm\\\\NSA\\:\\:getProperty\\(\\) expects object\\|string, mixed given\\.$#"
+			count: 1
+			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryArtefactRepository.php
+
+		-
+			message: "#^Method Tests\\\\Fake\\\\Infrastructure\\\\Doctrine\\\\InMemoryImageRepository\\:\\:findByImageIds\\(\\) should return Doctrine\\\\Common\\\\Collections\\\\ArrayCollection\\<int, object\\> but returns Doctrine\\\\Common\\\\Collections\\\\ArrayCollection\\<\\(int\\|string\\), mixed\\>\\.$#"
+			count: 1
+			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryImageRepository.php
+
+		-
+			message: "#^Parameter \\#1 \\$p of method Doctrine\\\\Common\\\\Collections\\\\ArrayCollection\\<\\(int\\|string\\),mixed\\>\\:\\:filter\\(\\) expects Closure\\(mixed, \\(int\\|string\\)\\)\\: bool, Closure\\(Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\)\\: bool given\\.$#"
+			count: 1
+			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryImageRepository.php
+
+		-
+			message: "#^Property Tests\\\\Fake\\\\Infrastructure\\\\Doctrine\\\\InMemoryImageRepository\\:\\:\\$images with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
+			count: 1
+			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryImageRepository.php
+
+		-
+			message: "#^Method Tests\\\\Shared\\\\Domain\\\\Utils\\\\StringUtilsTest\\:\\:assertSluggify\\(\\) has parameter \\$expected with no type specified\\.$#"
+			count: 1
+			path: ../../../tests/Shared/Domain/Utils/StringUtilsTest.php
+
+		-
+			message: "#^Method Tests\\\\Shared\\\\Domain\\\\Utils\\\\StringUtilsTest\\:\\:assertSluggify\\(\\) has parameter \\$toBeSlugged with no type specified\\.$#"
+			count: 1
+			path: ../../../tests/Shared/Domain/Utils/StringUtilsTest.php

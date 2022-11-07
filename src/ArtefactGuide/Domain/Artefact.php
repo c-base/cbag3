@@ -13,6 +13,7 @@ use Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType;
 use Cbase\Shared\Domain\Aggregate\AggregateRoot;
 use Cbase\Shared\Domain\ArtefactId;
 use Cbase\Shared\Domain\Contract\Normalizable;
+use Cbase\Shared\Domain\ImageId;
 use Cbase\Shared\Domain\MemberName;
 use Cbase\Shared\Domain\Utils\CollectionUtils;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -26,7 +27,7 @@ class Artefact extends AggregateRoot implements Normalizable
 {
     #[ORM\Id]
     #[ORM\Column(type: ArtefactIdType::TYPE, name: 'id')]
-    private readonly ArtefactId $artefactId;
+    private ArtefactId $artefactId;
 
     #[ORM\Column(type: Types::STRING, length: 255, unique: true, nullable: false)]
     private string $name;
@@ -51,9 +52,9 @@ class Artefact extends AggregateRoot implements Normalizable
     #[ORM\JoinColumn(name: 'primary_image_id', referencedColumnName: 'id', unique: false, nullable: true)]
     private ?Image $primaryImage;
 
-     #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'artefacts')]
-     #[ORM\JoinTable(name: 'artefact_image')]
-     private Collection $images;
+    #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'artefacts')]
+    #[ORM\JoinTable(name: 'artefact_image')]
+    private Collection $images;
 
     public function __construct()
     {
@@ -69,8 +70,7 @@ class Artefact extends AggregateRoot implements Normalizable
         \DateTimeInterface $createdAt,
         MemberName $createdBy,
         ?Image $primaryImage = null
-    ): self
-    {
+    ): self {
         $artefact = new self();
         $artefact->artefactId = $artefactId;
         $artefact->name = $name;
@@ -92,6 +92,14 @@ class Artefact extends AggregateRoot implements Normalizable
         }
     }
 
+    public function removeImage(Image $image): void
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            $image->removeArtefact($this);
+        }
+    }
+
     public function normalize(): array
     {
         return [
@@ -102,7 +110,28 @@ class Artefact extends AggregateRoot implements Normalizable
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'createdBy' => $this->createdBy->value(),
             'primaryImage' => $this->primaryImage?->normalize(),
-            'images' => CollectionUtils::map((fn(Image $image) => $image->normalize()) , $this->images)
+            'images' => CollectionUtils::map((fn (Image $image) => $image->normalize()), $this->images)
         ];
+    }
+
+    public function getImage(ImageId $imageId): ?Image
+    {
+        /** @var Image $image */
+        foreach ($this->images as $image) {
+            if ($image->equals($imageId)) {
+                return $image;
+            }
+        }
+        return null;
+    }
+
+    public function setPrimaryImage(Image $image): void
+    {
+        $this->primaryImage = $image;
+    }
+
+    public function setImages(ArrayCollection $images): void
+    {
+        $this->images = $images;
     }
 }

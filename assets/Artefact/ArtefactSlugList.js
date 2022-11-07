@@ -6,18 +6,16 @@ import {getAllArtefacts} from './selectors'
 
 function ArtefactSlugList({artefacts}) {
   return (
-    <Container>
+    <Container key={'artefact-slug-list'}>
       <Row>
         <Col>
           {artefacts.map(artefact => {
               return (
-                <>
-                  <a href={'/artefacts/' + artefact.slug}>
-                    <Badge pill bg="dark" key={'slug_' + artefact.slug}>
-                      {artefact.name}
-                    </Badge>
-                  </a>{' '}
-                </>
+                <a href={'/artefacts/' + artefact.slug} key={'slug_' + artefact.slug} className={'me-sm-2'}>
+                  <Badge pill bg="dark" >
+                    {artefact.name}
+                  </Badge>
+                </a>
               )
             }
           )}

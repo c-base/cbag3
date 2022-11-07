@@ -12,7 +12,8 @@ namespace Cbase\Shared\Domain\ValueObject;
 abstract class StringValueObject implements \Stringable
 {
     public function __construct(protected string $value)
-    {}
+    {
+    }
 
     public function value(): string
     {

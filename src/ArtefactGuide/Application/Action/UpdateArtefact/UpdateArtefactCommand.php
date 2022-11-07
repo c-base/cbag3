@@ -7,10 +7,10 @@
  */
 declare(strict_types=1);
 
-namespace Tests\Shared\Infrastructure\PhpUnit;
+namespace Cbase\ArtefactGuide\Application\Action\UpdateArtefact;
 
-use PHPUnit\Framework\TestCase;
-
-abstract class UnitTestCase extends TestCase
+final class UpdateArtefactCommand
 {
+    public string $id;
+    public array $artefact;
 }

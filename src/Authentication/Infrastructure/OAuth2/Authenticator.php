@@ -40,8 +40,7 @@ final class Authenticator extends OAuth2Authenticator
         $accessToken = $this->client->getAccessToken();
         $client = $this->client;
         return new SelfValidatingPassport(
-            new UserBadge($accessToken->getToken(), function() use ($accessToken, $client) {
-                /** @var User $member */
+            new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
                 return $client->fetchUserFromToken($accessToken);
             })
         );
@@ -58,5 +57,4 @@ final class Authenticator extends OAuth2Authenticator
 
         return new Response($message, Response::HTTP_FORBIDDEN);
     }
-
 }

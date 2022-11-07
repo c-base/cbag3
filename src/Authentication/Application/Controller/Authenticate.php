@@ -21,8 +21,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 #[AsController]
 final class Authenticate extends AbstractController
 {
-    const API_AUTH_CBASE = 'api_auth_cbase';
-    const API_AUTH_CALLBACK = 'api_auth_callback';
+    public const API_AUTH_CBASE = 'api_auth_cbase';
+    public const API_AUTH_CALLBACK = 'api_auth_callback';
 
     /**
      * Link to this controller to start the 'connect' process
@@ -43,5 +43,4 @@ final class Authenticate extends AbstractController
     {
         return new RedirectResponse('/');
     }
-
 }

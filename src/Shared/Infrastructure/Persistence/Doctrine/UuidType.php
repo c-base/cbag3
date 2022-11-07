@@ -18,7 +18,7 @@ abstract class UuidType extends StringType implements DoctrineCustomType
 {
     public function getName(): string
     {
-        return self::customTypeName();
+        return static::customTypeName();
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
@@ -31,7 +31,10 @@ abstract class UuidType extends StringType implements DoctrineCustomType
         return new $className($value);
     }
 
-    /** @var Uuid|null $value */
+    /**
+     * @param Uuid|null $value
+     * @return mixed|string
+     */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         return ($value instanceof Uuid) ? $value->value() : $value;

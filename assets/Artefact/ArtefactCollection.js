@@ -16,7 +16,9 @@ function Artefact({artefact}) {
     <Card bg={"dark"}>
       <ArtefactPrimaryAsset primaryImage={artefact.primaryImage} />
       <Card.Body>
-        <Card.Title>{artefact.name}</Card.Title>
+        <Card.Title>
+          <a href={'/artefacts/' + artefact.slug}>{artefact.name}</a>
+        </Card.Title>
         <Card.Text>{artefact.description}</Card.Text>
       </Card.Body>
       <Card.Footer>

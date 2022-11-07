@@ -5,3 +5,4 @@ services:
     resource: '../tests/Fake'
 
   Cbase\ArtefactGuide\Domain\ArtefactRepository: '@Tests\Fake\Infrastructure\Doctrine\InMemoryArtefactRepository'
+  Cbase\ArtefactGuide\Domain\ImageRepository: '@Tests\Fake\Infrastructure\Doctrine\InMemoryImageRepository'

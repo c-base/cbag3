@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Cbase\ArtefactGuide\Domain;
 
 use Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ImageIdType;
+use Cbase\Shared\Domain\Aggregate\AggregateRoot;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -19,7 +20,7 @@ use Cbase\Shared\Domain\ImageId;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'image')]
-class Image implements Normalizable
+class Image extends AggregateRoot implements Normalizable
 {
     #[ORM\Id]
     #[ORM\Column(type: ImageIdType::TYPE, name: 'id')]
@@ -38,7 +39,7 @@ class Image implements Normalizable
     private \DateTimeInterface $createdAt;
 
     #[ORM\Embedded(class: Licence::class, columnPrefix: false)]
-    public readonly Licence $licence;
+    private Licence $licence;
 
     #[ORM\ManyToMany(targetEntity: Artefact::class, mappedBy: 'images')]
     private Collection $artefacts;
@@ -67,6 +68,11 @@ class Image implements Normalizable
         return $image;
     }
 
+    public function getImageId(): ImageId
+    {
+        return $this->imageId;
+    }
+
     public function addArtefact(Artefact $artefact): void
     {
         if (!$this->artefacts->contains($artefact)) {
@@ -74,14 +80,27 @@ class Image implements Normalizable
         }
     }
 
+    public function removeArtefact(Artefact $artefact): void
+    {
+        if ($this->artefacts->contains($artefact)) {
+            $this->artefacts->removeElement($artefact);
+        }
+    }
+
     public function normalize(): array
     {
         return [
+            'id' => $this->imageId->value(),
             'path' => $this->path,
             'description' => $this->description,
             'author' => $this->author,
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'licence' => $this->licence->value(),
         ];
+    }
+
+    public function equals(ImageId $imageId): bool
+    {
+        return $this->imageId->equals($imageId);
     }
 }

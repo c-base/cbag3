@@ -12,6 +12,7 @@ namespace Tests\Fake\Infrastructure\Doctrine;
 use Cbase\ArtefactGuide\Domain\Artefact;
 use Cbase\ArtefactGuide\Domain\ArtefactCollection;
 use Cbase\ArtefactGuide\Domain\ArtefactRepository;
+use Nyholm\NSA;
 use Symfony\Contracts\Service\ResetInterface;
 
 final class InMemoryArtefactRepository implements ArtefactRepository, ResetInterface
@@ -36,5 +37,15 @@ final class InMemoryArtefactRepository implements ArtefactRepository, ResetInter
     public function reset()
     {
         $this->artefacts = new ArtefactCollection();
+    }
+
+    public function getBySlug(string $slug): Artefact
+    {
+        foreach ($this->artefacts as $artefact) {
+            if (NSA::getProperty($artefact, 'slug')->value() === $slug) {
+                return $artefact;
+            }
+        }
+        throw new \Exception("No artefact found for slug \"{$slug}\"");
     }
 }

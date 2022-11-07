@@ -19,13 +19,13 @@ final class ArtefactFactory
 {
     use FakerCapability;
 
-    public static function create(): Artefact
+    public static function create(?string $slug = null): Artefact
     {
         return Artefact::create(
             ArtefactId::create(),
             self::faker()->words(2, true),
             self::faker()->words(2, true),
-            Slug::create(self::faker()->slug()),
+            Slug::create($slug ?: self::faker()->slug()),
             self::faker()->text(),
             self::faker()->dateTimeThisMonth('now'),
             MemberName::create(self::faker()->userName())

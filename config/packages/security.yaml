@@ -14,7 +14,7 @@ security:
                 - Cbase\Authentication\Infrastructure\OAuth2\Authenticator
         api:
             pattern: ^/api
-            methods: [PUT, POST, DELETE]
+            methods: [PATCH, PUT, POST, DELETE]
             context: api_context
             custom_authenticators:
                 - Cbase\Authentication\Infrastructure\OAuth2\Authenticator

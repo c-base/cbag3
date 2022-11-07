@@ -18,12 +18,12 @@ class ArtefactCollection extends \ArrayObject
 
     private static function filter(array $items = []): array
     {
-        return array_filter($items, fn($artefact) => $artefact instanceof Artefact);
+        return array_filter($items, fn ($artefact) => $artefact instanceof Artefact);
     }
 
     public function add(...$items): void
     {
-        $artefacts = array_filter($items, fn($artefact) => $artefact instanceof Artefact);
+        $artefacts = array_filter($items, fn ($artefact) => $artefact instanceof Artefact);
         if (\count($artefacts) === 0) {
             return;
         }
