@@ -40,6 +40,7 @@ jobs:
         run: make install
 
   ci:
+    runs-on: ${{ matrix.operating-system }}
     needs: setup
     steps:
       - name: CI php-cs-fixer
@@ -49,6 +50,7 @@ jobs:
         run: make phpstan
 
   test:
+    runs-on: ${{ matrix.operating-system }}
     needs: setup
     steps:
       - name: CI phpunit
