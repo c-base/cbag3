@@ -1,4 +1,4 @@
-import { put, takeEvery, select } from 'redux-saga/effects'
+import { put, takeEvery, select, call } from 'redux-saga/effects'
 import {
   initGallery,
   initGalleryDone,
@@ -12,12 +12,9 @@ function* loadGallery(action) {
   yield put(initGallery(action.payload.artefacts));
   yield put(initGalleryDone())
 }
-function* uploadImage(action) {
-  const formData = new FormData();
-  formData.append("image", action.payload.image);
 
-  const api = yield select(getResourceById, 'api_gallery_upload')
-  const json = yield fetch(api.path, {
+function uploadImageApi(api, formData) {
+  return fetch(api.path, {
     method: api.method,
     headers: {
       // "Content-Type": "multipart/form-data",
@@ -25,8 +22,19 @@ function* uploadImage(action) {
     body: formData,
   })
     .then(response => response.json())
-    .catch(error => yield put(uploadGalleryImageFail, error))
-  yield put(uploadGalleryImageDone)
+    .catch(error => error)
+}
+
+function* uploadImage(action) {
+  const formData = new FormData();
+  formData.append("image", action.payload.image);
+
+  const api = yield select(getResourceById, 'api_gallery_upload')
+  const { response, error } = yield call(uploadImageApi, api, formData)
+  if (response)
+    yield put(uploadGalleryImageDone(response))
+  else
+    yield put(uploadGalleryImageFail(error))
 }
 
 export default function* gallerySagas() {

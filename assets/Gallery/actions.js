@@ -19,6 +19,9 @@ export const uploadGalleryImage = (image) => ({
 
 export const uploadGalleryImageDone = (image) => ({
   type: 'GALLERY_IMAGE_UPLOAD_DONE',
+  payload: {
+    image
+  }
 })
 
 export const uploadGalleryImageFail = (error) => ({
