@@ -45,6 +45,9 @@ class Artefact extends AggregateRoot implements Normalizable
     #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: false)]
     private \DateTimeInterface $createdAt;
 
+//    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: false)]
+//    private \DateTimeInterface $updatedAt;
+
     #[ORM\Embedded(class: MemberName::class, columnPrefix: false)]
     private MemberName $createdBy;
 

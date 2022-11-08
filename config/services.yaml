@@ -10,6 +10,7 @@ parameters:
     oauth2.client.id: '%env(resolve:OAUTH2_CLIENT_ID)%'
     oauth2.client.secret: '%env(resolve:OAUTH2_CLIENT_SECRET)%'
     oauth2.scopes: '%env(resolve:OAUTH2_SCOPES)%'
+    images.upload.directory: '%env(resolve:IMAGES_UPLOAD_DIRECTORY)%'
 
 services:
     # default configuration for services in *this* file
@@ -24,6 +25,7 @@ services:
             string $oauth2ProfileUrl: '%oauth2.profile.url%'
             string $oauth2Scopes: '%oauth2.scopes%'
             string $oauth2RedirectRoute: 'api_auth_callback'
+            string $imagesUploadDirectory: '%images.upload.directory%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
