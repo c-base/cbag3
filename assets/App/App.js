@@ -16,6 +16,7 @@ import { initApp } from './actions'
 import ArtefactCollection from "../Artefact/ArtefactCollection";
 import ArtefactSlugList from "../Artefact/ArtefactSlugList";
 import ArtefactDetail from "../Artefact/ArtefactDetail";
+import ImageUpload from "../Gallery/ImageUpload";
 import Auth from "../Authentication/Auth";
 
 const App = () => {
@@ -29,23 +30,27 @@ const App = () => {
             <Nav className="me-auto">
               <Link to="/artefacts" className={'nav-link'}>Artefacts</Link>
             </Nav>
+            <Nav className="me-auto">
+              <Link to="/gallery" className={'nav-link'}>Gallery</Link>
+            </Nav>
             <Auth />
           </Container>
         </Navbar>
-
-        <Switch>
-          <Route path="/artefacts/:slug" render={(props) => <ArtefactDetail {...props.match.params} />} />
-          <Route path="/artefacts">
-            <ArtefactCollection />
-            <ArtefactSlugList />
-          </Route>
-
-          <Route exact path="/">Home</Route>
-          <Route render={() => (<div>Miss</div>)} />
-        </Switch>
-
-
       </div>
+
+      <Switch>
+        <Route path="/artefacts/:slug" render={(props) => <ArtefactDetail {...props.match.params} />} />
+        <Route path="/artefacts">
+          <ArtefactCollection />
+          <ArtefactSlugList />
+        </Route>
+        <Route path="/gallery">
+          <ImageUpload />
+        </Route>
+
+        <Route exact path="/">Home</Route>
+        <Route render={() => (<div>Miss</div>)} />
+      </Switch>
     </Router>
 )
 }
