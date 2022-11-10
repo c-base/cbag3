@@ -13,7 +13,7 @@ function* loadGallery(action) {
   yield put(initGalleryDone())
 }
 
-function uploadImageApi(api, formData) {
+function sendImageToApi(api, formData) {
   return fetch(api.path, {
     method: api.method,
     headers: {
@@ -30,7 +30,7 @@ function* uploadImage(action) {
   formData.append("image", action.payload.image);
 
   const api = yield select(getResourceById, 'api_gallery_upload')
-  const { response, error } = yield call(uploadImageApi, api, formData)
+  const { response, error } = yield call(sendImageToApi, api, formData)
   if (response)
     yield put(uploadGalleryImageDone(response))
   else
