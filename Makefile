@@ -65,3 +65,6 @@ ci-rector:
 
 test: ## Run tests
 	./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml
+
+test-coverage: ## Run tests with coverage
+	XDEBUG_MODE=coverage ./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml --coverage-text
