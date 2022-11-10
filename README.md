@@ -10,5 +10,6 @@
   * [x] phpstan
   * [x] phpunit
 * [x] uploading images
+* [ ] handle uploaded file
 * [ ] list images in gallery
 * [ ] markdown editor
