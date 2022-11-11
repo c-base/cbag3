@@ -9,7 +9,8 @@ declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Application\Controller;
 
-use Cbase\ArtefactGuide\Application\Action\ListArtefacts\GetArtefactListQuery;
+use Cbase\ArtefactGuide\Application\Action\ListArtefacts\ListArtefactsHandler;
+use Cbase\ArtefactGuide\Application\Action\ListArtefacts\ListArtefactsQuery;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +18,9 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-class GetArtefactList extends AbstractController
+class ListArtefacts extends AbstractController
 {
-    public function __construct(private GetArtefactListQuery $getArtefactListQuery)
+    public function __construct(private ListArtefactsHandler $getArtefactListHandler)
     {
     }
 
@@ -27,7 +28,7 @@ class GetArtefactList extends AbstractController
     public function __invoke(): JsonResponse
     {
         return $this->json([
-            'artefacts' => ($this->getArtefactListQuery)(),
+            'artefacts' => ($this->getArtefactListHandler)(new ListArtefactsQuery()),
         ]);
     }
 }

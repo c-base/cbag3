@@ -11,10 +11,11 @@ namespace Cbase\ArtefactGuide\Application\Action\UpdateArtefact;
 
 use Cbase\ArtefactGuide\Domain\Artefact;
 use Cbase\ArtefactGuide\Domain\ArtefactRepository;
+use Cbase\ArtefactGuide\Domain\Image;
 use Cbase\ArtefactGuide\Domain\ImageRepository;
 use Cbase\Shared\Domain\ImageId;
 
-final class UpdateArtefactCommandHandler
+final class UpdateArtefactHandler
 {
     public function __construct(
         private ArtefactRepository $artefactRepository,

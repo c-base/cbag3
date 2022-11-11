@@ -9,18 +9,18 @@ declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Application\Action\UploadImage;
 
-use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 final class UploadImageCommand
 {
     public function __construct(
-        public readonly File $image,
+        public readonly UploadedFile $image,
         public readonly string $description,
         public readonly string $author,
     ) {
     }
 
-    public static function create(File $image, string $description, string $author): self
+    public static function create(UploadedFile $image, string $description, string $author): self
     {
         return new self($image, $description, $author);
     }

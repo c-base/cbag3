@@ -21,7 +21,7 @@ final class InMemoryArtefactRepository implements ArtefactRepository, ResetInter
 
     public function __construct()
     {
-        $this->artefacts = new ArtefactCollection();
+        $this->artefacts = ArtefactCollection::create();
     }
 
     public function all(): ArtefactCollection
@@ -36,7 +36,7 @@ final class InMemoryArtefactRepository implements ArtefactRepository, ResetInter
 
     public function reset()
     {
-        $this->artefacts = new ArtefactCollection();
+        $this->artefacts = ArtefactCollection::create();
     }
 
     public function getBySlug(string $slug): Artefact

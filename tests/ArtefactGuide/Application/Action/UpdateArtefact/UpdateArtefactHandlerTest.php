@@ -9,18 +9,20 @@ declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Application\Action\UpdateArtefact;
 
+use Assert\Assert;
 use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactCommand;
-use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactCommandHandler;
+use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactHandler;
 use Cbase\ArtefactGuide\Domain\ArtefactRepository;
 use Cbase\ArtefactGuide\Domain\ImageRepository;
 use Cbase\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Nyholm\NSA;
 use Tests\Factory\ArtefactGuide\ArtefactFactory;
 use Tests\Factory\ArtefactGuide\ImageFactory;
 use Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
 
-final class UpdateArtefactCommandHandlerTest extends InfrastructureTestCase
+final class UpdateArtefactHandlerTest extends InfrastructureTestCase
 {
     public function test_handler_can_update_the_primary_image(): void
     {
@@ -40,7 +42,8 @@ final class UpdateArtefactCommandHandlerTest extends InfrastructureTestCase
         $command->id = $slug;
         $command->artefact = ['primaryImage' => $image->getImageId()->value()];
 
-        $handler = $this->service(UpdateArtefactCommandHandler::class);
+        $handler = $this->service(UpdateArtefactHandler::class);
+        self::assertInstanceOf(UpdateArtefactHandler::class, $handler);
 
         $artefact = ($handler)($command);
 
@@ -57,7 +60,10 @@ final class UpdateArtefactCommandHandlerTest extends InfrastructureTestCase
         $artefact->addImage($image);
         $artefact->addImage(ImageFactory::create());
 
-        self::assertCount(2, NSA::getProperty($artefact, 'images'));
+        /** @var ArrayCollection $images */
+        $images = NSA::getProperty($artefact, 'images');
+
+        self::assertCount(2, $images);
 
         $artefactRepository = $this->service(ArtefactRepository::class);
         /** @var ArtefactRepository $artefactRepository */
@@ -73,12 +79,13 @@ final class UpdateArtefactCommandHandlerTest extends InfrastructureTestCase
             ['id' => $image->getImageId()->value()]
         ]];
 
-        $handler = $this->service(UpdateArtefactCommandHandler::class);
+        $handler = $this->service(UpdateArtefactHandler::class);
 
         $artefact = ($handler)($command);
 
         /** @var ArrayCollection $artefactImages */
         $artefactImages = NSA::getProperty($artefact, 'images');
+
         self::assertCount(1, $artefactImages);
         self::assertEquals($image->getImageId(), $artefactImages->first()->getImageId());
     }
@@ -105,7 +112,7 @@ final class UpdateArtefactCommandHandlerTest extends InfrastructureTestCase
         $command->id = $slug;
         $command->artefact = ['images' => []];
 
-        $handler = $this->service(UpdateArtefactCommandHandler::class);
+        $handler = $this->service(UpdateArtefactHandler::class);
 
         $artefact = ($handler)($command);
 

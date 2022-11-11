@@ -6,19 +6,9 @@ parameters:
 			path: ../../../src/App/Application/Controller/IndexController.php
 
 		-
-			message: "#^Method Cbase\\\\ArtefactGuide\\\\Application\\\\Action\\\\ListArtefacts\\\\GetArtefactListQuery\\:\\:__invoke\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: ../../../src/ArtefactGuide/Application/Action/ListArtefacts/GetArtefactListQuery.php
-
-		-
 			message: "#^Property Cbase\\\\ArtefactGuide\\\\Application\\\\Action\\\\UpdateArtefact\\\\UpdateArtefactCommand\\:\\:\\$artefact type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: ../../../src/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommand.php
-
-		-
-			message: "#^Parameter \\#1 \\$image of method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:setPrimaryImage\\(\\) expects Cbase\\\\ArtefactGuide\\\\Domain\\\\Image, Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\|null given\\.$#"
-			count: 1
-			path: ../../../src/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandler.php
 
 		-
 			message: "#^Cannot access offset '\\$date' on mixed\\.$#"
@@ -136,7 +126,7 @@ parameters:
 			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
 
 		-
-			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:normalize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:jsonSerialize\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: ../../../src/ArtefactGuide/Domain/Artefact.php
 
@@ -151,34 +141,9 @@ parameters:
 			path: ../../../src/ArtefactGuide/Domain/Artefact.php
 
 		-
-			message: "#^Class Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection extends generic class ArrayObject but does not specify its types\\: TKey, TValue$#"
+			message: "#^Class Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection extends generic class Cbase\\\\Shared\\\\Domain\\\\Collection but does not specify its types\\: T$#"
 			count: 1
 			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
-
-		-
-			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection\\:\\:__construct\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
-
-		-
-			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection\\:\\:add\\(\\) has parameter \\$items with no type specified\\.$#"
-			count: 1
-			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
-
-		-
-			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection\\:\\:filter\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
-
-		-
-			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection\\:\\:filter\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
-
-		-
-			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\:\\:normalize\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: ../../../src/ArtefactGuide/Domain/Image.php
 
 		-
 			message: "#^Property Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\:\\:\\$artefacts with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
@@ -224,6 +189,16 @@ parameters:
 			message: "#^Method Cbase\\\\Authentication\\\\Infrastructure\\\\OAuth2\\\\UserProvider\\:\\:supportsClass\\(\\) has parameter \\$class with no type specified\\.$#"
 			count: 1
 			path: ../../../src/Authentication/Infrastructure/OAuth2/UserProvider.php
+
+		-
+			message: "#^Class Cbase\\\\Shared\\\\Domain\\\\Collection extends generic class ArrayObject but does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: ../../../src/Shared/Domain/Collection.php
+
+		-
+			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\Collection\\:\\:jsonSerialize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../../src/Shared/Domain/Collection.php
 
 		-
 			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\Contract\\\\Normalizable\\:\\:normalize\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -348,22 +323,27 @@ parameters:
 		-
 			message: "#^Cannot call method getImageId\\(\\) on mixed\\.$#"
 			count: 1
-			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandlerTest.php
+			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
 
 		-
 			message: "#^PHPDoc tag @var for variable \\$artefactImages contains generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection but does not specify its types\\: TKey, T$#"
 			count: 2
-			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandlerTest.php
+			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$images contains generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection but does not specify its types\\: TKey, T$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
 
 		-
 			message: "#^Parameter \\#2 \\$haystack of static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\) expects Countable\\|iterable, mixed given\\.$#"
-			count: 2
-			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandlerTest.php
+			count: 1
+			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
 
 		-
 			message: "#^Trying to invoke mixed but it's not a callable\\.$#"
-			count: 3
-			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommandHandlerTest.php
+			count: 2
+			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
 
 		-
 			message: "#^Method Tests\\\\ArtefactGuide\\\\Domain\\\\LicenceTest\\:\\:test_licence_can_be_created_with_valid_values\\(\\) has no return type specified\\.$#"

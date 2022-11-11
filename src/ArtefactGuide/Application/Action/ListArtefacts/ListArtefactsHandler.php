@@ -9,22 +9,17 @@ declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Application\Action\ListArtefacts;
 
-use Cbase\ArtefactGuide\Domain\Artefact;
 use Cbase\ArtefactGuide\Domain\ArtefactCollection;
 use Cbase\ArtefactGuide\Domain\ArtefactRepository;
-use Cbase\Shared\Domain\Utils\CollectionUtils;
-use Symfony\Component\Serializer\SerializerInterface;
 
-final class GetArtefactListQuery
+final class ListArtefactsHandler
 {
     public function __construct(private ArtefactRepository $artefactRepository)
     {
     }
 
-    public function __invoke(): array
+    public function __invoke(ListArtefactsQuery $query): ArtefactCollection
     {
-        return CollectionUtils::map(function (Artefact $artefact) {
-            return $artefact->normalize();
-        }, $this->artefactRepository->all());
+        return $this->artefactRepository->all();
     }
 }

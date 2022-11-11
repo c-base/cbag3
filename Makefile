@@ -44,9 +44,9 @@ composer:
 	./bin/composer outdated --direct
 
 phpstan: ## run phpstan
-	php -d memory_limit=-1 ./devops/ci/vendor/bin/phpstan analyse --configuration ./devops/ci/config/phpstan.neon
+	php -d memory_limit=-1 ./devops/ci/vendor/bin/phpstan analyse --configuration ./devops/ci/config/phpstan.neon --xdebug
 
-phpstan-baseline:
+phpstan-baseline: ## run phpstan and update the baseline
 	php -d memory_limit=-1 ./devops/ci/vendor/bin/phpstan analyse --configuration ./devops/ci/config/phpstan.neon --generate-baseline ./devops/ci/config/phpstan-baseline.neon
 
 cs-fix-dry: ## cs fixer dry-run

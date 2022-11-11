@@ -15,12 +15,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Cbase\Shared\Domain\Contract\Normalizable;
 use Cbase\Shared\Domain\ImageId;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'image')]
-class Image extends AggregateRoot implements Normalizable
+class Image extends AggregateRoot implements \JsonSerializable
 {
     #[ORM\Id]
     #[ORM\Column(type: ImageIdType::TYPE, name: 'id')]
@@ -87,7 +86,10 @@ class Image extends AggregateRoot implements Normalizable
         }
     }
 
-    public function normalize(): array
+    /**
+     * @return array<string, string>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->imageId->value(),

@@ -23,7 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity]
-class Artefact extends AggregateRoot implements Normalizable
+class Artefact extends AggregateRoot implements \JsonSerializable
 {
     #[ORM\Id]
     #[ORM\Column(type: ArtefactIdType::TYPE, name: 'id')]
@@ -55,6 +55,9 @@ class Artefact extends AggregateRoot implements Normalizable
     #[ORM\JoinColumn(name: 'primary_image_id', referencedColumnName: 'id', unique: false, nullable: true)]
     private ?Image $primaryImage;
 
+    /**
+     * @var Collection|ArrayCollection<Image>
+     */
     #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'artefacts')]
     #[ORM\JoinTable(name: 'artefact_image')]
     private Collection $images;
@@ -103,7 +106,10 @@ class Artefact extends AggregateRoot implements Normalizable
         }
     }
 
-    public function normalize(): array
+    /**
+     * @return array<string, array|\Cbase\ArtefactGuide\Domain\Image|string|null>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,
@@ -112,8 +118,8 @@ class Artefact extends AggregateRoot implements Normalizable
             'description' => $this->description,
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'createdBy' => $this->createdBy->value(),
-            'primaryImage' => $this->primaryImage?->normalize(),
-            'images' => CollectionUtils::map((fn (Image $image) => $image->normalize()), $this->images)
+            'primaryImage' => $this->primaryImage?->jsonSerialize(),
+            'images' => CollectionUtils::map((fn (Image $image) => $image->jsonSerialize()), $this->images)
         ];
     }
 
@@ -128,7 +134,7 @@ class Artefact extends AggregateRoot implements Normalizable
         return null;
     }
 
-    public function setPrimaryImage(Image $image): void
+    public function setPrimaryImage(?Image $image): void
     {
         $this->primaryImage = $image;
     }

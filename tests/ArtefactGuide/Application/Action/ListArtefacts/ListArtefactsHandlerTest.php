@@ -14,16 +14,17 @@ use Tests\Factory\ArtefactGuide\ArtefactFactory;
 use Tests\Factory\ArtefactGuide\ImageFactory;
 use Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
 
-final class GetArtefactListQueryTest extends InfrastructureTestCase
+final class ListArtefactsHandlerTest extends InfrastructureTestCase
 {
-    public function test_we_can_normalize_the_artefacts(): void
+    public function test_we_can_serialize_the_artefacts(): void
     {
         $artefact = ArtefactFactory::create();
         $artefact->addImage(ImageFactory::create());
 
-        self::assertInstanceOf(Normalizable::class, $artefact);
+        $serialized = $artefact->jsonSerialize();
 
-        $result = $artefact->normalize();
-        self::assertIsArray($result);
+        self::assertIsArray($serialized);
+        self::assertArrayHasKey('images', $serialized);
+        self::assertIsArray($serialized['images']);
     }
 }

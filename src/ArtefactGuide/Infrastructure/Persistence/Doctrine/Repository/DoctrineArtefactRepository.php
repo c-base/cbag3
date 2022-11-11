@@ -17,7 +17,7 @@ final class DoctrineArtefactRepository extends DoctrineRepository implements Art
 
     public function all(): ArtefactCollection
     {
-        return new ArtefactCollection($this->repository(Artefact::class)->findAll());
+        return ArtefactCollection::create($this->repository(Artefact::class)->findAll());
     }
 
     public function getBySlug(string $slug): Artefact

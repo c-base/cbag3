@@ -9,24 +9,12 @@ declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Domain;
 
-class ArtefactCollection extends \ArrayObject
+use Cbase\Shared\Domain\Collection;
+
+class ArtefactCollection extends Collection
 {
-    public function __construct(array $array = [])
+    protected function getType(): string
     {
-        parent::__construct(self::filter($array));
-    }
-
-    private static function filter(array $items = []): array
-    {
-        return array_filter($items, fn ($artefact) => $artefact instanceof Artefact);
-    }
-
-    public function add(...$items): void
-    {
-        $artefacts = array_filter($items, fn ($artefact) => $artefact instanceof Artefact);
-        if (\count($artefacts) === 0) {
-            return;
-        }
-        $this->append($artefacts);
+        return Artefact::class;
     }
 }

@@ -15,13 +15,13 @@ use Cbase\ArtefactGuide\Domain\Licence;
 use Cbase\Shared\Domain\ImageId;
 use Cbase\Shared\Domain\Utils\StringUtils;
 
-final class UploadImageCommandHandler
+final class UploadImageHandler
 {
     public function __construct(private ImageRepository $imageRepository, private string $imagesUploadDirectory)
     {
     }
 
-    public function __invoke(UploadImageCommand $command): array
+    public function __invoke(UploadImageCommand $command): Image
     {
         $uploadedImage = $command->image;
 
@@ -34,7 +34,7 @@ final class UploadImageCommandHandler
         $uploadedImage->move($this->imagesUploadDirectory, $filename);
 
         $image = Image::create(
-            ImageId::create(ImageId::random()->value()),
+            ImageId::create(),
             $filename,
             $command->description,
             $command->author,
@@ -44,6 +44,6 @@ final class UploadImageCommandHandler
 
         $this->imageRepository->save($image);
 
-        return $image->normalize();
+        return $image;
     }
 }
