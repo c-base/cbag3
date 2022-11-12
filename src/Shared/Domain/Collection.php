@@ -51,4 +51,22 @@ abstract class Collection extends \ArrayObject implements \JsonSerializable
     {
         return $this->getArrayCopy();
     }
+
+    public function contains(mixed $element)
+    {
+        return in_array($element, $this->getArrayCopy(), true);
+    }
+
+    public function removeElement(mixed $element)
+    {
+        $key = array_search($element, $this->getArrayCopy(), true);
+
+        if ($key === false) {
+            return false;
+        }
+
+        unset($this[$key]);
+
+        return true;
+    }
 }

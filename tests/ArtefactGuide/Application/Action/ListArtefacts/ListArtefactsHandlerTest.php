@@ -9,22 +9,41 @@ declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Application\Action\ListArtefacts;
 
-use Cbase\Shared\Domain\Contract\Normalizable;
+use Cbase\ArtefactGuide\Application\Action\ListArtefacts\ListArtefactsHandler;
+use Cbase\ArtefactGuide\Application\Action\ListArtefacts\ListArtefactsQuery;
+use Cbase\ArtefactGuide\Domain\ArtefactCollection;
+use Cbase\ArtefactGuide\Domain\ArtefactRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Nyholm\NSA;
 use Tests\Factory\ArtefactGuide\ArtefactFactory;
 use Tests\Factory\ArtefactGuide\ImageFactory;
 use Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
 
 final class ListArtefactsHandlerTest extends InfrastructureTestCase
 {
-    public function test_we_can_serialize_the_artefacts(): void
+    public function test_we_get_empty_collection(): void
+    {
+        $handler = $this->service(ListArtefactsHandler::class);
+        
+        $artefacts = ($handler)(ListArtefactsQuery::create());
+
+        self::assertInstanceOf(ArtefactCollection::class, $artefacts);
+        self::assertCount(0, $artefacts);
+    }
+
+    public function test_we_get_artefacts_in_collection(): void
     {
         $artefact = ArtefactFactory::create();
         $artefact->addImage(ImageFactory::create());
+        $this->service(ArtefactRepository::class)->save($artefact);
 
-        $serialized = $artefact->jsonSerialize();
+        $handler = $this->service(ListArtefactsHandler::class);
 
-        self::assertIsArray($serialized);
-        self::assertArrayHasKey('images', $serialized);
-        self::assertIsArray($serialized['images']);
+        $artefacts = ($handler)(ListArtefactsQuery::create());
+
+        self::assertInstanceOf(ArtefactCollection::class, $artefacts);
+        self::assertCount(1, $artefacts);
+
+        self::assertSame($artefact, $artefacts[0]);
     }
 }

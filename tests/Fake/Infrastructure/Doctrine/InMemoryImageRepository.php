@@ -10,27 +10,36 @@ declare(strict_types=1);
 namespace Tests\Fake\Infrastructure\Doctrine;
 
 use Cbase\ArtefactGuide\Domain\Image;
+use Cbase\ArtefactGuide\Domain\ImageCollection;
 use Cbase\ArtefactGuide\Domain\ImageRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 
 final class InMemoryImageRepository implements ImageRepository
 {
-    private ArrayCollection $images;
+    private ImageCollection $images;
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->images = ImageCollection::create();
     }
 
     public function save(Image $image): void
     {
-        $this->images->add($image);
+        $this->images->append($image);
     }
 
-    public function findByImageIds(array $imageIds): ArrayCollection
+    public function findByImageIds(array $imageIds): ImageCollection
     {
-        return $this->images->filter(
-            fn (Image $image) => in_array($image->getImageId()->value(), $imageIds, true)
+        return ImageCollection::create(
+            array_filter(
+                $this->images->getArrayCopy(),
+                fn (Image $image) => in_array($image->getImageId()->value(), $imageIds, true)
+            )
         );
     }
+
+    public function all(): ImageCollection
+    {
+        return $this->images;
+    }
+
 }

@@ -5,10 +5,10 @@ namespace Cbase\ArtefactGuide\Domain;
 
 use Cbase\Shared\Domain\Collection;
 
-final class ArtefactCollection extends Collection
+final class ImageCollection extends Collection
 {
     protected function getType(): string
     {
-        return Artefact::class;
+        return Image::class;
     }
 }

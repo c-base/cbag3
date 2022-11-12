@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\Repository;
 
 use Cbase\ArtefactGuide\Domain\Image;
+use Cbase\ArtefactGuide\Domain\ImageCollection;
 use Cbase\ArtefactGuide\Domain\ImageRepository;
 use Cbase\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,10 +22,15 @@ final class DoctrineImageRepository extends DoctrineRepository implements ImageR
         $this->persist($image);
     }
 
-    public function findByImageIds(array $imageIds): ArrayCollection
+    public function findByImageIds(array $imageIds): ImageCollection
     {
-        return new ArrayCollection(
+        return ImageCollection::create(
             $this->repository(Image::class)->findBy(['imageId' => $imageIds])
         );
+    }
+
+    public function all(): ImageCollection
+    {
+        return ImageCollection::create($this->repository(Image::class)->findAll());
     }
 }

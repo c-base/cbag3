@@ -20,9 +20,9 @@ final class ArtefactRepositoryTest extends ArtefactGuideInfrastructureTestCase
     {
         $artefact = ArtefactFactory::create();
 
-        $this->repository()->save($artefact);
+        $this->artefactRepository()->save($artefact);
 
-        $artefacts = $this->repository()->all();
+        $artefacts = $this->artefactRepository()->all();
 
         self::assertInstanceOf(ArtefactCollection::class, $artefacts);
         self::assertCount(1, $artefacts);

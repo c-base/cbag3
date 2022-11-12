@@ -12,7 +12,6 @@ namespace Cbase\ArtefactGuide\Domain;
 use Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType;
 use Cbase\Shared\Domain\Aggregate\AggregateRoot;
 use Cbase\Shared\Domain\ArtefactId;
-use Cbase\Shared\Domain\Contract\Normalizable;
 use Cbase\Shared\Domain\ImageId;
 use Cbase\Shared\Domain\MemberName;
 use Cbase\Shared\Domain\Utils\CollectionUtils;
@@ -56,15 +55,15 @@ class Artefact extends AggregateRoot implements \JsonSerializable
     private ?Image $primaryImage;
 
     /**
-     * @var Collection|ArrayCollection<Image>
+     * @var ImageCollection<Image>
      */
     #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'artefacts')]
     #[ORM\JoinTable(name: 'artefact_image')]
-    private Collection $images;
+    private ImageCollection $images;
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->images = ImageCollection::create();
     }
 
     public static function create(
@@ -93,7 +92,7 @@ class Artefact extends AggregateRoot implements \JsonSerializable
     public function addImage(Image $image): void
     {
         if (!$this->images->contains($image)) {
-            $this->images->add($image);
+            $this->images->append($image);
             $image->addArtefact($this);
         }
     }
@@ -139,7 +138,7 @@ class Artefact extends AggregateRoot implements \JsonSerializable
         $this->primaryImage = $image;
     }
 
-    public function setImages(ArrayCollection $images): void
+    public function setImages(ImageCollection $images): void
     {
         $this->images = $images;
     }

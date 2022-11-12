@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[AsController]
 class ListArtefacts extends AbstractController
 {
-    public function __construct(private ListArtefactsHandler $getArtefactListHandler)
+    public function __construct(private ListArtefactsHandler $listArtefactsHandler)
     {
     }
 
@@ -28,7 +28,7 @@ class ListArtefacts extends AbstractController
     public function __invoke(): JsonResponse
     {
         return $this->json([
-            'artefacts' => ($this->getArtefactListHandler)(new ListArtefactsQuery()),
+            'artefacts' => ($this->listArtefactsHandler)(ListArtefactsQuery::create()),
         ]);
     }
 }

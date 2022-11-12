@@ -41,11 +41,11 @@ class Image extends AggregateRoot implements \JsonSerializable
     private Licence $licence;
 
     #[ORM\ManyToMany(targetEntity: Artefact::class, mappedBy: 'images')]
-    private Collection $artefacts;
+    private ArtefactCollection $artefacts;
 
     public function __construct()
     {
-        $this->artefacts = new ArrayCollection();
+        $this->artefacts = ArtefactCollection::create();
     }
 
     public static function create(
@@ -75,7 +75,7 @@ class Image extends AggregateRoot implements \JsonSerializable
     public function addArtefact(Artefact $artefact): void
     {
         if (!$this->artefacts->contains($artefact)) {
-            $this->artefacts->add($artefact);
+            $this->artefacts->append($artefact);
         }
     }
 

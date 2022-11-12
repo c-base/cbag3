@@ -13,6 +13,7 @@ use Assert\Assert;
 use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactCommand;
 use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactHandler;
 use Cbase\ArtefactGuide\Domain\ArtefactRepository;
+use Cbase\ArtefactGuide\Domain\ImageCollection;
 use Cbase\ArtefactGuide\Domain\ImageRepository;
 use Cbase\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -87,7 +88,7 @@ final class UpdateArtefactHandlerTest extends InfrastructureTestCase
         $artefactImages = NSA::getProperty($artefact, 'images');
 
         self::assertCount(1, $artefactImages);
-        self::assertEquals($image->getImageId(), $artefactImages->first()->getImageId());
+        self::assertEquals($image->getImageId(), $artefactImages[0]->getImageId());
     }
 
     public function test_handler_can_delete_images(): void
@@ -116,8 +117,8 @@ final class UpdateArtefactHandlerTest extends InfrastructureTestCase
 
         $artefact = ($handler)($command);
 
-        /** @var ArrayCollection $artefactImages */
+        /** @var ImageCollection $artefactImages */
         $artefactImages = NSA::getProperty($artefact, 'images');
-        self::assertTrue($artefactImages->isEmpty());
+        self::assertEmpty($artefactImages);
     }
 }

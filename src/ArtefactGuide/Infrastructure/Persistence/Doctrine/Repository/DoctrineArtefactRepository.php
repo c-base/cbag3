@@ -6,6 +6,7 @@ use Cbase\ArtefactGuide\Domain\Artefact;
 use Cbase\ArtefactGuide\Domain\ArtefactCollection;
 use Cbase\ArtefactGuide\Domain\ArtefactRepository;
 use Cbase\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class DoctrineArtefactRepository extends DoctrineRepository implements ArtefactRepository
