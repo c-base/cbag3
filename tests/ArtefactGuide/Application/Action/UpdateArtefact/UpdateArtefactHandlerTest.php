@@ -1,29 +1,18 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Application\Action\UpdateArtefact;
 
-use Assert\Assert;
 use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactCommand;
 use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactHandler;
-use Cbase\ArtefactGuide\Domain\ArtefactRepository;
-use Cbase\ArtefactGuide\Domain\ImageCollection;
-use Cbase\ArtefactGuide\Domain\ImageRepository;
-use Cbase\Shared\Domain\ValueObject\Uuid;
+use Cbase\ArtefactGuide\Domain\Image;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Nyholm\NSA;
+use Tests\ArtefactGuide\Infrastructure\PhpUnit\ArtefactGuideInfrastructureTestCase;
 use Tests\Factory\ArtefactGuide\ArtefactFactory;
 use Tests\Factory\ArtefactGuide\ImageFactory;
-use Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
 
-final class UpdateArtefactHandlerTest extends InfrastructureTestCase
+final class UpdateArtefactHandlerTest extends ArtefactGuideInfrastructureTestCase
 {
     public function test_handler_can_update_the_primary_image(): void
     {
@@ -35,9 +24,7 @@ final class UpdateArtefactHandlerTest extends InfrastructureTestCase
 
         self::assertEmpty(NSA::getProperty($artefact, 'primaryImage'));
 
-        $artefactRepository = $this->service(ArtefactRepository::class);
-        /** @var ArtefactRepository $artefactRepository */
-        $artefactRepository->save($artefact);
+        $this->artefactRepository()->save($artefact);
 
         $command = new UpdateArtefactCommand();
         $command->id = $slug;
@@ -66,13 +53,8 @@ final class UpdateArtefactHandlerTest extends InfrastructureTestCase
 
         self::assertCount(2, $images);
 
-        $artefactRepository = $this->service(ArtefactRepository::class);
-        /** @var ArtefactRepository $artefactRepository */
-        $artefactRepository->save($artefact);
-
-        $imageRepository = $this->service(ImageRepository::class);
-        /** @var ImageRepository $imageRepository */
-        $imageRepository->save($image);
+        $this->artefactRepository()->save($artefact);
+        $this->imageRepository()->save($image);
 
         $command = new UpdateArtefactCommand();
         $command->id = $slug;
@@ -84,10 +66,11 @@ final class UpdateArtefactHandlerTest extends InfrastructureTestCase
 
         $artefact = ($handler)($command);
 
-        /** @var ArrayCollection $artefactImages */
+        /** @var ArrayCollection<int, Image> $artefactImages */
         $artefactImages = NSA::getProperty($artefact, 'images');
 
         self::assertCount(1, $artefactImages);
+        self::assertInstanceOf(Image::class, $artefactImages[0]);
         self::assertEquals($image->getImageId(), $artefactImages[0]->getImageId());
     }
 
@@ -101,13 +84,8 @@ final class UpdateArtefactHandlerTest extends InfrastructureTestCase
 
         self::assertCount(2, NSA::getProperty($artefact, 'images'));
 
-        $artefactRepository = $this->service(ArtefactRepository::class);
-        /** @var ArtefactRepository $artefactRepository */
-        $artefactRepository->save($artefact);
-
-        $imageRepository = $this->service(ImageRepository::class);
-        /** @var ImageRepository $imageRepository */
-        $imageRepository->save($image);
+        $this->artefactRepository()->save($artefact);
+        $this->imageRepository()->save($image);
 
         $command = new UpdateArtefactCommand();
         $command->id = $slug;
@@ -117,7 +95,7 @@ final class UpdateArtefactHandlerTest extends InfrastructureTestCase
 
         $artefact = ($handler)($command);
 
-        /** @var ImageCollection $artefactImages */
+        /** @var ArrayCollection<int, Image> $artefactImages */
         $artefactImages = NSA::getProperty($artefact, 'images');
         self::assertEmpty($artefactImages);
     }

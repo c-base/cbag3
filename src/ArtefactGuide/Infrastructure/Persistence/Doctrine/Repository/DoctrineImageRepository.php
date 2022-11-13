@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\Repository;
@@ -14,11 +15,17 @@ final class DoctrineImageRepository extends DoctrineRepository implements ImageR
         $this->persist($image);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function findByImageIds(array $imageIds): array
     {
         return $this->repository(Image::class)->findBy(['imageId' => $imageIds]);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function all(): array
     {
         return $this->repository(Image::class)->findAll();

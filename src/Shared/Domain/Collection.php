@@ -1,10 +1,5 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 declare(strict_types=1);
 
 namespace Cbase\Shared\Domain;
@@ -38,7 +33,7 @@ abstract class Collection extends \ArrayObject implements \JsonSerializable
     /**
      * @param T $item
      */
-    public function append(mixed $item): void
+    public function append($item): void
     {
         $type = $this->getType();
         if (!$item instanceof $type) {
@@ -50,23 +45,5 @@ abstract class Collection extends \ArrayObject implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return $this->getArrayCopy();
-    }
-
-    public function contains(mixed $element)
-    {
-        return in_array($element, $this->getArrayCopy(), true);
-    }
-
-    public function removeElement(mixed $element)
-    {
-        $key = array_search($element, $this->getArrayCopy(), true);
-
-        if ($key === false) {
-            return false;
-        }
-
-        unset($this[$key]);
-
-        return true;
     }
 }

@@ -1,10 +1,5 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Application\Action\UploadImage;
@@ -13,9 +8,9 @@ use Cbase\ArtefactGuide\Application\Action\UploadImage\UploadImageCommand;
 use Cbase\ArtefactGuide\Application\Action\UploadImage\UploadImageHandler;
 use Cbase\ArtefactGuide\Domain\ImageRepository;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
+use Tests\ArtefactGuide\Infrastructure\PhpUnit\ArtefactGuideInfrastructureTestCase;
 
-final class UploadImageHandlerTest extends InfrastructureTestCase
+final class UploadImageHandlerTest extends ArtefactGuideInfrastructureTestCase
 {
     public function test_handler_can_save_an_uploaded_image(): void
     {
@@ -26,10 +21,8 @@ final class UploadImageHandlerTest extends InfrastructureTestCase
 
         self::assertEquals($image, $command->image);
 
-        $imageRepository = $this->service(ImageRepository::class);
-        /** @var ImageRepository $imageRepository */
         $imagesUploadDirectory = __DIR__ . '/uploads';
-        $handler = new UploadImageHandler($imageRepository, $imagesUploadDirectory);
+        $handler = new UploadImageHandler($this->imageRepository(), $imagesUploadDirectory);
 
         $image = ($handler)($command);
 
@@ -41,6 +34,6 @@ final class UploadImageHandlerTest extends InfrastructureTestCase
         self::assertEquals('description', $serializedImage['description']);
         self::assertEquals('alien', $serializedImage['author']);
 
-        self::assertCount(1, $imageRepository->findByImageIds([$serializedImage['id']]));
+        self::assertCount(1, $this->imageRepository()->findByImageIds([$serializedImage['id']]));
     }
 }

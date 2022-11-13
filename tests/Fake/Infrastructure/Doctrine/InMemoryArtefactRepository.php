@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Fake\Infrastructure\Doctrine;
@@ -11,6 +12,9 @@ use Symfony\Contracts\Service\ResetInterface;
 
 final class InMemoryArtefactRepository implements ArtefactRepository, ResetInterface
 {
+    /**
+     * @var ArrayCollection<int, Artefact>
+     */
     private ArrayCollection $artefacts;
 
     public function __construct()
@@ -18,6 +22,9 @@ final class InMemoryArtefactRepository implements ArtefactRepository, ResetInter
         $this->artefacts = new ArrayCollection();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function all(): array
     {
         return $this->artefacts->toArray();
@@ -28,7 +35,7 @@ final class InMemoryArtefactRepository implements ArtefactRepository, ResetInter
         $this->artefacts->add($artefact);
     }
 
-    public function reset()
+    public function reset(): void
     {
         $this->artefacts = new ArrayCollection();
     }

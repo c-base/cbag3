@@ -1,10 +1,5 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 declare(strict_types=1);
 
 namespace Tests\Shared\Domain\Utils;
@@ -43,7 +38,7 @@ final class StringUtilsTest extends UnitTestCase
         self::assertSluggify(' doppel  space ', 'doppel-space');
     }
 
-    private static function assertSluggify($toBeSlugged, $expected): void
+    private static function assertSluggify(string $toBeSlugged, string $expected): void
     {
         $actual = StringUtils::sluggify($toBeSlugged);
         self::assertEquals($expected, $actual, sprintf('"%s" was sluggified to "%s", but expected "%s"', $toBeSlugged, $actual, $expected));

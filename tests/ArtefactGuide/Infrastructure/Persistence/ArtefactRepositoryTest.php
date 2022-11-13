@@ -1,10 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\ArtefactGuide\Infrastructure\Persistence;
 
-use Cbase\ArtefactGuide\Domain\Artefact;
-use Tests\ArtefactGuide\Infrastructure\ArtefactGuideInfrastructureTestCase;
+use Tests\ArtefactGuide\Infrastructure\PhpUnit\ArtefactGuideInfrastructureTestCase;
 use Tests\Factory\ArtefactGuide\ArtefactFactory;
 
 final class ArtefactRepositoryTest extends ArtefactGuideInfrastructureTestCase

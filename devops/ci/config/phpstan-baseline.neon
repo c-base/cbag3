@@ -6,6 +6,16 @@ parameters:
 			path: ../../../src/App/Application/Controller/IndexController.php
 
 		-
+			message: "#^Class Cbase\\\\ArtefactGuide\\\\Application\\\\Action\\\\ListArtefacts\\\\ListArtefactsQuery does not have a constructor and must be instantiated without any parameters\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Action/ListArtefacts/ListArtefactsQuery.php
+
+		-
+			message: "#^Class Cbase\\\\ArtefactGuide\\\\Application\\\\Action\\\\ListImages\\\\ListImagesQuery does not have a constructor and must be instantiated without any parameters\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Action/ListImages/ListImagesQuery.php
+
+		-
 			message: "#^Property Cbase\\\\ArtefactGuide\\\\Application\\\\Action\\\\UpdateArtefact\\\\UpdateArtefactCommand\\:\\:\\$artefact type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: ../../../src/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactCommand.php
@@ -131,19 +141,9 @@ parameters:
 			path: ../../../src/ArtefactGuide/Domain/Artefact.php
 
 		-
-			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:setImages\\(\\) has parameter \\$images with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection but does not specify its types\\: TKey, T$#"
-			count: 1
-			path: ../../../src/ArtefactGuide/Domain/Artefact.php
-
-		-
 			message: "#^Property Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:\\$images with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
 			count: 1
 			path: ../../../src/ArtefactGuide/Domain/Artefact.php
-
-		-
-			message: "#^Class Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactCollection extends generic class Cbase\\\\Shared\\\\Domain\\\\Collection but does not specify its types\\: T$#"
-			count: 1
-			path: ../../../src/ArtefactGuide/Domain/ArtefactCollection.php
 
 		-
 			message: "#^Property Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\:\\:\\$artefacts with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
@@ -151,9 +151,24 @@ parameters:
 			path: ../../../src/ArtefactGuide/Domain/Image.php
 
 		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\Repository\\\\DoctrineArtefactRepository\\:\\:all\\(\\) should return array\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\> but returns array\\<int, object\\>\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Infrastructure/Persistence/Doctrine/Repository/DoctrineArtefactRepository.php
+
+		-
 			message: "#^Method Cbase\\\\ArtefactGuide\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\Repository\\\\DoctrineArtefactRepository\\:\\:getBySlug\\(\\) should return Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact but returns object\\|null\\.$#"
 			count: 1
 			path: ../../../src/ArtefactGuide/Infrastructure/Persistence/Doctrine/Repository/DoctrineArtefactRepository.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\Repository\\\\DoctrineImageRepository\\:\\:all\\(\\) should return array\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\> but returns array\\<int, object\\>\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Infrastructure/Persistence/Doctrine/Repository/DoctrineImageRepository.php
+
+		-
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\Repository\\\\DoctrineImageRepository\\:\\:findByImageIds\\(\\) should return array\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\> but returns array\\<int, object\\>\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Infrastructure/Persistence/Doctrine/Repository/DoctrineImageRepository.php
 
 		-
 			message: "#^Method Cbase\\\\Authentication\\\\Domain\\\\User\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -321,16 +336,6 @@ parameters:
 			path: ../../../src/Shared/Infrastructure/Persistence/Doctrine/DoctrineRepository.php
 
 		-
-			message: "#^Cannot call method getImageId\\(\\) on mixed\\.$#"
-			count: 1
-			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
-
-		-
-			message: "#^PHPDoc tag @var for variable \\$artefactImages contains generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection but does not specify its types\\: TKey, T$#"
-			count: 2
-			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
-
-		-
 			message: "#^PHPDoc tag @var for variable \\$images contains generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection but does not specify its types\\: TKey, T$#"
 			count: 1
 			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
@@ -346,6 +351,16 @@ parameters:
 			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
 
 		-
+			message: "#^Parameter \\#1 \\$item of method Cbase\\\\Shared\\\\Domain\\\\Collection\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\>\\:\\:append\\(\\) expects Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact, Cbase\\\\ArtefactGuide\\\\Domain\\\\Image given\\.$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Domain/ArtefactCollectionTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$items of static method Cbase\\\\Shared\\\\Domain\\\\Collection\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\>\\:\\:create\\(\\) expects array\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\>, array\\<int, Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\> given\\.$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Domain/ArtefactCollectionTest.php
+
+		-
 			message: "#^Method Tests\\\\ArtefactGuide\\\\Domain\\\\LicenceTest\\:\\:test_licence_can_be_created_with_valid_values\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: ../../../tests/ArtefactGuide/Domain/LicenceTest.php
@@ -356,9 +371,14 @@ parameters:
 			path: ../../../tests/ArtefactGuide/Domain/LicenceTest.php
 
 		-
-			message: "#^Method Tests\\\\ArtefactGuide\\\\Infrastructure\\\\ArtefactGuideInfrastructureTestCase\\:\\:repository\\(\\) should return Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactRepository but returns mixed\\.$#"
+			message: "#^Method Tests\\\\ArtefactGuide\\\\Infrastructure\\\\PhpUnit\\\\ArtefactGuideInfrastructureTestCase\\:\\:artefactRepository\\(\\) should return Cbase\\\\ArtefactGuide\\\\Domain\\\\ArtefactRepository but returns mixed\\.$#"
 			count: 1
-			path: ../../../tests/ArtefactGuide/Infrastructure/ArtefactGuideInfrastructureTestCase.php
+			path: ../../../tests/ArtefactGuide/Infrastructure/PhpUnit/ArtefactGuideInfrastructureTestCase.php
+
+		-
+			message: "#^Method Tests\\\\ArtefactGuide\\\\Infrastructure\\\\PhpUnit\\\\ArtefactGuideInfrastructureTestCase\\:\\:imageRepository\\(\\) should return Cbase\\\\ArtefactGuide\\\\Domain\\\\ImageRepository but returns mixed\\.$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Infrastructure/PhpUnit/ArtefactGuideInfrastructureTestCase.php
 
 		-
 			message: "#^Parameter \\#2 \\$name of static method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:create\\(\\) expects string, array\\|string given\\.$#"
@@ -374,43 +394,3 @@ parameters:
 			message: "#^Cannot call method value\\(\\) on mixed\\.$#"
 			count: 1
 			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryArtefactRepository.php
-
-		-
-			message: "#^Method Tests\\\\Fake\\\\Infrastructure\\\\Doctrine\\\\InMemoryArtefactRepository\\:\\:getBySlug\\(\\) should return Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact but returns mixed\\.$#"
-			count: 1
-			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryArtefactRepository.php
-
-		-
-			message: "#^Method Tests\\\\Fake\\\\Infrastructure\\\\Doctrine\\\\InMemoryArtefactRepository\\:\\:reset\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryArtefactRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$objectOrClass of static method Nyholm\\\\NSA\\:\\:getProperty\\(\\) expects object\\|string, mixed given\\.$#"
-			count: 1
-			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryArtefactRepository.php
-
-		-
-			message: "#^Method Tests\\\\Fake\\\\Infrastructure\\\\Doctrine\\\\InMemoryImageRepository\\:\\:findByImageIds\\(\\) should return Doctrine\\\\Common\\\\Collections\\\\ArrayCollection\\<int, object\\> but returns Doctrine\\\\Common\\\\Collections\\\\ArrayCollection\\<\\(int\\|string\\), mixed\\>\\.$#"
-			count: 1
-			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryImageRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$p of method Doctrine\\\\Common\\\\Collections\\\\ArrayCollection\\<\\(int\\|string\\),mixed\\>\\:\\:filter\\(\\) expects Closure\\(mixed, \\(int\\|string\\)\\)\\: bool, Closure\\(Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\)\\: bool given\\.$#"
-			count: 1
-			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryImageRepository.php
-
-		-
-			message: "#^Property Tests\\\\Fake\\\\Infrastructure\\\\Doctrine\\\\InMemoryImageRepository\\:\\:\\$images with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
-			count: 1
-			path: ../../../tests/Fake/Infrastructure/Doctrine/InMemoryImageRepository.php
-
-		-
-			message: "#^Method Tests\\\\Shared\\\\Domain\\\\Utils\\\\StringUtilsTest\\:\\:assertSluggify\\(\\) has parameter \\$expected with no type specified\\.$#"
-			count: 1
-			path: ../../../tests/Shared/Domain/Utils/StringUtilsTest.php
-
-		-
-			message: "#^Method Tests\\\\Shared\\\\Domain\\\\Utils\\\\StringUtilsTest\\:\\:assertSluggify\\(\\) has parameter \\$toBeSlugged with no type specified\\.$#"
-			count: 1
-			path: ../../../tests/Shared/Domain/Utils/StringUtilsTest.php

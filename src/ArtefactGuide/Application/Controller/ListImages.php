@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Application\Controller;
@@ -25,5 +26,4 @@ final class ListImages extends AbstractController
             'images' => ($this->listImagesHandler)(ListImagesQuery::create())
         ]);
     }
-
 }

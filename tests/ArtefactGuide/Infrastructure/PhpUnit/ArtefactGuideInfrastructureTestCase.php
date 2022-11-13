@@ -1,8 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Tests\ArtefactGuide\Infrastructure;
+namespace Tests\ArtefactGuide\Infrastructure\PhpUnit;
 
+use Assert\Assert;
 use Cbase\ArtefactGuide\Domain\ArtefactRepository;
 use Cbase\ArtefactGuide\Domain\ImageRepository;
 use Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
