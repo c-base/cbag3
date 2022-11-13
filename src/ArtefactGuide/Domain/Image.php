@@ -1,10 +1,4 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Domain;
@@ -41,11 +35,11 @@ class Image extends AggregateRoot implements \JsonSerializable
     private Licence $licence;
 
     #[ORM\ManyToMany(targetEntity: Artefact::class, mappedBy: 'images')]
-    private ArtefactCollection $artefacts;
+    private Collection $artefacts;
 
     public function __construct()
     {
-        $this->artefacts = ArtefactCollection::create();
+        $this->artefacts = new ArrayCollection();
     }
 
     public static function create(
@@ -75,7 +69,7 @@ class Image extends AggregateRoot implements \JsonSerializable
     public function addArtefact(Artefact $artefact): void
     {
         if (!$this->artefacts->contains($artefact)) {
-            $this->artefacts->append($artefact);
+            $this->artefacts->add($artefact);
         }
     }
 

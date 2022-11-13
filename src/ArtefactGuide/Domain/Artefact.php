@@ -55,15 +55,15 @@ class Artefact extends AggregateRoot implements \JsonSerializable
     private ?Image $primaryImage;
 
     /**
-     * @var ImageCollection<Image>
+     * @var Collection<Image>
      */
     #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'artefacts')]
     #[ORM\JoinTable(name: 'artefact_image')]
-    private ImageCollection $images;
+    private Collection $images;
 
     public function __construct()
     {
-        $this->images = ImageCollection::create();
+        $this->images = new ArrayCollection();
     }
 
     public static function create(
@@ -92,7 +92,7 @@ class Artefact extends AggregateRoot implements \JsonSerializable
     public function addImage(Image $image): void
     {
         if (!$this->images->contains($image)) {
-            $this->images->append($image);
+            $this->images->add($image);
             $image->addArtefact($this);
         }
     }
@@ -138,7 +138,7 @@ class Artefact extends AggregateRoot implements \JsonSerializable
         $this->primaryImage = $image;
     }
 
-    public function setImages(ImageCollection $images): void
+    public function setImages(Collection $images): void
     {
         $this->images = $images;
     }

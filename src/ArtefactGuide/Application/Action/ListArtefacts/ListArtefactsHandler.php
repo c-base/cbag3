@@ -1,10 +1,4 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Application\Action\ListArtefacts;
@@ -20,6 +14,6 @@ final class ListArtefactsHandler
 
     public function __invoke(ListArtefactsQuery $query): ArtefactCollection
     {
-        return $this->artefactRepository->all();
+        return ArtefactCollection::create($this->artefactRepository->all());
     }
 }

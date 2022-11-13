@@ -14,6 +14,6 @@ final class ListImagesHandler
 
     public function __invoke(ListImagesQuery $query): ImageCollection
     {
-        return $this->imageRepository->all();
+        return ImageCollection::create($this->imageRepository->all());
     }
 }

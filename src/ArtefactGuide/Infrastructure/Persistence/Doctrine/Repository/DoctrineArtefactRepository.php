@@ -3,11 +3,8 @@
 namespace Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\Repository;
 
 use Cbase\ArtefactGuide\Domain\Artefact;
-use Cbase\ArtefactGuide\Domain\ArtefactCollection;
 use Cbase\ArtefactGuide\Domain\ArtefactRepository;
 use Cbase\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Persistence\ManagerRegistry;
 
 final class DoctrineArtefactRepository extends DoctrineRepository implements ArtefactRepository
 {
@@ -16,9 +13,9 @@ final class DoctrineArtefactRepository extends DoctrineRepository implements Art
         $this->persist($artefact);
     }
 
-    public function all(): ArtefactCollection
+    public function all(): array
     {
-        return ArtefactCollection::create($this->repository(Artefact::class)->findAll());
+        return $this->repository(Artefact::class)->findAll();
     }
 
     public function getBySlug(string $slug): Artefact
