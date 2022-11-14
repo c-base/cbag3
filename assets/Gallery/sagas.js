@@ -1,28 +1,25 @@
 import { put, takeEvery, select, call } from 'redux-saga/effects'
 import {
   initGallery,
+  initGalleryFail,
   initGalleryDone,
   uploadGalleryImage,
-  uploadGalleryImageDone,
   uploadGalleryImageFail,
+  uploadGalleryImageDone,
 } from './actions'
 import {getResourceById} from "../App/selectors";
+import {initArtefactCollection, initArtefactCollectionDone} from "../Artefact/actions";
 
-function* loadGallery(action) {
-  yield put(initGallery(action.payload.artefacts));
-  yield put(initGalleryDone())
-}
-
-function sendImageToApi(api, formData) {
-  return fetch(api.path, {
+function* loadGallery() {
+  const api = yield select(getResourceById, 'api_image_collection')
+  const response = yield fetch(api.path, {
     method: api.method,
     headers: {
-      // "Content-Type": "multipart/form-data",
-    },
-    body: formData,
+      'Content-Type': 'application/json'}
   })
     .then(response => response.json())
-    .catch(error => error)
+  yield put(initGallery(response.images))
+  yield put(initGalleryDone())
 }
 
 function* uploadImage(action) {
@@ -30,14 +27,18 @@ function* uploadImage(action) {
   formData.append("image", action.payload.image);
 
   const api = yield select(getResourceById, 'api_gallery_upload')
-  const { response, error } = yield call(sendImageToApi, api, formData)
-  if (response)
-    yield put(uploadGalleryImageDone(response))
-  else
-    yield put(uploadGalleryImageFail(error))
+  const response = yield fetch(api.path, {
+    method: api.method,
+    headers: {
+      // "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  })
+    .then(response => response.json())
+  yield put(uploadGalleryImageDone(response))
 }
 
 export default function* gallerySagas() {
-  yield takeEvery("ARTEFACT_INIT_COLLECTION", loadGallery)
+  yield takeEvery("APP_INIT_DONE", loadGallery)
   yield takeEvery("GALLERY_IMAGE_UPLOAD", uploadImage)
 }

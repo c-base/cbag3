@@ -16,7 +16,7 @@ import { initApp } from './actions'
 import ArtefactCollection from "../Artefact/ArtefactCollection";
 import ArtefactSlugList from "../Artefact/ArtefactSlugList";
 import ArtefactDetail from "../Artefact/ArtefactDetail";
-import ImageUpload from "../Gallery/ImageUpload";
+import Gallery from "../Gallery/Gallery";
 import Auth from "../Authentication/Auth";
 
 const App = () => {
@@ -45,7 +45,7 @@ const App = () => {
           <ArtefactSlugList />
         </Route>
         <Route path="/gallery">
-          <ImageUpload />
+          <Gallery />
         </Route>
 
         <Route exact path="/">Home</Route>

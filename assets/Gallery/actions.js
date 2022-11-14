@@ -1,14 +1,21 @@
 
 
-export const initGallery = (artefacts) => ({
+export const initGallery = (images) => ({
   type: 'GALLERY_INIT',
   payload: {
-    artefacts
+    images
   }
 })
 export const initGalleryDone = () => ({
   type: 'GALLERY_INIT_DONE'
 })
+
+export const initGalleryFail = (error) => ({
+  type: 'GALLERY_INIT_FAIL',
+  payload: { error }
+})
+
+
 
 export const uploadGalleryImage = (image) => ({
   type: 'GALLERY_IMAGE_UPLOAD',
@@ -17,7 +24,7 @@ export const uploadGalleryImage = (image) => ({
   }
 })
 
-export const uploadGalleryImageDone = (image) => ({
+export const uploadGalleryImageDone = ({image}) => ({
   type: 'GALLERY_IMAGE_UPLOAD_DONE',
   payload: {
     image
