@@ -1,20 +1,17 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Application\Action\UpdateArtefact;
 
 use Cbase\ArtefactGuide\Domain\Artefact;
 use Cbase\ArtefactGuide\Domain\ArtefactRepository;
+use Cbase\ArtefactGuide\Domain\Image;
 use Cbase\ArtefactGuide\Domain\ImageRepository;
 use Cbase\Shared\Domain\ImageId;
+use Doctrine\Common\Collections\ArrayCollection;
 
-final class UpdateArtefactCommandHandler
+final class UpdateArtefactHandler
 {
     public function __construct(
         private ArtefactRepository $artefactRepository,
@@ -34,7 +31,7 @@ final class UpdateArtefactCommandHandler
         if (array_key_exists('images', $command->artefact)) {
             $imageIds = array_map(fn ($image) => $image['id'], $command->artefact['images']);
             $images = $this->imageRepository->findByImageIds($imageIds);
-            $artefact->setImages($images);
+            $artefact->setImages(new ArrayCollection($images));
         }
 
         $this->artefactRepository->save($artefact);

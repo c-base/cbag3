@@ -1,10 +1,5 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Domain;
@@ -12,7 +7,6 @@ namespace Cbase\ArtefactGuide\Domain;
 use Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ArtefactIdType;
 use Cbase\Shared\Domain\Aggregate\AggregateRoot;
 use Cbase\Shared\Domain\ArtefactId;
-use Cbase\Shared\Domain\Contract\Normalizable;
 use Cbase\Shared\Domain\ImageId;
 use Cbase\Shared\Domain\MemberName;
 use Cbase\Shared\Domain\Utils\CollectionUtils;
@@ -23,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity]
-class Artefact extends AggregateRoot implements Normalizable
+class Artefact extends AggregateRoot implements \JsonSerializable
 {
     #[ORM\Id]
     #[ORM\Column(type: ArtefactIdType::TYPE, name: 'id')]
@@ -45,6 +39,9 @@ class Artefact extends AggregateRoot implements Normalizable
     #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: false)]
     private \DateTimeInterface $createdAt;
 
+//    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: false)]
+//    private \DateTimeInterface $updatedAt;
+
     #[ORM\Embedded(class: MemberName::class, columnPrefix: false)]
     private MemberName $createdBy;
 
@@ -52,6 +49,9 @@ class Artefact extends AggregateRoot implements Normalizable
     #[ORM\JoinColumn(name: 'primary_image_id', referencedColumnName: 'id', unique: false, nullable: true)]
     private ?Image $primaryImage;
 
+    /**
+     * @var Collection<Image>
+     */
     #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'artefacts')]
     #[ORM\JoinTable(name: 'artefact_image')]
     private Collection $images;
@@ -92,15 +92,10 @@ class Artefact extends AggregateRoot implements Normalizable
         }
     }
 
-    public function removeImage(Image $image): void
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-            $image->removeArtefact($this);
-        }
-    }
-
-    public function normalize(): array
+    /**
+     * @return array<string, array|\Cbase\ArtefactGuide\Domain\Image|string|null>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,
@@ -109,8 +104,8 @@ class Artefact extends AggregateRoot implements Normalizable
             'description' => $this->description,
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'createdBy' => $this->createdBy->value(),
-            'primaryImage' => $this->primaryImage?->normalize(),
-            'images' => CollectionUtils::map((fn (Image $image) => $image->normalize()), $this->images)
+            'primaryImage' => $this->primaryImage?->jsonSerialize(),
+            'images' => CollectionUtils::map($this->images, fn (Image $image) => $image->jsonSerialize())
         ];
     }
 
@@ -125,12 +120,15 @@ class Artefact extends AggregateRoot implements Normalizable
         return null;
     }
 
-    public function setPrimaryImage(Image $image): void
+    public function setPrimaryImage(?Image $image): void
     {
         $this->primaryImage = $image;
     }
 
-    public function setImages(ArrayCollection $images): void
+    /**
+     * @param Collection<int, Image> $images
+     */
+    public function setImages(Collection $images): void
     {
         $this->images = $images;
     }

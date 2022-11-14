@@ -1,16 +1,11 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Application\Controller;
 
 use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactCommand;
-use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactCommandHandler;
+use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +18,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 final class UpdateArtefact extends AbstractController
 {
     public function __construct(
-        private SerializerInterface $serializer,
-        private UpdateArtefactCommandHandler $updateArtefactCommandHandler,
+        private SerializerInterface   $serializer,
+        private UpdateArtefactHandler $updateArtefactCommandHandler,
     ) {
     }
 
@@ -39,6 +34,6 @@ final class UpdateArtefact extends AbstractController
 
         $artefact = ($this->updateArtefactCommandHandler)($command);
 
-        return new JsonResponse($artefact->normalize(), Response::HTTP_OK);
+        return new JsonResponse($artefact, Response::HTTP_OK);
     }
 }

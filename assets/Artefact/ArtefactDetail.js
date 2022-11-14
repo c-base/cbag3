@@ -16,7 +16,7 @@ function PrimaryImage({primaryImage}) {
   if (primaryImage === null) {
     return <Card.Img variant="top" data-src="holder.js/100px250?text=primary image missing&bg=434a52&fg=3d688f" fluid="true" />
   }
-  return <Card.Img variant="top" src={"/uploads/assets/"+primaryImage.path} />
+  return <Card.Img variant="top" src={"/uploads/gallery/"+primaryImage.path} />
 }
 
 function AssignImage({image}) {
@@ -31,7 +31,7 @@ function AssignImage({image}) {
 
   return (
     <Card className="bg-dark text-white" border="info" onClick={handleClick}>
-      <Card.Img variant={'bottom'} src={"/uploads/assets/" + image.path} alt="" />
+      <Card.Img variant={'bottom'} src={"/uploads/gallery/" + image.path} alt="" />
       <Card.Body>
         <Card.Title>{image.description}</Card.Title>
       </Card.Body>

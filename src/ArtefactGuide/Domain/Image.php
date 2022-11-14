@@ -1,10 +1,5 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Domain;
@@ -15,12 +10,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Cbase\Shared\Domain\Contract\Normalizable;
 use Cbase\Shared\Domain\ImageId;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'image')]
-class Image extends AggregateRoot implements Normalizable
+class Image extends AggregateRoot implements \JsonSerializable
 {
     #[ORM\Id]
     #[ORM\Column(type: ImageIdType::TYPE, name: 'id')]
@@ -80,14 +74,10 @@ class Image extends AggregateRoot implements Normalizable
         }
     }
 
-    public function removeArtefact(Artefact $artefact): void
-    {
-        if ($this->artefacts->contains($artefact)) {
-            $this->artefacts->removeElement($artefact);
-        }
-    }
-
-    public function normalize(): array
+    /**
+     * @return array<string, string>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->imageId->value(),

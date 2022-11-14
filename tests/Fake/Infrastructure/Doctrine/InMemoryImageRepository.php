@@ -1,10 +1,5 @@
 <?php
-/*
- * (c) 2022 dazz <dazz@c-base.org>
- *
- * For copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 declare(strict_types=1);
 
 namespace Tests\Fake\Infrastructure\Doctrine;
@@ -15,6 +10,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 final class InMemoryImageRepository implements ImageRepository
 {
+    /**
+     * @var ArrayCollection<int, Image>
+     */
     private ArrayCollection $images;
 
     public function __construct()
@@ -22,15 +20,26 @@ final class InMemoryImageRepository implements ImageRepository
         $this->images = new ArrayCollection();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function all(): array
+    {
+        return $this->images->toArray();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findByImageIds(array $imageIds): array
+    {
+        return $this->images->filter(
+            fn (Image $image) => \in_array($image->getImageId()->value(), $imageIds, true)
+        )->toArray();
+    }
+
     public function save(Image $image): void
     {
         $this->images->add($image);
-    }
-
-    public function findByImageIds(array $imageIds): ArrayCollection
-    {
-        return $this->images->filter(
-            fn (Image $image) => in_array($image->getImageId()->value(), $imageIds, true)
-        );
     }
 }
