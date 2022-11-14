@@ -216,11 +216,6 @@ parameters:
 			path: ../../../src/Shared/Domain/Collection.php
 
 		-
-			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\Contract\\\\Normalizable\\:\\:normalize\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: ../../../src/Shared/Domain/Contract/Normalizable.php
-
-		-
 			message: "#^Method Cbase\\\\Shared\\\\Domain\\\\Utils\\\\CollectionUtils\\:\\:keyBy\\(\\) has parameter \\$collection with no value type specified in iterable type iterable\\.$#"
 			count: 1
 			path: ../../../src/Shared/Domain/Utils/CollectionUtils.php
