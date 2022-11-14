@@ -7,6 +7,7 @@ namespace Tests\ArtefactGuide\Application\Action\UpdateArtefact;
 use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactCommand;
 use Cbase\ArtefactGuide\Application\Action\UpdateArtefact\UpdateArtefactHandler;
 use Cbase\ArtefactGuide\Domain\Image;
+use Cbase\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Nyholm\NSA;
 use Tests\ArtefactGuide\Infrastructure\PhpUnit\ArtefactGuideInfrastructureTestCase;
@@ -39,6 +40,31 @@ final class UpdateArtefactHandlerTest extends ArtefactGuideInfrastructureTestCas
         $primaryImage = NSA::getProperty($artefact, 'primaryImage');
         self::assertNotEmpty($primaryImage);
         self::assertEquals($primaryImage, $image);
+    }
+
+    public function test_handler_can_only_update_the_primary_image_when_in_images(): void
+    {
+        $slug = 'mtc';
+        $image = ImageFactory::create();
+        $artefact = ArtefactFactory::create($slug);
+        $artefact->addImage($image);
+        $artefact->addImage(ImageFactory::create());
+
+        self::assertEmpty(NSA::getProperty($artefact, 'primaryImage'));
+
+        $this->artefactRepository()->save($artefact);
+
+        $command = new UpdateArtefactCommand();
+        $command->id = $slug;
+        $command->artefact = ['primaryImage' => Uuid::random()->value()];
+
+        $handler = $this->service(UpdateArtefactHandler::class);
+        self::assertInstanceOf(UpdateArtefactHandler::class, $handler);
+
+        $artefact = ($handler)($command);
+
+        $primaryImage = NSA::getProperty($artefact, 'primaryImage');
+        self::assertNull($primaryImage);
     }
 
     public function test_handler_can_update_images(): void

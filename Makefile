@@ -67,4 +67,4 @@ test: ## Run tests
 	./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml
 
 test-coverage: ## Run tests with coverage
-	XDEBUG_MODE=coverage ./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml --coverage-text
+	XDEBUG_MODE=coverage ./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml --coverage-text --coverage-html ./devops/ci/result/phpunit/coverage-html

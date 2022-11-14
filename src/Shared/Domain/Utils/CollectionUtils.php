@@ -6,11 +6,11 @@ namespace Cbase\Shared\Domain\Utils;
 
 final class CollectionUtils
 {
-    public static function map(callable $fn, iterable $collection): array
+    public static function map(iterable $collection, callable $function): array
     {
         $result = [];
         foreach ($collection as $key => $value) {
-            $result[$key] = $fn($value, $key);
+            $result[$key] = $function($value, $key);
         }
         return $result;
     }

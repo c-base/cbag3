@@ -74,13 +74,6 @@ class Image extends AggregateRoot implements \JsonSerializable
         }
     }
 
-    public function removeArtefact(Artefact $artefact): void
-    {
-        if ($this->artefacts->contains($artefact)) {
-            $this->artefacts->removeElement($artefact);
-        }
-    }
-
     /**
      * @return array<string, string>
      */

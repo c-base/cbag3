@@ -92,14 +92,6 @@ class Artefact extends AggregateRoot implements \JsonSerializable
         }
     }
 
-    public function removeImage(Image $image): void
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-            $image->removeArtefact($this);
-        }
-    }
-
     /**
      * @return array<string, array|\Cbase\ArtefactGuide\Domain\Image|string|null>
      */
@@ -113,7 +105,7 @@ class Artefact extends AggregateRoot implements \JsonSerializable
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'createdBy' => $this->createdBy->value(),
             'primaryImage' => $this->primaryImage?->jsonSerialize(),
-            'images' => CollectionUtils::map((fn (Image $image) => $image->jsonSerialize()), $this->images)
+            'images' => CollectionUtils::map($this->images, fn (Image $image) => $image->jsonSerialize())
         ];
     }
 

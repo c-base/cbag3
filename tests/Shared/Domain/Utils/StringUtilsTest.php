@@ -9,6 +9,11 @@ use Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 
 final class StringUtilsTest extends UnitTestCase
 {
+    public function test_sluggify_with_empty(): void
+    {
+        self::assertSluggify('', '');
+    }
+
     public function test_sluggify_works(): void
     {
         self::assertSluggify('123', '123');
@@ -38,9 +43,41 @@ final class StringUtilsTest extends UnitTestCase
         self::assertSluggify(' doppel  space ', 'doppel-space');
     }
 
-    private static function assertSluggify(string $toBeSlugged, string $expected): void
+    private static function assertSluggify(string $text, string $expected): void
     {
-        $actual = StringUtils::sluggify($toBeSlugged);
-        self::assertEquals($expected, $actual, sprintf('"%s" was sluggified to "%s", but expected "%s"', $toBeSlugged, $actual, $expected));
+        $actual = StringUtils::sluggify($text);
+        self::assertEquals($expected, $actual, sprintf('"%s" was sluggified to "%s", but expected "%s"', $text, $actual, $expected));
+    }
+
+    public function test_snake_case_with_empty(): void
+    {
+        self::assertSnakeCase('', '');
+    }
+
+    public function test_snake_case_with_camelcase_string(): void
+    {
+        self::assertSnakeCase('halloWelt', 'hallo_welt');
+    }
+
+    private static function assertSnakeCase(string $text, string $expected): void
+    {
+        $actual = StringUtils::toSnakeCase($text);
+        self::assertEquals($expected, $actual, sprintf('"%s" was snake_cased to "%s", but expected "%s"', $text, $actual, $expected));
+    }
+
+    public function test_camel_case_with_empty(): void
+    {
+        self::assertCamelCase('', '');
+    }
+
+    public function test_camel_case_with_snake_case_string(): void
+    {
+        self::assertCamelCase('hallo_welt', 'halloWelt');
+    }
+
+    private static function assertCamelCase(string $text, string $expected): void
+    {
+        $actual = StringUtils::toCamelCase($text);
+        self::assertEquals($expected, $actual, sprintf('"%s" was camelCased to "%s", but expected "%s"', $text, $actual, $expected));
     }
 }
