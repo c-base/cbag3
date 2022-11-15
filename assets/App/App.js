@@ -26,12 +26,12 @@ const App = () => {
       <div className="App">
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand><Link to="/"  className={'nav-link'}>CBRP3 : artefactguide</Link> </Navbar.Brand>
+            <Navbar.Brand><Link to="/"  className={'nav-link'}>CBRP3 : artefact guide</Link> </Navbar.Brand>
             <Nav className="me-auto">
-              <Link to="/artefacts" className={'nav-link'}>Artefacts</Link>
+              <Link to="/artefacts" className={'nav-link'}>artefacte</Link>
             </Nav>
             <Nav className="me-auto">
-              <Link to="/gallery" className={'nav-link'}>Gallery</Link>
+              <Link to="/gallery" className={'nav-link'}>gallerie</Link>
             </Nav>
             <Auth />
           </Container>

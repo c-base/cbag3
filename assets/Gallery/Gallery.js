@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect, useDispatch, useSelector } from "react-redux"
-import { Container, CardGroup, Card, Row, Button, Badge, Form, Modal } from 'react-bootstrap'
+import { Container, Row, Col, CardGroup, Card, Button, Badge, Form, Modal } from 'react-bootstrap'
 import { getSelectedArtefact, getSelectedArtefactImageIds} from "../Artefact/selectors";
 import {getGalleryImages, getArtefactImages, getGalleryImagesDeluxe} from "./selectors";
 import { PhotoUp } from 'tabler-icons-react';
@@ -23,18 +23,13 @@ function AddImageToGallery() {
         <PhotoUp size={22} strokeWidth={1} color={'black'}/> upload image to gallery
       </Button>
 
-      <Modal show={show} onHide={handleClose} bg={'Light'} >
+      <Modal show={show} onHide={handleClose} bg={'Light'} size="lg" >
         <Modal.Header closeButton>
           <Modal.Title>upload image to gallery</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ImageUpload />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   )
@@ -48,19 +43,24 @@ function Image({image}) {
         <Card.Title>{image.description}</Card.Title>
         <Card.Text>created by {image.author} on {image.createdAt}</Card.Text>
       </Card.Body>
+      <Card.Footer>
+        artefacte: {image.artefacts.map(id => <Badge pill bg="info" text={'dark'} key={'gallery_image_slug_' + id + '_' + image.id}>{id}</Badge>)}
+      </Card.Footer>
     </Card>
   )
 }
 
 function Gallery() {
-  const images = useSelector(getGalleryImagesDeluxe)
+  const images = useSelector(getGalleryImages)
   return (
     <Container>
       <Row>
-        <AddImageToGallery />
+        <Col>
+          <AddImageToGallery />
+        </Col>
       </Row>
       <Row xs={1} md={5} className="g-4">
-        {images.map(image => <Image key={'gallery_image_'+image.id} image={image} />)}
+        {/*{images.map(image => <Col key={'gallery_image_'+image.id}><Image image={image} /></Col>)}*/}
       </Row>
     </Container>
   )

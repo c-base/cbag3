@@ -6,6 +6,7 @@ namespace Cbase\ArtefactGuide\Domain;
 
 use Cbase\ArtefactGuide\Infrastructure\Persistence\Doctrine\ImageIdType;
 use Cbase\Shared\Domain\Aggregate\AggregateRoot;
+use Cbase\Shared\Domain\Utils\CollectionUtils;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -86,6 +87,7 @@ class Image extends AggregateRoot implements \JsonSerializable
             'author' => $this->author,
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'licence' => $this->licence->value(),
+            'artefacts' => CollectionUtils::map($this->artefacts, fn(Artefact $artefact) => $artefact->getSlug()->value()),
         ];
     }
 

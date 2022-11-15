@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cbase\App\Application\Controller;
 
+use Cbase\ArtefactGuide\Domain\Licence;
 use Cbase\Authentication\Application\Controller\Authenticate;
 use Cbase\Authentication\Domain\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,6 +32,7 @@ class IndexController extends AbstractController
         $config = [
             'auth' => $this->getAuth(),
             'resources' => $this->getApiResources(),
+            'content' => ['licences' => Licence::VALID_LICENCES],
         ];
         return $this->render('app/index.html.twig', [
             'config' => json_encode($config),
