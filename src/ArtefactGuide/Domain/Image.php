@@ -87,7 +87,7 @@ class Image extends AggregateRoot implements \JsonSerializable
             'author' => $this->author,
             'createdAt' => $this->createdAt->format('Y-m-d'),
             'licence' => $this->licence->value(),
-            'artefacts' => CollectionUtils::map($this->artefacts, fn(Artefact $artefact) => $artefact->getSlug()->value()),
+            'artefacts' => CollectionUtils::map($this->artefacts, fn (Artefact $artefact) => $artefact->getSlug()->value()),
         ];
     }
 
