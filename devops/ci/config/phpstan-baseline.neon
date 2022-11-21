@@ -1,9 +1,9 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Cbase\\\\App\\\\Application\\\\Controller\\\\IndexController\\:\\:getAuth\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Property Cbase\\\\App\\\\Application\\\\Listener\\\\AddResourcesToFrontendConfig\\:\\:\\$config is never read, only written\\.$#"
 			count: 1
-			path: ../../../src/App/Application/Controller/IndexController.php
+			path: ../../../src/App/Application/Listener/AddResourcesToFrontendConfig.php
 
 		-
 			message: "#^Class Cbase\\\\ArtefactGuide\\\\Application\\\\Action\\\\ListArtefacts\\\\ListArtefactsQuery does not have a constructor and must be instantiated without any parameters\\.$#"
@@ -136,6 +136,11 @@ parameters:
 			path: ../../../src/ArtefactGuide/Application/Console/CbagRestoreCommand.php
 
 		-
+			message: "#^Property Cbase\\\\ArtefactGuide\\\\Application\\\\Listener\\\\AddContentToFrontendConfig\\:\\:\\$config is never read, only written\\.$#"
+			count: 1
+			path: ../../../src/ArtefactGuide/Application/Listener/AddContentToFrontendConfig.php
+
+		-
 			message: "#^Method Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\:\\:jsonSerialize\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: ../../../src/ArtefactGuide/Domain/Artefact.php
@@ -161,7 +166,7 @@ parameters:
 			path: ../../../src/ArtefactGuide/Infrastructure/Persistence/Doctrine/Repository/DoctrineArtefactRepository.php
 
 		-
-			message: "#^Method Cbase\\\\ArtefactGuide\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\Repository\\\\DoctrineImageRepository\\:\\:all\\(\\) should return array\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\> but returns array\\<int, object\\>\\.$#"
+			message: "#^Method Cbase\\\\ArtefactGuide\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\Repository\\\\DoctrineImageRepository\\:\\:all\\(\\) should return array\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\> but returns mixed\\.$#"
 			count: 1
 			path: ../../../src/ArtefactGuide/Infrastructure/Persistence/Doctrine/Repository/DoctrineImageRepository.php
 
@@ -169,6 +174,11 @@ parameters:
 			message: "#^Method Cbase\\\\ArtefactGuide\\\\Infrastructure\\\\Persistence\\\\Doctrine\\\\Repository\\\\DoctrineImageRepository\\:\\:findByImageIds\\(\\) should return array\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Image\\> but returns array\\<int, object\\>\\.$#"
 			count: 1
 			path: ../../../src/ArtefactGuide/Infrastructure/Persistence/Doctrine/Repository/DoctrineImageRepository.php
+
+		-
+			message: "#^Property Cbase\\\\Authentication\\\\Application\\\\Listener\\\\AddAuthToFrontendConfig\\:\\:\\$config is never read, only written\\.$#"
+			count: 1
+			path: ../../../src/Authentication/Application/Listener/AddAuthToFrontendConfig.php
 
 		-
 			message: "#^Method Cbase\\\\Authentication\\\\Domain\\\\User\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -344,6 +354,16 @@ parameters:
 			message: "#^Trying to invoke mixed but it's not a callable\\.$#"
 			count: 2
 			path: ../../../tests/ArtefactGuide/Application/Action/UpdateArtefact/UpdateArtefactHandlerTest.php
+
+		-
+			message: "#^Binary operation \"\\.\" between literal\\-string&non\\-falsy\\-string and array\\<string\\>\\|string results in an error\\.$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Application/Action/UploadImage/UploadImageHandlerTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$imageIds of method Cbase\\\\ArtefactGuide\\\\Domain\\\\ImageRepository\\:\\:findByImageIds\\(\\) expects array\\<string\\>, array\\<int, array\\<string\\>\\|string\\> given\\.$#"
+			count: 1
+			path: ../../../tests/ArtefactGuide/Application/Action/UploadImage/UploadImageHandlerTest.php
 
 		-
 			message: "#^Parameter \\#1 \\$item of method Cbase\\\\Shared\\\\Domain\\\\Collection\\<Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact\\>\\:\\:append\\(\\) expects Cbase\\\\ArtefactGuide\\\\Domain\\\\Artefact, Cbase\\\\ArtefactGuide\\\\Domain\\\\Image given\\.$#"
