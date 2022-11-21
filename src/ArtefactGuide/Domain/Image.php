@@ -76,7 +76,7 @@ class Image extends AggregateRoot implements \JsonSerializable
     }
 
     /**
-     * @return array<string, string>
+     * @return array<string, string|array<string>>
      */
     public function jsonSerialize(): array
     {

@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace Cbase\App\Application\Listener;
 
-use Cbase\App\Domain\FrontendConfig;
 use Cbase\Authentication\Application\Controller\Authenticate;
+use Cbase\Shared\Domain\FrontendConfig;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\Routing\RouterInterface;
 
 #[AsEventListener]
-final class AddFrontendConfig
+final class AddResourcesToFrontendConfig
 {
     public function __construct(private FrontendConfig $config, private RouterInterface $router)
     {
     }
 
-    public function __invoke(ControllerEvent $event)
+    public function __invoke(ControllerEvent $event): void
     {
-        /** @var RouterInterface $router */
         $routes = $this->router->getRouteCollection()->all();
 
         $excludedRoutes = [Authenticate::API_AUTH_CALLBACK];
@@ -35,6 +34,6 @@ final class AddFrontendConfig
                 'method' => $route->getMethods()[0],
             ];
         }
-        $this->config->addConfig('resources', $resources);
+        $this->config['resources'] = $resources;
     }
 }

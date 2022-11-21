@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Cbase\Authentication\Application\Listener;
 
-use Cbase\App\Domain\FrontendConfig;
+use Cbase\Shared\Domain\FrontendConfig;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
-use Symfony\Bundle\SecurityBundle\Security;
 
 #[AsEventListener]
-final class AddFrontendConfig
+final class AddAuthToFrontendConfig
 {
     public function __construct(private FrontendConfig $config, private Security $security)
     {
     }
 
-    public function __invoke(ControllerEvent $event)
+    public function __invoke(ControllerEvent $event): void
     {
         $auth = [
             'authenticated' => false,
@@ -29,6 +29,6 @@ final class AddFrontendConfig
             ];
         }
 
-        $this->config->addConfig('auth', $auth);
+        $this->config['auth'] = $auth;
     }
 }

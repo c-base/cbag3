@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Cbase\ArtefactGuide\Application\Listener;
 
-use Cbase\App\Domain\FrontendConfig;
 use Cbase\ArtefactGuide\Domain\Licence;
+use Cbase\Shared\Domain\FrontendConfig;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 #[AsEventListener]
-final class AddFrontendConfig
+final class AddContentToFrontendConfig
 {
     public function __construct(private FrontendConfig $config)
     {
     }
 
-    public function __invoke(ControllerEvent $event)
+    public function __invoke(ControllerEvent $event): void
     {
-        $this->config->addConfig('content', ['licences' => Licence::VALID_LICENCES]);
+        $this->config['content'] = ['licences' => Licence::VALID_LICENCES];
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cbase\App\Application\Controller;
 
-use Cbase\App\Domain\FrontendConfig;
+use Cbase\Shared\Domain\FrontendConfig;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +31,7 @@ class IndexController extends AbstractController
     public function __invoke(): Response
     {
         return $this->render('app/index.html.twig', [
-            'config' => json_encode($this->config->getConfig()),
+            'config' => json_encode($this->config),
         ]);
     }
 }
