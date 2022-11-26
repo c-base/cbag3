@@ -113,7 +113,7 @@ function AddImagesFromGallery() {
   )
 }
 
-function Gallery({images, keyPrefix = 'image_'}) {
+function ArtefactGallery({images, keyPrefix = 'image_'}) {
   return <CardGroup>{images.map(image => <Image key={keyPrefix+image.id} image={image} />)}</CardGroup>
 }
 
@@ -162,7 +162,7 @@ function Artefact({artefact}) {
       <Card.Footer>
         <AddImagesFromGallery />
       </Card.Footer>
-      <Gallery images={artefact.images}/>
+      <ArtefactGallery images={artefact.images}/>
     </Card>
   )
 }

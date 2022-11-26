@@ -109,6 +109,11 @@ class Artefact extends AggregateRoot implements \JsonSerializable
         ];
     }
 
+    public function getSlug(): Slug
+    {
+        return $this->slug;
+    }
+
     public function getImage(ImageId $imageId): ?Image
     {
         /** @var Image $image */

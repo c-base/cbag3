@@ -28,6 +28,11 @@ final class DoctrineImageRepository extends DoctrineRepository implements ImageR
      */
     public function all(): array
     {
-        return $this->repository(Image::class)->findAll();
+        $queryBuilder = $this->repository(Image::class)->createQueryBuilder('image');
+        $query = $queryBuilder
+            ->addSelect('artefacts')
+            ->leftJoin('image.artefacts', 'artefacts')
+            ->getQuery();
+        return $query->getResult();
     }
 }

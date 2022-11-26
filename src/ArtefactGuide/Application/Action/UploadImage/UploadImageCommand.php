@@ -12,11 +12,12 @@ final class UploadImageCommand
         public readonly UploadedFile $image,
         public readonly string $description,
         public readonly string $author,
+        public readonly string $licence,
     ) {
     }
 
-    public static function create(UploadedFile $image, string $description, string $author): self
+    public static function create(UploadedFile $image, string $description, string $author, string $licence): self
     {
-        return new self($image, $description, $author);
+        return new self($image, $description, $author, $licence);
     }
 }

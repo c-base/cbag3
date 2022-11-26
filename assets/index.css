@@ -11,3 +11,11 @@ body {
 h1, h1, h3, h4, h5 {
     color: #ff9900;
 }
+
+.invalid-feedback {
+    display: inline-block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: .875em;
+    color: #ff9900;
+}

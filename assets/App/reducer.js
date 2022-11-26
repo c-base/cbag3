@@ -7,7 +7,8 @@ const reducer = (state = initialState, action) => {
     case 'APP_INIT_CONFIG':
       return {
         ...state,
-        resources: action.payload.resources
+        resources: action.payload.resources,
+        content: action.payload.content,
       }
     default:
       return state
