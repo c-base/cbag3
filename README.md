@@ -14,8 +14,13 @@
 * [x] List artifacts links
 * [x] List artifacts with images
 * [x] Assign primary image
-* [ ] Upload image
-* [ ] List images in gallery
+* [x] Assign gallery image to artifact
+* [x] Upload image
+* [x] List images in gallery
+* [ ] Edit Images
+* [ ] Add audit-trail
+* [ ] Add Notification when images are added
+* [ ] Handle http status 4xx
 
 ## TODO
 * [ ] add `updatedAt` field to artefact and image

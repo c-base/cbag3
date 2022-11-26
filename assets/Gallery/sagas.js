@@ -6,6 +6,7 @@ import {
   uploadGalleryImage,
   uploadGalleryImageFail,
   uploadGalleryImageDone,
+  closeGalleryImageUploadModal,
 } from './actions'
 import {getResourceById} from "../App/selectors";
 import {initArtefactCollection, initArtefactCollectionDone} from "../Artefact/actions";
@@ -24,7 +25,9 @@ function* loadGallery() {
 
 function* uploadImage(action) {
   const formData = new FormData();
-  formData.append("image", action.payload.image);
+  for (const [key, value] of Object.entries(action.payload)) {
+    formData.set(key, value)
+  }
 
   const api = yield select(getResourceById, 'api_gallery_upload')
   const response = yield fetch(api.path, {
@@ -36,6 +39,7 @@ function* uploadImage(action) {
   })
     .then(response => response.json())
   yield put(uploadGalleryImageDone(response))
+  yield put(closeGalleryImageUploadModal())
 }
 
 export default function* gallerySagas() {

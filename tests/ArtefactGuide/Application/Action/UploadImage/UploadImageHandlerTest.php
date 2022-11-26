@@ -7,6 +7,7 @@ namespace Tests\ArtefactGuide\Application\Action\UploadImage;
 use Cbase\ArtefactGuide\Application\Action\UploadImage\UploadImageCommand;
 use Cbase\ArtefactGuide\Application\Action\UploadImage\UploadImageHandler;
 use Cbase\ArtefactGuide\Domain\ImageRepository;
+use Cbase\ArtefactGuide\Domain\Licence;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Tests\ArtefactGuide\Infrastructure\PhpUnit\ArtefactGuideInfrastructureTestCase;
 
@@ -17,7 +18,7 @@ final class UploadImageHandlerTest extends ArtefactGuideInfrastructureTestCase
         $fileName = 'spacestation.jpg';
         $path = __DIR__ . DIRECTORY_SEPARATOR . $fileName;
         $image = new UploadedFile($path, $fileName, 'image/jpeg', 0, true);
-        $command = UploadImageCommand::create($image, 'description', 'alien');
+        $command = UploadImageCommand::create($image, 'description', 'alien', Licence::CC_BY_NC);
 
         self::assertEquals($image, $command->image);
 

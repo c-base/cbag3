@@ -15,12 +15,19 @@ export const initGalleryFail = (error) => ({
   payload: { error }
 })
 
+export const showGalleryImageUploadModal = () => ({
+  type: 'GALLERY_IMAGE_UPLOAD_MODAL_SHOW'
+})
 
+export const closeGalleryImageUploadModal = () => ({
+  type: 'GALLERY_IMAGE_UPLOAD_MODAL_CLOSE'
+})
 
-export const uploadGalleryImage = (image) => ({
+export const uploadGalleryImage = (data) => ({
   type: 'GALLERY_IMAGE_UPLOAD',
   payload: {
-    image
+    ...data,
+    image: data.image[0]
   }
 })
 

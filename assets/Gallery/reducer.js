@@ -4,12 +4,12 @@ export const initialState = {
     allIds: [],
     lastUpdated: null,
     selected: null,
+    showUploadModal: false,
 }
 
 function init(images) {
     let state = {
-        byId: {},
-        allIds: [],
+        ...initialState,
         lastUpdated: Date.now()
     }
 
@@ -40,7 +40,17 @@ const reducer = (state = initialState, action) => {
                     ...state.byId,
                     [id]: action.payload.image
                 },
-                allIds: [...state.allIds, id]
+                allIds: [...state.allIds, id],
+            }
+        case 'GALLERY_IMAGE_UPLOAD_MODAL_SHOW':
+            return {
+                ...state,
+                showUploadModal: true,
+            }
+        case 'GALLERY_IMAGE_UPLOAD_MODAL_CLOSE':
+            return {
+                ...state,
+                showUploadModal: false,
             }
         default:
             return state

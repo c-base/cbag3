@@ -34,7 +34,7 @@ final class UploadImageHandler
             $command->description,
             $command->author,
             new \DateTimeImmutable(),
-            Licence::create(Licence::CC_BY_NC_SA)
+            Licence::create($command->licence)
         );
 
         $this->imageRepository->save($image);

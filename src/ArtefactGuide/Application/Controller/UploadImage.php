@@ -31,8 +31,9 @@ final class UploadImage extends AbstractController
 
         $command = UploadImageCommand::create(
             $uploadedFile,
-            'test',
-            'alien'
+            strval($request->get('description')),
+            strval($request->get('author')),
+            strval($request->get('licence')),
         );
 
         $image = ($this->uploadImageHandler)($command);

@@ -27,27 +27,9 @@ function ImageUpload() {
     shouldUseNativeValidation: false,
     delayError: undefined
   })
-  const onSubmit = data => console.log({data}) //dispatch(uploadGalleryImage(currentFile))
-
-  // const onFileSelect = (event) => {
-  //   setSelectedFiles(event.target.files)
-  // }
-  //
-  // const upload = () => {
-  //   setProgress(0);
-  //   let currentFile = selectedFiles[0];
-  //
-  //   dispatch(uploadGalleryImage(currentFile))
-  //
-  //   setSelectedFiles(undefined)
-  // }
+  const onSubmit = data => dispatch(uploadGalleryImage(data))
 
   const licences = useSelector(getLicences)
-
-  // console.log({
-  //   errors, touchedFields, isValid,
-  //   file: watch("file"),
-  // })
 
   return (
     <Form noValidate validated={isValid} onSubmit={handleSubmit(onSubmit)} >
@@ -55,13 +37,14 @@ function ImageUpload() {
         <Col>
           <Form.Control
             type="file"
+            multiple={false}
             placeholder="bild auswählen"
             accept="image/*"
-            {...register("file", { required: "es muss ein fotographisches abbild ausgewählt werden" })}
-            isValid={touchedFields.file && !errors.file}
-            isInvalid={touchedFields.file && errors.file}
+            {...register("image", { required: "es muss ein fotographisches abbild ausgewählt werden" })}
+            isValid={touchedFields.image && !errors.image}
+            isInvalid={touchedFields.image && errors.image}
           />
-          <ErrorMessage message={errors?.file?.message}/>
+          <ErrorMessage message={errors?.image?.message}/>
         </Col>
       </Row>
 

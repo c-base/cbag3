@@ -2,19 +2,21 @@ import React, { useState } from 'react'
 import { connect, useDispatch, useSelector } from "react-redux"
 import { Container, Row, Col, CardGroup, Card, Button, Badge, Form, Modal } from 'react-bootstrap'
 import { getSelectedArtefact, getSelectedArtefactImageIds} from "../Artefact/selectors";
-import {getGalleryImages, getArtefactImages, getGalleryImagesDeluxe} from "./selectors";
+import { getGalleryImages, getArtefactImages, getGalleryImagesDeluxe, showGalleryUploadModal} from "./selectors";
+import { showGalleryImageUploadModal, closeGalleryImageUploadModal } from './actions'
 import { PhotoUp } from 'tabler-icons-react';
 import ImageUpload from "./ImageUpload";
 
 function AddImageToGallery() {
   const artefact = useSelector(getSelectedArtefact)
+  const show = useSelector(showGalleryUploadModal)
+  const dispatch = useDispatch()
 
-  const [show, setShow] = useState(false);
   function handleClose() {
-    setShow(false);
+    dispatch(closeGalleryImageUploadModal())
   }
   function handleShow() {
-    setShow(true);
+    dispatch(showGalleryImageUploadModal())
   }
 
   return (
@@ -66,7 +68,7 @@ function Gallery() {
         </Col>
       </Row>
       <Row xs={1} md={5} className="g-4">
-        {/*{images.map(image => <Col key={'gallery_image_'+image.id}><Image image={image} /></Col>)}*/}
+        {images.map(image => <Col key={'gallery_image_'+image.id}><Image image={image} /></Col>)}
       </Row>
     </Container>
   )
