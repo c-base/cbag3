@@ -42,6 +42,8 @@ ci: composer analyze-phpstan lint test ## run CI
 composer:
 	./bin/composer validate
 	./bin/composer outdated --direct
+	./bin/composer validate -d ./devops/ci
+	./bin/composer outdated --direct -d ./devops/ci
 
 analyze: analyze-phpstan ## Run all analyzer tools
 
