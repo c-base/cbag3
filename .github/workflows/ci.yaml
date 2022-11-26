@@ -39,11 +39,11 @@ jobs:
       - name: Setup Install dependencies
         run: make install
 
-      - name: CI php-cs-fixer
-        run: make cs-fix-dry
+      - name: CI lint
+        run: make lint
 
-      - name: CI phpstan
-        run: make phpstan
+      - name: CI analyze
+        run: make analyze
 
-      - name: CI phpunit
-        run: make test-coverage
+      - name: CI test
+        run: make test-php-coverage

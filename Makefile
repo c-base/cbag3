@@ -37,34 +37,40 @@ frontend-dev: ## install frontend dev
 frontend-prod: ## install frontend production
 	yarn encore production
 
-ci: composer phpstan cs-fix-dry test ## run CI
+ci: composer analyze-phpstan lint test ## run CI
 
 composer:
 	./bin/composer validate
 	./bin/composer outdated --direct
 
-phpstan: ## run phpstan
+analyze: analyze-phpstan ## Run all analyzer tools
+
+analyze-deptrac: ## Run deptrac
+	./devops/ci/vendor/bin/deptrac analyse --config-file=./devops/ci/config/depfile.yaml --cache-file=./devops/ci/cache/.deptrac.cache
+
+analyze-phpstan: ## run phpstan
 	php -d memory_limit=-1 ./devops/ci/vendor/bin/phpstan analyse --configuration ./devops/ci/config/phpstan.neon --xdebug
 
-phpstan-baseline: ## run phpstan and update the baseline
+analyze-phpstan-baseline: ## run phpstan and update the baseline
 	php -d memory_limit=-1 ./devops/ci/vendor/bin/phpstan analyse --configuration ./devops/ci/config/phpstan.neon --generate-baseline ./devops/ci/config/phpstan-baseline.neon
 
-cs-fix-dry: ## cs fixer dry-run
+analyze-rector: ## Run rector
+	php devops/ci/vendor/bin/rector process --config=devops/ci/config/rector.php --xdebug --clear-cache
+
+lint: lint-php ## Runn all lint tools
+
+lint-php: ## cs fixer dry-run
 	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run src
 	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run tests
 
-cs-fix: ## cs fixer
+lint-php-fix: ## cs fixer
 	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff src
 	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff tests
 
-deptrac:
-	./devops/ci/vendor/bin/deptrac analyse --config-file=./devops/ci/config/depfile.yaml --cache-file=./devops/ci/cache/.deptrac.cache
+test: test-php ## Run all tests
 
-ci-rector:
-	php devops/ci/vendor/bin/rector process --config=devops/ci/config/rector.php --xdebug --clear-cache
-
-test: ## Run tests
+test-php: ## Run tests
 	./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml
 
-test-coverage: ## Run tests with coverage
+test-php-coverage: ## Run tests with coverage
 	XDEBUG_MODE=coverage ./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml --coverage-text --coverage-html ./devops/ci/result/phpunit/coverage-html
