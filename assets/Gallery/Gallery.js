@@ -23,9 +23,15 @@ function AddImageToGallery() {
         <PhotoUp size={22} strokeWidth={1} color={'black'}/> upload image to gallery
       </Button>
 
-      <Modal show={show} onHide={handleClose} bg={'Light'} size="lg" >
+      <Modal
+        show={show}
+        onHide={handleClose}
+        bg={'Light'}
+        size="lg"
+        backdrop="static"
+      >
         <Modal.Header closeButton>
-          <Modal.Title>upload image to gallery</Modal.Title>
+          <Modal.Title>abbild eines artefacts in gallerie hochlorden</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ImageUpload />
