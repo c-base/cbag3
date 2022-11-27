@@ -27,6 +27,13 @@ export const updateArtefactPrimaryImage = (id, imageId) => ({
   }
 })
 
+export const updateArtefactFailed = (error) => ({
+  type: 'ARTEFACT_UPDATE_FAILED',
+  payload: {
+    error
+  }
+})
+
 export const updateArtefactDone = (artefact) => ({
   type: 'ARTEFACT_UPDATE_DONE',
   payload: {

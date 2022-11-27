@@ -5,7 +5,11 @@ export const initAuthState = (auth) => ({
     auth
   }
 })
+
 export const initAuthStateDone = () => ({
   type: 'AUTH_INIT_STATE_DONE'
 })
 
+export const authenticationRequired = () => ({
+  type: 'AUTH_REQUIRED'
+})

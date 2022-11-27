@@ -17,10 +17,13 @@
 * [x] Assign gallery image to artifact
 * [x] Upload image
 * [x] List images in gallery
+* [ ] Create Artefact
 * [ ] Edit Images
 * [ ] Add audit-trail
 * [ ] Add Notification when images are added
-* [ ] Handle http status 4xx
+* [ ] Handle http status 401
+  * [x] add primary image
+  * [ ] upload image
 
 ## TODO
 * [ ] add `updatedAt` field to artefact and image
