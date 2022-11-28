@@ -1,0 +1,5 @@
+.github
+devops
+!devops/docker/frankenphp/conf.d/xdebug.ini
+doc*
+*.md
