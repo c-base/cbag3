@@ -62,12 +62,12 @@ analyze-rector: ## Run rector
 lint: lint-php ## Runn all lint tools
 
 lint-php: ## cs fixer dry-run
-	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run src
-	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run tests
+	PHP_CS_FIXER_IGNORE_ENV=1 ./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run src
+	PHP_CS_FIXER_IGNORE_ENV=1 ./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --dry-run tests
 
 lint-php-fix: ## cs fixer
-	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff src
-	./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff tests
+	PHP_CS_FIXER_IGNORE_ENV=1 ./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff src
+	PHP_CS_FIXER_IGNORE_ENV=1 ./devops/ci/vendor/bin/php-cs-fixer fix --show-progress=dots --diff tests
 
 test: test-php ## Run all tests
 

@@ -20,3 +20,4 @@ Experimental
 * The documentation expects users to have knowledge of Caddy and do not explain a lot.
 * There are no examples that can be used for development or production.
 * FrankenPHP build on top of the newest PHP 8.2 which consecutivly leads to problems when libraries are not supporting the latest PHP version.
+  * PHP-CS-Fixer: PHP needs to be a minimum version of PHP 7.4.0 and maximum version of PHP 8.1.*
