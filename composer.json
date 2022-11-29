@@ -10,17 +10,18 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
-        "ext-pgsql": "*",
+        "ext-pdo_pgsql": "*",
         "beberlei/assert": "dev-master",
-        "doctrine/doctrine-bundle": "^2.7",
+        "doctrine/doctrine-bundle": "^2.8",
         "doctrine/doctrine-migrations-bundle": "^3.3",
-        "doctrine/orm": "2.14.x-dev",
+        "doctrine/orm": "^2.14",
         "knpuniversity/oauth2-client-bundle": "dev-master",
         "ramsey/uuid": "^5.x-dev",
+        "runtime/frankenphp-symfony": "dev-main",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/console": "^6.3",
         "symfony/dotenv": "^6.3",
-        "symfony/flex": "2.x-dev",
+        "symfony/flex": "^2",
         "symfony/framework-bundle": "^6.3",
         "symfony/mime": "^6.3",
         "symfony/monolog-bundle": "^3.7",
@@ -95,6 +96,9 @@
         "symfony": {
             "allow-contrib": false,
             "require": "^6.3"
+        },
+        "runtime": {
+            "class": "Runtime\\FrankenPhpSymfony\\Runtime"
         }
     }
 }
