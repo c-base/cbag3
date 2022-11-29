@@ -3,15 +3,19 @@ services:
   artefactguide:
     container_name: artefactguide
     build:
-      dockerfile: ./devops/docker/php-fpm/Dockerfile
+      dockerfile: ./devops/docker/frankenphp/Dockerfile
+      target: dev
     environment:
       - APP_ENV=dev
       - APP_SECRET=3877bb09523f3a5956ea2216d99c3b9e
       - APP_DEBUG=true
-    volumes:
-      - '.:/var/www/html:cached'
+    #      - FRANKENPHP_CONFIG="worker ./public/index.php"
+    #      - APP_RUNTIME=Runtime\\FrankenPhpSymfony\\Runtime
     ports:
-      - 9091:9091
+      - 80:80
+      - 443:443
+    volumes:
+      - './:/app'
 
   database:
     image: postgres:alpine
@@ -22,3 +26,5 @@ services:
       POSTGRES_DB: cbag3
     ports:
       - 15432:5432
+    volumes:
+      - ./var/database:/var/lib/postgresql
