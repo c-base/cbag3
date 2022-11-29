@@ -29,3 +29,7 @@ RUN  curl https://xdebug.org/files/xdebug-3.2.0RC2.tgz --output /tmp/xdebug.tgz 
 
 COPY ./devops/docker/frankenphp/conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
+# CD stage
+FROM production as final
+
+COPY . /app
