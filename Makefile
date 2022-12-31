@@ -9,6 +9,11 @@ install: ## install
 	./bin/composer install
 	./bin/composer install -d ./devops/ci
 
+install-production:
+	composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+	composer dump-env prod
+	yarnpkg build
+
 dev-start: ## start dev env
 	./bin/symfony server:start -d
 dev-stop: ## stop dev env
@@ -76,3 +81,15 @@ test-php: ## Run tests
 
 test-php-coverage: ## Run tests with coverage
 	XDEBUG_MODE=coverage ./vendor/bin/phpunit -c ./devops/ci/config/phpunit.xml --coverage-text --coverage-html ./devops/ci/result/phpunit/coverage-html
+
+push:
+	docker-compose tag artefactguide ghcr.io/c-base/cbag3:latest
+
+build-dev:
+	docker build -f ./devops/docker/frankenphp/Dockerfile --target dev -t ghcr.io/c-base/cbag3:dev-latest .
+
+build-production:
+	docker build -f ./devops/docker/frankenphp/Dockerfile --target production -t ghcr.io/c-base/cbag3:prod-latest-2 .
+
+lint-docker: ## Lint Dockerfiles
+	cat ./devops/docker/frankenphp/Dockerfile | docker run --rm -i hadolint/hadolint || true

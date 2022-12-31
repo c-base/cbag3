@@ -9,7 +9,7 @@ on: push
 
 jobs:
   build:
-    name: Buid and push Docker image to GitHub Container registry
+    name: Build and push Docker image to GitHub Container registry
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -36,6 +36,30 @@ jobs:
         with:
           context: .
           file: ./devops/docker/frankenphp/Dockerfile
-          target: final
+          target: production
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+  deploy:
+    name: Deploy image to host
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      packages: read
+      contents: read
+    steps:
+      - name: Deploy to Docker Host via docker-compose
+        uses: wshihadeh/docker-deployment-action@878e5822321b7acbcee5fe5fdb926d61d27656d6
+        with:
+          remote_docker_host: cbag_deployer@${{ secrets.DOCKER_REMOTE_HOST}} # user@myswarm.com
+          #remote_docker_port: 22
+          ssh_public_key: ${{ secrets.DOCKER_SSH_KNOWN_HOSTS }}
+          ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+          deployment_mode: docker-compose
+          copy_stack_file: true
+          deploy_path: ${{ secrets.DOCKER_DEPLOY_PATH }}
+          stack_file_name: docker-compose.prod.yml
+          pull_images_first: true
+          keep_files: 5
+          docker_prune: false
+          #args: my_applicaion

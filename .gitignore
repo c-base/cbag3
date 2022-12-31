@@ -1,4 +1,7 @@
 
+/devops/ci/vendor/*
+/devops/ci/cache/*
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
