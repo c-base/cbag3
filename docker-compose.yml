@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   artefactguide:
-    container_name: artefactguide
+    image: ghcr.io/c-base/cbag3:dev-latest
     build:
       dockerfile: ./devops/docker/frankenphp/Dockerfile
       target: dev
