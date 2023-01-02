@@ -1,6 +1,6 @@
 import { put, takeEvery, select } from 'redux-saga/effects'
 import { initArtefactCollection, initArtefactCollectionDone, updateArtefactDone, updateArtefactFailed } from './actions'
-import { getResourceById } from './../App/selectors'
+import { getResourceById } from '../App/selectors'
 import { authenticationRequired } from "../Authentication/actions";
 
 function* fetchArtefacts() {

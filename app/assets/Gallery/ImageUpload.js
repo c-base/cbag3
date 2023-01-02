@@ -4,7 +4,7 @@ import { connect, useDispatch, useSelector } from "react-redux"
 import { Button, Badge, Form, FloatingLabel, Row, Col } from 'react-bootstrap'
 
 import { uploadGalleryImage } from './actions'
-import { getLicences } from './../App/selectors'
+import { getLicences } from '../App/selectors'
 
 function ErrorMessage({message}) {
   if (message === undefined) {

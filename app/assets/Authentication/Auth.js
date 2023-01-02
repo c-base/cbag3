@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from "react-redux"
 import { Button, Badge } from 'react-bootstrap'
 import { isAuthenticated, getUsername } from "./selectors"
-import { getResourceById } from "./../App/selectors"
+import { getResourceById } from "../App/selectors"
 
 import { User } from 'tabler-icons-react'
 

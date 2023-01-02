@@ -16,7 +16,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.14",
         "knpuniversity/oauth2-client-bundle": "dev-master",
-        "ramsey/uuid": "^5.x-dev",
+        "ramsey/uuid": "^4.x-dev",
         "runtime/frankenphp-symfony": "dev-main",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/console": "^6.3",

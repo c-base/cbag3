@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(./img/stars_only.png) repeat, #020303;
+    background: url(img/stars_only.png) repeat, #020303;
     display: flex;
     flex-flow: column;
     color: #3d688f;

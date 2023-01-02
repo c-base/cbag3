@@ -8,4 +8,4 @@ $_ENV['APP_ENV'] = $_SERVER['APP_ENV'] = 'test';
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-(new Dotenv())->bootEnv(dirname(__DIR__) . '/.env.test');
+(new Dotenv())->bootEnv(dirname(__DIR__) . '/tests/test.artefactguide.env');

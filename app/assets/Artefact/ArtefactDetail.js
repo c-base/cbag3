@@ -7,7 +7,7 @@ import {
   assignImageToArtefact,
 } from './actions'
 import {getArtefact, getSelectedArtefact, getSelectedArtefactImageIds} from './selectors'
-import { getGalleryImages } from './../Gallery/selectors'
+import { getGalleryImages } from '../Gallery/selectors'
 import { useParams } from "react-router-dom";
 import {run as runHolder} from "holderjs";
 import { PhotoStar, PhotoPlus } from 'tabler-icons-react';
