@@ -5,12 +5,12 @@ help: ## Helping devs since 2016
 	@cat $(MAKEFILE_LIST) | grep -e "^[\%a-zA-Z_\-]*: *.*## *" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo "For additional commands have a look at the Makefile"
 
-install: install-ci install-dev ## Install ci-tools and vendors
-
 install-ci: ## Install ci
-	composer install -d ./ci
+	composer install -d ./ci --no-ansi --no-interaction --no-progress --no-scripts --optimize-autoloader
+	composer install --no-ansi --no-interaction --no-progress --no-scripts --optimize-autoloader
 
 install-dev: ## install dev
+	composer install -d ./ci
 	composer install
 
 install-production: ## Install production
@@ -21,7 +21,7 @@ install-frontend-dev: ## install frontend dev
 	yarnpkg encore dev
 
 install-frontend-prod: ## install frontend production
-	yarn encore production
+	yarnpkg encore production
 
 data-restore: ## drop and restore data
 	#rm -f ./migrations/*

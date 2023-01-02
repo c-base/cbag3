@@ -8,7 +8,7 @@ help: ## Helping devs since 2016
 app-%:
 	docker compose exec artefactguide make $*
 
-init: build-dev up app-install app-install-frontend-dev app-data-restore ## Init the development environment
+init: build-dev up app-install-dev app-install-frontend-dev app-data-restore ## Init the development environment
 
 up: ## Start all containers
 	docker compose up -d

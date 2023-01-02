@@ -40,7 +40,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Setup Install dependencies
-        run: make install
+        run: make install-ci
         working-directory: ./app
 
       - name: CI lint
