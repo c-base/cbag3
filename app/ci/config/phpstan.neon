@@ -12,7 +12,7 @@ parameters:
     bootstrapFiles:
         - %currentWorkingDirectory%/vendor/autoload.php
 
-    tmpDir: %currentWorkingDirectory%/devops/ci/cache
+    tmpDir: %currentWorkingDirectory%/ci/cache
 
     paths:
         - %currentWorkingDirectory%/src/

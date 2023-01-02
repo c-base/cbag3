@@ -3,7 +3,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
         executionOrder="random"
-        bootstrap="../../../tests/bootstrap.php"
+        bootstrap="../../tests/bootstrap.php"
         colors="true"
         processIsolation="false"
         stopOnError="true"
@@ -11,7 +11,7 @@
         stopOnIncomplete="false"
         stopOnSkipped="false"
         stopOnRisky="true"
-        cacheDirectory=".phpunit.cache"
+        cacheDirectory="../cache/.phpunit.cache"
 >
   <php>
     <ini name="error_reporting" value="-1"/>
@@ -20,15 +20,15 @@
   </php>
   <coverage>
     <include>
-      <directory suffix=".php">../../../src/</directory>
+      <directory suffix=".php">../../src/</directory>
     </include>
   </coverage>
   <testsuites>
     <testsuite name="ArtefactGuide">
-      <directory>../../../tests/ArtefactGuide</directory>
+      <directory>../../tests/ArtefactGuide</directory>
     </testsuite>
     <testsuite name="Shared">
-      <directory>../../../tests/Shared</directory>
+      <directory>../../tests/Shared</directory>
     </testsuite>
   </testsuites>
 </phpunit>
