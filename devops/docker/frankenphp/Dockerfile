@@ -17,6 +17,8 @@ RUN install-php-extensions \
     intl \
     zip
 
+WORKDIR /app
+
 # DEV stage
 FROM base as dev
 
@@ -38,8 +40,9 @@ ENV APP_ENV=prod
 ENV APP_DEBUG=0
 
 # get the code
-COPY --chown=www-data:www-data . /app
+COPY --chown=www-data:www-data ./app /app
 
+# build production
 RUN make install-production
 
 # production stage
