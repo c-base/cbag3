@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  artefactguide:
+    image: ghcr.io/c-base/cbag3:latest
+    env_file: ./shared/prod.artefactguide.env
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - './shared/images:/app/public/images:cached'
+
+  database:
+    image: postgres:15.1-alpine3.17
+    container_name: database
+    env_file: ./shared/prod.database.env
+    ports:
+      - 15432:5432
+    volumes:
+      - './shared/database:/var/lib/postgresql'
