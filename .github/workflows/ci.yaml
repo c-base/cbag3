@@ -1,6 +1,6 @@
 # GitHub Action for Symfony
 name: Run CI for ArtefactGuide
-on: [push, pull_request]
+on: [push]
 
 jobs:
   setup:
@@ -38,7 +38,6 @@ jobs:
           # key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-        working-directory: ./app
 
       - name: Setup Install dependencies
         run: make install
