@@ -15,6 +15,7 @@ install-dev: ## install dev
 
 install-production: ## Install production
 	composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+	yarnpkg install
 	yarnpkg build
 
 install-frontend-dev: ## install frontend dev
