@@ -1,0 +1,19 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: max
+
+    treatPhpDocTypesAsCertain: false
+
+    scanDirectories:
+        - %currentWorkingDirectory%/src/
+        - %currentWorkingDirectory%/tests/
+    bootstrapFiles:
+        - %currentWorkingDirectory%/vendor/autoload.php
+
+    tmpDir: %currentWorkingDirectory%/ci/cache
+
+    paths:
+        - %currentWorkingDirectory%/src/
+        - %currentWorkingDirectory%/tests/

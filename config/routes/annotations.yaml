@@ -1,7 +1,0 @@
-controllers:
-    resource: ../../src/*/Application/Controller/*
-    type: attribute
-
-kernel:
-    resource: ../../src/App/Kernel.php
-    type: attribute

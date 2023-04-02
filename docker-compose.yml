@@ -1,30 +1,22 @@
 version: '3.9'
 services:
   artefactguide:
-    container_name: artefactguide
+    image: ghcr.io/c-base/cbag3:dev-latest
     build:
       dockerfile: ./devops/docker/frankenphp/Dockerfile
       target: dev
-    environment:
-      - APP_ENV=dev
-      - APP_SECRET=3877bb09523f3a5956ea2216d99c3b9e
-      - APP_DEBUG=true
-    #      - FRANKENPHP_CONFIG="worker ./public/index.php"
-    #      - APP_RUNTIME=Runtime\\FrankenPhpSymfony\\Runtime
+    env_file: ./devops/env/dev.artefactguide.env
     ports:
       - 80:80
       - 443:443
     volumes:
-      - './:/app'
+      - './app:/app'
 
   database:
     image: postgres:alpine
     container_name: database
-    environment:
-      POSTGRES_USER: cbag3dev
-      POSTGRES_PASSWORD: cbag3dev
-      POSTGRES_DB: cbag3
+    env_file: ./devops/env/dev.database.env
     ports:
       - 15432:5432
     volumes:
-      - ./var/database:/var/lib/postgresql
+      - ./devops/database:/var/lib/postgresql

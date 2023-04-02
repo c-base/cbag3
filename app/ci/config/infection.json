@@ -1,0 +1,31 @@
+{
+    "source": {
+        "directories": [
+            ".\/src\/"
+        ],
+        "excludes": [
+            "Kernel.php"
+        ]
+    },
+    "timeout": 10,
+    "logs": {
+        "debug": "php://stdout",
+        "text": "php://stdout",
+        "summary": "php://stdout"
+    },
+    "tmpDir": "..\/cache\/scripts",
+    "phpUnit": {
+        "configDir": ".\/"
+    },
+    "mutators": {
+        "MethodCallRemoval": {
+            "ignoreSourceCodeByRegex": [
+                "Assert::.*"
+            ]
+        },
+        "@default": true
+    },
+    "minMsi": 34.8,
+    "testFramework":"phpunit",
+    "testFrameworkOptions":"--testsuite=unit,integration"
+}

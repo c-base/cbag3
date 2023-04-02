@@ -1,0 +1,11 @@
+deptrac:
+    paths:
+        - ./../../../src
+    layers:
+        -   name: ArtefactGuideApplication
+            collectors:
+                -   type: className
+                    regex: ArtefactGuide\\Application\\.*
+
+    ruleset:
+        ArtefactGuideApplication:

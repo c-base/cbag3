@@ -22,8 +22,8 @@
 * [ ] Add audit-trail
 * [ ] Add Notification when images are added
 * [ ] Handle http status 401
-  * [x] add primary image
-  * [ ] upload image
+* [x] add primary image
+* [x] upload image
 
 ## TODO
 * [ ] add `updatedAt` field to artefact and image
