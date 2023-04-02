@@ -50,7 +50,7 @@ jobs:
       contents: read
     steps:
       - name: echo
-        run: echo ${{ secrets.TEST }}
+        run: echo '${{ secrets.TEST }}'
       - name: Deploy to Docker Host via docker-compose
         uses: wshihadeh/docker-deployment-action@878e5822321b7acbcee5fe5fdb926d61d27656d6
         with:
